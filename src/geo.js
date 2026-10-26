@@ -25,6 +25,9 @@ export function formatDuration(seconds) {
   return m ? `${h} h ${m} min` : `${h} h`;
 }
 
+// Minimum trimmed query length before suggestions are fetched while typing.
+export const MIN_SUGGEST_CHARS = 3;
+
 export function searchUrl(query, base = "https://nominatim.openstreetmap.org") {
   const p = new URLSearchParams({ q: query, format: "jsonv2", limit: "5" });
   return `${base}/search?${p}`;

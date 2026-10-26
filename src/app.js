@@ -1,6 +1,7 @@
 import {
   formatDistance,
   formatDuration,
+  MIN_SUGGEST_CHARS,
   parseRoute,
   parseSearchResults,
   routeUrl,
@@ -67,14 +68,17 @@ async function fetchJson(url) {
   return res.json();
 }
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const q = input.value.trim();
-  if (!q) return;
-  results.replaceChildren();
-  setStatus("Searching…");
+let searchSeq = 0;
+let suggestTimer = null;
+const SUGGEST_DELAY_MS = 500;
+
+async function runSearch(q, { announce = true } = {}) {
+  const seq = ++searchSeq;
+  if (announce) setStatus("Searching…");
   try {
     const found = parseSearchResults(await fetchJson(searchUrl(q)));
+    if (seq !== searchSeq) return; // a newer search superseded this one
+    results.replaceChildren();
     if (!found.length) return setStatus("No results.");
     setStatus("");
     for (const place of found) {
@@ -87,11 +91,34 @@ form.addEventListener("submit", async (e) => {
       results.append(li);
     }
   } catch (err) {
-    setStatus(`Search failed: ${err.message}`);
+    if (seq === searchSeq) setStatus(`Search failed: ${err.message}`);
   }
+}
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  clearTimeout(suggestTimer);
+  const q = input.value.trim();
+  if (q) runSearch(q);
+});
+
+// Pre-fill: suggest places while typing (debounced to respect Nominatim's rate limit).
+input.addEventListener("input", () => {
+  clearTimeout(suggestTimer);
+  const q = input.value.trim();
+  if (q.length < MIN_SUGGEST_CHARS) {
+    searchSeq++; // drop any in-flight suggestion
+    results.replaceChildren();
+    setStatus("");
+    return;
+  }
+  suggestTimer = setTimeout(() => runSearch(q, { announce: false }), SUGGEST_DELAY_MS);
 });
 
 async function showRoute(place) {
+  searchSeq++;
+  clearTimeout(suggestTimer);
+  input.value = place.name;
   results.replaceChildren();
   destMarker?.remove();
   routeLine?.remove();

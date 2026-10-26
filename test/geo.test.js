@@ -4,6 +4,7 @@ import {
   formatDistance,
   formatDuration,
   haversine,
+  MIN_SUGGEST_CHARS,
   parseRoute,
   parseSearchResults,
   routeUrl,
@@ -43,6 +44,10 @@ test("parseSearchResults converts and filters", () => {
   ]);
   assert.deepEqual(out, [{ name: "A", lat: 1.5, lng: 2.5 }]);
   assert.deepEqual(parseSearchResults(null), []);
+});
+
+test("MIN_SUGGEST_CHARS is a sensible threshold", () => {
+  assert.ok(MIN_SUGGEST_CHARS >= 2 && MIN_SUGGEST_CHARS <= 5);
 });
 
 test("routeUrl uses lng,lat order and foot profile", () => {
