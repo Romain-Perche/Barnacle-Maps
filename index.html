@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Barnacle Maps</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    html, body { height: 100%; margin: 0; font-family: system-ui, sans-serif; }
+    #map { position: absolute; inset: 0; }
+    #panel { position: absolute; z-index: 1000; top: 10px; left: 50px; width: min(360px, calc(100% - 70px));
+      background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.3); padding: 8px; }
+    #search-form { display: flex; gap: 6px; }
+    #query { flex: 1; padding: 8px; }
+    #status { font-size: 14px; margin-top: 6px; }
+    #status:empty { display: none; }
+    #results { list-style: none; margin: 6px 0 0; padding: 0; }
+    #results li { padding: 8px; cursor: pointer; font-size: 14px; border-top: 1px solid #eee; }
+    #results li:hover { background: #f2f6fc; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="panel">
+    <form id="search-form">
+      <input id="query" type="search" placeholder="Search a place" aria-label="Search a place" autocomplete="off">
+      <button type="submit">Go</button>
+    </form>
+    <div id="status" role="status"></div>
+    <ul id="results"></ul>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
