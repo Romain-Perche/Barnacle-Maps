@@ -1,5 +1,5 @@
 // Pure helpers for Barnacle Maps (no DOM access and no fetch, so they can be unit tested in Node):
-// formatting, Nominatim search, OSRM walking routes (alternatives, detours, de-duplication)
+// formatting, Nominatim search, OSRM walking and car routes (alternatives, detours, de-duplication)
 // and the Overpass-based "pleasure" score of a route.
 
 const EARTH_RADIUS_M = 6371008.8;
@@ -46,18 +46,24 @@ export function parseSearchResults(json) {
     .filter((r) => r.name && Number.isFinite(r.lat) && Number.isFinite(r.lng));
 }
 
-// OSRM expects lng,lat order. The "foot" profile gives walking routes.
+export const TRAVEL_MODES = {
+  foot: { label: "Walk", base: "https://routing.openstreetmap.de/routed-foot", profile: "foot" },
+  car: { label: "Car", base: "https://routing.openstreetmap.de/routed-car", profile: "driving" },
+};
+
+// OSRM expects lng,lat order. The "foot" profile gives walking routes, "driving" (mode "car") car routes.
 // `via` forces the route through a waypoint; `alternatives` asks OSRM for alternative routes.
 export function routeUrl(
   from,
   to,
-  base = "https://routing.openstreetmap.de/routed-foot",
-  { alternatives = 0, via = null } = {},
+  base,
+  { alternatives = 0, via = null, mode = "foot" } = {},
 ) {
+  const m = TRAVEL_MODES[mode] || TRAVEL_MODES.foot;
   const pts = via ? [from, via, to] : [from, to];
   const coords = pts.map((p) => `${p.lng},${p.lat}`).join(";");
   const alt = alternatives > 0 ? "&alternatives=3" : "";
-  return `${base}/route/v1/foot/${coords}?overview=full&geometries=geojson${alt}`;
+  return `${base ?? m.base}/route/v1/${m.profile}/${coords}?overview=full&geometries=geojson${alt}`;
 }
 
 // Returns every route as { distance, duration, path: [[lat, lng], ...] }, or [] when none exists.
