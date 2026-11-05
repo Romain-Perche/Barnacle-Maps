@@ -1,6 +1,6 @@
 // Pure helpers for Barnacle Maps (no DOM access and no fetch, so they can be unit tested in Node):
 // formatting, Nominatim search, OSRM walking and car routes (alternatives, detours, de-duplication)
-// and the Overpass-based "pleasure" score of a route.
+// and the green-pixel "pleasure" score of a route on map tiles.
 
 const EARTH_RADIUS_M = 6371008.8;
 
@@ -216,129 +216,79 @@ export function routesBbox(paths, padM = 100) {
   return { south: south - dLat, west: west - dLng, north: north + dLat, east: east + dLng };
 }
 
-// --- Pleasure score (Overpass) -----------------------------------------------------------------
+// --- Pleasure: green pixels on map tiles -------------------------------------------------------
 
-const BUSY_HIGHWAY = /^(motorway|trunk|primary|secondary)(_link)?$/;
+const TILE_SIZE = 256;
 
-export function overpassQuery(bbox) {
-  const b = `(${bbox.south},${bbox.west},${bbox.north},${bbox.east})`;
-  return (
-    "[out:json][timeout:15];(" +
-    `way["leisure"~"^(park|garden|nature_reserve|playground)$"]${b};` +
-    `relation["leisure"~"^(park|garden|nature_reserve|playground)$"]${b};` +
-    `way["landuse"~"^(grass|forest|meadow|recreation_ground|village_green)$"]${b};` +
-    `relation["landuse"~"^(grass|forest|meadow|recreation_ground|village_green)$"]${b};` +
-    `way["natural"~"^(wood|water|scrub|beach)$"]${b};` +
-    `relation["natural"~"^(wood|water|scrub|beach)$"]${b};` +
-    `way["waterway"~"^(river|canal)$"]${b};` +
-    `way["highway"~"^(pedestrian|footway|path|living_street|track|steps)$"]${b};` +
-    `way["highway"~"^(motorway|trunk|primary|secondary)(_link)?$"]${b};` +
-    ");out geom;"
-  );
+export function lngLatToPixel(lat, lng, zoom) {
+  const size = TILE_SIZE * 2 ** zoom;
+  const r = (lat * Math.PI) / 180;
+  const x = ((lng + 180) / 360) * size;
+  const y = ((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2) * size;
+  return { x, y };
 }
 
-function geometrySegments(geometry, out) {
-  if (!Array.isArray(geometry)) return;
-  for (let i = 1; i < geometry.length; i++) {
-    const a = geometry[i - 1];
-    const b = geometry[i];
-    if (!a || !b || !Number.isFinite(a.lat) || !Number.isFinite(a.lon)) continue;
-    if (!Number.isFinite(b.lat) || !Number.isFinite(b.lon)) continue;
-    out.push([[a.lat, a.lon], [b.lat, b.lon]]);
+// Unique integer [x, y] world pixels covered by the polyline, widened by a disc of `radius` px.
+export function pathPixels(path, zoom, radius = 0) {
+  if (!Array.isArray(path) || path.length === 0) return [];
+  const pts = path.map((p) => lngLatToPixel(p[0], p[1], zoom));
+  const centres = new Set();
+  const add = (x, y) => centres.add(`${Math.floor(x)}:${Math.floor(y)}`);
+  add(pts[0].x, pts[0].y);
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i - 1];
+    const b = pts[i];
+    const dx = b.x - a.x;
+    const dy = b.y - a.y;
+    const n = Math.ceil(Math.max(Math.abs(dx), Math.abs(dy)) * 2) + 1;
+    for (let k = 0; k <= n; k++) add(a.x + (dx * k) / n, a.y + (dy * k) / n);
   }
-}
-
-// Splits Overpass elements into positive (green, water, pedestrian) and negative (busy road)
-// segments, each [[lat, lng], [lat, lng]].
-export function parseOverpass(json) {
-  const positive = [];
-  const negative = [];
-  if (!json || !Array.isArray(json.elements)) return { positive, negative };
-  for (const el of json.elements) {
-    if (!el) continue;
-    const highway = el.tags && el.tags.highway;
-    const target = highway && BUSY_HIGHWAY.test(highway) ? negative : positive;
-    if (Array.isArray(el.geometry)) geometrySegments(el.geometry, target);
-    if (Array.isArray(el.members)) {
-      for (const m of el.members) if (m) geometrySegments(m.geometry, target);
-    }
-  }
-  return { positive, negative };
-}
-
-const CELL_DEG = 0.001;
-
-// Grid index of segments: each segment is stored in every cell its bbox (padded by padM) touches,
-// restricted to the `limit` bbox so huge features outside the walk are cheap.
-function buildGrid(segments, padM, limit) {
-  const grid = new Map();
-  const dLat = padM / M_PER_DEG_LAT;
-  for (const seg of segments) {
-    const [[aLat, aLng], [bLat, bLng]] = seg;
-    const k = Math.max(0.01, Math.cos((((aLat + bLat) / 2) * Math.PI) / 180));
-    const dLng = padM / (M_PER_DEG_LAT * k);
-    let s = Math.min(aLat, bLat) - dLat;
-    let n = Math.max(aLat, bLat) + dLat;
-    let w = Math.min(aLng, bLng) - dLng;
-    let e = Math.max(aLng, bLng) + dLng;
-    if (n < limit.south || s > limit.north || e < limit.west || w > limit.east) continue;
-    s = Math.max(s, limit.south);
-    n = Math.min(n, limit.north);
-    w = Math.max(w, limit.west);
-    e = Math.min(e, limit.east);
-    for (let i = Math.floor(s / CELL_DEG); i <= Math.floor(n / CELL_DEG); i++) {
-      for (let j = Math.floor(w / CELL_DEG); j <= Math.floor(e / CELL_DEG); j++) {
-        const key = `${i}:${j}`;
-        const cell = grid.get(key);
-        if (cell) cell.push(seg);
-        else grid.set(key, [seg]);
+  const r = Math.max(0, Math.floor(radius));
+  const out = new Map();
+  for (const key of centres) {
+    const [cx, cy] = key.split(":").map(Number);
+    for (let oy = -r; oy <= r; oy++) {
+      for (let ox = -r; ox <= r; ox++) {
+        if (ox * ox + oy * oy > radius * radius) continue;
+        out.set(`${cx + ox}:${cy + oy}`, [cx + ox, cy + oy]);
       }
     }
   }
-  return grid;
+  return [...out.values()];
 }
 
-function nearGrid(grid, p, maxM) {
-  const ci = Math.floor(p[0] / CELL_DEG);
-  const cj = Math.floor(p[1] / CELL_DEG);
-  for (let di = -1; di <= 1; di++) {
-    for (let dj = -1; dj <= 1; dj++) {
-      const cell = grid.get(`${ci + di}:${cj + dj}`);
-      if (!cell) continue;
-      for (const [a, b] of cell) if (pointToSegmentDistance(p, a, b) <= maxM) return true;
-    }
+export function pathTiles(pixels) {
+  const seen = new Map();
+  for (const [x, y] of pixels || []) {
+    const tx = Math.floor(x / TILE_SIZE);
+    const ty = Math.floor(y / TILE_SIZE);
+    seen.set(`${tx}/${ty}`, [tx, ty]);
   }
-  return false;
+  return [...seen.values()];
 }
 
-// 0..100: share of the walk within 40 m of green/water/pedestrian features, minus half the share
-// within 15 m of busy roads. A heuristic, not a measurement.
-export function pleasureScore(path, features) {
-  const samples = samplePath(path, 25);
-  if (!samples.length) return 0;
-  const limit = routesBbox([path], 200);
-  const pos = buildGrid((features && features.positive) || [], 40, limit);
-  const neg = buildGrid((features && features.negative) || [], 15, limit);
-  let nice = 0;
-  let busy = 0;
-  for (const p of samples) {
-    if (nearGrid(pos, p, 40)) nice++;
-    if (nearGrid(neg, p, 15)) busy++;
+export function isGreenPixel(r, g, b, a = 255) {
+  return a >= 128 && g >= r + 12 && g >= b + 12;
+}
+
+// tiles: Map of `${tx}/${ty}` -> RGBA data (256x256x4). Pixels on missing tiles are not counted.
+export function countGreenPixels(pixels, tiles) {
+  let count = 0;
+  for (const [x, y] of pixels) {
+    const tx = Math.floor(x / TILE_SIZE);
+    const ty = Math.floor(y / TILE_SIZE);
+    const d = tiles.get(`${tx}/${ty}`);
+    if (!d) continue;
+    const i = ((y - ty * TILE_SIZE) * TILE_SIZE + (x - tx * TILE_SIZE)) * 4;
+    if (isGreenPixel(d[i], d[i + 1], d[i + 2], d[i + 3])) count++;
   }
-  const score = Math.round((100 * (nice - 0.5 * busy)) / samples.length);
-  return Math.max(0, Math.min(100, score));
+  return count;
 }
 
-// Maps a 0..100 score to a 1..5 level.
-export function pleasureLevel(score) {
-  if (score <= 20) return 1;
-  if (score <= 40) return 2;
-  if (score <= 60) return 3;
-  if (score <= 80) return 4;
-  return 5;
-}
-
-export function formatPleasure(level) {
-  const n = Math.max(0, Math.min(5, Math.round(level) || 0));
-  return "●".repeat(n) + "○".repeat(5 - n);
+// Index of the largest count (first wins ties); -1 when there is no green at all.
+export function bestPleasure(counts) {
+  if (!Array.isArray(counts) || counts.length === 0) return -1;
+  let best = 0;
+  for (let i = 1; i < counts.length; i++) if (counts[i] > counts[best]) best = i;
+  return counts[best] > 0 ? best : -1;
 }
