@@ -5,8 +5,7 @@ import * as geo from "../src/geo.js";
 
 const {
   routeUrl, parseRoute, parseRoutes, detourWaypoints, routeOverlap, samplePath,
-  pointToSegmentDistance, pickRoutes, routesBbox, overpassQuery, parseOverpass,
-  pleasureScore, pleasureLevel, formatPleasure, haversine,
+  pointToSegmentDistance, pickRoutes, routesBbox, haversine,
 } = geo;
 
 const near = (x, y, tol) => Math.abs(x - y) <= tol;
@@ -262,127 +261,6 @@ test("H5 invariants", () => {
   assert.ok(b.south < b.north && b.west < b.east);
 });
 
-// I
-test("I1 structure", () => {
-  const q = overpassQuery({ south: 48.1, west: 2.2, north: 48.2, east: 2.3 });
-  assert.ok(q.startsWith("[out:json][timeout:15];"));
-  assert.ok(q.includes("(48.1,2.2,48.2,2.3)"));
-  assert.ok(q.trim().endsWith("out geom;"));
-  const before = q.slice(0, q.lastIndexOf("out geom;"));
-  assert.ok(before.includes("(") && before.includes(");"));
-});
-test("I2 tag_filters_present", () => {
-  const q = overpassQuery({ south: 48.1, west: 2.2, north: 48.2, east: 2.3 });
-  for (const s of ["leisure", "park", "garden", "nature_reserve", "playground", "landuse", "grass", "forest",
-    "meadow", "recreation_ground", "village_green", "natural", "wood", "water", "scrub", "beach", "waterway",
-    "river", "canal", "pedestrian", "footway", "path", "living_street", "track", "steps", "motorway", "trunk",
-    "primary", "secondary", "_link"]) assert.ok(q.includes(s), s);
-  assert.ok(q.includes("way"));
-  assert.ok(q.includes("relation") || q.includes("rel"));
-});
-test("I3 different_bbox_changes_query", () =>
-  assert.ok(overpassQuery({ south: 1, west: 2, north: 3, east: 4 }).includes("(1,2,3,4)")));
-
-// J
-const g = (...pts) => pts.map(([lat, lon]) => ({ lat, lon }));
-test("J1 classify_and_segment", () => {
-  const OV = { elements: [
-    { type: "way", tags: { highway: "footway" }, geometry: g([0, 0], [0, 0.001], [0, 0.002]) },
-    { type: "way", tags: { highway: "primary" }, geometry: g([1, 1], [1, 1.001]) },
-    { type: "way", tags: { highway: "secondary_link" }, geometry: g([2, 2], [2, 2.001]) },
-    { type: "relation", tags: { leisure: "park" }, members: [
-      { type: "way", geometry: g([3, 3], [3, 3.001], [3.001, 3.001]) },
-      { type: "way", geometry: g([4, 4], [4, 4.001]) } ] },
-    { type: "way", tags: { natural: "water" } },
-    { type: "way", tags: { waterway: "river" }, geometry: g([5, 5], [5, 5.001]) },
-  ] };
-  const r = parseOverpass(OV);
-  assert.deepEqual(r.negative, [[[1, 1], [1, 1.001]], [[2, 2], [2, 2.001]]]);
-  assert.equal(r.positive.length, 6);
-  const has = (s) => r.positive.some((x) => JSON.stringify(x) === JSON.stringify(s));
-  for (const s of [[[0, 0], [0, 0.001]], [[0, 0.001], [0, 0.002]], [[3, 3], [3, 3.001]],
-    [[3, 3.001], [3.001, 3.001]], [[4, 4], [4, 4.001]], [[5, 5], [5, 5.001]]]) assert.ok(has(s), JSON.stringify(s));
-  assert.ok(!has([[3.001, 3.001], [4, 4]]));
-});
-test("J2 motorway_trunk_link_negative", () => {
-  for (const hw of ["motorway", "trunk_link", "primary_link"]) {
-    const r = parseOverpass({ elements: [{ type: "way", tags: { highway: hw }, geometry: g([0, 0], [0, 0.001]) }] });
-    assert.equal(r.negative.length, 1, hw);
-    assert.equal(r.positive.length, 0, hw);
-  }
-});
-test("J3 single_point_geometry", () => {
-  const r = parseOverpass({ elements: [{ type: "way", tags: { highway: "footway" }, geometry: g([0, 0]) }] });
-  assert.equal(r.positive.length + r.negative.length, 0);
-});
-test("J4 empty_inputs", () => {
-  for (const v of [null, undefined, {}, { elements: [] }]) assert.deepEqual(parseOverpass(v), { positive: [], negative: [] });
-});
-test("J5 relation_member_without_geometry_skipped", () => {
-  const r = parseOverpass({ elements: [{ type: "relation", tags: { leisure: "park" }, members: [
-    { type: "node" }, { type: "way", geometry: g([0, 0], [0, 0.001]) }] }] });
-  assert.equal(r.positive.length + r.negative.length, 1);
-});
-
-// K
-const P = [[0, 0], [0, 0.01]];
-const seg = (lat, a = 0, b = 0.01) => [[lat, a], [lat, b]];
-test("K1-K12 pleasureScore", () => {
-  const cases = [
-    [P, { positive: [seg(0.0002)], negative: [] }, 100],
-    [P, { positive: [seg(0.000315)], negative: [] }, 100],
-    [P, { positive: [seg(0.000405)], negative: [] }, 0],
-    [P, { positive: [seg(0.001)], negative: [] }, 0],
-    [P, { positive: [], negative: [] }, 0],
-    [P, { positive: [seg(0.0002)], negative: [seg(0.0001)] }, 50],
-    [P, { positive: [seg(0.0002)], negative: [seg(0.000162)] }, 100],
-    [P, { positive: [], negative: [seg(0)] }, 0],
-    [[], { positive: [seg(0)], negative: [] }, 0],
-  ];
-  for (const [p, f, exp] of cases) {
-    const x = pleasureScore(p, f);
-    assert.equal(x, exp);
-    assert.ok(Number.isInteger(x) && x >= 0 && x <= 100);
-  }
-  const k9 = pleasureScore(P, { positive: [seg(0.0002, 0, 0.005)], negative: [] });
-  assert.ok(k9 >= 45 && k9 <= 56, `K9 ${k9}`);
-  const k10 = pleasureScore(P, { positive: [seg(0.0002)], negative: [seg(0.0001, 0, 0.005)] });
-  assert.ok(k10 >= 72 && k10 <= 78, `K10 ${k10}`);
-  for (const x of [k9, k10]) assert.ok(Number.isInteger(x) && x >= 0 && x <= 100);
-});
-test("K13 many_segments_fast", () => {
-  const positive = [];
-  for (let i = 0; i < 5000; i++) {
-    const lat = 0.01 + (i / 5000) * 0.05;
-    const lng = (i % 100) * 0.0008;
-    positive.push([[lat, lng], [lat, lng + 0.0005]]);
-  }
-  positive.push(seg(0.0001, 0, 0.09));
-  const t = Date.now();
-  const r = pleasureScore([[0, 0], [0, 0.09]], { positive, negative: [] });
-  assert.equal(r, 100);
-  assert.ok(Date.now() - t < 1000);
-});
-test("K14 long segment crossing many cells found", () => {
-  assert.equal(pleasureScore(P, { positive: [[[0.0002, -0.05], [0.0002, 0.06]]], negative: [] }), 100);
-});
-test("K15 features_at_high_latitude", () => {
-  const path = [[60, 0], [60, 0.02]];
-  assert.equal(pleasureScore(path, { positive: [[[60.0002, 0], [60.0002, 0.02]]], negative: [] }), 100);
-  assert.equal(pleasureScore(path, { positive: [[[60.0005, 0], [60.0005, 0.02]]], negative: [] }), 0);
-});
-test("K16 pleasureLevel boundaries", () => {
-  for (const [s, l] of [[0, 1], [20, 1], [21, 2], [40, 2], [41, 3], [60, 3], [61, 4], [80, 4], [81, 5], [100, 5]])
-    assert.equal(pleasureLevel(s), l, `score ${s}`);
-});
-test("K17 formatPleasure", () => {
-  assert.equal(formatPleasure(1), "●○○○○");
-  assert.equal(formatPleasure(3), "●●●○○");
-  assert.equal(formatPleasure(5), "●●●●●");
-  for (let l = 1; l <= 5; l++) assert.equal([...formatPleasure(l)].length, 5);
-});
-test("K18 composition", () => assert.equal(formatPleasure(pleasureLevel(72)), "●●●●○"));
-
 // L
 test("L1 index_html_routes_list", () => {
   const h = read("index.html");
@@ -396,21 +274,20 @@ test("L2 styles_routes_empty_hidden", () => {
   assert.ok(c.includes("#routes"));
   assert.ok(c.includes(".selected") || c.includes('aria-pressed="true"'));
 });
-test("L3 readme_mentions_overpass", () => {
+test("L3 readme_mentions_routes_and_pleasure", () => {
   const r = read("README.md");
-  assert.match(r, /overpass/i);
   assert.match(r, /up to 3|3 routes|several routes|three routes/i);
   assert.match(r, /pleasure/i);
 });
 test("L4 app_js_imports_and_state", () => {
   const a = read("src/app.js");
-  for (const s of ["parseRoutes", "pickRoutes", "detourWaypoints", "pleasureScore", "overpassQuery", "routeSeq", "clearRoutes", "Promise.allSettled"])
+  for (const s of ["parseRoutes", "pickRoutes", "detourWaypoints", "routeSeq", "clearRoutes", "Promise.allSettled"])
     assert.ok(a.includes(s), s);
   assert.ok(!a.includes("routeLine"));
 });
 test("L5 app_js_strings", () => {
   const a = read("src/app.js");
-  for (const s of ["Pleasure unavailable", "No walking route found.", "application/x-www-form-urlencoded", "aria-pressed"])
+  for (const s of ["Pleasure unavailable", "No walking route found.", "aria-pressed"])
     assert.ok(a.includes(s), s);
 });
 test("L6 geo_module_pure", () => {
@@ -419,8 +296,8 @@ test("L6 geo_module_pure", () => {
 });
 test("L7 geo_exports", () => {
   for (const n of ["routeUrl", "parseRoute", "parseRoutes", "detourWaypoints", "routeOverlap", "samplePath",
-    "pointToSegmentDistance", "pickRoutes", "routesBbox", "overpassQuery", "parseOverpass", "pleasureScore",
-    "pleasureLevel", "formatPleasure", "haversine"]) assert.equal(typeof geo[n], "function", n);
+    "pointToSegmentDistance", "pickRoutes", "routesBbox", "haversine", "lngLatToPixel", "pathPixels",
+    "pathTiles", "isGreenPixel", "countGreenPixels", "bestPleasure"]) assert.equal(typeof geo[n], "function", n);
 });
 test("L8 no_new_dependencies", () => {
   const p = JSON.parse(read("package.json"));
