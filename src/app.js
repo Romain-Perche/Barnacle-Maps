@@ -1,28 +1,27 @@
 import {
+  bestPleasure,
+  countGreenPixels,
+  pathPixels,
+  pathTiles,
   detourWaypoints,
   formatDistance,
   formatDuration,
-  formatPleasure,
   haversine,
   MIN_SUGGEST_CHARS,
-  overpassQuery,
-  parseOverpass,
   parseRoutes,
   parseSearchResults,
   pickRoutes,
-  pleasureLevel,
-  pleasureScore,
-  routesBbox,
   routeUrl,
   searchUrl,
   TRAVEL_MODES,
 } from "./geo.js";
 
 const L = window.L;
+const TILE_URL = "https://tile.openstreetmap.org";
 const DEFAULT_VIEW = { lat: 48.8566, lng: 2.3522, zoom: 13 };
 
 const map = L.map("map").setView([DEFAULT_VIEW.lat, DEFAULT_VIEW.lng], DEFAULT_VIEW.zoom);
-L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+L.tileLayer(`${TILE_URL}/{z}/{x}/{y}.png`, {
   maxZoom: 19,
   attribution: "&copy; OpenStreetMap contributors",
 }).addTo(map);
@@ -33,8 +32,10 @@ const results = document.getElementById("results");
 const status = document.getElementById("status");
 const routesList = document.getElementById("routes");
 
-const OVERPASS_URL = "https://overpass-api.de/api/interpreter";
-const OVERPASS_TIMEOUT_MS = 15000;
+const PLEASURE_ZOOM = 16;
+const PLEASURE_RADIUS_PX = 4;
+const PLEASURE_MAX_TILES = 150;
+const PLEASURE_TIMEOUT_MS = 20000;
 const PLEASURE_MAX_STRAIGHT_M = 15000;
 const ROUTE_STYLE = { color: "#888", weight: 5, opacity: 0.7 };
 const SELECTED_STYLE = { color: "#1a73e8", weight: 6, opacity: 1 };
@@ -86,17 +87,6 @@ if ("geolocation" in navigator) {
 
 async function fetchJson(url) {
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`Request failed (${res.status})`);
-  return res.json();
-}
-
-async function postForm(url, body, signal) {
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body,
-    signal,
-  });
   if (!res.ok) throw new Error(`Request failed (${res.status})`);
   return res.json();
 }
@@ -216,7 +206,20 @@ function drawRoutes(routes, m) {
   map.fitBounds(bounds, { padding: [40, 40] });
 }
 
-// Best-effort pleasure score from one Overpass request. Never blocks or hides the routes.
+async function loadTile(x, y, signal) {
+  const res = await fetch(`${TILE_URL}/${PLEASURE_ZOOM}/${x}/${y}.png`, { signal });
+  if (!res.ok) throw new Error(`Tile failed (${res.status})`);
+  const bitmap = await createImageBitmap(await res.blob());
+  const canvas =
+    typeof OffscreenCanvas !== "undefined"
+      ? new OffscreenCanvas(256, 256)
+      : Object.assign(document.createElement("canvas"), { width: 256, height: 256 });
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  ctx.drawImage(bitmap, 0, 0);
+  return ctx.getImageData(0, 0, 256, 256).data;
+}
+
+// Best-effort pleasure: green pixels of the OSM tiles along each route. Never blocks or hides the routes.
 async function scorePleasure(place, seq) {
   const entries = routeLayers.slice();
   const unavailable = () => {
@@ -224,22 +227,28 @@ async function scorePleasure(place, seq) {
     for (const e of entries) setPleasure(e, "Pleasure unavailable");
   };
   if (haversine(position, place) > PLEASURE_MAX_STRAIGHT_M) return unavailable();
+  const pixels = entries.map((e) => pathPixels(e.route.path, PLEASURE_ZOOM, PLEASURE_RADIUS_PX));
+  const needed = pathTiles(pixels.flat());
+  if (needed.length > PLEASURE_MAX_TILES) return unavailable();
   const controller = new AbortController();
   pleasureAbort = controller;
-  const timer = setTimeout(() => controller.abort(), OVERPASS_TIMEOUT_MS);
+  const timer = setTimeout(() => controller.abort(), PLEASURE_TIMEOUT_MS);
   try {
-    const query = overpassQuery(routesBbox(entries.map((e) => e.route.path)));
-    const json = await postForm(OVERPASS_URL, `data=${encodeURIComponent(query)}`, controller.signal);
+    const loaded = await Promise.all(
+      needed.map(([x, y]) => loadTile(x, y, controller.signal).then((d) => [`${x}/${y}`, d])),
+    );
+    const tiles = new Map(loaded);
     if (seq !== routeSeq) return;
-    const features = parseOverpass(json);
-    for (const e of entries) {
-      const score = pleasureScore(e.route.path, features);
-      const level = pleasureLevel(score);
-      setPleasure(e, `Pleasure ${formatPleasure(level)}`, {
-        title: `Share of the walk near parks, water or pedestrian streets (score ${score}/100)`,
-        label: `Pleasure ${level} of 5`,
+    const counts = pixels.map((p) => countGreenPixels(p, tiles));
+    const best = bestPleasure(counts);
+    entries.forEach((e, i) => {
+      const isBest = i === best;
+      setPleasure(e, `Pleasure: ${counts[i]} green px${isBest ? " · most pleasant" : ""}`, {
+        title: "Green pixels (parks, grass, woods) on the map along this walk; more is more pleasant",
+        label: `Pleasure ${counts[i]} green pixels${isBest ? ", most pleasant" : ""}`,
       });
-    }
+      e.pleasure.classList.toggle("best", isBest);
+    });
   } catch {
     unavailable();
   } finally {
