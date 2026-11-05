@@ -15,6 +15,7 @@ import {
   routesBbox,
   routeUrl,
   searchUrl,
+  TRAVEL_MODES,
 } from "./geo.js";
 
 const L = window.L;
@@ -46,6 +47,8 @@ let selectedRoute = 0;
 let routeSeq = 0;
 let pleasureAbort = null;
 let centered = false;
+let mode = "foot";
+let currentPlace = null;
 
 function setStatus(text) {
   status.textContent = text;
@@ -169,13 +172,14 @@ function setPleasure(entry, text, { title = "", label = text } = {}) {
   entry.pleasure.setAttribute("aria-label", label);
 }
 
-async function fetchRoutes(place, seq) {
-  const main = parseRoutes(await fetchJson(routeUrl(position, place, undefined, { alternatives: 3 })));
+async function fetchRoutes(place, seq, m) {
+  const main = parseRoutes(await fetchJson(routeUrl(position, place, undefined, { alternatives: 3, mode: m })));
   if (seq !== routeSeq || !main.length) return main;
-  if (main.length >= 2) return pickRoutes(main);
+  // Car detours through arbitrary side points give silly routes: only walking forces them.
+  if (main.length >= 2 || m !== "foot") return pickRoutes(main);
   // OSRM often has no alternative for short walks: force detours through side waypoints.
   const detours = await Promise.allSettled(
-    detourWaypoints(position, place).map((via) => fetchJson(routeUrl(position, place, undefined, { via }))),
+    detourWaypoints(position, place).map((via) => fetchJson(routeUrl(position, place, undefined, { via, mode: m }))),
   );
   const extra = detours
     .filter((d) => d.status === "fulfilled")
@@ -184,7 +188,7 @@ async function fetchRoutes(place, seq) {
   return pickRoutes([...main, ...extra]);
 }
 
-function drawRoutes(routes) {
+function drawRoutes(routes, m) {
   routes.forEach((route, i) => {
     const line = L.polyline(route.path, ROUTE_STYLE).addTo(map);
     const li = document.createElement("li");
@@ -192,13 +196,17 @@ function drawRoutes(routes) {
     button.type = "button";
     const title = document.createElement("span");
     title.textContent = `Route ${i + 1} · ${formatDistance(route.distance)} · ${formatDuration(route.duration)}`;
-    const pleasure = document.createElement("span");
-    pleasure.className = "pleasure";
-    button.append(title, pleasure);
+    button.append(title);
+    let pleasure = null;
+    if (m === "foot") {
+      pleasure = document.createElement("span");
+      pleasure.className = "pleasure";
+      button.append(pleasure);
+    }
     li.append(button);
     routesList.append(li);
     const entry = { route, line, button, pleasure };
-    setPleasure(entry, "Pleasure: …", { label: "Pleasure: computing" });
+    if (pleasure) setPleasure(entry, "Pleasure: …", { label: "Pleasure: computing" });
     line.on("click", () => selectRoute(i));
     button.addEventListener("click", () => selectRoute(i));
     routeLayers.push(entry);
@@ -241,6 +249,8 @@ async function scorePleasure(place, seq) {
 }
 
 async function showRoute(place) {
+  const m = mode;
+  currentPlace = place;
   const seq = ++routeSeq;
   pleasureAbort?.abort();
   pleasureAbort = null;
@@ -255,19 +265,32 @@ async function showRoute(place) {
     map.setView([place.lat, place.lng], 15);
     return setStatus("Waiting for your location to compute a route…");
   }
-  setStatus("Computing walking routes…");
+  setStatus(m === "car" ? "Computing driving routes…" : "Computing walking routes…");
   let routes;
   try {
-    routes = await fetchRoutes(place, seq);
+    routes = await fetchRoutes(place, seq, m);
   } catch (err) {
     if (seq === routeSeq) setStatus(`Routing failed: ${err.message}`);
     return;
   }
   if (seq !== routeSeq) return; // a newer destination superseded this one
-  if (!routes.length) return setStatus("No walking route found.");
-  drawRoutes(routes);
+  if (!routes.length) return setStatus(m === "car" ? "No driving route found." : "No walking route found.");
+  drawRoutes(routes, m);
   const fastest = routes[0];
   const summary = `${formatDistance(fastest.distance)} · ${formatDuration(fastest.duration)}`;
-  setStatus(routes.length === 1 ? `${summary} on foot` : `${routes.length} walking routes · fastest ${summary}`);
-  scorePleasure(place, seq);
+  const car = m === "car";
+  setStatus(
+    routes.length === 1
+      ? `${summary} ${car ? "by car" : "on foot"}`
+      : `${routes.length} ${car ? "driving" : "walking"} routes · fastest ${summary}`,
+  );
+  if (!car) scorePleasure(place, seq);
+}
+
+for (const radio of document.querySelectorAll("input[name=mode]")) {
+  radio.addEventListener("change", () => {
+    if (!radio.checked || !(radio.value in TRAVEL_MODES)) return;
+    mode = radio.value;
+    if (currentPlace) showRoute(currentPlace);
+  });
 }

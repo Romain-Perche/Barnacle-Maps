@@ -14,6 +14,10 @@
       <input id="search-input" type="search" placeholder="Search a place" autocomplete="off" aria-label="Search a place">
       <button type="submit">Go</button>
     </form>
+    <div id="mode" role="radiogroup" aria-label="Travel mode">
+      <label><input type="radio" name="mode" value="foot" checked> Walk</label>
+      <label><input type="radio" name="mode" value="car"> Car</label>
+    </div>
     <ul id="results"></ul>
     <ul id="routes" aria-label="Route options"></ul>
     <p id="status" role="status"></p>
