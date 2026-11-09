@@ -1,4 +1,5 @@
 import {
+  addStop,
   bestPleasure,
   countGreenPixels,
   pathPixels,
@@ -6,13 +7,17 @@ import {
   detourWaypoints,
   formatDistance,
   formatDuration,
-  haversine,
+  mapPointStop,
+  MAX_STOPS,
   MIN_SUGGEST_CHARS,
+  moveStop,
   parseRoutes,
   parseSearchResults,
   pickRoutes,
+  removeStop,
   routeUrl,
   searchUrl,
+  straightLineLength,
   TRAVEL_MODES,
 } from "./geo.js";
 
@@ -31,6 +36,9 @@ const input = document.getElementById("search-input");
 const results = document.getElementById("results");
 const status = document.getElementById("status");
 const routesList = document.getElementById("routes");
+const stopsBox = document.getElementById("stops-box");
+const stopsList = document.getElementById("stops");
+const clearStopsBtn = document.getElementById("clear-stops");
 
 const PLEASURE_ZOOM = 16;
 const PLEASURE_RADIUS_PX = 4;
@@ -50,6 +58,9 @@ let pleasureAbort = null;
 let centered = false;
 let mode = "foot";
 let currentPlace = null;
+let stops = []; // ordered { name, lat, lng } visited between the start and the destination
+let stopMarkers = [];
+let pendingRoute = false; // a route is waiting for the user's position
 
 function setStatus(text) {
   status.textContent = text;
@@ -73,6 +84,7 @@ function onPosition(pos) {
     map.setView(latlng, 15);
     centered = true;
   }
+  if (pendingRoute && currentPlace) updateRoutes();
 }
 
 if ("geolocation" in navigator) {
@@ -110,7 +122,19 @@ async function runSearch(q, { announce = true } = {}) {
       btn.type = "button";
       btn.textContent = place.name;
       btn.addEventListener("click", () => showRoute(place));
-      li.append(btn);
+      const add = document.createElement("button");
+      add.type = "button";
+      add.className = "add-stop";
+      add.textContent = "Add as stop";
+      add.setAttribute("aria-label", `Add ${place.name} as stop`);
+      add.addEventListener("click", () => {
+        searchSeq++;
+        clearTimeout(suggestTimer);
+        results.replaceChildren();
+        input.value = "";
+        tryAddStop(place);
+      });
+      li.append(btn, add);
       results.append(li);
     }
   } catch (err) {
@@ -162,14 +186,20 @@ function setPleasure(entry, text, { title = "", label = text } = {}) {
   entry.pleasure.setAttribute("aria-label", label);
 }
 
-async function fetchRoutes(place, seq, m) {
-  const main = parseRoutes(await fetchJson(routeUrl(position, place, undefined, { alternatives: 3, mode: m })));
+async function fetchRoutes(place, seq, m, st = []) {
+  const main = parseRoutes(
+    await fetchJson(routeUrl(position, place, undefined, { alternatives: 3, mode: m, stops: st })),
+  );
   if (seq !== routeSeq || !main.length) return main;
+  // With user stops, no artificial detours: OSRM's own routes through the stops only.
+  if (st.length > 0) return pickRoutes(main);
   // Car detours through arbitrary side points give silly routes: only walking forces them.
   if (main.length >= 2 || m !== "foot") return pickRoutes(main);
   // OSRM often has no alternative for short walks: force detours through side waypoints.
   const detours = await Promise.allSettled(
-    detourWaypoints(position, place).map((via) => fetchJson(routeUrl(position, place, undefined, { via, mode: m }))),
+    detourWaypoints(position, place).map((via) =>
+      fetchJson(routeUrl(position, place, undefined, { via, mode: m, stops: st })),
+    ),
   );
   const extra = detours
     .filter((d) => d.status === "fulfilled")
@@ -180,7 +210,8 @@ async function fetchRoutes(place, seq, m) {
 
 function drawRoutes(routes, m) {
   routes.forEach((route, i) => {
-    const line = L.polyline(route.path, ROUTE_STYLE).addTo(map);
+    // bubblingMouseEvents: false so a click on a route selects it without opening the add-stop popup.
+    const line = L.polyline(route.path, { ...ROUTE_STYLE, bubblingMouseEvents: false }).addTo(map);
     const li = document.createElement("li");
     const button = document.createElement("button");
     button.type = "button";
@@ -197,12 +228,16 @@ function drawRoutes(routes, m) {
     routesList.append(li);
     const entry = { route, line, button, pleasure };
     if (pleasure) setPleasure(entry, "Pleasure: …", { label: "Pleasure: computing" });
-    line.on("click", () => selectRoute(i));
+    line.on("click", (e) => {
+      L.DomEvent.stopPropagation(e);
+      selectRoute(i);
+    });
     button.addEventListener("click", () => selectRoute(i));
     routeLayers.push(entry);
   });
   selectRoute(0);
-  const bounds = L.featureGroup(routeLayers.map((r) => r.line)).getBounds();
+  const layers = [...routeLayers.map((r) => r.line), ...stopMarkers, destMarker, userMarker].filter(Boolean);
+  const bounds = L.featureGroup(layers).getBounds();
   map.fitBounds(bounds, { padding: [40, 40] });
 }
 
@@ -220,13 +255,13 @@ async function loadTile(x, y, signal) {
 }
 
 // Best-effort pleasure: green pixels of the OSM tiles along each route. Never blocks or hides the routes.
-async function scorePleasure(place, seq) {
+async function scorePleasure(place, seq, st = []) {
   const entries = routeLayers.slice();
   const unavailable = () => {
     if (seq !== routeSeq) return;
     for (const e of entries) setPleasure(e, "Pleasure unavailable");
   };
-  if (haversine(position, place) > PLEASURE_MAX_STRAIGHT_M) return unavailable();
+  if (straightLineLength([position, ...st, place]) > PLEASURE_MAX_STRAIGHT_M) return unavailable();
   const pixels = entries.map((e) => pathPixels(e.route.path, PLEASURE_ZOOM, PLEASURE_RADIUS_PX));
   const needed = pathTiles(pixels.flat());
   if (needed.length > PLEASURE_MAX_TILES) return unavailable();
@@ -257,49 +292,133 @@ async function scorePleasure(place, seq) {
   }
 }
 
-async function showRoute(place) {
-  const m = mode;
+function showRoute(place) {
   currentPlace = place;
-  const seq = ++routeSeq;
-  pleasureAbort?.abort();
-  pleasureAbort = null;
   searchSeq++;
   clearTimeout(suggestTimer);
   input.value = place.name;
   results.replaceChildren();
   destMarker?.remove();
-  clearRoutes();
   destMarker = L.marker([place.lat, place.lng]).addTo(map).bindPopup(place.name);
+  updateRoutes();
+}
+
+// Computes and draws the routes from the user's position through every stop to the destination.
+async function updateRoutes() {
+  const m = mode;
+  const place = currentPlace;
+  const st = stops.slice(); // consistent list for this request even if stops change meanwhile
+  const seq = ++routeSeq;
+  pleasureAbort?.abort();
+  pleasureAbort = null;
+  pendingRoute = false;
+  clearRoutes();
+  if (!place) {
+    return setStatus(st.length ? "Choose a destination to get a route through your stops." : "");
+  }
   if (!position) {
+    pendingRoute = true;
     map.setView([place.lat, place.lng], 15);
     return setStatus("Waiting for your location to compute a route…");
   }
   setStatus(m === "car" ? "Computing driving routes…" : "Computing walking routes…");
+  const noRoute = m === "car" ? "No driving route found." : "No walking route found.";
   let routes;
   try {
-    routes = await fetchRoutes(place, seq, m);
+    routes = await fetchRoutes(place, seq, m, st);
   } catch (err) {
-    if (seq === routeSeq) setStatus(`Routing failed: ${err.message}`);
+    if (seq === routeSeq) setStatus(st.length ? `${noRoute} (${err.message})` : `Routing failed: ${err.message}`);
     return;
   }
-  if (seq !== routeSeq) return; // a newer destination superseded this one
-  if (!routes.length) return setStatus(m === "car" ? "No driving route found." : "No walking route found.");
+  if (seq !== routeSeq) return; // a newer request superseded this one
+  if (!routes.length) return setStatus(st.length ? `${noRoute} Try removing a stop.` : noRoute);
   drawRoutes(routes, m);
   const fastest = routes[0];
   const summary = `${formatDistance(fastest.distance)} · ${formatDuration(fastest.duration)}`;
   const car = m === "car";
+  const via = st.length ? ` via ${st.length} stop${st.length > 1 ? "s" : ""}` : "";
   setStatus(
     routes.length === 1
-      ? `${summary} ${car ? "by car" : "on foot"}`
-      : `${routes.length} ${car ? "driving" : "walking"} routes · fastest ${summary}`,
+      ? `${summary} ${car ? "by car" : "on foot"}${via}`
+      : `${routes.length} ${car ? "driving" : "walking"} routes${via} · fastest ${summary}`,
   );
-  if (!car) scorePleasure(place, seq);
+  if (!car) scorePleasure(place, seq, st);
 }
+
+// --- Stops ----------------------------------------------------------------------------------
+
+function stopButton(text, label, disabled, onClick) {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.textContent = text;
+  b.setAttribute("aria-label", label);
+  b.disabled = disabled;
+  b.addEventListener("click", onClick);
+  return b;
+}
+
+function renderStops() {
+  for (const mk of stopMarkers) mk.remove();
+  stopMarkers = stops.map((s, i) =>
+    L.marker([s.lat, s.lng], {
+      icon: L.divIcon({ className: "stop-marker", html: String(i + 1), iconSize: [24, 24], iconAnchor: [12, 12] }),
+      title: `Stop ${i + 1}: ${s.name}`,
+    })
+      .addTo(map)
+      .bindTooltip(`${i + 1}. ${s.name}`),
+  );
+  stopsList.replaceChildren(
+    ...stops.map((s, i) => {
+      const li = document.createElement("li");
+      const name = document.createElement("span");
+      name.className = "stop-name";
+      name.textContent = `${i + 1}. ${s.name}`;
+      li.append(
+        name,
+        stopButton("\u2191", `Move stop ${i + 1} up`, i === 0, () => setStops(moveStop(stops, i, -1))),
+        stopButton("\u2193", `Move stop ${i + 1} down`, i === stops.length - 1, () =>
+          setStops(moveStop(stops, i, 1)),
+        ),
+        stopButton("\u2715", `Remove stop ${i + 1}`, false, () => setStops(removeStop(stops, i))),
+      );
+      return li;
+    }),
+  );
+  stopsBox.hidden = stops.length === 0;
+}
+
+function setStops(next) {
+  stops = next;
+  renderStops();
+  updateRoutes();
+}
+
+function tryAddStop(place) {
+  const r = addStop(stops, place);
+  if (r.error === "limit") return setStatus(`You can add at most ${MAX_STOPS} stops.`);
+  if (r.error === "duplicate") return setStatus("This place is already a stop.");
+  setStops(r.stops);
+}
+
+clearStopsBtn.addEventListener("click", () => setStops([]));
+
+// Click on the map (not after a drag): offer to add a stop at that point.
+map.on("click", (e) => {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "add-stop-here";
+  btn.textContent = "Add stop here";
+  const popup = L.popup().setLatLng(e.latlng).setContent(btn).openOn(map);
+  btn.addEventListener("click", () => {
+    map.closePopup(popup);
+    tryAddStop(mapPointStop(e.latlng));
+  });
+});
 
 for (const radio of document.querySelectorAll("input[name=mode]")) {
   radio.addEventListener("change", () => {
     if (!radio.checked || !(radio.value in TRAVEL_MODES)) return;
     mode = radio.value;
-    if (currentPlace) showRoute(currentPlace);
+    if (currentPlace) updateRoutes(); // stops are kept
   });
 }

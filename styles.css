@@ -10,10 +10,21 @@ html, body { height: 100%; margin: 0; font-family: system-ui, sans-serif; }
 #search-input { flex: 1; padding: 8px; font-size: 16px; }
 #mode { display: flex; gap: 12px; margin: 6px 0 0; font-size: 14px; }
 #results { list-style: none; margin: 6px 0 0; padding: 0; }
+#results li { display: flex; gap: 4px; }
 #results button {
-  width: 100%; text-align: left; padding: 6px; border: 0; background: none; cursor: pointer;
+  flex: 1; text-align: left; padding: 6px; border: 0; background: none; cursor: pointer;
 }
 #results button:hover { background: #eef3fd; }
+#results .add-stop { flex: none; white-space: nowrap; color: #1a73e8; }
+#stops-box { margin: 6px 0 0; }
+#stops { margin: 6px 0 0; padding-left: 0; list-style: none; }
+#stops li { display: flex; align-items: center; gap: 4px; font-size: 14px; }
+.stop-name { flex: 1; }
+#clear-stops { margin-top: 4px; }
+.stop-marker {
+  background: #f29900; color: #fff; border: 2px solid #fff; border-radius: 50%;
+  font: 600 12px/20px system-ui; text-align: center; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
 #routes { list-style: none; margin: 6px 0 0; padding: 0; }
 #routes:empty { display: none; }
 #routes button {
