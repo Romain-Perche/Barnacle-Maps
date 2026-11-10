@@ -127,8 +127,9 @@ test/
    directly above the zoom buttons, all above the attribution). This also fixes the zoom control
    being hidden behind the panel today.
    **Panel height on narrow screens (FR-007)**: the panel's right edge is at `12 + min(360, W − 24)` px
-   and the bottom-right controls take about the right-most 44 px, so they share horizontal space when
-   the viewport is narrower than ~420 px. In `styles.css` add
+   and the bottom-right controls take about the right-most 44 px, so by that estimate they start to
+   share horizontal space around 420 px wide. The cap uses the spec's boundary, **≤ 440 px** (the
+   estimate plus a 20 px margin), the same value as in the spec and the contract. In `styles.css` add
    ```css
    @media (max-width: 440px) {
      #panel { max-height: calc(100% - 172px); box-sizing: border-box;
@@ -141,15 +142,24 @@ test/
    message keep their natural height and always stay visible, and only `#results` / `#routes` shrink
    and scroll (each in its own area, sharing the space left; `min-height: 0` lets a flex item shrink
    below its content). The DOM order is unchanged, so `#status` stays below the lists and is never
-   pushed out of view. No HTML or JS change.
+   pushed out of view. No HTML change. One small JS change goes with it: once the lists can scroll, a
+   list whose content is replaced must start at the top (spec FR-007), so `runSearch` sets
+   `results.scrollTop = 0` after `results.replaceChildren()` and `clearRoutes` sets
+   `routesList.scrollTop = 0` after `routesList.replaceChildren()`. `resetView` never touches the
+   scroll positions (FR-005).
    172 px = panel top offset (12) + bottom-right stack (attribution ~18, 10 gap, zoom bar ~64, 10 gap,
    reset bar ~34) + ≥ 10 px clearance, rounded up; so the panel always ends above the Reset view button
    and long results/routes lists scroll inside it. At 320 px high this leaves ~148 px for the panel:
    padding 16 + form ~36 + mode ~24 + status ~26 ≈ 102 px stay fixed, ~46 px is left for the lists
-   (at least one row visible, the rest scrolls). Wider viewports keep the panel unchanged. CSS only, no JS.
+   (at least one row visible, the rest scrolls). Wider viewports keep the panel unchanged. The layout is
+   CSS only; the only JS is the two `scrollTop = 0` lines above.
 5. **Tests**: `test/view.test.js` covers the helpers per [contracts/view-helpers.md](./contracts/view-helpers.md).
    DOM behavior is validated with [quickstart.md](./quickstart.md) scenarios.
-6. **Look** (FR-009): 30×30 px like `.leaflet-bar a`, dark glyph (`#333` or darker) on white for ≥ 3:1 contrast, visible `:focus-visible` outline; `title="Reset view"` gives the hover tooltip; focus stays on the button after a press (native button behavior, nothing moves focus).
+6. **Look** (FR-001, FR-009): 30×30 px like `.leaflet-touch .leaflet-bar a`, dark glyph (`#333` or darker) on white for ≥ 3:1 contrast, visible `:focus-visible` outline;
+   the glyph uses the zoom buttons' font and size (Leaflet 1.9.4: `bold 18px 'Lucida Console', Monaco, monospace`,
+   `font-size: 22px` under `.leaflet-touch`), so `.reset-view` is 18px with a `.leaflet-touch .reset-view { font-size: 22px; }` override;
+   hover and active use the zoom buttons' look: Leaflet 1.9.4 only sets `background-color: #f4f4f4` on `.leaflet-bar a:hover`/`:focus`
+   and has no separate pressed colour, so `.reset-view:hover` and `.reset-view:active` both use `#f4f4f4`; `title="Reset view"` gives the hover tooltip; focus stays on the button after a press (native button behavior, nothing moves focus).
 7. **README**: add one line mentioning the Reset view button.
 
 ## Complexity Tracking

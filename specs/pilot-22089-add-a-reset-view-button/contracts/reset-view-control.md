@@ -27,9 +27,12 @@ Created by `src/app.js` as a Leaflet control at position `bottomright`:
   bottom edge always stays at least 10 px above the Reset view button (default text size, no on-screen
   keyboard). `#search-form` (input + Go), `#mode` and `#status` always stay visible; only `#results` /
   `#routes` shrink and scroll (`overflow-y: auto`, `min-height: 0`). Wider viewports: `#panel`
-  unchanged. A reset does not change the lists' scroll positions (FR-005).
+  unchanged. A reset does not change the lists' scroll positions (FR-005). A list whose content is
+  replaced (new results, new routes) starts scrolled to the top (`scrollTop = 0`).
 - Button is at least 30×30 px (same as `.leaflet-bar a`, `.leaflet-touch` 30 px), and shows a
-  visible focus outline when focused with the keyboard. Icon and border have ≥ 3:1 contrast against white (FR-009). Focus stays on the button after activation.
+  visible focus outline when focused with the keyboard. The ⌂ glyph uses the zoom buttons' font and
+  size (18px, 22px under `.leaflet-touch`). Hover and active look like the zoom buttons: background
+  `#f4f4f4` (Leaflet 1.9.4 has no separate pressed colour). Icon and border have ≥ 3:1 contrast against white (FR-009). Focus stays on the button after activation.
 
 ## Behavior
 

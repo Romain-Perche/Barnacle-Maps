@@ -59,12 +59,14 @@ All items below were open technical choices; none needed outside input. The prod
   `topright` (covered by the full-width panel on phones); `bottomleft` alone (away from the zoom
   control, violating "with the other map controls"); shifting the top-left corner down with CSS by
   the panel height (panel height changes with results/routes, so it would need JS to track it).
-- **Panel height on narrow screens**: below ~420 px wide the panel spans the columns used by the
-  bottom-right controls, so an unbounded results/routes list could grow down over them. Decision: a
+- **Panel height on narrow screens**: from about 420 px wide down (estimate; the cap uses ≤ 440 px,
+  the spec's boundary, for a 20 px margin) the panel spans the columns used by the bottom-right controls, so an unbounded results/routes list could grow down over them. Decision: a
   CSS-only cap, `@media (max-width: 440px)`: `#panel { max-height: calc(100% - 172px); display: flex; flex-direction: column; overflow: hidden; }`, with `#results, #routes { flex: 0 1 auto; min-height: 0; overflow-y: auto; }`
   (172 px = 12 px top offset + bottom-right stack ~136 px + clearance), so the panel always ends above
   Reset view; the search form, travel mode and status keep their height and stay visible, and only the
-  lists scroll (spec Clarifications: only results and routes scroll). Alternatives: `overflow-y: auto`
+  lists scroll (spec Clarifications: only results and routes scroll). Because the lists now scroll,
+  `runSearch` and `clearRoutes` reset `scrollTop` to 0 when they replace a list's content (spec FR-007:
+  a replaced list starts at the top); this is the only JS change for the cap. Alternatives: `overflow-y: auto`
   on the whole `#panel` (one scroll area, but scrolling a long list pushes the search form and travel
   mode off the top and leaves the status below the fold); a fixed `max-height` on `#results`/`#routes`
   without capping the panel (still unbounded together, and the right value depends on the viewport);
