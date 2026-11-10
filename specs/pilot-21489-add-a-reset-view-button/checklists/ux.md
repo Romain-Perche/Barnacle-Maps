@@ -11,7 +11,7 @@
 ## Requirement Completeness
 
 - [x] CHK001 Is the button's position on the map specified precisely enough (which corner/relative to other controls), rather than only "with the other map controls"? [Clarity, Spec §FR-002] — reviewed by the factory, 2026-11-10
-- [ ] CHK002 Is it specified whether the button shows a visible text label, an icon, or both, given FR-008 allows "a tooltip or visible label"? [Ambiguity, Spec §FR-008]
+- [x] CHK002 Is it specified whether the button shows a visible text label, an icon, or both, given FR-008 allows "a tooltip or visible label"? [Ambiguity, Spec §FR-008] — reviewed by Pilot, 2026-11-10
 - [x] CHK003 Are requirements defined for the button's visual states (hover, focus, active, pressed)? [Gap, Spec §FR-007] — reviewed by the factory, 2026-11-10
 - [x] CHK004 Is the exact start-up zoom used for the located view stated in the spec rather than only "the start-up zoom"? [Clarity, Spec §FR-004] — reviewed by the factory, 2026-11-10
 - [x] CHK005 Are requirements defined for the button's behaviour while the map has not finished loading? [Gap, Spec §FR-001] — reviewed by the factory, 2026-11-10
@@ -41,7 +41,7 @@
 - [x] CHK017 Are requirements defined for the case where the location fix arrives after the user has already moved the map manually? [Gap, Spec Edge Cases] — reviewed by the factory, 2026-11-10
 - [x] CHK018 Are requirements defined for a location that arrives after a search has already moved the map (e.g., selecting a place when no position exists)? [Gap] — reviewed by the factory, 2026-11-10
 - [x] CHK019 Is behaviour specified when the user's location changes country or is very inaccurate at start-up? [Coverage, Spec §FR-004] — reviewed by the factory, 2026-11-10
-- [ ] CHK020 Are open popups (e.g., the destination popup) addressed when the view resets? [Gap, Spec §FR-006]
+- [x] CHK020 Are open popups (e.g., the destination popup) addressed when the view resets? [Gap, Spec §FR-006] — reviewed by Pilot, 2026-11-10
 - [x] CHK021 Are requirements defined for touch interactions such as accidental double taps on the button? [Coverage, Spec §FR-007] — reviewed by the factory, 2026-11-10
 
 ## Accessibility & Non-Functional

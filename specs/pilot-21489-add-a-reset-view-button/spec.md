@@ -17,6 +17,8 @@
 - Q: When exactly is the starting view fixed, and what zoom does it use (CHK004, CHK005, CHK006, CHK010, CHK017, CHK018, CHK019, CHK028)? → A: It is the default view (48.8566, 2.3522, zoom 13) until the first location fix; that first fix centres the map on the user at zoom 15 and that view becomes the starting view, once, even if the user already moved the map or searched a place. Accuracy of the fix is not filtered. Later fixes never change it. This single one-time change is the only exception to FR-005 (decided by the factory, no question asked)
 - Q: What does "same view" and the timing mean (CHK009, CHK013, CHK014, CHK021)? → A: Exactly the same centre and zoom values; any running map animation is interrupted; the 1 s starts at the press and ends when the map stops moving; repeated presses are harmless (decided by the factory, no question asked)
 - Q: What else stays untouched and how is it announced (CHK011, CHK016, CHK025, CHK026, CHK027, CHK029)? → A: Status message unchanged; button announced as "Reset view, button" by common screen readers, no extra announcement; English only; starting view is session-only; no network request on press (decided by the factory, no question asked)
+- Q: Does the button show a text label, an icon, or both (CHK002)? → A: A visible text label "Reset view" (no icon-only button), with the same text as tooltip and accessible name (Pilot, 2026-11-10)
+- Q: What happens to an open popup when the view resets (CHK020)? → A: An open popup stays open and unchanged; only map position and zoom change. Leaflet may close a popup if the reset moves it out of view, which is acceptable (Pilot, 2026-11-10)
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -73,9 +75,9 @@ A keyboard or screen-reader user can find, understand, and activate the "Reset v
 - **FR-003**: Pressing the button MUST return the map to the starting view: the same centre position and zoom level the map showed at start-up.
 - **FR-004**: The starting view MUST be the view the map settles on at start-up: centred on the user's detected location at the start-up zoom if location is detected and the map auto-centres on it, otherwise the app's fixed default view. It MUST NOT be recomputed from the user's current location when the button is pressed.
 - **FR-005**: The starting view MUST NOT change after start-up because of later location updates, panning, zooming, searches, or route display.
-- **FR-006**: Pressing the button MUST change only the map's position and zoom; it MUST NOT clear or change the search input, search results, destination, routes, selected route, travel mode, pleasure indicators, user position marker, or status message.
+- **FR-006**: Pressing the button MUST change only the map's position and zoom; it MUST NOT clear or change the search input, search results, destination, routes, selected route, travel mode, pleasure indicators, user position marker, open popups (which stay open and unchanged, unless Leaflet closes one moved out of view), or status message.
 - **FR-007**: The button MUST work with mouse, touch, and keyboard (Enter and Space), and MUST show a visible focus indicator.
-- **FR-008**: The button MUST have the accessible name "Reset view" and show a tooltip or visible label saying what it does.
+- **FR-008**: The button MUST have the accessible name "Reset view" and show a visible text label "Reset view" (no icon-only button) with the same text as its tooltip.
 - **FR-010**: The starting view MUST be the default view (48.8566, 2.3522, zoom 13) until the first location fix, which sets it once to the user's location at zoom 15, even if the map was already moved.
 - **FR-009**: Pressing the button MUST NOT start a search, routing request, or pleasure calculation.
 
