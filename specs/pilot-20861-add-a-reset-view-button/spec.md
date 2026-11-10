@@ -8,6 +8,12 @@
 
 **Input**: User description: "Add a Reset view button. Add a button on the map that puts the map back to its starting position and zoom."
 
+## Clarifications
+
+### Session 2026-11-10
+
+- Q: When someone presses "Reset view", where should the map go back to? → A: Option A — the first view the app settled on: the person's first known position at the app's initial location zoom when location is available, otherwise the default starting center and zoom; it stays fixed and does not follow later movement. The person approved the recommended defaults for all remaining items.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Return the map to its starting view (Priority: P1)
@@ -55,7 +61,7 @@ A keyboard or screen-reader user can find and activate the "Reset view" button j
 
 - **FR-001**: The map MUST display a button labelled or described as "Reset view" that is visible whenever the map is shown.
 - **FR-002**: Activating the button MUST set the map's center and zoom to the starting view.
-- **FR-003**: The starting view MUST be the first view the app automatically centers on: the user's first known position at the app's initial location zoom when location is available, otherwise the app's default starting center and zoom.
+- **FR-003**: The starting view MUST be the first view the app automatically centers on: the user's first known position at the app's initial location zoom when location is available, otherwise the app's default starting center and zoom. Pressing the button before any position is known MUST go to the default starting view.
 - **FR-004**: The starting view MUST NOT change after it has been established by the first position fix, even as the user's position updates.
 - **FR-005**: Activating the button MUST NOT alter any other app state: search input and results, selected destination, displayed routes, selected route, travel mode, pleasure indicators, user position marker, and status messages remain as they were.
 - **FR-006**: The button MUST be operable by mouse/touch and by keyboard (Enter/Space) and MUST expose an accessible name.
