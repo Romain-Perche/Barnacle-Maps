@@ -43,6 +43,23 @@
 - Q: If Reset view is pressed while routes are loading, the routes then arrive and the app zooms to fit them, undoing the reset. Must the reset last once the routes appear? → A: yes, a reset pressed while routes are loading wins. The routes are still drawn and listed when they arrive, but the map does not zoom to them. Any later route search zooms to its routes as usual.
 - Q: The search panel covers the top-left corner where the zoom buttons are today. Where do the zoom buttons and Reset view go? → A: the zoom buttons move to the bottom-right corner, Reset view sits directly above them and the map credits stay below, on desktop and mobile.
 - Q: What does the button show? → A: a square button the same size as the zoom buttons, with a home icon (⌂), the tooltip "Reset view" on hover, and "Reset view" as the name read by screen readers.
+- Q: When does "while routes are loading" (FR-011) start and end? → A: from the moment a route search starts computing (status "Computing … routes…") until its routes are drawn, or until it ends with an error, "No … route found", or is replaced by a newer search (decided by the factory, no question asked)
+- Q: Does a reset pressed while a destination is "Waiting for your location…" block a later route zoom? → A: no; no routes are loading then (the app computes no route by itself when the fix arrives), so FR-011 does not apply; the next route search the user starts zooms to its routes as usual (decided by the factory, no question asked)
+- Q: Does a travel-mode change after a reset count as a later route search under FR-011? → A: yes; changing the travel mode starts a new route search, and its routes zoom the map as usual (decided by the factory, no question asked)
+- Q: Does the placement rule cover small heights and landscape? → A: yes; FR-007 applies to every viewport at least 320 px wide and 320 px high, in portrait and landscape (e.g. 568×320) (decided by the factory, no question asked)
+- Q: Must the moved zoom buttons keep their behavior? → A: yes; they keep their behavior, accessible names, tooltips and keyboard use, only their corner changes (decided by the factory, no question asked)
+- Q: FR-001 says "same size as the zoom buttons" and FR-009 "at least 30×30 px": which wins? → A: FR-009 wins: the button is never smaller than 30×30 CSS px; with Leaflet 1.9.4 in the target browsers the zoom buttons also render at 30×30, so both hold (decided by the factory, no question asked)
+- Q: Is it deliberate that a reset during route loading beats the route zoom, but a reset before the first fix is overridden when the app centers on that fix? → A: yes; the first-fix centering is the startup view itself (it becomes the reset target), while the route zoom is a reaction to a user search that the reset supersedes (decided by the factory, no question asked)
+- Q: Which tolerance is the acceptance bar for the reset center? → A: SC-002 (within 5 meters); the contract's floating-point tolerance is stricter and satisfies it (decided by the factory, no question asked)
+- Q: Does a correction smaller than 5 m count as a "shift of the view" in FR-008? → A: a shift is any visible movement of more than 1 CSS px; smaller corrections do not count (decided by the factory, no question asked)
+- Q: Which list of unchanged state is the reference? → A: FR-005; SC-004 and the contract's guarantees are subsets of it (decided by the factory, no question asked)
+- Q: Does the internal marker that makes a reset win over loading routes break FR-005? → A: no; FR-005 covers state the user can see or set; internal bookkeeping needed for FR-011 is allowed (decided by the factory, no question asked)
+- Q: Does reduced motion (FR-010) apply to other map moves? → A: no; only to the reset; the startup centering and the route zoom keep their current behavior (decided by the factory, no question asked)
+- Q: When is the reduced-motion preference read? → A: at each press, so a change made during the session applies to the next reset (decided by the factory, no question asked)
+- Q: How is the ⌂ icon drawn, so contrast can be checked the same way everywhere? → A: as the text glyph ⌂ at the zoom buttons' glyph size, in #333 or darker on the white button; contrast is judged on the colour values, not the font shape (decided by the factory, no question asked)
+- Q: How exactly are the bottom-right controls stacked? → A: top to bottom: Reset view (its own bordered group), zoom in/out, map credits, with Leaflet's standard spacing between controls (decided by the factory, no question asked)
+- Q: What happens if the starting view's map tiles fail to load (e.g. offline)? → A: out of scope; the reset still sets the center and zoom, and missing tiles behave as they do today (decided by the factory, no question asked)
+- Q: Is the README update in the plan a requirement? → A: no; it is documentation only, not judged as a spec requirement (decided by the factory, no question asked)
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -91,22 +108,25 @@ A user who navigates with a keyboard or screen reader, or on a touch device, can
 - **Button pressed during a drag or pinch**: the map goes to the starting view; movement after the press is normal panning or zooming.
 - **Double-click or double-tap on the button**: two resets; the map itself does not zoom.
 - **Window resized or device rotated**: the reset target keeps the same center and zoom.
+- **Location fix arriving while routes load**: cannot happen; routes are only computed once the location is known.
+- **Pressed while a destination waits for the location**: no routes are loading, so FR-011 does not apply; the next route search the user starts zooms to its routes.
+- **Map tiles fail to load at the starting view**: out of scope; the reset still sets center and zoom, missing tiles behave as today.
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: The map MUST show a "Reset view" control whenever the map is displayed: a square button the same size as the zoom buttons, showing a home icon (⌂) with no visible text, whose accessible name is "Reset view". It MUST show a "Reset view" tooltip on hover, MUST use the same hover/active look as the zoom buttons, and is never disabled.
+- **FR-001**: The map MUST show a "Reset view" control whenever the map is displayed: a square button the same size as the zoom buttons, showing a home icon (⌂) with no visible text, whose accessible name is "Reset view". It MUST show a "Reset view" tooltip on hover, MUST use the same hover/active look as the zoom buttons, and is never disabled. The icon is the text glyph ⌂ at the zoom buttons' glyph size, in #333 or darker. Where "same size as the zoom buttons" and FR-009 differ, FR-009 wins.
 - **FR-002**: Activating the control MUST set the map center and zoom level to the starting view.
 - **FR-003**: The starting view MUST be the view the app shows on its own at startup: the default area (central Paris) at zoom 13, replaced by the first successful location fix of the page load at zoom 15 when that fix arrives, with no time limit and even after an earlier location error. If no fix ever succeeds, it stays the default view. It MUST NOT follow the user's current location afterward.
 - **FR-004**: The starting view MUST be recorded once per page load and MUST NOT change when the user pans, zooms, searches, selects a route, or when the live position updates afterward. Showing a destination before the location is known does not set it. It MUST NOT be stored between page loads.
-- **FR-005**: Activating the control MUST NOT change any other app state: search input, search results, chosen destination, displayed routes, selected route, travel mode, pleasure indicators, status messages (including "Waiting for your location…"), the destination marker, and the user's position marker stay as they were. Only the map center and zoom change.
+- **FR-005**: Activating the control MUST NOT change any other app state: search input, search results, chosen destination, displayed routes, selected route, travel mode, pleasure indicators, status messages (including "Waiting for your location…"), the destination marker, and the user's position marker stay as they were. Only the map center and zoom change. FR-005 is the reference list of unchanged state (SC-004 and the contract are subsets); internal bookkeeping needed for FR-011 is not app state.
 - **FR-006**: The control MUST work with mouse, touch, and keyboard (Enter and Space), MUST have the accessible name "Reset view", MUST show a visible focus indicator, and keyboard focus MUST stay on the button after activation. No extra screen-reader announcement is made. Presses on the control MUST NOT reach the map (a double-click or double-tap on it never zooms the map).
-- **FR-007**: The zoom buttons MUST move from the top-left to the bottom-right corner of the map, and the control MUST be placed directly above them, with the map credits (attribution) below, on desktop and mobile. It MUST NOT overlap the search/route panel at any viewport from 320 px wide. The zoom buttons themselves MUST be visible (not under the panel).
-- **FR-008**: Activating the control when the map is already at the starting view MUST NOT cause an error or a visible glitch (no flicker, blank map, zoom bounce, or shift of the view).
+- **FR-007**: The zoom buttons MUST move from the top-left to the bottom-right corner of the map, and the control MUST be placed directly above them, with the map credits (attribution) below, on desktop and mobile. It MUST NOT overlap the search/route panel at any viewport from 320 px wide. The zoom buttons themselves MUST be visible (not under the panel). This applies to every viewport at least 320 px wide and 320 px high, in portrait and landscape. Top to bottom the corner shows Reset view (its own bordered group), the zoom buttons, then the map credits, with Leaflet's standard spacing. The moved zoom buttons keep their behavior, accessible names, tooltips and keyboard use.
+- **FR-008**: Activating the control when the map is already at the starting view MUST NOT cause an error or a visible glitch (no flicker, blank map, zoom bounce, or shift of the view). A shift is any visible movement of more than 1 CSS px.
 - **FR-009**: The control MUST be at least 30×30 CSS px, and its icon and border MUST have at least 3:1 contrast against their background.
-- **FR-010**: When the user prefers reduced motion, the reset MUST move the map instantly, without animation.
-- **FR-011**: If the control is pressed while routes are loading, the map MUST stay on the starting view when those routes arrive: they are drawn and listed, but the map does not zoom to fit them. Routes from any route search started after the press zoom the map to fit them as usual.
+- **FR-010**: When the user prefers reduced motion, the reset MUST move the map instantly, without animation. This applies only to the reset, and the preference is read at each press.
+- **FR-011**: If the control is pressed while routes are loading, the map MUST stay on the starting view when those routes arrive: they are drawn and listed, but the map does not zoom to fit them. Routes from any route search started after the press zoom the map to fit them as usual. "Routes are loading" means from the moment a route search starts computing until its routes are drawn, it fails, finds no route, or is replaced by a newer search. A destination waiting for the user's location is not loading. A travel-mode change starts a new route search.
 
 ### Key Entities
 
@@ -117,7 +137,7 @@ A user who navigates with a keyboard or screen reader, or on a touch device, can
 ### Measurable Outcomes
 
 - **SC-001**: From any panned or zoomed state, a user gets back to the starting view in one action (one click, tap, or key press).
-- **SC-002**: After a reset, the map center matches the starting center within 5 meters and the zoom level matches exactly, in 100% of attempts.
+- **SC-002**: After a reset, the map center matches the starting center within 5 meters and the zoom level matches exactly, in 100% of attempts. This is the acceptance bar; stricter implementation tolerances satisfy it.
 - **SC-003**: The map finishes moving to the starting view within 1 second of the button being pressed (measured until the map movement ends; loading of new map tiles is not included).
 - **SC-004**: In 100% of resets, search results, routes, route selection, and travel mode are unchanged afterward.
 - **SC-005**: Keyboard-only and screen-reader users can find and use the control without a mouse: it is reachable with Tab and one Enter or Space press resets the map.
@@ -129,3 +149,4 @@ A user who navigates with a keyboard or screen reader, or on a touch device, can
 - The button follows the visual style of the Leaflet zoom buttons (white box, border, shadow, same size). No new settings or preferences are added.
 - The starting view is not saved between sessions; each page load records its own (now also required by FR-004).
 - A short smooth transition or an instant jump are both fine, as long as SC-003 is met.
+- The README line mentioned in the plan is documentation only, not a requirement.

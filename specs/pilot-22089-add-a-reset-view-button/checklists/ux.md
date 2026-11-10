@@ -59,6 +59,41 @@
 - [x] CHK029 Is the assumption "the starting view is not saved between sessions" stated as a requirement, so a reviewer can reject persistence? [Assumption, Spec §Assumptions] — reviewed by the factory, 2026-11-10
 - [x] CHK030 Is the assumption "the button follows the visual style of the existing map controls" still valid now that those controls are hidden behind the panel? [Assumption, Spec §Assumptions, Research §R4] — reviewed by the factory, 2026-11-10
 
+## Requirement Completeness (follow-up run, 2026-11-10)
+
+- [x] CHK031 Does FR-011 define when "routes are loading" starts and ends (from the destination choice until routes are drawn, or until a failure / "No route found" status), so a reviewer can tell whether a given press falls inside the window? [Clarity, Gap, Spec §FR-011] — reviewed by the factory, 2026-11-10
+- [x] CHK032 Do the requirements say whether a reset pressed while a route is "Waiting for your location…" still wins once the first fix arrives and the routes are computed, or whether the auto-centering and route fit both apply then? [Coverage, Gap, Spec §FR-011, Spec §Edge Cases] — reviewed by the factory, 2026-11-10
+- [x] CHK033 Is it specified whether a travel-mode change made after a reset counts as a "later route search" under FR-011, and so zooms the map to its routes? [Clarity, Spec §FR-011] — reviewed by the factory, 2026-11-10
+- [ ] CHK034 Do the requirements bound the search/route panel's height (or how it scrolls) so FR-007's "MUST NOT overlap the search/route panel" can hold at 320 px wide, where the panel spans almost the full width and a long results or routes list could reach the bottom-right controls? [Gap, Spec §FR-007]
+- [x] CHK035 Is a minimum viewport height, or landscape orientation (e.g. 568×320), covered by the placement requirements, given that FR-007 and the Edge Cases only state a minimum width? [Coverage, Gap, Spec §FR-007, Spec §Edge Cases] — reviewed by the factory, 2026-11-10
+- [x] CHK036 Do the requirements state that the moved zoom buttons keep their current behavior, accessible names and tooltips, and keep working with the keyboard after the move to bottom-right? [Completeness, Gap, Spec §FR-007] — reviewed by the factory, 2026-11-10
+
+## Requirement Consistency (follow-up run, 2026-11-10)
+
+- [x] CHK037 Are FR-001 ("the same size as the zoom buttons") and FR-009 ("at least 30×30 CSS px") consistent when the zoom buttons render smaller (Leaflet's 26 px non-touch size), and is it stated which rule wins? [Conflict, Spec §FR-001, Spec §FR-009] — reviewed by the factory, 2026-11-10
+- [x] CHK038 Is the asymmetry deliberate and stated: a reset pressed during route loading wins over the route fit (FR-011), but a reset pressed before the first location fix is overridden when the app centers on that fix (Edge Cases)? [Consistency, Spec §FR-011, Spec §Edge Cases] — reviewed by the factory, 2026-11-10
+- [x] CHK039 Does the contract's "center equal to the starting view within floating-point tolerance" agree with SC-002's 5-meter tolerance, and is it clear which one is the acceptance bar? [Consistency, Spec §SC-002, Contract reset-view-control §Guarantees] — reviewed by the factory, 2026-11-10
+- [x] CHK040 Does FR-008's "no shift of the view" when already at the starting view stay consistent with SC-002's 5-meter tolerance (does a sub-5 m correction count as a shift)? [Consistency, Measurability, Spec §FR-008, Spec §SC-002] — reviewed by the factory, 2026-11-10
+- [x] CHK041 Is the FR-005 unchanged-state list the same set as the one in SC-004 and the contract's "Guarantees after a press", or is it stated that FR-005 is the reference list? [Consistency, Spec §FR-005, Spec §SC-004, Contract reset-view-control §Guarantees] — reviewed by the factory, 2026-11-10
+- [x] CHK042 Is the internal write `resetRouteSeq = routeSeq` (plan/data model) reconciled with FR-005's "MUST NOT change any other app state"? [Consistency, Spec §FR-005, Spec §FR-011, Data Model §resetRouteSeq] — reviewed by the factory, 2026-11-10
+
+## Requirement Clarity (follow-up run, 2026-11-10)
+
+- [x] CHK043 Does FR-010 say whether reduced motion applies only to the reset, or also to the app's own startup centering and route fitting? [Clarity, Spec §FR-010] — reviewed by the factory, 2026-11-10
+- [x] CHK044 Is it specified when the reduced-motion preference is read (at each press or once at page load), so a change made mid-session has a defined effect? [Clarity, Gap, Spec §FR-010] — reviewed by the factory, 2026-11-10
+- [x] CHK045 Is the ⌂ icon's size and rendering defined well enough (glyph vs. drawn icon, font fallback) for FR-009's 3:1 contrast to be checked the same way on every platform? [Clarity, Measurability, Spec §FR-001, Spec §FR-009] — reviewed by the factory, 2026-11-10
+- [x] CHK046 Does FR-007 state the gap or order between the reset button, the zoom buttons and the attribution precisely enough ("directly above", same `leaflet-bar` group or separate) to be judged objectively? [Clarity, Spec §FR-007] — reviewed by the factory, 2026-11-10
+
+## Scenario & Edge Case Coverage (follow-up run, 2026-11-10)
+
+- [x] CHK047 Is a reset pressed while a route search is loading, followed by a second destination chosen before the first routes arrive, covered (the second search fits, the first never does)? [Coverage, Spec §FR-011] — covered, ticked by the factory, 2026-11-10
+- [x] CHK048 Is the case where the first location fix arrives while routes are loading after a reset covered, given that both the auto-centering (FR-003) and FR-011 then affect the view? [Coverage, Gap, Spec §FR-003, Spec §FR-011] — reviewed by the factory, 2026-11-10
+- [x] CHK049 Are requirements given for a reset when the starting view's map tiles fail to load (e.g. offline), or is that explicitly outside this feature? [Exception Flow, Gap, Spec §SC-003] — reviewed by the factory, 2026-11-10
+
+## Dependencies & Assumptions (follow-up run, 2026-11-10)
+
+- [x] CHK050 Is the README update in the plan (Design Note 7) backed by a requirement, or marked optional, so its absence is not judged a spec gap? [Traceability, Plan §Design Notes 7] — reviewed by the factory, 2026-11-10
+
 ## Notes
 
 - Mark items `[x]` only after review confirms the requirement-quality criterion is satisfied
@@ -66,3 +101,4 @@
 - `/speckit-implement` reads checklist checkbox state as a gate and must not modify markers
 - `checklists/requirements.md` has a separate built-in lifecycle maintained by `/speckit-specify` and `/speckit-clarify`
 - Defaults used (no interaction possible): depth Standard; audience PR reviewer; focus = reset target & state behavior, control UX/accessibility/placement
+- Follow-up run (CHK031–CHK050), defaults used (no interaction possible): depth Standard; audience PR reviewer; focus = requirements added after the first run (FR-007 zoom move, FR-009 size, FR-010 reduced motion, FR-011 reset vs. route fit) and spec/plan/contract consistency
