@@ -8,6 +8,12 @@
 
 **Input**: User description: "Add a Reset view button — Add a button on the map that puts the map back to its starting position and zoom."
 
+## Clarifications
+
+### Session 2026-11-10
+
+- Q: When someone presses "Reset view", where should the map go: the place where it first opened (central Paris, zoom 13), or the view centered on their location that the app shows once the location is found? → A: Option A. Go back to the first view the app shows by itself: centered on the user's location at zoom 15 if it was found when the app opened, otherwise central Paris at zoom 13. Later live-position updates do not move the reset target.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Return to the starting view in one click (Priority: P1)
@@ -58,7 +64,7 @@ A user who navigates with a keyboard or screen reader, or on a touch device, can
 
 - **FR-001**: The map MUST show a control labeled "Reset view" (text, icon with a text alternative, or both) whenever the map is displayed.
 - **FR-002**: Activating the control MUST set the map center and zoom level to the starting view.
-- **FR-003**: The starting view MUST be the view the app shows on its own at startup: the user's location at the location-centered zoom if the location was found at startup, otherwise the default area at the default zoom.
+- **FR-003**: The starting view MUST be the view the app shows on its own at startup: the user's first known location at zoom 15 if the location was found at startup, otherwise the default area (central Paris) at zoom 13. It MUST NOT follow the user's current location afterward.
 - **FR-004**: The starting view MUST be recorded once per page load and MUST NOT change when the user pans, zooms, searches, selects a route, or when the live position updates afterward.
 - **FR-005**: Activating the control MUST NOT change any other app state: search input, search results, chosen destination, displayed routes, selected route, travel mode, pleasure indicators, status messages, and the user's position marker stay as they were.
 - **FR-006**: The control MUST work with mouse, touch, and keyboard (Enter and Space), and MUST have an accessible name a screen reader can announce.
@@ -81,7 +87,7 @@ A user who navigates with a keyboard or screen reader, or on a touch device, can
 
 ## Assumptions
 
-- "Starting position and zoom" means the view the map settles on at startup without user input: the default area (currently central Paris, zoom 13) or, if the location is found, the location-centered view (zoom 15). If the location arrives after a delay, the first location-centered view replaces the default as the starting view.
+- "Starting position and zoom" means the view the map settles on at startup without user input (confirmed in Clarifications, Session 2026-11-10): the default area (currently central Paris, zoom 13) or, if the location is found, the location-centered view (zoom 15). If the location arrives after a delay, the first location-centered view replaces the default as the starting view.
 - Reset only moves the map. It does not clear the search, routes, or selection; users who want to start over can still start a new search.
 - The button follows the visual style of the existing map controls (such as the zoom buttons). No new settings or preferences are added.
 - The starting view is not saved between sessions; each page load records its own.
