@@ -8,6 +8,12 @@
 
 **Input**: User description: "Add a Reset view button — Add a button on the map that puts the map back to its starting position and zoom."
 
+## Clarifications
+
+### Session 2026-11-10
+
+- Q: When someone presses "Reset view", where should the map go back to? → A: To the view the map settled on at start-up: centred on the person's location (at the start-up zoom) if it was detected, otherwise the app's fixed default view. It does not follow the person if they move later. (Option A)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Return the map to its starting view (Priority: P1)
@@ -59,7 +65,7 @@ A keyboard or screen-reader user can find, understand, and activate the "Reset v
 - **FR-001**: The map MUST display a "Reset view" button at all times while the map is shown.
 - **FR-002**: The button MUST be placed on the map with the other map controls, without overlapping the search/routes panel, the zoom controls, or the map attribution.
 - **FR-003**: Pressing the button MUST return the map to the starting view: the same centre position and zoom level the map showed at start-up.
-- **FR-004**: The starting view MUST be the view the map settles on at start-up: the user's detected location at its start-up zoom if location is detected and the map auto-centres on it, otherwise the app's default view.
+- **FR-004**: The starting view MUST be the view the map settles on at start-up: centred on the user's detected location at the start-up zoom if location is detected and the map auto-centres on it, otherwise the app's fixed default view. It MUST NOT be recomputed from the user's current location when the button is pressed.
 - **FR-005**: The starting view MUST NOT change after start-up because of later location updates, panning, zooming, searches, or route display.
 - **FR-006**: Pressing the button MUST change only the map's position and zoom; it MUST NOT clear or change the search input, search results, destination, routes, selected route, travel mode, pleasure indicators, user position marker, or status message.
 - **FR-007**: The button MUST work with mouse, touch, and keyboard (Enter and Space), and MUST show a visible focus indicator.
@@ -82,7 +88,7 @@ A keyboard or screen-reader user can find, understand, and activate the "Reset v
 
 ## Assumptions
 
-- "Starting position and zoom" means the view the user actually sees once start-up finishes: centred on their location if it was detected and the map auto-centred on it, otherwise the app's existing default view. It is not recomputed from the user's current location when the button is pressed.
+- "Starting position and zoom" means the view the user actually sees once start-up finishes, as confirmed in Clarifications (Session 2026-11-10): centred on their location if it was detected and the map auto-centred on it, otherwise the app's fixed default view. It is not recomputed from the user's current location when the button is pressed.
 - Resetting the view is a navigation-only action; it does not reset or clear any search, route, or mode state (a full "clear" action is out of scope).
 - The starting view is kept only for the current session; it is not saved across page reloads (a reload sets up a new starting view as usual).
 - The button uses the same visual style as the existing map controls and an English label, matching the rest of the interface.
