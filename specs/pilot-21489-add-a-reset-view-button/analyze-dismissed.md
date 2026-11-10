@@ -1,0 +1,10 @@
+- F1 (MEDIUM): FR-005 vs FR-010 exception only in Clarifications — dismissed by the factory, 2026-11-10: FR-010 states the one-time exception explicitly and the Clarifications record it; no behaviour is ambiguous.
+- F2 (LOW): FR-010 listed before FR-009 — dismissed by the factory, 2026-11-10: ordering only, no effect on implementation.
+- F3 (MEDIUM): plan omits tests/ai files — dismissed by the factory, 2026-11-10: plan lists unit tests and manual UI checks; AI scenario files are test artefacts recorded by write-tests, no design change.
+- D1 (MEDIUM): T003 duplicates T013 — dismissed by the factory, 2026-11-10: deliberate; T003 stays as the run-`npm test` step, as recorded by write-tests.
+- F4 (LOW): task numbering — dismissed by the factory, 2026-11-10: write-tests record step appends T013-T015; IDs are stable.
+- U1 (LOW): plan wording on setView animation — dismissed by the factory, 2026-11-10: wording only; default animated setView is what tasks implement.
+- U2 (LOW): line numbers in tasks — dismissed by the factory, 2026-11-10: marked approximate (~) and symbols are named alongside.
+- C1 (LOW): SC-002 manual only — dismissed by the factory, 2026-11-10: no browser harness exists; covered by T008 and AI scenarios.
+- C2 (LOW): SC-003 no task — dismissed by the factory, 2026-11-10: informal usability target, not buildable work (CHK015).
+- X1 (LOW): plan branch name — dismissed by the factory, 2026-11-10: header text only.
