@@ -10,6 +10,8 @@
 
 ## Clarifications
 
+> **Precedence**: the answers below are kept in the order they were given. Where an earlier answer and a requirement disagree, the Functional Requirements, Success Criteria and Assumptions sections take precedence; superseded answers are marked "(replaced: …)".
+
 ### Session 2026-11-10
 
 - Q: When someone presses "Reset view", which view should the map go back to? → A: The first view the app settled on: the user's location at the closer zoom if location was found, otherwise the default view (central Paris at the city-wide zoom). Not the user's current position as they move.
@@ -92,6 +94,7 @@
 - Q: Where does the zoom range 0..19 come from? → A: The tile layer's `maxZoom`. If that changes, the data model's zoom range and FR-019 change with it.
 - Q: Is the panel cap's dependency on the panel's 12px top offset recorded? → A: Yes, as an assumption: if the panel moves, the cap must change so the 96px free strip stays.
 - Q: Are the repo conventions recorded in the spec? → A: Yes, as an assumption: no build step, no new dependencies, Leaflet loaded from the CDN, as today.
+- Q: With about 80 clarification entries, which source wins when an early answer and a requirement differ? → A: The FRs, SCs and Assumptions take precedence; a note at the top of Clarifications says so (analyze A1).
 
 ## User Scenarios & Testing *(mandatory)*
 

@@ -15,6 +15,8 @@ Leaflet creates this markup inside `.leaflet-bottom.leaflet-right`, stacked abov
 </div>
 ```
 
+The container and the `<button>` are real DOM elements created with `L.DomUtil.create` (or `document.createElement`), not an `innerHTML` string; only the `<svg>` inside the button may be set with `innerHTML`. `test/reset-view-control.test.js` and the integration tests check this through `test/support/fake-browser.js` (plan.md §Testing).
+
 | Requirement | Contract |
 |---|---|
 | FR-001 | Added to the map once at startup and never removed or hidden |

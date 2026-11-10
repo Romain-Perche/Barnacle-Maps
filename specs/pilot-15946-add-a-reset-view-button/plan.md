@@ -23,7 +23,16 @@ Technical approach:
 
 **Storage**: N/A (the starting view is in-memory and recomputed on every load, per the spec assumptions)
 
-**Testing**: `npm test` → `node --test test/`. Pure logic is tested there. DOM/Leaflet behavior is checked by hand with [quickstart.md](./quickstart.md), because the repo has no browser test harness.
+**Testing**: `npm test` → `node --test test/`. Three layers (analyze gate I2, 2026-11-10):
+- *Unit*: `test/view.test.js` tests `src/view.js` (contracts/start-view.md cases 1–6).
+- *Contract and integration, no browser*: `test/support/fake-browser.js` is a test-only fake DOM, fake Leaflet (`window.L`), geolocation, `matchMedia` and `fetch`. Its `bootApp()` loads the real `src/app.js`, records every Leaflet call and DOM mutation, and drives the button. `test/reset-view-control.test.js` checks the control's DOM and parses `styles.css`; `test/reset-view.us1/us2/us3.integration.test.js` check the reset per user story. No new dependencies.
+- *AI tests*: `tests/ai/us1-…`, `us2-…`, `us3-….md` are headless-Playwright scenarios for real layout, animation, viewport sizes, forced colors and 200% zoom. They are run against the served app (`npm start`) in the Polish phase. [quickstart.md](./quickstart.md) stays the manual check (screen reader spot check, SC-001 timing).
+
+The implementation MUST pass all of `test/` and MUST NOT rewrite these test files. Constraints the tests impose:
+- The button is a real DOM element created with `L.DomUtil.create` or `document.createElement` (the harness throws if "Reset view" exists only as an `innerHTML` string). The SVG inside it may be set with `innerHTML`.
+- The control is a `L.Control` at `bottomright` whose container has `leaflet-bar reset-view-control`, with `L.DomEvent.disableClickPropagation` and `disableScrollPropagation` on it.
+- The click handler makes exactly one `map.setView` call and no other Leaflet call, changes no DOM, calls no `focus()`, never uses `flyTo`, passes `{ animate: false }` when `matchMedia("(prefers-reduced-motion: reduce)")` matches, and catches errors with one `console.error`.
+- `styles.css` uses the literal values the contract test parses: `.reset-view` ≥ 44×44 px, `#fff` and `:hover` `#f4f4f4`, no `:active`/disabled rule, `:focus-visible` `outline: 2px solid #1a73e8` with `outline-offset: -2px`, a `@media (forced-colors: active)` block with ButtonFace/ButtonText/Highlight, and `#panel` keeps `top: 12px` with `max-height: calc(100% - <N>px)` and `overflow-y: auto`, where the free strip N − 12 (minus 2× padding unless `box-sizing: border-box`) is ≥ 96px.
 
 **Target Platform**: Modern desktop and mobile browsers. Served statically (`npm start` → `python3 -m http.server 8000`).
 
@@ -33,7 +42,7 @@ Technical approach:
 
 **Constraints**: No build step and no new dependencies. Free strip at the bottom of the map ≥ 96px (FR-012). Instant reset under reduced motion (FR-015), system colors in forced-colors mode (FR-016), usable at 200% browser zoom (FR-017). The control is at least 44×44 px (FR-011), and its box must not intersect `#panel` or other map controls, with ≥ 8px between them at 360×640, 375×667, 667×375 and 1280×800 (FR-008, SC-005). WCAG 2.1 AA non-text contrast ≥ 3:1 for the icon and focus outline (FR-013).
 
-**Scale/Scope**: 1 new module (~25 LOC), ~30 LOC in `app.js`, ~15 LOC CSS, 1 new test file.
+**Scale/Scope**: 1 new module (~25 LOC), ~30 LOC in `app.js`, ~15 LOC CSS. Tests already written by `/write-tests`: 5 test files + 1 harness under `test/`, 3 AI scenario files under `tests/ai/`.
 
 ## Constitution Check
 
@@ -62,7 +71,8 @@ specs/pilot-15946-add-a-reset-view-button/
 ├── contracts/
 │   ├── start-view.md        # src/view.js module contract
 │   └── reset-view-control.md # UI contract for the on-map button
-├── checklists/requirements.md, checklists/ux.md, checklists/behavior.md
+├── checklists/requirements.md, checklists/ux.md, checklists/behavior.md, checklists/consistency.md
+├── analyze-report.md    # /speckit-analyze output
 └── tasks.md             # Phase 2 output (/speckit-tasks – not created here)
 ```
 
@@ -76,10 +86,19 @@ src/
 ├── geo.js               # unchanged
 └── view.js              # NEW: createStartView(defaultView)
 test/
-└── view.test.js         # NEW: unit tests for createStartView
+├── view.test.js                          # NEW (written): unit tests for createStartView
+├── reset-view-control.test.js            # NEW (written): control DOM + styles.css contract
+├── reset-view.us1.integration.test.js    # NEW (written): US1 reset behavior on the real app.js
+├── reset-view.us2.integration.test.js    # NEW (written): US2 nothing but the view changes
+├── reset-view.us3.integration.test.js    # NEW (written): US3 keyboard, name, focus
+└── support/fake-browser.js               # NEW (written): test-only fake DOM + Leaflet harness
+tests/ai/
+├── us1-return-to-starting-view.md        # NEW (written): headless Playwright scenarios
+├── us2-reset-without-losing-work.md
+└── us3-accessible-control.md
 ```
 
-**Structure Decision**: Keep the existing single-project layout (`src/` + `test/`). The start-view logic goes in its own module (`src/view.js`) rather than `geo.js`. `geo.js` handles geography and routing, while this is map-view state. A separate module also stays importable in Node without Leaflet.
+**Structure Decision**: Keep the existing single-project layout (`src/` + `test/`). The start-view logic goes in its own module (`src/view.js`) rather than `geo.js`. `geo.js` handles geography and routing, while this is map-view state. A separate module also stays importable in Node without Leaflet. The test files above already exist and fail until `src/view.js`, the control and the CSS exist; the implementation makes them pass without editing them.
 
 ## Complexity Tracking
 

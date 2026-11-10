@@ -5,13 +5,22 @@
 - Node.js ≥ 18 (for `node --test`) and Python 3 (for the static server)
 - A browser with network access to unpkg.com and tile.openstreetmap.org
 
-## 1. Unit tests
+## 1. Automated tests
 
 ```bash
+# Baseline (before any feature code): only the four original files
+node --test test/geo.test.js test/modes.test.js test/pleasure.test.js test/routes.test.js
+
+# Feature tests (fail until src/view.js, the control and the CSS exist)
+node --test test/view.test.js test/reset-view-control.test.js test/reset-view.*.integration.test.js
+
+# Everything
 npm test
 ```
 
-Expected: all existing tests pass, and `test/view.test.js` covers the cases listed in [contracts/start-view.md](./contracts/start-view.md).
+Expected after implementation: every file under `test/` passes. `test/view.test.js` covers the cases in [contracts/start-view.md](./contracts/start-view.md). The contract and integration tests load the real `src/app.js` through the fake browser in `test/support/fake-browser.js` (see plan.md §Testing for the constraints they impose).
+
+AI tests: with `npm start` running, an agent performs the scenarios in `tests/ai/us1-return-to-starting-view.md`, `tests/ai/us2-reset-without-losing-work.md` and `tests/ai/us3-accessible-control.md` with headless Playwright and checks each expected result.
 
 ## 2. Run the app
 
