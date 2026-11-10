@@ -20,4 +20,4 @@
 - **Rationale**: Touches only the map (FR-005); repeated presses are safe.
 
 ## Decision 5: Testing
-- **Decision**: No browser test harness exists; verify manually per quickstart. Existing `npm test` must still pass.
+- **Decision**: Deterministic tests run `src/app.js` against a fake Leaflet (`test/helpers/app-harness.js`, `test/reset-view.test.js`); pixel size, animation time and screen reader announcement are covered by AI scenarios (`tests/ai/`) and the quickstart. Existing `npm test` must still pass.

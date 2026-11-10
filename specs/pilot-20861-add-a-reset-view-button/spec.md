@@ -23,6 +23,11 @@
 - Q: How exact and how fast is the reset? → A: Final view equals the starting center and zoom within 1 screen pixel; any animation lasts at most 1 second so SC-002 (2 seconds) holds. If pressed during an animation or repeatedly, the last press wins and the map ends at the starting view. (decided by the factory, no question asked)
 - Q: How is accessibility judged and is the name localized? → A: Verified by the accessible name in the DOM plus keyboard operation and one screen reader announcement; the name is English only (the app has no localization). (decided by the factory, no question asked)
 
+### Session 2026-11-10 (analyze review, decided by the factory, no question asked)
+
+- Q: FR-001 says "labelled or described" but the button has no visible text; what is required? → A: An icon button whose accessible name and tooltip are "Reset view" (FR-001 reworded). (decided by the factory, no question asked)
+- Q: SC-002 compares with "several manual gestures", which cannot be measured; keep it? → A: No; SC-002 is "a single action in under 2 seconds". (decided by the factory, no question asked)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Return the map to its starting view (Priority: P1)
@@ -68,7 +73,7 @@ A keyboard or screen-reader user can find and activate the "Reset view" button j
 
 ### Functional Requirements
 
-- **FR-001**: The map MUST display a button labelled or described as "Reset view" that is visible whenever the map is shown.
+- **FR-001**: The map MUST display an icon button whose accessible name and tooltip are "Reset view" and that is visible whenever the map is shown.
 - **FR-002**: Activating the button MUST set the map's center and zoom to the starting view.
 - **FR-003**: The starting view MUST be the first view the app automatically centers on: the user's first known position at the app's initial location zoom when location is available, otherwise the app's default starting center and zoom. Pressing the button before any position is known MUST go to the default starting view.
 - **FR-004**: The starting view MUST NOT change after it has been established by the first position fix, even as the user's position updates.
@@ -83,7 +88,7 @@ A keyboard or screen-reader user can find and activate the "Reset view" button j
 ### Measurable Outcomes
 
 - **SC-001**: After any amount of panning and zooming, one press of the button returns the map to the starting center and zoom in 100% of attempts.
-- **SC-002**: Users can return to the starting view in a single action, in under 2 seconds, compared to several manual pan/zoom gestures before.
+- **SC-002**: Users can return to the starting view in a single action, in under 2 seconds.
 - **SC-003**: In 100% of tested cases, pressing the button leaves routes, destination, search results, and travel mode unchanged.
 - **SC-004**: The button is reachable and operable by keyboard alone and is announced with a meaningful name by a screen reader.
 

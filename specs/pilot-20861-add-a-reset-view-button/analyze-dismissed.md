@@ -1,0 +1,3 @@
+- D1 (LOW): T005 and T009 overlap — dismissed by the factory, 2026-11-10: T009 is a deliberate re-check that no CSS removes the focus outline
+- C1 (MEDIUM): 1 px / 1 s precision not asserted by automated tests — dismissed by the factory, 2026-11-10: the fake-Leaflet harness cannot measure pixels or time; AI test T014, T015 and quickstart cover them (write-tests decision)
+- G1 (LOW): constitution is an unfilled template — dismissed by the factory, 2026-11-10: nothing to check, outside this feature

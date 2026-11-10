@@ -7,7 +7,7 @@ description: "Task list for Reset View Button"
 
 **Input**: Design documents from `/specs/pilot-20861-add-a-reset-view-button/`
 **Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/ui-contract.md, quickstart.md
-**Tests**: No automated test tasks (no browser harness; spec does not request them). Existing `npm test` must keep passing; behavior is verified manually per quickstart.md.
+**Tests**: Deterministic tests (`test/reset-view.test.js`, harness `test/helpers/app-harness.js`) and AI scenarios (`tests/ai/`) are recorded by the write-tests step as completed tasks inside each story phase, ahead of the implementation tasks; they fail until the story is implemented. Existing tests must keep passing; pixel size, animation time and screen reader announcement are verified per quickstart.md.
 **Organization**: Grouped by user story. All source changes are in `src/app.js` and `styles.css` (same files, so tasks are sequential, not [P]).
 
 ## Format: `[ID] [P?] [Story] Description`
@@ -54,6 +54,7 @@ description: "Task list for Reset View Button"
 
 ## Dependencies & Execution Order
 
+- Test tasks in each story phase come before that phase's implementation tasks (test-first).
 - Phase 1 → Phase 2 (T002 → T003 → T004) → US1 (T005 → T006 → T007 → T008) → US2 (T009) → Polish (T010, T011).
 - US2 depends on the button from US1 (T005); both edit the same files, so no [P] tasks.
 
