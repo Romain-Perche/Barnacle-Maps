@@ -40,6 +40,33 @@
 - Q: Where is the button in the keyboard tab order? → A: The page's natural order: map controls (zoom, Reset view, attribution links) first, then the search panel. No markup change.
 - Q: Is the dependency on the app's one-time auto-centering documented? → A: Yes, as an assumption: the app auto-centers once, on the first location fix, at zoom 15; any change to that behavior changes the starting view too.
 - Q: Does "smooth or instant transition" fit SC-001's 1-second limit? → A: The transition may be smooth or instant but must finish within 1 s, so no long fly-to animation.
+- Q: Does a reset leave the destination marker alone? → A: Yes. The destination marker is added to FR-005 and SC-003.
+- Q: Can using the button also move the map? → A: No. Clicking, double-clicking or double-tapping the button, or scrolling the mouse wheel over it, never pans or zooms the map. Only the reset moves it.
+- Q: How does the capped panel scroll? → A: With the mouse wheel, touch and keyboard. When keyboard focus moves to a result or route, the browser scrolls it into view. No other change.
+- Q: What happens after a resize or rotation? → A: FR-008 and FR-012 still hold, with no reload. The starting view doesn't change.
+- Q: What if the user's font can't draw the ⟲ symbol? → A: The icon is an inline SVG of a circular arrow instead of the ⟲ text character, so it always shows. Same look and size, no new dependency.
+- Q: Does "the same size as the zoom buttons" mean the icon or the button? → A: The icon is the same size as the + and − symbols on the zoom buttons (about 22px). The button itself is 44×44 px per FR-011.
+- Q: Against which background is the focus outline's 3:1 contrast measured? → A: The button's white background. The outline is drawn inside the button's edge (negative outline-offset), so it never sits on the tiles.
+- Q: Must the icon contrast also hold on the hover background? → A: Yes, at least 3:1 on both white and #f4f4f4. A black icon gives about 19:1.
+- Q: Does the attribution count as "another map control" for the 8px gap? → A: Yes. Leaflet's normal 10px margin between stacked controls meets the rule.
+- Q: Does SC-001's "end of the map's movement" include tile loading? → A: No. It ends when the map's pan or zoom animation finishes (Leaflet's `moveend`).
+- Q: Is "at least 72px" the right floor for the free strip? → A: No. FR-012 now says at least 96px, matching the plan (research.md R3b).
+- Q: How does SC-003 ("identical in 100% of cases") fit FR-014's late fit-to-routes? → A: SC-003 is measured with no route request in flight. The in-flight case is checked against FR-014 only.
+- Q: How does "Leaflet control style" fit the 44×44 size? → A: The button has the same white box, border, corner radius and hover color as Leaflet's controls, but it is bigger (44×44) to meet FR-011.
+- Q: Should `view.js` enforce the data model's value ranges? → A: Yes. It rejects lat outside −90..90, lng outside −180..180 and zoom outside 0..19 with `TypeError`, with a unit test.
+- Q: Is the panel height cap in scope? → A: Yes, because the button can't stay visible without it (FR-001). The reset action itself still only moves the view.
+- Q: Which success criterion covers FR-009, FR-011, FR-012 and FR-013? → A: A new SC-006.
+- Q: On which device or browser is SC-001's 1 s measured? → A: Current Chrome desktop with DevTools CPU throttling at 4× slowdown, standing in for a mid-range phone.
+- Q: Which other panel states does SC-005 test? → A: Also an error status message, and results with long place names that wrap to two lines.
+- Q: What happens on a restore from the back/forward cache? → A: The page keeps the starting view it had. Only a real reload starts over.
+- Q: What about a very distant first fix, or zoom 15 above the map's maximum? → A: Any valid first fix becomes the starting view, wherever it is. Zoom 15 is within the map's maximum of 19, so no clamping is needed.
+- Q: Does a late first fix still move the map if the user already moved it or pressed Reset view? → A: Yes. The app still auto-centers on that first fix as it does today, and that view becomes the starting view.
+- Q: What happens if the reset can't run? → A: The button is added only once the map exists, and the stored view is always valid (checked when set), so there is no expected failure. If an error happens anyway, it is logged to the console and the map stays where it is. Nothing is shown to the user.
+- Q: What about a reset while a popup is opening or a marker is being added? → A: The reset only changes the view. The popup or marker ends up in its normal state; neither is cancelled or changed.
+- Q: What about users who ask for reduced motion? → A: With `prefers-reduced-motion: reduce`, the reset is instant (no animation).
+- Q: What about forced-colors or high-contrast modes? → A: The button uses system colors: the icon stays visible and the focus outline uses the system highlight color.
+- Q: What about browser zoom or larger text? → A: At 200% browser zoom (WCAG 1.4.4 / 1.4.10), the button stays fully visible and usable, and the panel stays usable by scrolling inside. The 8px gap of FR-008 only applies at 100% zoom.
+- Q: Is the English-only label intended? → A: Yes. The app's interface is in English only; translation is out of scope.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -92,6 +119,8 @@ A user navigating with a keyboard or screen reader can find and activate the Res
 ### Edge Cases
 
 - If the user's location becomes available only after they have already moved the map, the starting view is the view the map was first centered on (the user's location), consistent with the app's existing one-time auto-centering behavior.
+- If the first location fix arrives after the user has already moved the map or pressed Reset view, the app still auto-centers on it as it does today, and that view becomes the starting view.
+- Any valid first location fix becomes the starting view, however far it is from Paris. Zoom 15 is within the map's maximum zoom (19), so no clamping is needed.
 - If location access is denied or unavailable, the starting view is the app's default starting center and zoom.
 - If location access is revoked or fails after the location starting view was set, the starting view stays that first location view until the page is reloaded. Allowing location again after denying it does not change the starting view either.
 - Later updates to the user's position (as they move) do not change the starting view; Reset view returns to the original starting view, not the current position.
@@ -100,42 +129,53 @@ A user navigating with a keyboard or screen reader can find and activate the Res
 - Pressing the button while the map is still moving (drag inertia, zoom or pan animation) interrupts that movement and ends at the starting view.
 - Pressing the button while routes are still loading resets the view immediately and does not cancel the route request. When the routes arrive, the app fits the view to them as it does today; the user can press Reset view again.
 - An open destination popup stays open after a reset, even if it ends up off-screen.
+- A reset while a popup is opening or a marker is being added only changes the view; the popup or marker ends up in its normal state and neither is cancelled or changed.
+- A restore from the browser's back/forward cache keeps the starting view the page had. Only a real reload starts over.
+- After a resize or rotation (e.g. 375×667 → 667×375), FR-008 and FR-012 still hold with no reload, and the starting view doesn't change.
+- If the reset throws anyway (not expected: the button exists only once the map does, and the stored view is validated when set), the error is logged to the console and the map stays where it is. Nothing is shown to the user.
 - The button must remain visible and usable on small (mobile) screens (360×640, 375×667 and 667×375 landscape) and must not be hidden behind the search/route panel or overlap the existing zoom controls (see FR-008, FR-012).
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: The map MUST display a "Reset view" button, visible at all times while the map is shown. The button shows a ⟲ icon the same size as the zoom buttons, with the accessible name "Reset view" and the tooltip "Reset view". It sits in the bottom-right corner of the map, above the attribution.
-- **FR-002**: When the user activates the Reset view button, the system MUST return the map to its starting center position and starting zoom level.
-- **FR-003**: The starting view MUST be the app's default view at load (latitude 48.8566, longitude 2.3522, zoom 13), replaced once by the user's location at zoom 15 if and when the app first auto-centers on the user's location. "First auto-centers" means the first location fix received after the page loads; a reload starts over.
+- **FR-001**: The map MUST display a "Reset view" button, visible at all times while the map is shown. The button shows a circular-arrow (⟲) icon drawn as an inline SVG (not a text character, so it always shows whatever the user's fonts), the same size as the + and − symbols on the zoom buttons (about 22px); the button itself is 44×44 px per FR-011. It has the accessible name "Reset view" and the tooltip "Reset view". It sits in the bottom-right corner of the map, above the attribution.
+- **FR-002**: When the user activates the Reset view button, the system MUST return the map to its starting center position and starting zoom level. Clicking, double-clicking or double-tapping the button, or scrolling the mouse wheel over it, MUST NOT pan or zoom the map; only the reset moves it.
+- **FR-003**: The starting view MUST be the app's default view at load (latitude 48.8566, longitude 2.3522, zoom 13), replaced once by the user's location at zoom 15 if and when the app first auto-centers on the user's location. "First auto-centers" means the first location fix received after the page loads; a real reload starts over, while a restore from the back/forward cache keeps the starting view the page had.
 - **FR-004**: The starting view MUST NOT change due to subsequent position updates, searches, route display, or manual panning/zooming.
-- **FR-005**: Activating Reset view MUST NOT clear or alter search input, search results, displayed routes, the selected route, the travel mode, status messages, the user's position marker, or open popups. No extra announcement is made: the status line stays untouched.
+- **FR-005**: Activating Reset view MUST NOT clear or alter search input, search results, displayed routes, the selected route, the travel mode, status messages, the user's position marker, the destination marker, or open popups. No extra announcement is made: the status line stays untouched.
 - **FR-006**: The Reset view button MUST be operable with mouse/touch and with the keyboard (focusable, activatable with Enter or Space). Keyboard focus stays on the button after a reset. The button keeps the page's natural tab order: map controls (zoom, Reset view, attribution links) first, then the search panel.
 - **FR-007**: The Reset view button MUST have both the accessible name "Reset view" and the hover tooltip "Reset view". On touch screens, where tooltips don't show, users rely on the icon (accepted limitation).
-- **FR-008**: The Reset view button's box MUST NOT intersect the search/route panel or any other map control, with at least 8px between them, at 360×640, 375×667, 667×375 (landscape) and 1280×800, with the panel showing 5 results or 3 routes.
+- **FR-008**: The Reset view button's box MUST NOT intersect the search/route panel or any other map control, with at least 8px between them, at 360×640, 375×667, 667×375 (landscape) and 1280×800, with the panel showing 5 results, 3 routes, an error status message, or results with long place names that wrap to two lines. The attribution counts as a map control (Leaflet's 10px margin between stacked controls meets the gap). This also holds after a resize or rotation, with no reload. The 8px gap applies at 100% browser zoom.
 - **FR-009**: The button's visual states MUST be: default white like the Leaflet controls; hover light grey (#f4f4f4); keyboard focus a visible 2px blue (#1a73e8) outline. There is no separate pressed state.
 - **FR-010**: The button MUST always be enabled and look the same, including when the map is already at the starting view (pressing it then does nothing).
 - **FR-011**: The button MUST be at least 44×44 CSS px.
-- **FR-012**: The search/route panel's height MUST be capped so the bottom strip of the map that holds the button stays free (at least 72px, and enough for the button, the attribution and the 8px gap of FR-008); the panel scrolls inside when its content is taller.
-- **FR-013**: The button MUST meet WCAG 2.1 AA for non-text contrast: the icon and the focus outline have at least 3:1 contrast against their background, and the focus outline is always visible on keyboard focus.
+- **FR-012**: The search/route panel's height MUST be capped so the bottom strip of the map that holds the button stays free (at least 96px, enough for the button, the attribution and the 8px gap of FR-008); the panel scrolls inside when its content is taller. The panel can be scrolled with the mouse wheel, touch and keyboard, and when keyboard focus moves to a result or route, the browser scrolls it into view. The cap also holds after a resize or rotation.
+- **FR-013**: The button MUST meet WCAG 2.1 AA for non-text contrast: the icon has at least 3:1 contrast against both the default white and the hover #f4f4f4 background; the focus outline has at least 3:1 contrast against the button's white background and is drawn inside the button's edge (negative outline-offset), so it never sits on the map tiles; the focus outline is always visible on keyboard focus.
 - **FR-014**: Activating Reset view while the map is moving MUST interrupt that movement and end at the starting view. Activating it while routes are loading MUST NOT cancel the route request; the later fit-to-routes still happens.
+- **FR-015**: When the user has `prefers-reduced-motion: reduce` set, the reset MUST be instant (no animation).
+- **FR-016**: In forced-colors (high-contrast) mode, the button MUST use system colors: the icon stays visible and the focus outline uses the system highlight color.
+- **FR-017**: At 200% browser zoom (WCAG 1.4.4 / 1.4.10), the button MUST stay fully visible and usable, and the panel MUST stay usable by scrolling inside.
+- **FR-018**: If the reset throws despite the validated starting view, the error MUST be logged to the console and the map MUST stay where it is; nothing is shown to the user.
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
-- **SC-001**: From any panned/zoomed state, users return to the starting view with a single action, in under 1 second measured from pressing the button to the end of the map's movement.
+- **SC-001**: From any panned/zoomed state, users return to the starting view with a single action, in under 1 second measured from pressing the button to the end of the map's pan or zoom animation (Leaflet's `moveend`; tile loading excluded), in current Chrome desktop with DevTools CPU throttling at 4× slowdown.
 - **SC-002**: In 100% of tested cases, after Reset view the map's center and zoom match the starting view: the zoom is equal and the center is within 0.000001° of latitude and longitude.
-- **SC-003**: In 100% of tested cases, the search input, search results, displayed routes, selected route, travel mode, status messages, the user's position marker and open popups are identical before and after Reset view.
+- **SC-003**: In 100% of tested cases, the search input, search results, displayed routes, selected route, travel mode, status messages, the user's position marker, the destination marker and open popups are identical before and after Reset view, measured with no route request in flight (the in-flight case is checked against FR-014 only).
 - **SC-004**: The button can be reached and activated using only the keyboard, and the browser's accessibility tree shows role "button" and name "Reset view" (plus one spot check with NVDA or VoiceOver).
-- **SC-005**: At the viewport sizes listed in FR-008, the button is fully visible and overlaps nothing.
+- **SC-005**: At the viewport sizes and panel states listed in FR-008 (including an error status message and long wrapping place names), the button is fully visible and overlaps nothing.
+- **SC-006**: At the FR-008 viewport sizes, the button is at least 44×44 px, shows the FR-009 states, meets FR-013's 3:1 contrast, and the panel never enters the bottom free strip of FR-012 (quickstart H and I).
 
 ## Assumptions
 
 - "Starting position and zoom" means the view the map settled on when the app started: the default starting view, or — if the app auto-centered on the user's location — that location view at the zoom used for auto-centering. This matches what the user saw at startup (confirmed in Clarifications, 2026-11-10).
 - The reset applies only to the map view; it does not reset the application state (searches, routes, travel mode).
-- The button is placed in the bottom-right corner of the map, above the attribution, following the existing Leaflet control style (the panel covers the top-left zoom control).
+- The button is placed in the bottom-right corner of the map, above the attribution (the panel covers the top-left zoom control). It has the same white box, border, corner radius and hover color as Leaflet's controls, but is bigger (44×44) to meet FR-011.
 - A smooth or instant transition to the starting view are both acceptable, but it must finish within SC-001's 1 second, so no long fly-to animation.
 - The app auto-centers once, on the first location fix, at zoom 15. Any change to that behavior changes the starting view too.
+- Capping the panel's height (FR-012) is in scope, because the button can't stay visible without it (FR-001). The reset action itself still only moves the view.
+- The app's interface is in English only; translating the "Reset view" label is out of scope.
 - No persistence is needed: the starting view is determined fresh on each app load.

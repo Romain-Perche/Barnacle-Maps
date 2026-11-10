@@ -41,7 +41,7 @@ Holds the map's starting view for this session.
 - FR-003: starts as the default view and switches once to the location view, when the app first auto-centers on the user.
 - FR-004: later `settle` calls (position updates) are no-ops. Searches, route display (`fitBounds`), destination `setView` and manual pan/zoom never write to StartView.
 - `current` returns a copy, so callers can't change the stored view.
-- `settle` rejects non-finite coordinates or zoom: it throws `TypeError` and leaves the state unchanged.
+- `createStartView` and `settle` reject non-finite or out-of-range values (lat outside −90..90, lng outside −180..180, zoom outside 0..19): they throw `TypeError` and leave the state unchanged. So the stored view is always valid (FR-018).
 
 ## Relationships
 

@@ -13,6 +13,7 @@ Technical approach:
 - `src/app.js` uses it in place of the current `centered` boolean in `onPosition`. It also adds a custom Leaflet control (`L.Control`) at `bottomright` that holds a native `<button>` named "Reset view".
 - `styles.css` gets a few rules so the control matches Leaflet's `leaflet-bar` look, is 44×44 px and has a visible focus ring. It also caps `#panel`'s height (`max-height: calc(100% - 108px)`, `overflow-y: auto`) so the bottom 96px of the map always stays free for the button (FR-012).
 - Focus stays on the button after a reset. `setView` interrupts any running pan/zoom/inertia animation. Route requests in flight are not touched (FR-014).
+- Checklist gate (behavior.md, 2026-11-10): the icon is an inline SVG circular arrow (~22px) instead of the ⟲ glyph; the focus outline is drawn inside the button (`outline-offset: -2px`); `@media (forced-colors: active)` uses system colors; under `prefers-reduced-motion: reduce` the reset calls `setView(..., { animate: false })` (FR-015); the handler wraps the reset in `try/catch` and logs to the console (FR-018); `src/view.js` also rejects out-of-range lat/lng/zoom with `TypeError`.
 
 ## Technical Context
 
@@ -28,9 +29,9 @@ Technical approach:
 
 **Project Type**: Single-page static web app (no build step)
 
-**Performance Goals**: The reset finishes in < 1 s (SC-001). This is one `setView` call, and Leaflet's pan/zoom animation is ~250 ms.
+**Performance Goals**: The reset finishes in < 1 s (SC-001), measured to Leaflet's `moveend` (tiles excluded) in Chrome desktop with 4× CPU throttling. This is one `setView` call, and Leaflet's pan/zoom animation is ~250 ms.
 
-**Constraints**: No build step and no new dependencies. The control is at least 44×44 px (FR-011), and its box must not intersect `#panel` or other map controls, with ≥ 8px between them at 360×640, 375×667, 667×375 and 1280×800 (FR-008, SC-005). WCAG 2.1 AA non-text contrast ≥ 3:1 for the icon and focus outline (FR-013).
+**Constraints**: No build step and no new dependencies. Free strip at the bottom of the map ≥ 96px (FR-012). Instant reset under reduced motion (FR-015), system colors in forced-colors mode (FR-016), usable at 200% browser zoom (FR-017). The control is at least 44×44 px (FR-011), and its box must not intersect `#panel` or other map controls, with ≥ 8px between them at 360×640, 375×667, 667×375 and 1280×800 (FR-008, SC-005). WCAG 2.1 AA non-text contrast ≥ 3:1 for the icon and focus outline (FR-013).
 
 **Scale/Scope**: 1 new module (~25 LOC), ~30 LOC in `app.js`, ~15 LOC CSS, 1 new test file.
 
@@ -61,7 +62,7 @@ specs/pilot-15946-add-a-reset-view-button/
 ├── contracts/
 │   ├── start-view.md        # src/view.js module contract
 │   └── reset-view-control.md # UI contract for the on-map button
-├── checklists/requirements.md, checklists/ux.md
+├── checklists/requirements.md, checklists/ux.md, checklists/behavior.md
 └── tasks.md             # Phase 2 output (/speckit-tasks – not created here)
 ```
 
@@ -69,7 +70,7 @@ specs/pilot-15946-add-a-reset-view-button/
 
 ```text
 index.html               # unchanged (control is created by Leaflet in app.js)
-styles.css               # + .reset-view control styles (44×44, hover, focus ring), #panel max-height + scroll
+styles.css               # + .reset-view control styles (44×44, hover, inset focus ring, forced-colors), #panel max-height + scroll
 src/
 ├── app.js               # use createStartView; replace `centered`; add ResetViewControl
 ├── geo.js               # unchanged

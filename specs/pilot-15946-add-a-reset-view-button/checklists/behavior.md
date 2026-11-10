@@ -12,54 +12,54 @@
 
 ## Requirement Completeness
 
-- [ ] CHK001 - Does FR-005's list of preserved state include the destination marker? The app has a separate destination marker, and the UI contract lists it, but FR-005 and SC-003 only name "the user's position marker". [Gap, Spec §FR-005, Spec §SC-003]
-- [ ] CHK002 - Is it specified that interacting with the button (click, double-click/double-tap, mouse wheel over it) must not also pan or zoom the map? Only the UI contract mentions this. [Gap, Spec §FR-002, Contract reset-view-control §Behavior]
-- [ ] CHK003 - Are requirements defined for the panel's new internal scrolling (FR-012), such as keyboard scrollability and keeping the focused result or route visible inside the capped panel? [Gap, Spec §FR-012]
-- [ ] CHK004 - Is it specified what happens to the panel cap and the button's position when the viewport is resized or the device is rotated after load (e.g. 375×667 → 667×375)? [Gap, Spec §FR-008, Spec §FR-012]
-- [ ] CHK005 - Is a fallback defined if the ⟲ glyph is not available in the user's font? Missing glyphs would leave the button without a visible icon on touch screens, where the tooltip doesn't show. [Gap, Spec §FR-001, Spec §FR-007]
+- [x] CHK001 - Does FR-005's list of preserved state include the destination marker? The app has a separate destination marker, and the UI contract lists it, but FR-005 and SC-003 only name "the user's position marker". [Gap, Spec §FR-005, Spec §SC-003] — reviewed by Pilot, 2026-11-10
+- [x] CHK002 - Is it specified that interacting with the button (click, double-click/double-tap, mouse wheel over it) must not also pan or zoom the map? Only the UI contract mentions this. [Gap, Spec §FR-002, Contract reset-view-control §Behavior] — reviewed by Pilot, 2026-11-10
+- [x] CHK003 - Are requirements defined for the panel's new internal scrolling (FR-012), such as keyboard scrollability and keeping the focused result or route visible inside the capped panel? [Gap, Spec §FR-012] — reviewed by Pilot, 2026-11-10
+- [x] CHK004 - Is it specified what happens to the panel cap and the button's position when the viewport is resized or the device is rotated after load (e.g. 375×667 → 667×375)? [Gap, Spec §FR-008, Spec §FR-012] — reviewed by Pilot, 2026-11-10
+- [x] CHK005 - Is a fallback defined if the ⟲ glyph is not available in the user's font? Missing glyphs would leave the button without a visible icon on touch screens, where the tooltip doesn't show. [Gap, Spec §FR-001, Spec §FR-007] — reviewed by Pilot, 2026-11-10
 
 ## Requirement Clarity
 
-- [ ] CHK006 - Is "the same size as the zoom buttons" in FR-001 clear about whether it means the icon glyph or the button? Zoom buttons are 30×30 px, while FR-011 requires at least 44×44 px. [Ambiguity, Spec §FR-001, Spec §FR-011]
-- [ ] CHK007 - Is the "background" in FR-013's 3:1 contrast rule defined for the focus outline? The outline sits outside the button, over map tiles whose colors vary. [Ambiguity, Spec §FR-013]
-- [ ] CHK008 - Does FR-013 say whether the 3:1 icon contrast must also hold for the hover background (#f4f4f4), not only the default white? [Clarity, Spec §FR-009, Spec §FR-013]
-- [ ] CHK009 - Is "any other map control" in FR-008 clear about whether the attribution control directly below the button counts, and so must also be 8px or more away? [Ambiguity, Spec §FR-008]
-- [ ] CHK010 - Is "the end of the map's movement" in SC-001 clear about whether tile loading at the new view is included or excluded? [Clarity, Spec §SC-001]
-- [ ] CHK011 - Is "status messages" in FR-005 defined as the visible text of the status line only, or also its live-region behavior? [Clarity, Spec §FR-005]
+- [x] CHK006 - Is "the same size as the zoom buttons" in FR-001 clear about whether it means the icon glyph or the button? Zoom buttons are 30×30 px, while FR-011 requires at least 44×44 px. [Ambiguity, Spec §FR-001, Spec §FR-011] — reviewed by Pilot, 2026-11-10
+- [x] CHK007 - Is the "background" in FR-013's 3:1 contrast rule defined for the focus outline? The outline sits outside the button, over map tiles whose colors vary. [Ambiguity, Spec §FR-013] — reviewed by Pilot, 2026-11-10
+- [x] CHK008 - Does FR-013 say whether the 3:1 icon contrast must also hold for the hover background (#f4f4f4), not only the default white? [Clarity, Spec §FR-009, Spec §FR-013] — reviewed by Pilot, 2026-11-10
+- [x] CHK009 - Is "any other map control" in FR-008 clear about whether the attribution control directly below the button counts, and so must also be 8px or more away? [Ambiguity, Spec §FR-008] — reviewed by Pilot, 2026-11-10
+- [x] CHK010 - Is "the end of the map's movement" in SC-001 clear about whether tile loading at the new view is included or excluded? [Clarity, Spec §SC-001] — reviewed by Pilot, 2026-11-10
+- [x] CHK011 - Is "status messages" in FR-005 defined as the visible text of the status line only, or also its live-region behavior? [Clarity, Spec §FR-005] — reviewed by Pilot, 2026-11-10
 
 ## Requirement Consistency
 
-- [ ] CHK012 - Is FR-012's "at least 72px" floor consistent with its own rule "enough for the button, the attribution and the 8px gap"? The plan calculates about 83px is needed and uses 96px, so 72px can never be the correct value. [Conflict, Spec §FR-012, Plan §Research R3b]
-- [ ] CHK013 - Is SC-003 ("identical before and after Reset view" in 100% of cases) consistent with FR-014, where routes still loading arrive after the reset and change routes, the panel and the view? [Conflict, Spec §SC-003, Spec §FR-014]
-- [ ] CHK014 - Is the Assumption "following the existing Leaflet control style" consistent with FR-011's 44×44 px size, which is larger than Leaflet's own controls? [Consistency, Spec §Assumptions, Spec §FR-011]
-- [ ] CHK015 - Are the View field rules in the data model (lat −90..90, lng −180..180, zoom 0..19) consistent with the `src/view.js` contract, which only requires finite numbers? [Consistency, Data Model §View, Contract start-view]
-- [ ] CHK016 - Is the panel height cap (FR-012), which changes existing panel behavior for all users, consistent with the Assumption that the reset only affects the map view and is in scope for this feature? [Consistency, Spec §FR-012, Spec §Assumptions]
+- [x] CHK012 - Is FR-012's "at least 72px" floor consistent with its own rule "enough for the button, the attribution and the 8px gap"? The plan calculates about 83px is needed and uses 96px, so 72px can never be the correct value. [Conflict, Spec §FR-012, Plan §Research R3b] — reviewed by Pilot, 2026-11-10
+- [x] CHK013 - Is SC-003 ("identical before and after Reset view" in 100% of cases) consistent with FR-014, where routes still loading arrive after the reset and change routes, the panel and the view? [Conflict, Spec §SC-003, Spec §FR-014] — reviewed by Pilot, 2026-11-10
+- [x] CHK014 - Is the Assumption "following the existing Leaflet control style" consistent with FR-011's 44×44 px size, which is larger than Leaflet's own controls? [Consistency, Spec §Assumptions, Spec §FR-011] — reviewed by Pilot, 2026-11-10
+- [x] CHK015 - Are the View field rules in the data model (lat −90..90, lng −180..180, zoom 0..19) consistent with the `src/view.js` contract, which only requires finite numbers? [Consistency, Data Model §View, Contract start-view] — reviewed by Pilot, 2026-11-10
+- [x] CHK016 - Is the panel height cap (FR-012), which changes existing panel behavior for all users, consistent with the Assumption that the reset only affects the map view and is in scope for this feature? [Consistency, Spec §FR-012, Spec §Assumptions] — reviewed by Pilot, 2026-11-10
 
 ## Acceptance Criteria Quality
 
-- [ ] CHK017 - Do FR-009, FR-011, FR-012 and FR-013 trace to a success criterion or acceptance scenario? SC-001–SC-005 do not cover visual states, touch size, the panel cap or contrast. [Traceability, Gap]
-- [ ] CHK018 - Is the test procedure for SC-003 defined clearly enough to compare the "open popup" state (open/closed, which popup) before and after a reset? [Measurability, Spec §SC-003]
-- [ ] CHK019 - Is the device/browser class for SC-001's 1-second limit specified (e.g. a mid-range phone), so the result is reproducible? [Measurability, Spec §SC-001]
-- [ ] CHK020 - Does SC-005 say which panel states to test beyond "5 results or 3 routes", such as an error or long status message, or long place names that wrap? [Measurability, Spec §SC-005, Spec §FR-008]
+- [x] CHK017 - Do FR-009, FR-011, FR-012 and FR-013 trace to a success criterion or acceptance scenario? SC-001–SC-005 do not cover visual states, touch size, the panel cap or contrast. [Traceability, Gap] — reviewed by Pilot, 2026-11-10
+- [x] CHK018 - Is the test procedure for SC-003 defined clearly enough to compare the "open popup" state (open/closed, which popup) before and after a reset? [Measurability, Spec §SC-003] — reviewed by Pilot, 2026-11-10
+- [x] CHK019 - Is the device/browser class for SC-001's 1-second limit specified (e.g. a mid-range phone), so the result is reproducible? [Measurability, Spec §SC-001] — reviewed by Pilot, 2026-11-10
+- [x] CHK020 - Does SC-005 say which panel states to test beyond "5 results or 3 routes", such as an error or long status message, or long place names that wrap? [Measurability, Spec §SC-005, Spec §FR-008] — reviewed by Pilot, 2026-11-10
 
 ## Scenario & Edge Case Coverage
 
-- [ ] CHK021 - Is the starting view defined when the page is restored from the browser's back/forward cache rather than reloaded? FR-003 only says "a reload starts over". [Edge Case, Gap, Spec §FR-003]
-- [ ] CHK022 - Is it defined what happens when the first location fix is outside the map's usable area or when zoom 15 exceeds the map's maximum zoom? [Edge Case, Spec §FR-003]
-- [ ] CHK023 - Is it specified whether the first location fix still auto-centers the map (and so moves it) when the user has already pressed Reset view or moved the map? The Edge Cases only state what the starting view becomes. [Coverage, Spec §Edge Cases, Spec §FR-003]
-- [ ] CHK024 - Are recovery requirements stated for when the reset itself can't run (e.g. the map is not ready yet, or the stored view is invalid)? [Exception Flow, Gap, Spec §FR-002]
-- [ ] CHK025 - Is the behavior defined when a reset happens while a destination popup is opening or a marker is being dragged or added? [Coverage, Spec §FR-005, Spec §FR-014]
+- [x] CHK021 - Is the starting view defined when the page is restored from the browser's back/forward cache rather than reloaded? FR-003 only says "a reload starts over". [Edge Case, Gap, Spec §FR-003] — reviewed by Pilot, 2026-11-10
+- [x] CHK022 - Is it defined what happens when the first location fix is outside the map's usable area or when zoom 15 exceeds the map's maximum zoom? [Edge Case, Spec §FR-003] — reviewed by Pilot, 2026-11-10
+- [x] CHK023 - Is it specified whether the first location fix still auto-centers the map (and so moves it) when the user has already pressed Reset view or moved the map? The Edge Cases only state what the starting view becomes. [Coverage, Spec §Edge Cases, Spec §FR-003] — reviewed by Pilot, 2026-11-10
+- [x] CHK024 - Are recovery requirements stated for when the reset itself can't run (e.g. the map is not ready yet, or the stored view is invalid)? [Exception Flow, Gap, Spec §FR-002] — reviewed by Pilot, 2026-11-10
+- [x] CHK025 - Is the behavior defined when a reset happens while a destination popup is opening or a marker is being dragged or added? [Coverage, Spec §FR-005, Spec §FR-014] — reviewed by Pilot, 2026-11-10
 
 ## Non-Functional Requirements (Accessibility & Motion)
 
-- [ ] CHK026 - Are requirements defined for the user's reduced-motion preference (`prefers-reduced-motion`), given that the transition may be animated? [Gap, Non-Functional, Spec §Assumptions]
-- [ ] CHK027 - Are requirements defined for forced-colors / high-contrast modes, where white backgrounds and the blue focus outline may be overridden? [Gap, Non-Functional, Spec §FR-009, Spec §FR-013]
-- [ ] CHK028 - Are browser zoom / text-scaling requirements (e.g. 200% zoom, WCAG 1.4.4 / 1.4.10) defined for the button and the capped panel? [Gap, Non-Functional, Spec §FR-008]
+- [x] CHK026 - Are requirements defined for the user's reduced-motion preference (`prefers-reduced-motion`), given that the transition may be animated? [Gap, Non-Functional, Spec §Assumptions] — reviewed by Pilot, 2026-11-10
+- [x] CHK027 - Are requirements defined for forced-colors / high-contrast modes, where white backgrounds and the blue focus outline may be overridden? [Gap, Non-Functional, Spec §FR-009, Spec §FR-013] — reviewed by Pilot, 2026-11-10
+- [x] CHK028 - Are browser zoom / text-scaling requirements (e.g. 200% zoom, WCAG 1.4.4 / 1.4.10) defined for the button and the capped panel? [Gap, Non-Functional, Spec §FR-008] — reviewed by Pilot, 2026-11-10
 
 ## Dependencies & Assumptions
 
-- [ ] CHK029 - Is the dependency on the attribution control's height (which may wrap on narrow screens) documented as an assumption for the FR-012 free strip? [Assumption, Spec §FR-012, Plan §Research R3b]
-- [ ] CHK030 - Is the English-only label "Reset view" consistent with the app's language, and is localization explicitly out of scope? [Assumption, Spec §FR-007]
+- [x] CHK029 - Is the dependency on the attribution control's height (which may wrap on narrow screens) documented as an assumption for the FR-012 free strip? [Assumption, Spec §FR-012, Plan §Research R3b] — reviewed by Pilot, 2026-11-10
+- [x] CHK030 - Is the English-only label "Reset view" consistent with the app's language, and is localization explicitly out of scope? [Assumption, Spec §FR-007] — reviewed by Pilot, 2026-11-10
 
 ## Notes
 
