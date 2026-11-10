@@ -36,6 +36,10 @@
 - Q: What if tiles fail to load or the device is offline? → A: the control stays available and the view still changes; missing tiles are not this feature's concern (CHK028) (decided by the factory, no question asked)
 - Q: Is an inaccurate first fix still used? → A: yes, any first fix is the starting view, whatever its accuracy (CHK029) (decided by the factory, no question asked)
 - Q: Should the move respect reduced motion? → A: yes: when the user prefers reduced motion, the map jumps without animation (CHK030) (decided by the factory, no question asked)
+- Q: If the person has already panned, zoomed or pressed Reset view before their location arrives, does the map still jump to it when the first fix arrives? → A: yes, keep today's behaviour: the map always jumps to the first-found location when it arrives, even if the person has already moved the map, and that location becomes the Reset view target (CHK016)
+- Q: If routes finish computing after a reset and the map zooms to show them, is that acceptable? → A: yes; Reset view only acts at the moment it is pressed; routes that arrive later still zoom the map to show them, as they do today (CHK022)
+- Q: Does the control show text, an icon, or both? → A: the words "Reset view" on the button, no icon, with the same text as tooltip (CHK007)
+- Q: Where is the control placed? → A: bottom-right corner of the map, just above the OpenStreetMap attribution, on all screen sizes, checked at 375 px and 1280 px wide; the top corners are not free on phones because the search panel covers the whole top of the screen (CHK008)
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -75,6 +79,8 @@ A user who navigates with the keyboard or a screen reader can find the button, u
 ### Edge Cases
 
 - The person presses "Reset view" before the first location fix has arrived: the map goes to the fixed default view; once the first fix arrives, it becomes the starting view for later presses.
+- The first location fix arrives after the person has already panned, zoomed or pressed "Reset view": the map still jumps to that location (as today), and it becomes the starting view.
+- Routes finish computing after a reset: the map still zooms to show them, as today. "Reset view" only acts at the moment it is pressed.
 - The person moves after the app opened (live position updates): "Reset view" still returns to the first-found location, not to their latest position.
 - Location access is denied or unsupported: the button stays available and returns to the fixed default view.
 - The user presses the button repeatedly in quick succession: each press ends at the starting view; no errors or stuck states.
@@ -91,7 +97,7 @@ A user who navigates with the keyboard or a screen reader can find the button, u
 
 ### Functional Requirements
 
-- **FR-001**: The map MUST show a control labelled "Reset view" (text and/or an icon with a "Reset view" tooltip and accessible name) that is visible whenever the map is shown.
+- **FR-001**: The map MUST show a control that displays the text "Reset view" (no icon), with "Reset view" as its tooltip and accessible name, visible whenever the map is shown.
 - **FR-002**: Activating the control MUST set the map's center and zoom to the starting view. The starting view is the person's first-found location at the close zoom level the app uses when it first centers on them, if the location was found. Otherwise it is the app's fixed default center and zoom (Paris, 48.8566, 2.3522, zoom 13). The close zoom level is 15. The map is "at the starting view" when its zoom is equal and its center is within 0.00001° of the starting center.
 - **FR-002a**: The starting view MUST be fixed at the first location fix and MUST NOT follow later position updates.
 - **FR-003**: Activating the control MUST NOT change any other app state: search input and results, destination, displayed routes, selected route, travel mode, pleasure indicators, user position marker, and status messages stay as they were. Open popups stay as they are.
@@ -99,7 +105,8 @@ A user who navigates with the keyboard or a screen reader can find the button, u
 - **FR-004**: The control MUST be operable by mouse, touch, and keyboard (focusable, activates with Enter and Space), with the same result for each. After activation, focus stays on the control. Tab order follows the document: with the map's controls, after the zoom buttons.
 - **FR-004a**: The control MUST show a clearly visible focus outline when focused by keyboard, have a touch target of at least 44 × 44 CSS px, and meet WCAG 2.1 AA contrast (label 4.5:1, button edge 3:1 against the map).
 - **FR-005**: The control MUST have the accessible name "Reset view". No extra screen-reader announcement is made after a reset.
-- **FR-006**: The control MUST be placed so that it does not overlap the search/route panel, the existing map zoom controls, or the OpenStreetMap attribution on desktop and mobile screen sizes.
+- **FR-006**: The control MUST be placed in the bottom-right corner of the map, just above the OpenStreetMap attribution, on all screen sizes, and MUST NOT overlap the search/route panel, the existing map zoom controls, or the attribution. This is checked at 375 px and 1280 px wide.
+- **FR-003b**: "Reset view" acts only at the moment it is pressed. Automatic map moves that already exist (jumping to the first location fix, zooming to show newly computed routes) still happen afterwards.
 - **FR-007**: Activating the control when the map is already at the starting view MUST leave the view unchanged and raise no error.
 
 ## Success Criteria *(mandatory)*

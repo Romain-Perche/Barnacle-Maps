@@ -19,8 +19,8 @@
 
 ## Requirement Clarity
 
-- [ ] CHK007 Does the spec fix whether the control shows visible text, an icon, or both, or is that choice intentionally left to design? [Ambiguity, Spec §FR-001]
-- [ ] CHK008 Is "placed so that it does not overlap" backed by a defined position or screen corner and the screen widths to check ("desktop and mobile")? [Clarity, Spec §FR-006]
+- [x] CHK007 Does the spec fix whether the control shows visible text, an icon, or both, or is that choice intentionally left to design? [Ambiguity, Spec §FR-001] — reviewed by Pilot, 2026-11-10
+- [x] CHK008 Is "placed so that it does not overlap" backed by a defined position or screen corner and the screen widths to check ("desktop and mobile")? [Clarity, Spec §FR-006] — reviewed by Pilot, 2026-11-10
 - [x] CHK009 Is a minimum touch-target size specified for the control on touch devices? [Gap, Spec §US2 #3] — reviewed by the factory, 2026-11-10
 - [x] CHK010 Is a visible focus indicator required for the control? [Gap, Spec §FR-004] — reviewed by the factory, 2026-11-10
 - [x] CHK011 Is a colour-contrast requirement given for the control's label and its boundary against map tiles? [Gap, Non-Functional] — reviewed by the factory, 2026-11-10
@@ -31,7 +31,7 @@
 - [x] CHK013 Does FR-006 (no overlap with the panel and zoom controls) list every on-map element the control could collide with, including the OpenStreetMap attribution? [Consistency, Spec §FR-006, Plan §research R2] — reviewed by the factory, 2026-11-10
 - [x] CHK014 Are the user-story wording ("starting center", "starting zoom level") and the definition in FR-002 / Clarifications consistent, so "starting view" means the same thing everywhere? [Consistency, Spec §US1, §FR-002] — covered, ticked by the factory, 2026-11-10
 - [x] CHK015 Is the FR-003 list of unchanged state consistent with every state element the app has (search input and results, destination, routes, selected route, mode, pleasure indicators, position marker, status)? [Consistency, Spec §FR-003, Data model] — covered, ticked by the factory, 2026-11-10
-- [ ] CHK016 Does the edge case "pressed before the first fix → default view; the first fix then becomes the starting view" agree with the app's existing auto-centering on the first fix, i.e. is it stated whether the map should still jump to the user's location when the first fix arrives after a manual reset or pan? [Conflict, Spec §Edge Cases, §FR-002a]
+- [x] CHK016 Does the edge case "pressed before the first fix → default view; the first fix then becomes the starting view" agree with the app's existing auto-centering on the first fix, i.e. is it stated whether the map should still jump to the user's location when the first fix arrives after a manual reset or pan? [Conflict, Spec §Edge Cases, §FR-002a] — reviewed by Pilot, 2026-11-10
 
 ## Acceptance Criteria Quality
 
@@ -43,7 +43,7 @@
 
 ## Scenario Coverage
 
-- [ ] CHK022 Do the requirements say what happens when routes finish computing *after* a reset (the app frames new routes automatically): is it acceptable for that to move the map away from the starting view? [Coverage, Gap, Spec §FR-003]
+- [x] CHK022 Do the requirements say what happens when routes finish computing *after* a reset (the app frames new routes automatically): is it acceptable for that to move the map away from the starting view? [Coverage, Gap, Spec §FR-003] — reviewed by Pilot, 2026-11-10
 - [x] CHK023 Is the scenario of location permission granted late (denied at load, allowed later in the same session) covered, and does the "first fix" rule apply to it? [Coverage, Spec §Edge Cases, §FR-002a] — reviewed by the factory, 2026-11-10
 - [x] CHK024 Do the requirements say whether pointer gestures on the control (double-click, wheel, drag) must not also act on the map? [Coverage, Gap, Spec §FR-003] — reviewed by the factory, 2026-11-10
 - [x] CHK025 Are behaviours on mouse, touch and keyboard all specified with the same outcome (US2 covers keyboard and touch; is mouse plus long-press/hover tooltip on touch addressed)? [Coverage, Spec §US2, §FR-004] — reviewed by the factory, 2026-11-10
