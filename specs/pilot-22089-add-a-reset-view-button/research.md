@@ -61,10 +61,14 @@ All items below were open technical choices; none needed outside input. The prod
   the panel height (panel height changes with results/routes, so it would need JS to track it).
 - **Panel height on narrow screens**: below ~420 px wide the panel spans the columns used by the
   bottom-right controls, so an unbounded results/routes list could grow down over them. Decision: a
-  CSS-only cap, `@media (max-width: 440px) { #panel { max-height: calc(100% - 172px); overflow-y: auto; } }`
+  CSS-only cap, `@media (max-width: 440px)`: `#panel { max-height: calc(100% - 172px); display: flex; flex-direction: column; overflow: hidden; }`, with `#results, #routes { flex: 0 1 auto; min-height: 0; overflow-y: auto; }`
   (172 px = 12 px top offset + bottom-right stack ~136 px + clearance), so the panel always ends above
-  Reset view and its content scrolls. Alternatives: capping only `#results`/`#routes` separately (two
-  scroll areas, still unbounded together); moving the controls with JS when the panel grows (more code,
+  Reset view; the search form, travel mode and status keep their height and stay visible, and only the
+  lists scroll (spec Clarifications: only results and routes scroll). Alternatives: `overflow-y: auto`
+  on the whole `#panel` (one scroll area, but scrolling a long list pushes the search form and travel
+  mode off the top and leaves the status below the fold); a fixed `max-height` on `#results`/`#routes`
+  without capping the panel (still unbounded together, and the right value depends on the viewport);
+  wrapping the lists in a new scroll container (needs an HTML change for no gain over flex); moving the controls with JS when the panel grows (more code,
   and the controls would jump around); capping on all widths (needless on desktop, where the panel
   never reaches the right edge).
 
