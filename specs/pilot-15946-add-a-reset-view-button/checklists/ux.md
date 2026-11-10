@@ -12,54 +12,54 @@
 
 ## Requirement Completeness
 
-- [ ] CHK001 - Are the default starting center and zoom given as concrete values in the spec, not as "central Paris at the city-wide zoom"? [Completeness, Spec §Clarifications, Spec §FR-003]
-- [ ] CHK002 - Is the "closer zoom" used for the location-based starting view given a specific level in the requirements? [Completeness, Spec §Clarifications]
-- [ ] CHK003 - Are visual states (default, hover, focus, active/pressed) specified for the Reset view button? [Gap]
-- [ ] CHK004 - Is it specified whether the button should look or behave differently (e.g. disabled or hidden) when the map is already at the starting view? [Gap, Spec §US1-AS3]
-- [ ] CHK005 - Is it specified whether keyboard focus stays on the button after activation? [Gap, Spec §FR-006]
-- [ ] CHK006 - Do the requirements say whether an open destination popup is kept or closed by a reset? FR-005 lists markers but not popups. [Gap, Spec §FR-005]
-- [ ] CHK007 - Is it specified whether a reset gives any announcement or feedback to screen reader users after activation, beyond the button name? [Gap, Spec §FR-007]
+- [x] CHK001 - Are the default starting center and zoom given as concrete values in the spec, not as "central Paris at the city-wide zoom"? [Completeness, Spec §Clarifications, Spec §FR-003] — reviewed by Pilot, 2026-11-10
+- [x] CHK002 - Is the "closer zoom" used for the location-based starting view given a specific level in the requirements? [Completeness, Spec §Clarifications] — reviewed by Pilot, 2026-11-10
+- [x] CHK003 - Are visual states (default, hover, focus, active/pressed) specified for the Reset view button? [Gap] — reviewed by Pilot, 2026-11-10
+- [x] CHK004 - Is it specified whether the button should look or behave differently (e.g. disabled or hidden) when the map is already at the starting view? [Gap, Spec §US1-AS3] — reviewed by Pilot, 2026-11-10
+- [x] CHK005 - Is it specified whether keyboard focus stays on the button after activation? [Gap, Spec §FR-006] — reviewed by Pilot, 2026-11-10
+- [x] CHK006 - Do the requirements say whether an open destination popup is kept or closed by a reset? FR-005 lists markers but not popups. [Gap, Spec §FR-005] — reviewed by Pilot, 2026-11-10
+- [x] CHK007 - Is it specified whether a reset gives any announcement or feedback to screen reader users after activation, beyond the button name? [Gap, Spec §FR-007] — reviewed by Pilot, 2026-11-10
 
 ## Requirement Clarity
 
-- [ ] CHK008 - Is "clearly labeled" in FR-001 defined: visible text, an icon, or an icon plus tooltip? The plan uses an icon-only glyph. [Ambiguity, Spec §FR-001]
-- [ ] CHK009 - Is "tooltip/label conveying its purpose" clear about which one is required, given that tooltips can't be seen on touch devices? [Ambiguity, Spec §FR-007]
-- [ ] CHK010 - Is "visible at all times while the map is shown" defined for cases where the panel grows tall or the viewport is very short (e.g. mobile landscape)? [Clarity, Spec §FR-001, Spec §FR-008]
-- [ ] CHK011 - Is "the app first auto-centers on the user's location" defined precisely enough to tell apart the first position fix, a later fix, and a re-grant of permission? [Clarity, Spec §FR-003]
-- [ ] CHK012 - Is "obscure or overlap" in FR-008 defined by measurable terms (minimum spacing, viewport sizes)? [Clarity, Spec §FR-008]
+- [x] CHK008 - Is "clearly labeled" in FR-001 defined: visible text, an icon, or an icon plus tooltip? The plan uses an icon-only glyph. [Ambiguity, Spec §FR-001] — reviewed by Pilot, 2026-11-10
+- [x] CHK009 - Is "tooltip/label conveying its purpose" clear about which one is required, given that tooltips can't be seen on touch devices? [Ambiguity, Spec §FR-007] — reviewed by Pilot, 2026-11-10
+- [x] CHK010 - Is "visible at all times while the map is shown" defined for cases where the panel grows tall or the viewport is very short (e.g. mobile landscape)? [Clarity, Spec §FR-001, Spec §FR-008] — reviewed by Pilot, 2026-11-10
+- [x] CHK011 - Is "the app first auto-centers on the user's location" defined precisely enough to tell apart the first position fix, a later fix, and a re-grant of permission? [Clarity, Spec §FR-003] — reviewed by Pilot, 2026-11-10
+- [x] CHK012 - Is "obscure or overlap" in FR-008 defined by measurable terms (minimum spacing, viewport sizes)? [Clarity, Spec §FR-008] — reviewed by Pilot, 2026-11-10
 
 ## Requirement Consistency
 
-- [ ] CHK013 - Does the placement assumption ("near the zoom controls") agree with FR-008, given that the panel covers the top-left zoom control and the plan places the button bottom-right? [Conflict, Spec §Assumptions, Spec §FR-008, Plan §Research R3]
-- [ ] CHK014 - Do the Edge Cases ("location available only after the user moved the map") and FR-004 ("manual panning does not change the starting view") agree on whether a late auto-center still overrides the default starting view? [Consistency, Spec §Edge Cases, Spec §FR-003–FR-004]
-- [ ] CHK015 - Is the list of preserved state in FR-005 the same as the one in SC-003 (status messages and the position marker appear in FR-005 but not in SC-003)? [Consistency, Spec §FR-005, Spec §SC-003]
-- [ ] CHK016 - Does the button's accessible name ("Reset view") match its visible label/tooltip wording, so voice-control users can activate it by name? [Consistency, Spec §FR-007]
+- [x] CHK013 - Does the placement assumption ("near the zoom controls") agree with FR-008, given that the panel covers the top-left zoom control and the plan places the button bottom-right? [Conflict, Spec §Assumptions, Spec §FR-008, Plan §Research R3] — reviewed by Pilot, 2026-11-10
+- [x] CHK014 - Do the Edge Cases ("location available only after the user moved the map") and FR-004 ("manual panning does not change the starting view") agree on whether a late auto-center still overrides the default starting view? [Consistency, Spec §Edge Cases, Spec §FR-003–FR-004] — reviewed by Pilot, 2026-11-10
+- [x] CHK015 - Is the list of preserved state in FR-005 the same as the one in SC-003 (status messages and the position marker appear in FR-005 but not in SC-003)? [Consistency, Spec §FR-005, Spec §SC-003] — reviewed by Pilot, 2026-11-10
+- [x] CHK016 - Does the button's accessible name ("Reset view") match its visible label/tooltip wording, so voice-control users can activate it by name? [Consistency, Spec §FR-007] — reviewed by Pilot, 2026-11-10
 
 ## Acceptance Criteria Quality
 
-- [ ] CHK017 - Is SC-001's "under 1 second" measured from a defined start and end point (activation → animation finished or → first frame)? [Measurability, Spec §SC-001]
-- [ ] CHK018 - Does "match the starting view exactly" (SC-002) define a tolerance for floating-point center coordinates or zoom snapping? [Measurability, Spec §SC-002]
-- [ ] CHK019 - Is "announced as 'Reset view' by a screen reader" (SC-004) tied to specific assistive technologies or to an accessibility-tree property that can be checked objectively? [Measurability, Spec §SC-004]
-- [ ] CHK020 - Does every functional requirement FR-001–FR-008 trace to at least one acceptance scenario or success criterion (e.g. FR-008 has no SC)? [Traceability, Gap]
+- [x] CHK017 - Is SC-001's "under 1 second" measured from a defined start and end point (activation → animation finished or → first frame)? [Measurability, Spec §SC-001] — reviewed by Pilot, 2026-11-10
+- [x] CHK018 - Does "match the starting view exactly" (SC-002) define a tolerance for floating-point center coordinates or zoom snapping? [Measurability, Spec §SC-002] — reviewed by Pilot, 2026-11-10
+- [x] CHK019 - Is "announced as 'Reset view' by a screen reader" (SC-004) tied to specific assistive technologies or to an accessibility-tree property that can be checked objectively? [Measurability, Spec §SC-004] — reviewed by Pilot, 2026-11-10
+- [x] CHK020 - Does every functional requirement FR-001–FR-008 trace to at least one acceptance scenario or success criterion (e.g. FR-008 has no SC)? [Traceability, Gap] — reviewed by Pilot, 2026-11-10
 
 ## Scenario & Edge Case Coverage
 
-- [ ] CHK021 - Are requirements defined for a reset pressed while routes are still being computed, when a later automatic fit-to-routes will move the view again? [Edge Case, Gap, Spec §FR-005]
-- [ ] CHK022 - Are requirements defined for a reset pressed while a pan/zoom animation or drag inertia is still running? [Edge Case, Gap]
-- [ ] CHK023 - Is the starting view defined when location permission is revoked or errors after the location-based starting view has been set? [Edge Case, Spec §Edge Cases, Spec §FR-004]
-- [ ] CHK024 - Is the starting view defined when the user picks a destination before any location fix (the app centers on the destination)? Is it clear that this does not count as the "starting view"? [Coverage, Spec §FR-004]
-- [ ] CHK025 - Are the "small (mobile) screens" in the Edge Cases given concrete viewport sizes or breakpoints? [Coverage, Spec §Edge Cases]
+- [x] CHK021 - Are requirements defined for a reset pressed while routes are still being computed, when a later automatic fit-to-routes will move the view again? [Edge Case, Gap, Spec §FR-005] — reviewed by Pilot, 2026-11-10
+- [x] CHK022 - Are requirements defined for a reset pressed while a pan/zoom animation or drag inertia is still running? [Edge Case, Gap] — reviewed by Pilot, 2026-11-10
+- [x] CHK023 - Is the starting view defined when location permission is revoked or errors after the location-based starting view has been set? [Edge Case, Spec §Edge Cases, Spec §FR-004] — reviewed by Pilot, 2026-11-10
+- [x] CHK024 - Is the starting view defined when the user picks a destination before any location fix (the app centers on the destination)? Is it clear that this does not count as the "starting view"? [Coverage, Spec §FR-004] — reviewed by Pilot, 2026-11-10
+- [x] CHK025 - Are the "small (mobile) screens" in the Edge Cases given concrete viewport sizes or breakpoints? [Coverage, Spec §Edge Cases] — reviewed by Pilot, 2026-11-10
 
 ## Non-Functional Requirements (Accessibility & Touch)
 
-- [ ] CHK026 - Is a minimum touch-target size specified for the button (e.g. 44×44 CSS px; the plan proposes 30×30)? [Gap, Non-Functional, Plan §Research R6]
-- [ ] CHK027 - Are color-contrast and visible-focus-indicator requirements specified for the button? [Gap, Non-Functional, Spec §FR-006]
-- [ ] CHK028 - Is the button's position in the keyboard tab order (relative to the panel and the map) specified? [Gap, Spec §US3]
+- [x] CHK026 - Is a minimum touch-target size specified for the button (e.g. 44×44 CSS px; the plan proposes 30×30)? [Gap, Non-Functional, Plan §Research R6] — reviewed by Pilot, 2026-11-10
+- [x] CHK027 - Are color-contrast and visible-focus-indicator requirements specified for the button? [Gap, Non-Functional, Spec §FR-006] — reviewed by Pilot, 2026-11-10
+- [x] CHK028 - Is the button's position in the keyboard tab order (relative to the panel and the map) specified? [Gap, Spec §US3] — reviewed by Pilot, 2026-11-10
 
 ## Dependencies & Assumptions
 
-- [ ] CHK029 - Is the dependency on the existing one-time auto-centering behavior documented as a requirement, so changes to that behavior are known to affect the starting view? [Assumption, Spec §Edge Cases, Spec §FR-003]
-- [ ] CHK030 - Is the assumption that "smooth or instant transition are both acceptable" checked against SC-001's 1-second limit for long-distance resets? [Assumption, Spec §Assumptions, Spec §SC-001]
+- [x] CHK029 - Is the dependency on the existing one-time auto-centering behavior documented as a requirement, so changes to that behavior are known to affect the starting view? [Assumption, Spec §Edge Cases, Spec §FR-003] — reviewed by Pilot, 2026-11-10
+- [x] CHK030 - Is the assumption that "smooth or instant transition are both acceptable" checked against SC-001's 1-second limit for long-distance resets? [Assumption, Spec §Assumptions, Spec §SC-001] — reviewed by Pilot, 2026-11-10
 
 ## Notes
 

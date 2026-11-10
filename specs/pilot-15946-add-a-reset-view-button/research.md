@@ -22,20 +22,27 @@ The Technical Context had no NEEDS CLARIFICATION items: the stack is fixed by th
 - **Decision**: `position: "bottomright"`. Leaflet stacks it above the attribution control.
 - **Rationale**: `#panel` is anchored top-left with `z-index: 1000` and `width: min(360px, 100% - 24px)`. On mobile it spans the full top of the screen, and its height grows with results and routes. It already covers the default top-left zoom control. Top-left and top-right would both sit under the panel on narrow screens. Bottom-right is the one corner the panel never reaches. The spec assumes placement "near the zoom controls", but in practice those are hidden under the panel. Visual closeness doesn't matter as much as "never hidden behind the panel", so placement follows FR-008. This was chosen autonomously.
 - **Alternatives considered**: `topleft` under the zoom control is hidden by the panel. `topright` is hidden on mobile. Moving the zoom control is out of scope.
+- **Update (checklist gate, 2026-11-10)**: The spec now says bottom-right above the attribution (Assumptions), so the conflict is gone.
+
+## R3b. Panel height cap (FR-012, FR-008)
+
+- **Decision**: `#panel { max-height: calc(100% - 108px); overflow-y: auto; box-sizing: border-box; }`. The panel's top is 12px, so the bottom **96px** of the map always stays free. Inside the panel, the content scrolls.
+- **Rationale**: On a phone, the panel spans the full width, so the only way to keep it clear of the bottom-right button is to keep it out of the bottom strip. That strip holds the attribution (~17px), the control's Leaflet `margin-bottom` (10px), the button (44px + 2×2px `leaflet-bar` border = 48px) and the 8px gap of FR-008: about 83px. The reviewer approved "at least 72px", which is too small for a 44px button with an 8px gap, so 96px is used (with some room for an attribution that wraps). At 667×375 landscape the panel can still be 267px tall.
+- **Alternatives considered**: Exactly 72px gives a gap of ~0px with the 44px button, which fails FR-008. Hiding the attribution isn't allowed by the OSM terms. Rejected.
 
 ## R4. Reset motion
 
-- **Decision**: `map.setView([lat, lng], zoom)` with Leaflet's default animation options.
-- **Rationale**: The spec accepts smooth or instant. The default animation is short (well under 1 s, SC-001) and lands on the exact center and zoom (SC-002). If the map is already at the start view, `setView` does nothing visible (acceptance scenario 1.3). Repeated presses are idempotent.
+- **Decision**: `map.setView([lat, lng], zoom)` with Leaflet's default animation options. Leaflet's `setView` calls `_stop()` first, so a running pan/zoom animation or drag inertia is interrupted and the map ends at the starting view (FR-014). The handler doesn't touch pending route `fetch`es; when they resolve, `fitBounds` runs as it does today (FR-014).
+- **Rationale**: The spec accepts smooth or instant, as long as it ends within 1 s (Assumptions). The default animation is short (~250 ms, well under 1 s, SC-001) and lands on the exact center and zoom (SC-002). If the map is already at the start view, `setView` does nothing visible (acceptance scenario 1.3). Repeated presses are idempotent.
 - **Alternatives considered**: `flyTo` takes longer over large distances and may exceed 1 s. Rejected.
 
 ## R5. Not altering app state (FR-005)
 
 - **Decision**: The click handler only calls `map.setView`. It does not touch `routeLayers`, `selectedRoute`, `mode`, `currentPlace`, `results`, `status`, `userMarker` or `destMarker`, and it does not call `fitBounds`.
-- **Rationale**: Panning and zooming in Leaflet don't affect layers. Polylines and markers keep their geographic positions.
+- **Rationale**: Panning and zooming in Leaflet don't affect layers. Polylines and markers keep their geographic positions. Open popups stay open, since `setView` doesn't close them (`autoClose` only reacts to other popups opening). No status message or live-region announcement is added.
 
 ## R6. Styling and icon
 
-- **Decision**: Use a visible glyph "⟲" (`aria-hidden` span) plus `aria-label`/`title` "Reset view". Size it 30×30 to match `leaflet-bar a`. Add a `:focus-visible` outline.
+- **Decision**: Use a visible glyph "⟲" (`aria-hidden` span, same font size as the zoom buttons' glyphs) plus `aria-label`/`title` "Reset view". Size it **44×44** px (FR-011), larger than Leaflet's 30×30 `leaflet-bar a`. Colors: icon `#000` on `#fff` (21:1), hover background `#f4f4f4`, `:focus-visible` outline `2px solid #1a73e8` (~4.6:1 against white, ≥ 3:1 per FR-013). No `:active` style and no disabled state (FR-009, FR-010). The click handler doesn't move focus, so focus stays on the button.
 - **Rationale**: This matches Leaflet's control look, gives a tooltip for sighted users and an accessible name for screen readers (FR-007), and shows keyboard focus (FR-006).
 - **Alternatives considered**: A text-only "Reset view" label is wider and clutters mobile. An SVG icon adds markup for no gain.

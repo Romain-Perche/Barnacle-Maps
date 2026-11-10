@@ -11,7 +11,8 @@ Add a "Reset view" button on the map that returns it to its *starting view*. The
 Technical approach:
 - A small pure module `src/view.js` exports `createStartView(defaultView)`. It holds the starting view and a one-shot `settle(lat, lng, zoom)` transition. It is unit-tested with `node --test`.
 - `src/app.js` uses it in place of the current `centered` boolean in `onPosition`. It also adds a custom Leaflet control (`L.Control`) at `bottomright` that holds a native `<button>` named "Reset view".
-- `styles.css` gets a few rules so the control matches Leaflet's `leaflet-bar` look and has a visible focus ring.
+- `styles.css` gets a few rules so the control matches Leaflet's `leaflet-bar` look, is 44×44 px and has a visible focus ring. It also caps `#panel`'s height (`max-height: calc(100% - 108px)`, `overflow-y: auto`) so the bottom 96px of the map always stays free for the button (FR-012).
+- Focus stays on the button after a reset. `setView` interrupts any running pan/zoom/inertia animation. Route requests in flight are not touched (FR-014).
 
 ## Technical Context
 
@@ -29,9 +30,9 @@ Technical approach:
 
 **Performance Goals**: The reset finishes in < 1 s (SC-001). This is one `setView` call, and Leaflet's pan/zoom animation is ~250 ms.
 
-**Constraints**: No build step and no new dependencies. The control must not overlap `#panel` or the existing map controls on desktop or mobile (FR-008).
+**Constraints**: No build step and no new dependencies. The control is at least 44×44 px (FR-011), and its box must not intersect `#panel` or other map controls, with ≥ 8px between them at 360×640, 375×667, 667×375 and 1280×800 (FR-008, SC-005). WCAG 2.1 AA non-text contrast ≥ 3:1 for the icon and focus outline (FR-013).
 
-**Scale/Scope**: 1 new module (~25 LOC), ~30 LOC in `app.js`, ~10 LOC CSS, 1 new test file.
+**Scale/Scope**: 1 new module (~25 LOC), ~30 LOC in `app.js`, ~15 LOC CSS, 1 new test file.
 
 ## Constitution Check
 
@@ -60,7 +61,7 @@ specs/pilot-15946-add-a-reset-view-button/
 ├── contracts/
 │   ├── start-view.md        # src/view.js module contract
 │   └── reset-view-control.md # UI contract for the on-map button
-├── checklists/requirements.md
+├── checklists/requirements.md, checklists/ux.md
 └── tasks.md             # Phase 2 output (/speckit-tasks – not created here)
 ```
 
@@ -68,7 +69,7 @@ specs/pilot-15946-add-a-reset-view-button/
 
 ```text
 index.html               # unchanged (control is created by Leaflet in app.js)
-styles.css               # + .reset-view control styles, focus ring
+styles.css               # + .reset-view control styles (44×44, hover, focus ring), #panel max-height + scroll
 src/
 ├── app.js               # use createStartView; replace `centered`; add ResetViewControl
 ├── geo.js               # unchanged
