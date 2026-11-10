@@ -118,6 +118,29 @@
 - [x] CHK061 Is there a measurable success criterion or acceptance scenario for the panel cap (e.g. at 320×568 with a long results list, the panel's bottom edge is above the Reset view button and the list scrolls)? Today no SC or user story covers it. [Acceptance Criteria, Gap, Spec §FR-007, Spec §Success Criteria] — reviewed by the factory, 2026-11-10
 - [x] CHK062 Is the plan's assumption that Leaflet stacks later bottom-right controls above earlier ones (so Reset view ends up directly above the zoom buttons) recorded as a validated dependency on Leaflet 1.9.4, and not just stated? [Assumption, Dependency, Spec §FR-007, Plan §Design Notes 4] — reviewed by the factory, 2026-11-10
 
+## Requirement Clarity (fourth run, 2026-11-10: only the lists scroll)
+
+- [x] CHK063 Does FR-007 set a minimum visible height (or number of rows) for the results and routes lists in the capped panel, given that at 320×320 the plan leaves only ~46 px for them once the search box, Go button, travel mode and status message are always shown? [Gap, Spec §FR-007, Spec §SC-006, Plan §Design Notes 4] — reviewed by the factory, 2026-11-10
+- [x] CHK064 When the results list and the routes list are both shown, do the requirements say how the space left in the capped panel is shared between them (each scrolls on its own, or one takes priority)? [Ambiguity, Spec §FR-007] — reviewed by the factory, 2026-11-10
+- [x] CHK065 Is "always stay visible in the panel without scrolling" defined precisely enough to judge (fully inside the panel and not clipped, or only partly visible)? [Measurability, Spec §FR-007, Spec §SC-006] — reviewed by the factory, 2026-11-10
+- [x] CHK066 Is the visual order inside the capped panel stated (search box, Go, travel mode, lists, then the status message below the lists, as today), or is moving the status message above the lists allowed? [Clarity, Spec §FR-007, Plan §Design Notes 4] — reviewed by the factory, 2026-11-10
+
+## Requirement Consistency (fourth run, 2026-11-10: only the lists scroll)
+
+- [x] CHK067 Does "the search box … MUST always stay visible" agree with the rule that FR-007 is not judged while the on-screen keyboard is open, which is exactly when the search box is used? Is it stated which rule applies to the fixed panel content at that moment? [Conflict, Spec §FR-007, Spec §Clarifications] — reviewed by the factory, 2026-11-10
+- [x] CHK068 Is it stated whether the pleasure indicators (listed in FR-005) are part of the routes list that scrolls, or fixed content that must stay visible? FR-007's list of fixed content does not mention them. [Consistency, Gap, Spec §FR-005, Spec §FR-007] — reviewed by the factory, 2026-11-10
+
+## Scenario & Edge Case Coverage (fourth run, 2026-11-10: only the lists scroll)
+
+- [x] CHK069 Is the case where the fixed content alone is taller than the capped panel covered, for example a long status message such as "Routing failed…" wrapping onto several lines at 320×320, which leaves no room for the lists? [Edge Case, Gap, Spec §FR-007, Spec §SC-006] — reviewed by the factory, 2026-11-10
+- [x] CHK070 Do the requirements say that touch drags and mouse-wheel scrolling inside a scrollable list never pan or zoom the map, including when the list is already scrolled to its end? [Coverage, Gap, Spec §FR-006, Spec §FR-007] — reviewed by the factory, 2026-11-10
+- [x] CHK071 Is the scroll position of a list defined when its content is replaced (a new search's results, or the routes of a new search or travel-mode change), or is it explicitly left as today? FR-005 only covers a reset. [Coverage, Gap, Spec §FR-005, Spec §FR-011] — reviewed by the factory, 2026-11-10
+
+## Acceptance Criteria & Dependencies (fourth run, 2026-11-10: only the lists scroll)
+
+- [x] CHK072 Can SC-006 be passed at 320×320 when a list shows less than one full row, or does it need a minimum visible list area so that "the list scrolls" is meaningful? [Measurability, Spec §SC-006] — reviewed by the factory, 2026-11-10
+- [x] CHK073 Is the plan's fixed 172 px height estimate for the bottom-right stack (Reset view, zoom buttons, map credits, spacing and 10 px clearance) traced to FR-007's measured values, so a reviewer can check that the cap meets the 10 px clearance? [Traceability, Assumption, Spec §FR-007, Plan §Design Notes 4, Contract reset-view-control §Placement] — reviewed by the factory, 2026-11-10
+
 ## Notes
 
 - Mark items `[x]` only after review confirms the requirement-quality criterion is satisfied
@@ -127,3 +150,4 @@
 - Defaults used (no interaction possible): depth Standard; audience PR reviewer; focus = reset target & state behavior, control UX/accessibility/placement
 - Follow-up run (CHK031–CHK050), defaults used (no interaction possible): depth Standard; audience PR reviewer; focus = requirements added after the first run (FR-007 zoom move, FR-009 size, FR-010 reduced motion, FR-011 reset vs. route fit) and spec/plan/contract consistency
 - Third run (CHK051–CHK062), defaults used (no interaction possible): depth Standard; audience PR reviewer; focus = the narrow-screen panel height cap added to FR-007 (threshold, clearance, scrolling content, status visibility, short viewports) and how it interacts with reset (FR-005) and accessibility
+- Fourth run (CHK063–CHK073), defaults used (no interaction possible): depth Standard; audience PR reviewer; focus = the latest FR-007 clarification (only the results/routes lists scroll; search box, Go, travel mode and status always visible): minimum list space, fixed-content overflow, scroll isolation from the map, and spec/plan consistency
