@@ -47,7 +47,8 @@ All items below were open technical choices; none needed outside input. The prod
 
 - **Decision**: Create the map with `zoomControl: false`, then add `L.control.zoom({ position: "bottomright" })`
   and the reset control at `"bottomright"` too. Leaflet inserts bottom-corner controls above earlier
-  ones, so the stack is (top to bottom): Reset view, zoom +/-, attribution.
+  ones (Leaflet 1.9.4 `L.Control#addTo`: `if (pos.indexOf('bottom') !== -1) corner.insertBefore(container, corner.firstChild)`),
+  so the stack is (top to bottom): Reset view, zoom +/-, attribution.
 - **Rationale**: `#panel` is absolutely positioned at top-left, `z-index: 1000`, width
   `min(360px, 100% - 24px)`, i.e. it covers the top-left corner at every width and the whole top edge
   on phones. Leaflet's corners also use `z-index: 1000` and the panel comes later in the DOM, so

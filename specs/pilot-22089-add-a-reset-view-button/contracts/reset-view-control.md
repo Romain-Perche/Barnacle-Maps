@@ -24,8 +24,8 @@ Created by `src/app.js` as a Leaflet control at position `bottomright`:
 - Never overlaps `#panel` (top-left) at any viewport width, including ≤ 384 px wide phones.
 - At viewports ≤ 440 px wide (where `#panel` and the bottom-right stack share horizontal space),
   `#panel` has `max-height: calc(100% - 172px)` and `overflow-y: auto`: its bottom edge always stays
-  above the Reset view button, and long `#results` / `#routes` lists scroll inside the panel. Wider
-  viewports: `#panel` unchanged.
+  at least 10 px above the Reset view button (default text size, no on-screen keyboard), and long `#results` / `#routes` lists scroll inside the panel. Wider
+  viewports: `#panel` unchanged. A reset does not change the panel's scroll position (FR-005).
 - Button is at least 30×30 px (same as `.leaflet-bar a`, `.leaflet-touch` 30 px), and shows a
   visible focus outline when focused with the keyboard. Icon and border have ≥ 3:1 contrast against white (FR-009). Focus stays on the button after activation.
 
