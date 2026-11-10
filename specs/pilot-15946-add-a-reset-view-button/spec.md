@@ -8,6 +8,12 @@
 
 **Input**: User description: "Add a Reset view button — Add a button on the map that puts the map back to its starting position and zoom."
 
+## Clarifications
+
+### Session 2026-11-10
+
+- Q: When someone presses "Reset view", which view should the map go back to? → A: The first view the app settled on: the user's location at the closer zoom if location was found, otherwise the default view (central Paris at the city-wide zoom). Not the user's current position as they move.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Return the map to its starting view (Priority: P1)
@@ -89,7 +95,7 @@ A user navigating with a keyboard or screen reader can find and activate the Res
 
 ## Assumptions
 
-- "Starting position and zoom" means the view the map settled on when the app started: the default starting view, or — if the app auto-centered on the user's location — that location view at the zoom used for auto-centering. This matches what the user saw at startup.
+- "Starting position and zoom" means the view the map settled on when the app started: the default starting view, or — if the app auto-centered on the user's location — that location view at the zoom used for auto-centering. This matches what the user saw at startup (confirmed in Clarifications, 2026-11-10).
 - The reset applies only to the map view; it does not reset the application state (searches, routes, travel mode).
 - The button is placed alongside the map's existing on-map controls (near the zoom controls), following the existing visual style.
 - A smooth or instant transition to the starting view are both acceptable; no specific animation is required.
