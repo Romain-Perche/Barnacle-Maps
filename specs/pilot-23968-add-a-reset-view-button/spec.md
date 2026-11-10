@@ -8,22 +8,30 @@
 
 **Input**: User description: "Add a Reset view button — Add a button on the map that puts the map back to its starting position and zoom."
 
+## Clarifications
+
+### Session 2026-11-10
+
+- Q: When someone presses "Reset view", should the map go back to the app's fixed default view or to the view centered on their location? → A: Option C. Go to the person's location at the close zoom if it was found when the app opened (the first location fix), otherwise to the fixed default view.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Return the map to its starting view (Priority: P1)
 
-A user has panned and zoomed around the map (for example to look at a route, a search result, or just to explore) and has lost their bearings. They press a "Reset view" button shown on the map, and the map returns to the same center and zoom level it showed when the app was first opened.
+A user has panned and zoomed around the map (for example to look at a route, a search result, or just to explore) and has lost their bearings. They press a "Reset view" button shown on the map, and the map returns to the starting view: the view centered on their location at close zoom if their location was found when the app opened, or the app's fixed default view if it was not.
 
 **Why this priority**: This is the entire feature. It gives users a one-step way back to a known reference view instead of manually panning and zooming.
 
-**Independent Test**: Open the app, note the initial center and zoom, pan and zoom elsewhere, press "Reset view", and confirm the map shows the initial center and zoom again.
+**Independent Test**: Open the app (once with location access allowed, once denied), note the starting view, pan and zoom elsewhere, press "Reset view", and confirm the map shows the starting view again.
 
 **Acceptance Scenarios**:
 
 1. **Given** the user has panned the map away from its starting center, **When** they press "Reset view", **Then** the map is centered on the starting center again.
 2. **Given** the user has zoomed in or out from the starting zoom level, **When** they press "Reset view", **Then** the map returns to the starting zoom level.
-3. **Given** the map is already showing the starting view, **When** the user presses "Reset view", **Then** the view stays the same and nothing breaks.
-4. **Given** routes, a destination, or the user's position marker are shown on the map, **When** the user presses "Reset view", **Then** only the view changes; the routes, markers, search results, selected travel mode and selected route are left as they were.
+3. **Given** the person's location was found when the app opened, **When** they press "Reset view", **Then** the map centers on that first-found location at the close zoom level.
+4. **Given** location access was denied or the location could not be found, **When** the person presses "Reset view", **Then** the map shows the fixed default view.
+5. **Given** the map is already showing the starting view, **When** the user presses "Reset view", **Then** the view stays the same and nothing breaks.
+6. **Given** routes, a destination, or the user's position marker are shown on the map, **When** the user presses "Reset view", **Then** only the view changes; the routes, markers, search results, selected travel mode and selected route are left as they were.
 
 ---
 
@@ -43,7 +51,9 @@ A user who navigates with the keyboard or a screen reader can find the button, u
 
 ### Edge Cases
 
-- The user's location was found after startup and the map moved to it: "Reset view" still returns to the app's starting view, not to the user's location.
+- The person presses "Reset view" before the first location fix has arrived: the map goes to the fixed default view; once the first fix arrives, it becomes the starting view for later presses.
+- The person moves after the app opened (live position updates): "Reset view" still returns to the first-found location, not to their latest position.
+- Location access is denied or unsupported: the button stays available and returns to the fixed default view.
 - The user presses the button repeatedly in quick succession: each press ends at the starting view; no errors or stuck states.
 - The user presses the button while the map is still moving (e.g., during a zoom animation): the map ends at the starting view.
 - Small screens: the button stays visible and does not cover the search panel, route list, or other map controls.
@@ -53,7 +63,8 @@ A user who navigates with the keyboard or a screen reader can find the button, u
 ### Functional Requirements
 
 - **FR-001**: The map MUST show a control labelled "Reset view" (text and/or an icon with a "Reset view" tooltip and accessible name) that is visible whenever the map is shown.
-- **FR-002**: Activating the control MUST set the map's center and zoom to the starting view: the center and zoom the map shows when the app is first opened, before any user interaction or location-based recentering.
+- **FR-002**: Activating the control MUST set the map's center and zoom to the starting view. The starting view is the person's first-found location at the close zoom level the app uses when it first centers on them, if the location was found. Otherwise it is the app's fixed default center and zoom.
+- **FR-002a**: The starting view MUST be fixed at the first location fix and MUST NOT follow later position updates.
 - **FR-003**: Activating the control MUST NOT change any other app state: search input and results, destination, displayed routes, selected route, travel mode, pleasure indicators, user position marker, and status messages stay as they were.
 - **FR-004**: The control MUST be operable by mouse, touch, and keyboard (focusable, activates with Enter and Space).
 - **FR-005**: The control MUST have the accessible name "Reset view".
@@ -72,8 +83,8 @@ A user who navigates with the keyboard or a screen reader can find the button, u
 
 ## Assumptions
 
-- "Starting position and zoom" means the app's fixed initial view (its default center and zoom when the page loads), not the view after automatic centering on the user's location and not the view framing a route. This keeps the reset target predictable and available even when location access is denied.
+- "Starting position and zoom" means the view the app first settles on: centered on the person's first-found location when available, otherwise the fixed default view (see Clarifications). It never means the view framing a route or search result.
 - The reset only moves the map; it does not clear searches, routes, or markers. Clearing those is out of scope.
 - The transition to the starting view may be animated or instant; either is acceptable as long as SC-002 is met.
 - The button label is in English, like the rest of the interface.
-- The starting view is not saved between sessions; it is the same default view every time the app opens.
+- The starting view is not saved between sessions; it is set again each time the app opens.

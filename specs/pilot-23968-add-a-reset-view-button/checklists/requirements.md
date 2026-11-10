@@ -31,5 +31,5 @@
 
 ## Notes
 
-- The ambiguity "starting position" (fixed initial view vs. view centered on the user's location) was resolved with a documented assumption: the fixed initial view. Revisit with `/speckit-clarify` if resetting to the user's location is preferred.
+- The ambiguity "starting position" was resolved in clarify (2026-11-10): first-found location at close zoom, falling back to the fixed default view.
 - All items pass on the first validation pass.
