@@ -1,7 +1,7 @@
 # US1: Return the map to its starting view
 Covers: FR-001, FR-002, FR-003, FR-004, FR-005, FR-007, FR-008, FR-009, SC-001, SC-002, SC-003, US1 scenario 1, 2, 3, 4
 
-Common setup: `npm start` (serves http://localhost:8000), headless Playwright with Chromium. Leaflet and tiles load from the network; if tiles are blocked the map logic still works. The map instance is read with `document.querySelector('#map')._leaflet_id` is not enough, so read the view from the URL-free DOM: use `page.evaluate` on the Leaflet pane transform is brittle; instead expose nothing and compare the visible zoom-control state and a screenshot of the tile coordinates (the `src` of a center tile `.../{z}/{x}/{y}.png` gives z and the tile under the map center).
+Common setup: `npm start` (serves http://localhost:8000), headless Playwright with Chromium. "Zoom and center tile" means: the zoom `z` and the `x`,`y` of the `img.leaflet-tile` (URL `.../{z}/{x}/{y}.png`) whose box contains the center of `#map`.
 
 ## Scenario 1: Default view when location is denied
 ### Setup
