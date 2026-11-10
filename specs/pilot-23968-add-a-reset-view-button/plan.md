@@ -23,7 +23,7 @@ unit-tested helper `startingView()` in `src/geo.js`; the button calls `map.setVi
 
 **Storage**: N/A (in-memory state only; starting view is not persisted)
 
-**Testing**: `node --test test/` (`npm test`) for pure logic in `src/geo.js`; manual browser checks via [quickstart.md](./quickstart.md)
+**Testing**: `node --test test/` (`npm test`): unit tests for the pure `startingView()` in `test/view.test.js`, and integration tests in `test/reset-view.integration.test.js` that import `src/app.js` under a small dependency-free fake browser and fake Leaflet (`test/helpers/fake-browser.js`). Real layout, contrast, focus ring, keyboard, screen reader and touch are checked by the AI test scenarios in `tests/ai/` (they load Leaflet from unpkg) and by hand via [quickstart.md](./quickstart.md). See [research.md](./research.md) R6
 
 **Target Platform**: Modern desktop and mobile browsers, served over localhost/HTTPS (geolocation)
 
@@ -31,9 +31,9 @@ unit-tested helper `startingView()` in `src/geo.js`; the button calls `map.setVi
 
 **Performance Goals**: Map reaches the starting view within 1 s of pressing (SC-002); Leaflet's default animation is ~0.25 s
 
-**Constraints**: No new dependencies or build step (README); button must not overlap `#panel` or the zoom control on desktop and mobile (FR-006); keyboard and screen-reader accessible (FR-004/005)
+**Constraints**: No new dependencies or build step (README); button must not overlap `#panel`, the zoom control or the OpenStreetMap attribution, checked at 375 px and 1280 px wide (FR-006); keyboard and screen-reader accessible (FR-004/005)
 
-**Scale/Scope**: One control, ~40 lines in `src/app.js`, ~10 in `src/geo.js`, a few CSS rules, one new test file
+**Scale/Scope**: One control, ~40 lines in `src/app.js`, ~10 in `src/geo.js`, a few CSS rules; tests already written (two test files, one test helper, two AI scenario files)
 
 ## Constitution Check
 
@@ -47,7 +47,7 @@ and the existing code instead:
 | De-facto rule | Status (pre-design) | Status (post-design) |
 |---------------|---------------------|----------------------|
 | No build step, no dependencies | PASS: plain JS + existing Leaflet | PASS: no package added |
-| Pure logic lives in `src/geo.js` and is unit-tested with `node --test` | PASS | PASS: `startingView()` + `test/view.test.js` |
+| Pure logic lives in `src/geo.js` and is unit-tested with `node --test` | PASS | PASS: `startingView()` + `test/view.test.js`; wiring covered by `test/reset-view.integration.test.js` with a fake browser written in plain JS (no dependency added) |
 | DOM/Leaflet wiring lives in `src/app.js` | PASS | PASS: control + `startView` state there |
 | Accessible UI (existing code uses `aria-label`, `role`, `aria-pressed`) | PASS | PASS: native button, accessible name "Reset view" |
 | Keep it simple | PASS | PASS: one control, one state variable, no new modules |
@@ -69,8 +69,10 @@ specs/pilot-23968-add-a-reset-view-button/
 ├── contracts/
 │   └── reset-view.md    # Phase 1: startingView() + map control contract
 ├── checklists/
-│   └── requirements.md
-└── tasks.md             # Phase 2 (/speckit-tasks, not created here)
+│   ├── requirements.md
+│   └── ux.md
+├── analyze-report.md    # /speckit-analyze output
+└── tasks.md             # Phase 2 (/speckit-tasks)
 ```
 
 ### Source Code (repository root)
@@ -83,16 +85,23 @@ src/
 │                   #   ResetViewControl (L.Control, bottomright), resetView() with zoomend deferral
 └── geo.js          # + export startingView(firstFix, defaultView, locateZoom)
 test/
-└── view.test.js    # new: unit tests for startingView
+├── view.test.js                     # new: unit tests for startingView
+├── reset-view.integration.test.js   # new: control wiring under the fake browser
+└── helpers/
+    └── fake-browser.js              # new: fake DOM, geolocation and Leaflet (plain JS, no dependency)
+tests/
+└── ai/
+    ├── us1-reset-view.md            # new: AI scenarios for US1 (real browser)
+    └── us2-input-methods.md         # new: AI scenarios for US2 (real browser)
 ```
 
 **Structure Decision**: Keep the existing flat layout (`src/`, `test/`, root `index.html` and
-`styles.css`). No new source files; one new test file following the `*.test.js` convention.
+`styles.css`). No new source files. Deterministic tests stay in `test/` (`*.test.js`, run by `node --test test/`; helpers in `test/helpers/` are not test files). AI scenarios live in `tests/ai/`, the factory's folder for scenario files run by an agent in a real browser; the two folders are separate on purpose.
 
 ### Implementation outline (for `/speckit-tasks`)
 
 1. `src/geo.js`: add `startingView` per [contracts/reset-view.md](./contracts/reset-view.md) §1;
-   `test/view.test.js`: cover located, no fix, invalid fix, no input mutation.
+   `test/view.test.js` (already written) covers located, no fix, invalid fix, no input mutation.
 2. `src/app.js`: `const LOCATE_ZOOM = 15;` replace the literal in `onPosition`;
    `let startView = startingView(null, DEFAULT_VIEW, LOCATE_ZOOM);` and in the `if (!centered)`
    branch `startView = startingView(position, DEFAULT_VIEW, LOCATE_ZOOM);`.
@@ -103,7 +112,7 @@ test/
 4. `styles.css`: button styling matching Leaflet bars, visible `:focus-visible` outline, ≥ 44 × 44 CSS px
    touch target, WCAG AA contrast (FR-004a).
 5. README: one line mentioning the Reset view button.
-6. Validate with [quickstart.md](./quickstart.md).
+6. Validate: `npm test` (unit + integration suites green), the AI scenarios in `tests/ai/`, and [quickstart.md](./quickstart.md).
 
 ## Complexity Tracking
 

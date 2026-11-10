@@ -13,8 +13,13 @@
 npm test
 ```
 
-Expected: all tests pass, including the new `test/view.test.js` cases for `startingView`
-(located → first fix at zoom 15; no fix or invalid fix → default view; inputs not mutated).
+Expected (after implementation): all tests pass, including the new `test/view.test.js` cases for
+`startingView` (located → first fix at zoom 15; no fix or invalid fix → default view; inputs not
+mutated) and `test/reset-view.integration.test.js` (the control under a fake browser and fake
+Leaflet). Before implementation those two suites fail and the existing suites pass.
+
+The AI scenarios in `tests/ai/` (US1 and US2) are run by an agent in a real browser; they need
+network access to unpkg.com.
 
 ## 2. Run the app
 

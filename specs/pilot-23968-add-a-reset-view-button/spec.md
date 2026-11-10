@@ -40,6 +40,8 @@
 - Q: If routes finish computing after a reset and the map zooms to show them, is that acceptable? → A: yes; Reset view only acts at the moment it is pressed; routes that arrive later still zoom the map to show them, as they do today (CHK022)
 - Q: Does the control show text, an icon, or both? → A: the words "Reset view" on the button, no icon, with the same text as tooltip (CHK007)
 - Q: Where is the control placed? → A: bottom-right corner of the map, just above the OpenStreetMap attribution, on all screen sizes, checked at 375 px and 1280 px wide; the top corners are not free on phones because the search panel covers the whole top of the screen (CHK008)
+- Q: What counts as a "clearly visible" focus outline? → A: a solid outline at least 2 px thick, offset from the button, with at least 3:1 contrast against both the button and the map around it (analyze A1) (decided by the factory, no question asked)
+- Q: On small screens, must the button never be covered by the panel? → A: no; the button must never cover the panel, route list or other map controls, but the panel growing over the button on a very short screen is the existing layout limit already out of scope (analyze I6) (decided by the factory, no question asked)
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -91,7 +93,7 @@ A user who navigates with the keyboard or a screen reader can find the button, u
 - Map tiles fail to load or the device is offline: the control stays available and the view still changes.
 - The first fix is inaccurate: it is still used as the starting view.
 - A popup (e.g. the destination popup) is open: it stays as it is.
-- Small screens: the button stays visible and does not cover the search panel, route list, or other map controls.
+- Small screens: the button does not cover the search panel, route list, or other map controls. (The panel growing over the button on a very short screen with a long result list is out of scope, see Assumptions.)
 
 ## Requirements *(mandatory)*
 
@@ -103,7 +105,7 @@ A user who navigates with the keyboard or a screen reader can find the button, u
 - **FR-003**: Activating the control MUST NOT change any other app state: search input and results, destination, displayed routes, selected route, travel mode, pleasure indicators, user position marker, and status messages stay as they were. Open popups stay as they are.
 - **FR-003a**: Click, double-click, wheel and drag on the control MUST NOT pan or zoom the map or select a route.
 - **FR-004**: The control MUST be operable by mouse, touch, and keyboard (focusable, activates with Enter and Space), with the same result for each. After activation, focus stays on the control. Tab order follows the document: with the map's controls, after the zoom buttons.
-- **FR-004a**: The control MUST show a clearly visible focus outline when focused by keyboard, have a touch target of at least 44 × 44 CSS px, and meet WCAG 2.1 AA contrast (label 4.5:1, button edge 3:1 against the map).
+- **FR-004a**: The control MUST show a clearly visible focus outline when focused by keyboard (solid, at least 2 px thick, offset from the button, at least 3:1 contrast against the button and the map), have a touch target of at least 44 × 44 CSS px, and meet WCAG 2.1 AA contrast (label 4.5:1, button edge 3:1 against the map).
 - **FR-005**: The control MUST have the accessible name "Reset view". No extra screen-reader announcement is made after a reset.
 - **FR-006**: The control MUST be placed in the bottom-right corner of the map, just above the OpenStreetMap attribution, on all screen sizes, and MUST NOT overlap the search/route panel, the existing map zoom controls, or the attribution. This is checked at 375 px and 1280 px wide.
 - **FR-003b**: "Reset view" acts only at the moment it is pressed. Automatic map moves that already exist (jumping to the first location fix, zooming to show newly computed routes) still happen afterwards.

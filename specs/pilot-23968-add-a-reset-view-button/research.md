@@ -93,8 +93,18 @@ settles the design choices the spec leaves open.
 
 ## R6. Testing approach
 
-- **Decision**: Unit-test `startingView` in a new `test/view.test.js` (`node --test`, as the other
-  tests). Verify the Leaflet control, keyboard/screen-reader access, placement and "nothing else
-  changes" manually with [quickstart.md](./quickstart.md).
-- **Rationale**: The repo has no DOM/Leaflet test harness and no dependencies; adding jsdom or a
-  browser runner for one button would break the "no build step or dependencies" rule in README.md.
+- **Decision**: Three layers. (1) Unit-test `startingView` in `test/view.test.js` (`node --test`,
+  as the other tests). (2) Integration-test the control wiring in
+  `test/reset-view.integration.test.js`, which imports `src/app.js` under a small fake browser and
+  fake Leaflet written in plain JS (`test/helpers/fake-browser.js`): control markup and corner,
+  starting view, later fixes, mid-animation and reduced-motion handling, and "nothing else
+  changes". (3) Check real layout, contrast, focus ring, keyboard, screen reader and touch with the
+  AI scenarios in `tests/ai/us1-reset-view.md` and `tests/ai/us2-input-methods.md` (real browser,
+  Leaflet from unpkg), plus the manual [quickstart.md](./quickstart.md) runs.
+- **Rationale**: The fake browser needs no package, so the README's "no build step or
+  dependencies" rule holds while the app wiring is still tested automatically. A fake cannot check
+  real layout or Leaflet's exact animation behaviour: the fake assumes Leaflet 1.9.4 drops an
+  animated `setView` during a zoom animation and applies an instant one (to be confirmed in R4's
+  check), and the AI scenarios cover what needs a real browser.
+- **Alternatives considered**: jsdom or a headless browser runner (adds dependencies); unit tests
+  only with manual UI checks (leaves the wiring untested).

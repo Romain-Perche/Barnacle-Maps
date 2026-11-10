@@ -1,0 +1,7 @@
+# Dismissed analyze findings
+
+- U1 (MEDIUM): `resetView()` relies on Leaflet's private `map._animatingZoom`, and the fake Leaflet assumes its behaviour — dismissed by the factory, 2026-11-10: already handled; T002 checks Leaflet 1.9.4's source, the `zoomend` deferral is harmless if not needed, Leaflet is pinned at 1.9.4 in index.html, and T009 records the finding in a comment.
+- K1 (MEDIUM): the constitution is an unfilled template, so it has no gates — dismissed by the factory, 2026-11-10: outside this feature; the plan applies the README's de-facto rules, and the constitution is changed only by a separate `/speckit-constitution` run.
+- T1 (LOW): tests live in both `test/` and `tests/ai/` — dismissed by the factory, 2026-11-10: deliberate; `test/` is the repo's `node --test` folder and `tests/ai/` is the factory's folder for AI scenarios. plan.md Structure Decision now says so.
+- S1 (LOW): FR-003b is listed after FR-006, out of numeric order — dismissed by the factory, 2026-11-10: cosmetic. The ID is already cited by tasks and tests, so it is kept as is, and moving the line changes nothing.
+- N1 (LOW): the AI scenario for the focus outline (tests/ai/us2-input-methods.md Scenario 2) checks its style and width but not its 3:1 contrast from FR-004a — dismissed by the factory, 2026-11-10: T014 checks the outline colour against the button and the tiles explicitly; the AI scenario's screenshot is a second check.
