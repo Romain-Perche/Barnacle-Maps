@@ -35,7 +35,7 @@ try {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   map.setView([v.lat, v.lng], v.zoom, { animate: !reduce });
 } catch (err) {
-  console.error(err);   // FR-018: map stays put, nothing shown to the user
+  console.error(err);   // FR-018: map stays put, focus stays on the button, nothing shown to the user
 }
 ```
 
@@ -43,7 +43,7 @@ try {
 - Search input, results, routes, selected route, travel mode, status text, user marker, destination marker and open popups stay the same (FR-005). No announcement is made.
 - A running pan/zoom animation or drag inertia is interrupted (`setView` stops it). Route requests in flight are not cancelled; their later `fitBounds` still runs (FR-014).
 - The movement ends within 1 s of the press (SC-001, to `moveend`). No `flyTo`. Instant (`animate: false`) under `prefers-reduced-motion: reduce` (FR-015).
-- Clicks, double-clicks and double-taps don't reach the map (`L.DomEvent.disableClickPropagation`, which also stops `dblclick`), and mouse-wheel scrolling over the control doesn't zoom the map (`L.DomEvent.disableScrollPropagation`) (FR-002).
+- Clicks, double-clicks and double-taps don't reach the map (`L.DomEvent.disableClickPropagation`, which also stops `dblclick`), and mouse-wheel scrolling over the control doesn't zoom the map (`L.DomEvent.disableScrollPropagation`) (FR-002). `disableClickPropagation` also stops `mousedown`, `touchstart` and `contextmenu` on the control, so a drag, long-press, right-click or pinch that starts on the button never pans or zooms the map; the browser's own context menu may still appear.
 - Destination marker, popups being opened and markers being added are untouched; they finish in their normal state.
 - Idempotent: pressing it again at the starting view, or pressing it quickly several times, ends at the starting view with no errors.
 

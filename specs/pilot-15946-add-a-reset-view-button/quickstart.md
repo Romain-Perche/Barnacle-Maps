@@ -24,7 +24,7 @@ npm start   # http://localhost:8000
 | # | Steps | Expected |
 |---|---|---|
 | A (US1-1) | **Deny** location. Pan and zoom far away. Press ⟲. | The map returns to central Paris at zoom 13. |
-| A2 (FR-018) | Open DevTools ▸ Console and press ⟲ a few times. | No errors are logged. |
+| A2 (FR-018, SC-007) | Open DevTools ▸ Console and press ⟲ a few times. | No errors are logged. (The failure path itself is checked by code review: try/catch with `console.error`.) |
 | B (US1-2) | **Allow** location (or set it in DevTools ▸ Sensors). Once it has auto-centered, pan and zoom away. Press ⟲. | The map returns to your location at zoom 15. |
 | C (US1-3) | Right after load, press ⟲ again and again. | The view doesn't change. No console errors. |
 | D (edge) | With location allowed, change the simulated location in DevTools ▸ Sensors. Press ⟲. | The map returns to the *first* location, not the new one. The blue marker is at the new location. |
@@ -47,4 +47,4 @@ Timing for SC-001: in Chrome desktop with DevTools ▸ Performance ▸ CPU 4× s
 
 SC-003 is checked with no route request in flight (scenario E after the routes have loaded); scenario L covers the in-flight case.
 
-Exact check for SC-002: `map` is module-scoped, so it can't be reached from the console. While validating, add a temporary `console.log(map.getCenter(), map.getZoom())` in the reset handler. The logged zoom must be equal, and the center must be within 0.000001° of latitude and longitude of the starting view. For SC-004, check role and name in the DevTools accessibility tree and do one spot check with NVDA or VoiceOver.
+Exact check for SC-002: `map` is module-scoped, so it can't be reached from the console. While validating, add a temporary `console.log(map.getCenter(), map.getZoom())` in the reset handler (validation only; never commit it). The logged zoom must be equal, and the center must be within 0.000001° of latitude and longitude of the starting view. For SC-004, check role and name in the DevTools accessibility tree and do one spot check with NVDA (Chrome or Firefox, Windows) or VoiceOver (Safari, macOS): the button is announced as "Reset view, button".

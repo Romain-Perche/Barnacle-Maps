@@ -6,7 +6,7 @@
 
 ## Summary
 
-Add a "Reset view" button on the map that returns it to its *starting view*. The starting view is the default view (central Paris, zoom 13). The first time the app auto-centers on the user's location (zoom 15), that location view replaces it, once. After that it never changes. The button only calls `map.setView(...)`. It does not touch search, routes, mode, status or markers.
+Add a "Reset view" button on the map that returns it to its *starting view*. The starting view is the default view (central Paris, zoom 13). The first time the app auto-centers on the user's location (zoom 15), that location view replaces it, once. After that it never changes. The button only calls `map.setView(...)`. It does not touch anything listed in FR-005 (search input and results, routes, selected route, travel mode, status, both markers, open popups).
 
 Technical approach:
 - A small pure module `src/view.js` exports `createStartView(defaultView)`. It holds the starting view and a one-shot `settle(lat, lng, zoom)` transition. It is unit-tested with `node --test`.
