@@ -40,6 +40,9 @@
 - Q: Is a visible focus indicator required? → A: yes (decided by the factory, no question asked)
 - Q: Is persisting the starting view out of scope? → A: yes; it is a requirement that it is never stored between page loads (decided by the factory, no question asked)
 - Q: Which style does the button follow? → A: the Leaflet zoom buttons' style (white box, border, shadow, same size) (decided by the factory, no question asked)
+- Q: If Reset view is pressed while routes are loading, the routes then arrive and the app zooms to fit them, undoing the reset. Must the reset last once the routes appear? → A: yes, a reset pressed while routes are loading wins. The routes are still drawn and listed when they arrive, but the map does not zoom to them. Any later route search zooms to its routes as usual.
+- Q: The search panel covers the top-left corner where the zoom buttons are today. Where do the zoom buttons and Reset view go? → A: the zoom buttons move to the bottom-right corner, Reset view sits directly above them and the map credits stay below, on desktop and mobile.
+- Q: What does the button show? → A: a square button the same size as the zoom buttons, with a home icon (⌂), the tooltip "Reset view" on hover, and "Reset view" as the name read by screen readers.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -81,7 +84,7 @@ A user who navigates with a keyboard or screen reader, or on a touch device, can
 
 - **Location arrives after the user has already moved the map**: the starting view is the first view the app set on its own at startup (the default view, then replaced by the first location-centered view when the location arrives). Later updates to the user's live position do not change the starting view.
 - **Location permission denied or geolocation unsupported**: the starting view is the default view.
-- **Button pressed during an animation or while routes are loading**: the map still goes to the starting view; route loading continues unaffected.
+- **Button pressed during an animation or while routes are loading**: the map still goes to the starting view; route loading continues unaffected. The reset wins: when those routes arrive they are drawn and listed, but the map does not zoom to fit them (FR-011). Any later route search zooms to its routes as usual.
 - **Button pressed repeatedly**: each press brings the map to the same starting view; nothing builds up or drifts.
 - **Small screens** (any viewport from 320 px wide): the button stays visible and tappable and does not overlap the search panel or the zoom controls.
 - **Button pressed before the first location fix**: the map goes to the default view; when the fix arrives later, the app centers on it as usual and that becomes the starting view.
@@ -93,16 +96,17 @@ A user who navigates with a keyboard or screen reader, or on a touch device, can
 
 ### Functional Requirements
 
-- **FR-001**: The map MUST show a control labeled "Reset view" (text, icon with a text alternative, or both) whenever the map is displayed. It MUST show a "Reset view" tooltip on hover, MUST use the same hover/active look as the zoom buttons, and is never disabled.
+- **FR-001**: The map MUST show a "Reset view" control whenever the map is displayed: a square button the same size as the zoom buttons, showing a home icon (⌂) with no visible text, whose accessible name is "Reset view". It MUST show a "Reset view" tooltip on hover, MUST use the same hover/active look as the zoom buttons, and is never disabled.
 - **FR-002**: Activating the control MUST set the map center and zoom level to the starting view.
 - **FR-003**: The starting view MUST be the view the app shows on its own at startup: the default area (central Paris) at zoom 13, replaced by the first successful location fix of the page load at zoom 15 when that fix arrives, with no time limit and even after an earlier location error. If no fix ever succeeds, it stays the default view. It MUST NOT follow the user's current location afterward.
 - **FR-004**: The starting view MUST be recorded once per page load and MUST NOT change when the user pans, zooms, searches, selects a route, or when the live position updates afterward. Showing a destination before the location is known does not set it. It MUST NOT be stored between page loads.
 - **FR-005**: Activating the control MUST NOT change any other app state: search input, search results, chosen destination, displayed routes, selected route, travel mode, pleasure indicators, status messages (including "Waiting for your location…"), the destination marker, and the user's position marker stay as they were. Only the map center and zoom change.
 - **FR-006**: The control MUST work with mouse, touch, and keyboard (Enter and Space), MUST have the accessible name "Reset view", MUST show a visible focus indicator, and keyboard focus MUST stay on the button after activation. No extra screen-reader announcement is made. Presses on the control MUST NOT reach the map (a double-click or double-tap on it never zooms the map).
-- **FR-007**: The control MUST be placed in the same map corner as the zoom buttons, stacked with them, and MUST NOT overlap the search/route panel at any viewport from 320 px wide. The zoom buttons themselves MUST be visible (not under the panel).
+- **FR-007**: The zoom buttons MUST move from the top-left to the bottom-right corner of the map, and the control MUST be placed directly above them, with the map credits (attribution) below, on desktop and mobile. It MUST NOT overlap the search/route panel at any viewport from 320 px wide. The zoom buttons themselves MUST be visible (not under the panel).
 - **FR-008**: Activating the control when the map is already at the starting view MUST NOT cause an error or a visible glitch (no flicker, blank map, zoom bounce, or shift of the view).
 - **FR-009**: The control MUST be at least 30×30 CSS px, and its icon and border MUST have at least 3:1 contrast against their background.
 - **FR-010**: When the user prefers reduced motion, the reset MUST move the map instantly, without animation.
+- **FR-011**: If the control is pressed while routes are loading, the map MUST stay on the starting view when those routes arrive: they are drawn and listed, but the map does not zoom to fit them. Routes from any route search started after the press zoom the map to fit them as usual.
 
 ### Key Entities
 

@@ -45,9 +45,15 @@ The reset target. A `View`, owned by `app.js`, read only by the reset action.
   later `onPosition` calls (live updates), user pan/zoom, `showRoute`'s `setView` when no position
   is known yet, `drawRoutes`' `fitBounds`, search, mode change, route selection, and pressing Reset view.
 
+## Value: `resetRouteSeq` (in `src/app.js`)
+
+Number, starts at `0`. Set to the current `routeSeq` each time Reset view is pressed. When a route
+search with sequence `seq` finishes, its routes are fitted only if `resetRouteSeq !== seq`, so a
+reset pressed while that search was loading wins (FR-011). Never persisted.
+
 ### Read access
 
 `resetView()` reads `startView` and calls `map.setView([startView.lat, startView.lng], startView.zoom)`.
-It writes no app state (FR-005): `position`, `userMarker`, `destMarker`, `routeLayers`,
+Apart from `resetRouteSeq = routeSeq`, it writes no app state (FR-005): `position`, `userMarker`, `destMarker`, `routeLayers`,
 `selectedRoute`, `routeSeq`, `searchSeq`, `pleasureAbort`, `mode`, `currentPlace`, the input,
 results, routes list and status text are all left untouched.

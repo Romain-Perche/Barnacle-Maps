@@ -33,7 +33,7 @@ site permission.
 | 3 | As 2 | Change simulated location to Tokyo, then press **Reset view** | Still the first Berlin view; blue dot stays at Tokyo (FR-003/004) |
 | 4 | At the starting view | Press **Reset view** several times | No error in console, no jump, same view (US1-2, FR-008) |
 | 5 | Location allowed | Search "Louvre", pick a result, wait for routes, select Route 2, switch mode to Car; pan away; press **Reset view** | Map returns to start; input text, results, routes, selected route, mode, pleasure, status, markers unchanged (US1-3, FR-005) |
-| 6 | Location allowed | Pick a destination and press **Reset view** while "Computing … routes" is shown | Map goes to start; routes still appear afterwards (edge case) |
+| 6 | Location allowed | Pick a destination and press **Reset view** while "Computing … routes" is shown | Map goes to start; routes still appear and are listed afterwards, and the map stays on the start view (no zoom to the routes) (FR-011). Then pick another destination: the map zooms to its routes as usual |
 | 7 | Any | Tab until the button is focused, press Enter, then Space | Visible focus ring; map resets each time (US2-2) |
 | 8 | Screen reader (VoiceOver/NVDA) or devtools Accessibility pane | Focus the button | Name "Reset view", role button (US2-3) |
 | 9 | Devtools device toolbar, 360×640 and 1280×800 | Look at the map | Button visible in the bottom-right above zoom +/- and attribution, not under the panel; zoom buttons visible too (US2-1, FR-007) |

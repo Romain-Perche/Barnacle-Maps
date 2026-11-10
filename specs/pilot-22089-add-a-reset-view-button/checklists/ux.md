@@ -12,7 +12,7 @@
 
 - [x] CHK001 Is the starting view defined for every startup outcome: location found right away, found after a delay, denied, unsupported, and errored first and then found later? [Completeness, Spec §FR-003, Spec §Edge Cases] — reviewed by the factory, 2026-11-10
 - [x] CHK002 Is the full list of state that must stay unchanged after a reset given in one place, and does it cover the destination marker and the "Waiting for your location…" status shown before a route is computed? [Completeness, Spec §FR-005] — reviewed by the factory, 2026-11-10
-- [ ] CHK003 Do the requirements say what the button looks like (text, icon or both) and, if it is an icon, which icon and which text alternative? [Completeness, Spec §FR-001]
+- [x] CHK003 Do the requirements say what the button looks like (text, icon or both) and, if it is an icon, which icon and which text alternative? [Completeness, Spec §FR-001] — reviewed by Pilot, 2026-11-10
 - [x] CHK004 Are hover, focus, active and disabled states specified for the control, or explicitly inherited from the zoom buttons? [Gap, Spec §Assumptions] — reviewed by the factory, 2026-11-10
 - [x] CHK005 Do the requirements say whether a reset is announced to screen-reader users, given that FR-005 forbids changing the status message? [Gap, Spec §FR-005, Spec §FR-006] — reviewed by the factory, 2026-11-10
 - [x] CHK006 Is a tooltip or other visible hint required for mouse users when the control shows only an icon? [Gap, Spec §FR-001] — reviewed by the factory, 2026-11-10
@@ -28,9 +28,9 @@
 
 ## Requirement Consistency
 
-- [ ] CHK013 Does the plan's move of the zoom control from top-left to bottom-right agree with the spec, which only adds a button and does not mention moving existing controls? [Conflict, Spec §FR-007, Plan §Summary]
+- [x] CHK013 Does the plan's move of the zoom control from top-left to bottom-right agree with the spec, which only adds a button and does not mention moving existing controls? [Conflict, Spec §FR-007, Plan §Summary] — reviewed by Pilot, 2026-11-10
 - [x] CHK014 Does FR-007 ("with the other map controls") fit the current layout, where the search panel already hides the default zoom control? [Conflict, Spec §FR-007, Research §R4] — reviewed by the factory, 2026-11-10
-- [ ] CHK015 Is the edge case "button pressed while routes are loading: the map still goes to the starting view" consistent with the existing behavior where the map fits the routes once they arrive, possibly undoing the reset? [Conflict, Spec §Edge Cases, Plan §Design Notes 2]
+- [x] CHK015 Is the edge case "button pressed while routes are loading: the map still goes to the starting view" consistent with the existing behavior where the map fits the routes once they arrive, possibly undoing the reset? [Conflict, Spec §Edge Cases, Plan §Design Notes 2] — reviewed by Pilot, 2026-11-10
 - [x] CHK016 Is the zoom 15 used for the location-centered starting view clearly separate from the zoom 15 used when showing a destination before the location is known, so the second is never treated as a starting view? [Consistency, Spec §FR-003, Spec §FR-004] — reviewed by the factory, 2026-11-10
 - [x] CHK017 Do US1-4 ("located when the app opened") and the edge case "location arrives after the user has already moved the map" describe the same rule? [Consistency, Spec §US1-4, Spec §Edge Cases] — reviewed by the factory, 2026-11-10
 

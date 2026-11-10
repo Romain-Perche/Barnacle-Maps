@@ -68,3 +68,12 @@ All items below were open technical choices; none needed outside input. The prod
   tests because it needs `window.L` and the DOM). No test-runner or jsdom dependency is added.
 - **Alternatives considered**: jsdom + Leaflet in Node, or Playwright browser tests: heavier than the
   feature, and they would add the project's first dependencies.
+
+## R6. A reset during route loading must not be undone by `fitBounds`
+
+- **Decision**: Remember the route search that was current at the press (`resetRouteSeq = routeSeq`)
+  and skip `fitBounds` in `drawRoutes` for that search only (FR-011).
+- **Rationale**: Reuses the existing `routeSeq` counter that already tells searches apart; one number,
+  no timers. Later searches get a new `seq`, so they fit as usual.
+- **Alternatives rejected**: cancelling the route fetch (spec says loading continues and routes still
+  appear); a boolean "user reset" flag (would need clearing and could leak into the next search).

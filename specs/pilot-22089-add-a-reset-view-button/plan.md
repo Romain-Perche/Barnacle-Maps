@@ -59,7 +59,7 @@ the conventions the repository already follows (README, `src/geo.js` header, exi
 | Pure, DOM-free logic lives in `src/geo.js` and is unit tested in `test/` | Pass | Pass: `DEFAULT_VIEW`, `LOCATED_ZOOM`, `locatedView()` move/added to `geo.js` with `test/view.test.js` |
 | DOM/Leaflet wiring stays in `src/app.js` | Pass | Pass: control and `onPosition` change only in `app.js` |
 | Accessible controls (existing code uses `aria-label`, `role`, `aria-pressed`) | Pass | Pass: native `<button>` with `aria-label`/`title` "Reset view" |
-| Simplicity (smallest change that meets the spec) | Pass | Pass: one control, one module-level variable, no new abstractions |
+| Simplicity (smallest change that meets the spec) | Pass | Pass: one control, two module-level variables, no new abstractions |
 
 No violations, so Complexity Tracking is empty. Recommendation: run `/speckit-constitution` to
 replace the template before later features rely on this gate.
@@ -90,7 +90,8 @@ styles.css          # + .reset-view button styles (size/icon/focus ring matching
 src/
 ├── geo.js          # + DEFAULT_VIEW, LOCATED_ZOOM, locatedView(position)
 └── app.js          # map created with zoomControl:false; zoom control + ResetViewControl at "bottomright";
-                    # `startView` variable set from DEFAULT_VIEW, replaced once in onPosition on first fix
+                    # `startView` variable set from DEFAULT_VIEW, replaced once in onPosition on first fix;
+                    # `resetRouteSeq` + `fit` option on drawRoutes so a reset during loading wins (FR-011)
 test/
 └── view.test.js    # new: unit tests for DEFAULT_VIEW / LOCATED_ZOOM / locatedView
 ```
@@ -109,8 +110,12 @@ test/
    where `reducedMotion()` reads `matchMedia("(prefers-reduced-motion: reduce)").matches` at press time (FR-010).
    It reads nothing else and writes nothing else (FR-005). Leaflet's `setView` stops any running
    pan/zoom/fly animation first and is a no-op-like move when already there (FR-008, edge cases).
-   It does not cancel route fetching; if routes arrive after the reset, the existing `fitBounds`
-   in `drawRoutes` still runs, as today.
+   It does not cancel route fetching. **Reset wins over loading routes (FR-011)**: `resetView()` also
+   sets `resetRouteSeq = routeSeq` (new module-level `let resetRouteSeq = 0;`). `drawRoutes(routes, m, { fit })`
+   gets a `fit` option, and `showRoute` calls it with `fit: resetRouteSeq !== seq`, so routes of the
+   search that was loading during the press are drawn and listed without `fitBounds`. Any later
+   `showRoute` (new destination or mode change) increments `routeSeq`, so its routes fit as usual.
+   A press after the routes are drawn sets the same value harmlessly (the fit already happened).
 3. **Control** (see [contracts/reset-view-control.md](./contracts/reset-view-control.md)):
    `L.Control.extend({ options: { position: "bottomright" }, onAdd() { … } })` returning
    `<div class="leaflet-bar leaflet-control"><button type="button" class="reset-view" aria-label="Reset view" title="Reset view">⌂</button></div>`
