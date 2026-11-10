@@ -14,6 +14,15 @@
 
 - Q: When someone presses "Reset view", where should the map go back to? → A: Option A — the first view the app settled on: the person's first known position at the app's initial location zoom when location is available, otherwise the default starting center and zoom; it stays fixed and does not follow later movement. The person approved the recommended defaults for all remaining items.
 
+### Session 2026-11-10 (completeness gate, decided by the factory, no question asked)
+
+- Q: What does the button look like and where is it? → A: A single icon button (no visible text) with accessible name and tooltip "Reset view", in the top-right of the map, away from the search panel (top-left) and attribution (bottom-right). (decided by the factory, no question asked)
+- Q: Which states does it have? → A: Hover, focus and active styling match the map's existing zoom controls; it is always visible and enabled, even when already at the starting view. (decided by the factory, no question asked)
+- Q: What are the exact starting view and "first known position"? → A: The first position fix of any accuracy, at zoom 15 (the zoom of the existing auto-centering); default is Paris at zoom 13. Selecting a search result or any other recentering never changes the starting view. If location is granted but no fix arrives, the default view stays the starting view. (decided by the factory, no question asked)
+- Q: How big is the button and what screens are supported? → A: Same size and style as the zoom controls (at least 30x30 CSS px, 34px on touch devices); supported from 320px wide. The default browser/Leaflet focus outline is kept. (decided by the factory, no question asked)
+- Q: How exact and how fast is the reset? → A: Final view equals the starting center and zoom within 1 screen pixel; any animation lasts at most 1 second so SC-002 (2 seconds) holds. If pressed during an animation or repeatedly, the last press wins and the map ends at the starting view. (decided by the factory, no question asked)
+- Q: How is accessibility judged and is the name localized? → A: Verified by the accessible name in the DOM plus keyboard operation and one screen reader announcement; the name is English only (the app has no localization). (decided by the factory, no question asked)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Return the map to its starting view (Priority: P1)
@@ -66,7 +75,8 @@ A keyboard or screen-reader user can find and activate the "Reset view" button j
 - **FR-005**: Activating the button MUST NOT alter any other app state: search input and results, selected destination, displayed routes, selected route, travel mode, pleasure indicators, user position marker, and status messages remain as they were.
 - **FR-006**: The button MUST be operable by mouse/touch and by keyboard (Enter/Space) and MUST expose an accessible name.
 - **FR-007**: The button MUST be placed so it does not overlap the search/routes panel, the existing zoom controls, or the map attribution, on both desktop and narrow mobile screens.
-- **FR-008**: The button MUST be visually consistent with the existing map controls (size, style).
+- **FR-008**: The button MUST be visually consistent with the existing map controls (size, style): an icon button of at least 30x30 CSS px (34px on touch), placed top-right, always visible and enabled, with the default focus outline kept.
+- **FR-009**: The starting view's zoom for the first-position case is 15; the first fix of any accuracy counts; search selections never change it.
 
 ## Success Criteria *(mandatory)*
 
