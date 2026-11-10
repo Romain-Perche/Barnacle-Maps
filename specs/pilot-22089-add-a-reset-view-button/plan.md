@@ -39,7 +39,7 @@ view from the first fix) lives as pure helpers in `src/geo.js` and gets Node uni
 
 **Performance Goals**: Map reaches the starting view within 1 s of the press (SC-003); Leaflet's default `setView` animation is ~0.25 s
 
-**Constraints**: No new dependencies; no change to search/route/mode/pleasure state on reset (FR-005); control must not overlap the search panel at any width (FR-007)
+**Constraints**: No new dependencies; no change to search/route/mode/pleasure state on reset (FR-005); control must not overlap the search panel at any width (FR-007), so on narrow screens the panel height is capped and scrolls
 
 **Scale/Scope**: One new map control, ~30 lines in `src/app.js`, a few lines in `src/geo.js` and `styles.css`, one new test file
 
@@ -86,7 +86,8 @@ specs/pilot-22089-add-a-reset-view-button/
 
 ```text
 index.html          # unchanged (control is created by Leaflet in JS)
-styles.css          # + .reset-view button styles (size/icon/focus ring matching .leaflet-bar a)
+styles.css          # + .reset-view button styles (size/icon/focus ring matching .leaflet-bar a);
+                    # + narrow-screen cap on #panel height with inner scrolling (FR-007)
 src/
 ├── geo.js          # + DEFAULT_VIEW, LOCATED_ZOOM, locatedView(position)
 └── app.js          # map created with zoomControl:false; zoom control + ResetViewControl at "bottomright";
@@ -125,6 +126,14 @@ test/
    and then the reset control (Leaflet stacks later bottom controls above earlier ones, so reset sits
    directly above the zoom buttons, all above the attribution). This also fixes the zoom control
    being hidden behind the panel today.
+   **Panel height on narrow screens (FR-007)**: the panel's right edge is at `12 + min(360, W − 24)` px
+   and the bottom-right controls take about the right-most 44 px, so they share horizontal space when
+   the viewport is narrower than ~420 px. In `styles.css` add
+   `@media (max-width: 440px) { #panel { max-height: calc(100% - 172px); overflow-y: auto; box-sizing: border-box; } }`.
+   172 px = panel top offset (12) + bottom-right stack (attribution ~18, 10 gap, zoom bar ~64, 10 gap,
+   reset bar ~34) + ≥ 10 px clearance, rounded up; so the panel always ends above the Reset view button
+   and long results/routes lists scroll inside it. At 320 px high this leaves ~148 px for the panel
+   (form + mode row fit, the lists scroll). Wider viewports keep the panel unchanged. CSS only, no JS.
 5. **Tests**: `test/view.test.js` covers the helpers per [contracts/view-helpers.md](./contracts/view-helpers.md).
    DOM behavior is validated with [quickstart.md](./quickstart.md) scenarios.
 6. **Look** (FR-009): 30×30 px like `.leaflet-bar a`, dark glyph (`#333` or darker) on white for ≥ 3:1 contrast, visible `:focus-visible` outline; `title="Reset view"` gives the hover tooltip; focus stays on the button after a press (native button behavior, nothing moves focus).

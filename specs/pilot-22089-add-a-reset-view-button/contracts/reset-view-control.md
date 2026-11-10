@@ -22,6 +22,10 @@ Created by `src/app.js` as a Leaflet control at position `bottomright`:
   the reset control added at `"bottomright"`.
 - Visual stack in the bottom-right corner, top to bottom: Reset view, zoom in/out, attribution.
 - Never overlaps `#panel` (top-left) at any viewport width, including ≤ 384 px wide phones.
+- At viewports ≤ 440 px wide (where `#panel` and the bottom-right stack share horizontal space),
+  `#panel` has `max-height: calc(100% - 172px)` and `overflow-y: auto`: its bottom edge always stays
+  above the Reset view button, and long `#results` / `#routes` lists scroll inside the panel. Wider
+  viewports: `#panel` unchanged.
 - Button is at least 30×30 px (same as `.leaflet-bar a`, `.leaflet-touch` 30 px), and shows a
   visible focus outline when focused with the keyboard. Icon and border have ≥ 3:1 contrast against white (FR-009). Focus stays on the button after activation.
 

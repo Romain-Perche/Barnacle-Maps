@@ -58,6 +58,14 @@ All items below were open technical choices; none needed outside input. The prod
   `topright` (covered by the full-width panel on phones); `bottomleft` alone (away from the zoom
   control, violating "with the other map controls"); shifting the top-left corner down with CSS by
   the panel height (panel height changes with results/routes, so it would need JS to track it).
+- **Panel height on narrow screens**: below ~420 px wide the panel spans the columns used by the
+  bottom-right controls, so an unbounded results/routes list could grow down over them. Decision: a
+  CSS-only cap, `@media (max-width: 440px) { #panel { max-height: calc(100% - 172px); overflow-y: auto; } }`
+  (172 px = 12 px top offset + bottom-right stack ~136 px + clearance), so the panel always ends above
+  Reset view and its content scrolls. Alternatives: capping only `#results`/`#routes` separately (two
+  scroll areas, still unbounded together); moving the controls with JS when the panel grows (more code,
+  and the controls would jump around); capping on all widths (needless on desktop, where the panel
+  never reaches the right edge).
 
 ## R5. Testing approach
 

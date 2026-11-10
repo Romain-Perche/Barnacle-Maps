@@ -37,6 +37,7 @@ site permission.
 | 7 | Any | Tab until the button is focused, press Enter, then Space | Visible focus ring; map resets each time (US2-2) |
 | 8 | Screen reader (VoiceOver/NVDA) or devtools Accessibility pane | Focus the button | Name "Reset view", role button (US2-3) |
 | 9 | Devtools device toolbar, 360×640 and 1280×800 | Look at the map | Button visible in the bottom-right above zoom +/- and attribution, not under the panel; zoom buttons visible too (US2-1, FR-007) |
+| 9b | Devtools device toolbar, 320×568 and 568×320, location allowed | Search a common word (e.g. "rue") so many results show, then pick one so routes are listed | The panel stops above the Reset view button and its list scrolls inside it; Reset view and zoom +/- stay visible and tappable (FR-007). At 1280×800 the panel is unchanged |
 | 10 | Touch emulation | Tap the button | Map resets; map does not also zoom (no double-tap zoom) |
 
 | 11 | Devtools → Rendering → emulate `prefers-reduced-motion: reduce` | Pan away, press **Reset view** | Instant jump, no animation (FR-010) |
