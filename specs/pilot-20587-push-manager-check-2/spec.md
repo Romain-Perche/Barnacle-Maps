@@ -8,6 +8,16 @@
 
 **Input**: User description: "Push manager check 2 — Add a one-line comment to the README"
 
+## Clarifications
+
+### Session 2026-11-11
+
+- Q: Does a separating blank line count as an added line? → A: No blank line is added; the comment goes directly after the last line (decided by the factory, no question asked)
+- Q: What exact comment wording? → A: `<!-- Push manager check 2 -->` (decided by the factory, no question asked)
+- Q: What if the README has no final newline? → A: The README currently ends with a single LF and uses LF endings; the new line is appended after it with an LF ending (decided by the factory, no question asked)
+- Q: Which renderer defines "no visible difference"? → A: GitHub's Markdown rendering; renderers that show HTML comments are out of scope (decided by the factory, no question asked)
+- Q: Are tests or docs content added? → A: No, on purpose: this is a pipeline check only (decided by the factory, no question asked)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Maintainer adds a one-line comment to the README (Priority: P1)
@@ -36,7 +46,7 @@ A maintainer wants a single-line comment added to the project README so the deli
 
 - **FR-001**: The README MUST gain exactly one new line, and that line MUST be a comment that does not show in the rendered README.
 - **FR-002**: The comment MUST be self-contained on that single line (opened and closed on the same line).
-- **FR-003**: The comment text MUST be short and say what it is for (e.g., that it marks the push manager check).
+- **FR-003**: The comment text MUST be short and say what it is for. It is `<!-- Push manager check 2 -->`.
 - **FR-004**: No other line of the README, and no other project file outside this feature's spec folder, MUST change as part of the implementation.
 - **FR-005**: The application's behavior and the existing tests MUST stay unchanged.
 
@@ -53,5 +63,5 @@ A maintainer wants a single-line comment added to the project README so the deli
 
 - "Comment" means a hidden source comment in the README, not a visible sentence; a visible line would change what readers see, which a pipeline check should avoid.
 - The exact wording is up to the implementer as long as it is one line and mentions the push manager check.
-- Placement: at the end of the README, so it cannot interfere with the title or existing sections.
+- Placement: at the end of the README, directly after the last line with no blank line added, using the file's LF line ending, so it cannot interfere with the title or existing sections.
 - This is a pipeline/process check; no app features, docs content, or tests are added.
