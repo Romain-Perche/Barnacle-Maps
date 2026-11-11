@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:b3a375f8a28218b45aa5163bee249e2351e186eeb078b84959e3a4e500cc5fe4",
+      "completedBy": "claude-code",
+      "completedRunId": "34ddc06f-c400-43f1-b275-215e2122c3aa",
+      "gitHead": "f05ddee2023af7dc9881a3fe1aa540733a47b066",
+      "sourceFingerprint": "sha256:f40bd302fc994ae3e067629fb68ce3813bf98ea51777be83a93308ec3b1065f0"
+    },
+    "/openwiki/routing-and-geo.md": {
+      "pageVersion": "sha256:136fac6af68eed32563fb19869b2904da374e5cccc7c1213977f776151a52cb9",
+      "completedBy": "claude-code",
+      "completedRunId": "34ddc06f-c400-43f1-b275-215e2122c3aa",
+      "gitHead": "f05ddee2023af7dc9881a3fe1aa540733a47b066",
+      "sourceFingerprint": "sha256:f40bd302fc994ae3e067629fb68ce3813bf98ea51777be83a93308ec3b1065f0"
+    }
+  }
+}

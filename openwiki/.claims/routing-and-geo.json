@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:136fac6af68eed32563fb19869b2904da374e5cccc7c1213977f776151a52cb9",
+  "claims": [
+    {
+      "id": "claim_1c1f884034524623bc0c171c1877ebde",
+      "statement": "pickRoutes keeps the fastest route plus distinct alternatives (overlap under 0.8, distance at most 1.6x the shortest), up to 3.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L231-L243",
+          "version": "repo-lines-v1:sha256:6282953381441b925e8b14d9ae53422e0f6e3bdbc7d1561a583ba76a5fc515a9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4NTc1MjliN2FkYTZkYzA1NmIzZjBjNTY3MmYxMjg3OWJlYWU0MzU1NzgxNjZkZTE0ZGRhZDk2NDI0NjAwYWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxNzZjNjBiOGQwNmNmYWZkMWQ5ZjkyMGNmMjRmZjdhZjRiZGZiODQzNzI5ODE3ZTZkYWE3Y2U3MWQ1YzNiMjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyNGFhMDAxNWVmNTcwODc5NTNjYzZkZmM0M2EyMTRmY2E2ZTcyMTk4MjJkMDFmNWY4MGZmOWY1NDk5MDA0YTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ad3d8d94a1364d92b36eebabc2ca24c2",
+      "statement": "At most 5 stops are allowed, and a place within 20 m of an existing stop counts as a duplicate.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L74-L77",
+          "version": "repo-lines-v1:sha256:6d4c7fb0009298f645e5ea13d172ab35083f5267d409cf483ad9fdc48a944b6f:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmIxMjM5MDlmMjFhM2I4OTRjNTFjNWY2ZjFmZDM3Zjg3ODI5MDllOWM1YzYyZjdmM2M2MDg1NzZiYTZjZTViNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTE3Yjc5ODI1ZDRmZmY0ODllOTBiNjk5M2MzMmViNjIwMTYxYjY1ZjMyZmQ5NjEwN2U1MmI2NTg0NmM4Y2M5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjAwY2NiMTM5YzFmMTQ1NWNkNGExZGVhNjgzZDBkOGNkMmU2NTlhMDJiMGE0MTk4MTA0MTBkZTMwNTA0YjM5NiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-11T18:14:21.891Z"
+  }
+}

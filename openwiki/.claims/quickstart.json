@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:b3a375f8a28218b45aa5163bee249e2351e186eeb078b84959e3a4e500cc5fe4",
+  "claims": [
+    {
+      "id": "claim_cf990e9968c74aba86765cc4f96e7ea0",
+      "statement": "npm start serves the folder on port 8000 with python3 http.server, and npm test runs node --test test/.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L5-L8",
+          "version": "repo-lines-v1:sha256:777acb73af27ed9bb1d6b61c3fabe4debd511c7610751e6b4a094f440fcde73a:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjU2ZDgzMDkwYzZmYjkzNDYzYWQ0ZjJmODVmOGNhNTU3NmY3ZTg1ZTEyMWQ5NThhNTM3MThlMjFkOWY3NmU2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzEzMGQ2YmQ5NDNkNzc0NjM1YzE1MjI1ZTRjZWNkM2I1NDBiYWFlYTM2NjE5YmRlYWU0N2QyMjA2M2Q3ZTVjNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzMxNDhmYjk2ZDk2ZGI2MjU1MjFmZTFmNzgwMDk0MDQ0M2JlNjllYjk0ZWNlNDRlNmJlNDM2ZTk2YzdiOTlhZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGY3MzlhMDZjMWNiYjEyNDRlMzM2M2QzOGJjZjlmYTUwY2U4NGZlZDM5OWMyMTkzYTNjN2YwOGQ1OTkxOGIyYSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-11T18:14:21.891Z"
+  }
+}
