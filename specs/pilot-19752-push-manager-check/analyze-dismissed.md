@@ -1,0 +1,7 @@
+- I1 (MEDIUM): spec says only README changes but test files are added, T004 pathspec lists them — dismissed by the factory, 2026-11-11: the write-tests gate added the files deliberately and left T004 unchanged; implementer must treat the two test files as expected in T004's output (no re-plan for a MEDIUM wording issue).
+- I2 (LOW): plan structure omits test files — dismissed by the factory, 2026-11-11: gate-generated artifacts, not implementation changes.
+- I3 (LOW): branch name prefix differs — dismissed by the factory, 2026-11-11: cosmetic, no effect on execution.
+- I4 (LOW): T006/T007 ordering — dismissed by the factory, 2026-11-11: already done; cosmetic.
+- C1 (MEDIUM): T006 fails before T002 — dismissed by the factory, 2026-11-11: expected test-first state, not a gap.
+- A1 (LOW): SC-004 has no task — dismissed by the factory, 2026-11-11: review-time goal the spec accepts.
+- D1 (LOW): constitution is an unfilled template — dismissed by the factory, 2026-11-11: no principles to violate.
