@@ -9,7 +9,7 @@ description: "Task list for the Reset View Button feature"
 
 **Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/reset-view-control.md, contracts/start-view-helper.md, quickstart.md
 
-**Tests**: Included. The contract `contracts/start-view-helper.md` lists required unit test cases for `createStartView` in `test/startview.test.js` (run with `npm test` → `node --test test/`). The Leaflet/DOM part has no browser test harness (research R7); it is checked manually with `quickstart.md`.
+**Tests**: Included, and already written by the write-tests gate before implementation. `test/startview.test.js` holds the required unit test cases for `createStartView` from `contracts/start-view-helper.md` (run with `npm test` → `node --test test/`); it fails until T003. The Leaflet/DOM part has no browser test harness (research R7); it is covered by the AI scenarios in `tests/ai/us1-return-to-starting-view.md` and `tests/ai/us2-accessible-reset-control.md`, and by the manual check in `quickstart.md`. The test tasks (recorded as completed `[X]` lines in each story's Tests section) must not be rewritten by the implementer.
 
 **Organization**: Tasks are grouped by user story so each story can be implemented and tested on its own.
 
@@ -25,7 +25,7 @@ description: "Task list for the Reset View Button feature"
 
 **Purpose**: Confirm the baseline. No new project, dependency or build step is added (plan: "No build step, no dependencies").
 
-- [ ] T001 Run `npm test` from the repository root and confirm all existing tests in `test/` (geo, modes, pleasure, routes) pass before any change, so later failures can be attributed to this feature
+- [ ] T001 Run `npm test` from the repository root and confirm the baseline: every suite in `test/` (geo, modes, pleasure, routes) passes, and `test/startview.test.js` fails only because `createStartView` is not yet exported from `src/geo.js` (expected red: the test was written first). Any other failure is a pre-existing problem to report before changing code
 
 ---
 
@@ -45,9 +45,9 @@ description: "Task list for the Reset View Button feature"
 
 ### Tests for User Story 1 ⚠️
 
-> Write these first and confirm they FAIL (`createStartView` is not exported yet) before T003.
+> These tests are already written (the `[X]` lines below). Do not recreate or rewrite them. Confirm the unit tests FAIL (`createStartView` is not exported yet) before T003.
 
-- [ ] T002 [US1] Create `test/startview.test.js` using `import test from "node:test"`, `import assert from "node:assert/strict"` and `import { createStartView } from "../src/geo.js"` (same style as `test/geo.test.js`), with one `test(...)` per required case from `contracts/start-view-helper.md`: (1) `get()` returns the default view `{ lat: 48.8566, lng: 2.3522, zoom: 13 }` right after creation; (2) `setOnce(v)` returns `true` and `get()` then deep-equals `v`; (3) a second `setOnce(w)` returns `false` and `get()` still deep-equals `v`; (4) mutating the object returned by `get()`, or mutating the original `defaultView`/`v` argument after the call, does not change the stored view; (5) `setOnce` with invalid input (`undefined`, `null`, `{ lat: NaN, lng: 2, zoom: 15 }`, `{ lat: 1, lng: Infinity, zoom: 15 }`, `{ lat: 1, lng: 2 }` missing zoom, `{ lat: "1", lng: 2, zoom: 15 }`) returns `false`, leaves `get()` at the default, and a later valid `setOnce` still returns `true`; (6) `createStartView()` with no argument, and with a view whose `lat`/`lng`/`zoom` is not a finite number, throws `TypeError` (`assert.throws(..., TypeError)`); (7) two holders created from the same default do not share state (setting one leaves the other at the default); run `npm test` and confirm these tests fail
+- [ ] T002 [US1] Open the existing `test/startview.test.js` (written by the write-tests gate, recorded below as a completed contract-test task) and check that it has one `test(...)` per required case in `contracts/start-view-helper.md` (1–7) and imports `createStartView` from `../src/geo.js`; do **not** recreate or overwrite the file; run `npm test` and confirm these tests fail and every other suite passes
 
 - [X] T015 [US1] Contract test for createStartView (contract cases 1–7 plus repeated get) in test/startview.test.js (covers FR-002, FR-003, FR-004, US1 scenario 1, 2, 4, 5)
 - [X] T016 [US1] AI test: reset after panning returns to the first-fix view in tests/ai/us1-return-to-starting-view.md (covers FR-002, FR-003, SC-001, SC-002, US1 scenario 1, 4)
@@ -73,7 +73,7 @@ description: "Task list for the Reset View Button feature"
 - [ ] T005 [US1] In `src/app.js` `onPosition`, inside the existing `if (!centered) { map.setView(latlng, 15); centered = true; }` branch, add `startView.setOnce({ lat: position.lat, lng: position.lng, zoom: 15 });` so the first fix's location-centered view becomes the starting view (FR-003) and later live updates, which skip this branch, never change it (FR-004); do not touch any other branch or the `watchPosition` call (depends on T004)
 - [ ] T006 [US1] In `src/app.js`, after the tile layer is added to `map` (and after `startView` exists), define `const ResetViewControl = L.Control.extend({ options: { position: "bottomright" }, onAdd() { … } });` where `onAdd` creates `L.DomUtil.create("div", "leaflet-control leaflet-bar reset-view-control")`, appends a native `<button type="button" aria-label="Reset view" title="Reset view">` containing `<span aria-hidden="true">⌂</span>` (build with `document.createElement`/`textContent`, no `innerHTML`), calls `L.DomEvent.disableClickPropagation(container)` and `L.DomEvent.disableScrollPropagation(container)`, and returns the container; then `new ResetViewControl().addTo(map);` — DOM must match `contracts/reset-view-control.md`; the button is always enabled (never set `disabled`) (FR-001, FR-007) (depends on T004)
 - [ ] T007 [US1] In `src/app.js`, add a `click` listener on the reset button (inside `onAdd` from T006) that runs `const start = startView.get(); const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; map.setView([start.lat, start.lng], start.zoom, { animate: !reducedMotion });` — read `reducedMotion` at each activation (FR-010); the handler MUST NOT read or write `routeLayers`, `destMarker`, `currentPlace`, `mode`, `results`, `input`, `status`/`setStatus`, `userMarker`, `centered`, `position`, `selectedRoute`, `routeSeq`, `pleasureAbort`, must not call `navigator.geolocation` (FR-008), must not open/close any popup, must not call `.blur()` or move focus (focus stays on the button, FR-006) and must not announce anything (FR-005) (depends on T006)
-- [ ] T008 [P] [US1] In `styles.css`, add rules for `.reset-view-control button` so it looks like a Leaflet bar button: `display: block; width: 30px; height: 30px; line-height: 30px; padding: 0; margin: 0; border: none; border-radius: 4px; background: #fff; color: #000; font-size: 18px; text-align: center; cursor: pointer;`, a `:hover` state with `background: #f4f4f4` (Leaflet's `.leaflet-bar a:hover`), and `.leaflet-touch .reset-view-control button { width: 34px; height: 34px; line-height: 34px; }` for touch devices ("at least 30×30 CSS px (34×34 on touch devices)", FR-009); do not change `#panel` or any existing rule (can run in parallel with T003–T007, different file)
+- [ ] T008 [P] [US1] In `styles.css`, add rules for `.reset-view-control button` so it looks like a Leaflet bar button: `display: block; width: 30px; height: 30px; line-height: 30px; padding: 0; margin: 0; border: none; border-radius: 4px; background: #fff; color: #000; font-size: 18px; text-align: center; cursor: pointer;`, `:hover` and `:active` states with `background: #f4f4f4` (Leaflet's `.leaflet-bar a:hover`; Leaflet has no separate active style, so pressing the button looks like hovering and never shows the browser's default grey button, FR-001), and `.leaflet-touch .reset-view-control button { width: 34px; height: 34px; line-height: 34px; }` for touch devices ("at least 30×30 CSS px (34×34 on touch devices)", FR-009); do not change `#panel` or any existing rule (can run in parallel with T003–T007, different file)
 - [ ] T009 [US1] Run quickstart.md scenarios A, B, C, D, E and F in a browser (`npm start`, http://localhost:8000) and confirm: reset returns to first-fix view at zoom 15 (A), Paris at zoom 13 with location blocked (B), no change and no console error at start (C), every FR-005 item unchanged after reset with routes shown (D), first location kept after a simulated move (E), starting view reached with no errors during a route animation and after 5 quick presses (F), each within 1 s (SC-002) (depends on T005, T007, T008)
 
 **Checkpoint**: User Story 1 is fully functional and testable on its own (MVP).
@@ -109,7 +109,7 @@ description: "Task list for the Reset View Button feature"
 **Purpose**: Documentation and final validation across both stories.
 
 - [ ] T013 [P] Update `README.md` to mention the "Reset view" (⌂) map control in the features/usage description: it returns the map to the starting view (your first located position at zoom 15, or Paris at zoom 13 if location is unavailable) without clearing the search or routes
-- [ ] T014 Run `npm test` and confirm all tests pass (existing suites plus `test/startview.test.js`), then confirm with `git diff --stat` that only `src/geo.js`, `src/app.js`, `styles.css`, `test/startview.test.js`, `README.md` and this feature's `specs/` files changed, and that `index.html` and `package.json` are unchanged (no new dependencies)
+- [ ] T014 Run `npm test` and confirm all tests pass (existing suites plus `test/startview.test.js`), then confirm with `git diff --stat main...HEAD` that only `src/geo.js`, `src/app.js`, `styles.css`, `test/startview.test.js`, `tests/ai/us1-return-to-starting-view.md`, `tests/ai/us2-accessible-reset-control.md`, `README.md` and this feature's `specs/` files changed, and that `index.html` and `package.json` are unchanged (no new dependencies)
 
 ---
 
@@ -123,6 +123,12 @@ description: "Task list for the Reset View Button feature"
 - **User Story 2 (Phase 4)**: Depends on User Story 1 (it hardens the control US1 creates; the spec says "it builds on Story 1").
 - **Polish (Phase 5)**: Depends on US1 and US2.
 
+### Pre-written test tasks
+
+- The completed (`[X]`) test tasks in each story's Tests section were written before implementation by the write-tests gate. Their IDs come after T014 because they were recorded later; they are not a step in the implementation order.
+- The unit test (`test/startview.test.js`) is red at T001/T002 and must turn green at T003; it runs again at T014.
+- The AI scenarios in `tests/ai/us1-return-to-starting-view.md` run once US1 is done (after T009) and those in `tests/ai/us2-accessible-reset-control.md` once US2 is done (after T012), in the factory's running-tests step. The implementer does not edit them.
+
 ### User Story Dependencies
 
 - **US1 (P1)**: Independent. Delivers the whole visible feature.
@@ -130,7 +136,7 @@ description: "Task list for the Reset View Button feature"
 
 ### Within User Story 1
 
-- T002 (tests, fail first) → T003 (helper) → T004 (import + instance) → T005 (setOnce at first fix) and T006 (control) → T007 (click handler) → T009 (manual check)
+- T002 (confirm the pre-written tests fail) → T003 (helper) → T004 (import + instance) → T005 (setOnce at first fix) and T006 (control) → T007 (click handler) → T009 (manual check)
 - T008 (CSS) is independent of T003–T007 and only needs to be done before T009.
 
 ### Parallel Opportunities
@@ -146,7 +152,7 @@ description: "Task list for the Reset View Button feature"
 
 ```bash
 # Developer A: tests and logic
-Task: "T002 Create test/startview.test.js with the 7 contract cases"
+Task: "T002 Confirm the existing test/startview.test.js fails (7 contract cases)"
 Task: "T003 Export createStartView from src/geo.js"
 
 # Developer B, at the same time: styling
@@ -167,7 +173,7 @@ Task: "T011 Review the reset button markup and handler in src/app.js against the
 ### MVP First (User Story 1 Only)
 
 1. T001 baseline.
-2. T002–T009: helper with tests, wiring at first fix, control, click handler, base styles, manual check.
+2. T002–T009: confirm red tests, helper, wiring at first fix, control, click handler, base styles, manual check.
 3. **STOP and VALIDATE**: quickstart A–F. A native `<button>` already gives basic keyboard use at this point.
 
 ### Incremental Delivery

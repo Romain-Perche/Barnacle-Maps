@@ -4,7 +4,7 @@
 
 - A Leaflet control added to the map at startup with `position: "bottomright"`. Leaflet stacks it above the attribution.
 - Container: `div.leaflet-control.leaflet-bar.reset-view-control`, so it looks like the other Leaflet controls.
-- Visible on every screen size whenever the map is shown. It never overlaps `#panel` (top-left) or the zoom control (top-left).
+- Visible on every screen size whenever the map is shown. It never overlaps `#panel` or the zoom control, wherever they are (today both are at the top-left; `#panel` can span the full width on narrow screens). Moving the zoom control is out of scope.
 
 ## DOM
 
@@ -16,6 +16,7 @@
 </div>
 ```
 
+- Default, hover and active states match Leaflet bar links: white background, black icon, 4px corners, `#f4f4f4` background on hover and while pressed (`:active`) (FR-001).
 - Button size matches Leaflet bar buttons (30×30 px, or 34×34 px when touch styles apply) (FR-009).
 - It shows a visible `:focus-visible` outline. The icon and the outline have at least 3:1 contrast against their background (FR-009).
 - The control is always enabled, also when the map is already at the starting view (FR-001).

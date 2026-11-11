@@ -12,7 +12,7 @@
 npm test
 ```
 
-Expected: all existing tests pass, plus the new `test/startview.test.js` cases listed in [contracts/start-view-helper.md](./contracts/start-view-helper.md).
+Expected after implementation: all tests pass, including the `test/startview.test.js` cases listed in [contracts/start-view-helper.md](./contracts/start-view-helper.md). Before `createStartView` is added to `src/geo.js`, `test/startview.test.js` fails (it is written first, on purpose) and every other suite passes.
 
 ## 2. Run the app
 
@@ -35,5 +35,5 @@ Contract to check against: [contracts/reset-view-control.md](./contracts/reset-v
 | E (FR-004) | In devtools → Sensors, set a location, load, then change the location to another city. Click "Reset view". | Map goes back to the **first** location, not the new one. |
 | F (edge) | Pick a destination and click "Reset view" right away while the map is zooming to the routes. Then click it 5 times quickly. | Map ends at the starting view; no errors. |
 | G (US2) | Press Tab until the control has focus, then press Enter, then Space (after panning again). | Focus ring is visible; each key resets the view. A screen reader (or the devtools Accessibility pane) reports a "button" named "Reset view". |
-| H (FR-007) | Devtools responsive mode at 360×640 with search results and routes shown. | Control is bottom-right, above the attribution, fully visible, and does not cover the panel or the zoom control. |
+| H (FR-007) | Devtools responsive mode at 360×640, then at 320×568 (the smallest supported viewport), with search results and routes shown. | Control is bottom-right, above the attribution, fully visible, and does not cover the panel or the zoom control. |
 | I (FR-010) | Turn on "prefers-reduced-motion: reduce" in devtools Rendering, pan away, click "Reset view". | The map jumps to the starting view with no animation. |

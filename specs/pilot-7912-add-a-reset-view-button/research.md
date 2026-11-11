@@ -25,6 +25,8 @@ Phase 0 for [plan.md](./plan.md). The Technical Context had no NEEDS CLARIFICATI
   - An `<a href="#" role="button">` like Leaflet's zoom links: needs extra key handling for Space, and the native button is simpler.
   - A third-party plugin (e.g. Leaflet.ZoomHome): adds a dependency, which goes against the repo's no-dependency rule.
 
+- **Look (FR-001)**: Leaflet 1.9's bar links have a white background, black text, 4px corners on the first/last link, and `#f4f4f4` on hover and focus; they have no separate active style. So the button uses the same values, with `:active` also `#f4f4f4`, so pressing it does not show the browser's default grey button look.
+
 ## R4. Placement (corner)
 
 - **Decision**: `position: "bottomright"`. Leaflet stacks it above the attribution control in that corner.
@@ -45,5 +47,5 @@ Phase 0 for [plan.md](./plan.md). The Technical Context had no NEEDS CLARIFICATI
 
 ## R7. Testing approach
 
-- **Decision**: Unit tests for `createStartView` in `test/startview.test.js`: default value, first `setOnce` wins, later calls are ignored and return `false`, `get()` returns a copy, and invalid input is rejected. A manual browser checklist in [quickstart.md](./quickstart.md) covers the Leaflet wiring and accessibility.
+- **Decision**: Unit tests for `createStartView` in `test/startview.test.js`: default value, first `setOnce` wins, later calls are ignored and return `false`, `get()` returns a copy, and invalid input is rejected. The Leaflet wiring and accessibility are covered by AI-run browser scenarios in `tests/ai/us1-return-to-starting-view.md` and `tests/ai/us2-accessible-reset-control.md` (Markdown only, run by an agent with a headless browser), and by the manual checklist in [quickstart.md](./quickstart.md).
 - **Rationale**: The repo has no browser test harness and no dependencies. Adding jsdom/Playwright would go against that rule for a feature of about 40 lines.

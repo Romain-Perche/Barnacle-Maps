@@ -15,7 +15,7 @@ Approach (details in [research.md](./research.md)):
 - A small pure helper `createStartView(defaultView)` in `src/geo.js` holds the starting view and only lets it be set once (`get()` / `setOnce(view)`). It is unit tested with `node --test`, like the other helpers.
 - `src/app.js` creates it with `DEFAULT_VIEW` and calls `setOnce({ lat, lng, zoom: 15 })` in `onPosition` in the same `!centered` branch that already centers the map at the first fix.
 - A custom `L.Control` (`position: "bottomright"`, stacked above the attribution) renders a native `<button type="button" aria-label="Reset view" title="Reset view">` inside a `leaflet-bar`. On click it calls `map.setView([lat, lng], zoom)` with the stored starting view. Click and scroll propagation to the map is disabled.
-- A few CSS rules in `styles.css` make the button match the Leaflet bar buttons (size, focus ring).
+- A few CSS rules in `styles.css` make the button match the Leaflet bar buttons (size, 4px corner radius as on Leaflet's bar links, hover and active background `#f4f4f4` as on Leaflet's bar links, focus ring).
 
 ## Technical Context
 
@@ -25,7 +25,7 @@ Approach (details in [research.md](./research.md)):
 
 **Storage**: N/A (the starting view lives in memory and is set again on each visit)
 
-**Testing**: `npm test` → `node --test test/` for the pure helpers in `src/geo.js`; manual browser check for the DOM/Leaflet part (see [quickstart.md](./quickstart.md))
+**Testing**: `npm test` → `node --test test/` for the pure helpers in `src/geo.js`; AI-run browser scenarios in `tests/ai/` (one Markdown file per user story) and the manual check in [quickstart.md](./quickstart.md) for the DOM/Leaflet part
 
 **Target Platform**: Modern desktop and mobile browsers; served by `python3 -m http.server` on localhost
 
@@ -83,10 +83,14 @@ src/
 ├── app.js            # + startView instance; setOnce at first fix in onPosition; ResetViewControl added to map
 └── geo.js            # + export createStartView(defaultView)
 test/
-└── startview.test.js # new: unit tests for createStartView
+└── startview.test.js # new: unit tests for createStartView (already written by the write-tests gate)
+tests/
+└── ai/               # new: AI-run browser scenarios (already written by the write-tests gate)
+    ├── us1-return-to-starting-view.md
+    └── us2-accessible-reset-control.md
 ```
 
-**Structure Decision**: Keep the current single static app layout. Logic that can be tested without a DOM goes in `src/geo.js` with a `node:test` file in `test/`. Leaflet/DOM wiring stays in `src/app.js`. No new directories.
+**Structure Decision**: Keep the current single static app layout. Logic that can be tested without a DOM goes in `src/geo.js` with a `node:test` file in `test/`. Leaflet/DOM wiring stays in `src/app.js`. The only new directory is `tests/ai/`, which holds Markdown scenarios (no code, no dependencies) run by an agent in a browser.
 
 ## Complexity Tracking
 
