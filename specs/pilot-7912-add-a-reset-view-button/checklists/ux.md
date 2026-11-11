@@ -16,12 +16,12 @@
 - [x] CHK004 - Does the spec say where keyboard focus goes after the control is activated (stays on the button or moves elsewhere)? [Gap, Spec §FR-006] — reviewed by the factory, 2026-11-11
 - [x] CHK005 - Does the spec say whether the reset is announced to assistive technology (for example through the status region), given that FR-005 forbids changing the status message? [Gap, Spec §FR-005, §FR-006] — reviewed by the factory, 2026-11-11
 - [x] CHK006 - Are visual states for the control (default, hover, focus, active) defined, or explicitly delegated to "same as other map controls"? [Completeness, Spec §FR-001, Assumptions] — reviewed by the factory, 2026-11-11
-- [ ] CHK007 - Is the control's visible content (text label, icon, or both) decided? Or is the "text and/or icon" choice explicitly left to design? [Completeness, Spec §FR-001]
+- [x] CHK007 - Is the control's visible content (text label, icon, or both) decided? Or is the "text and/or icon" choice explicitly left to design? [Completeness, Spec §FR-001] — reviewed by Pilot, 2026-11-11
 
 ## Requirement Clarity
 
 - [x] CHK008 - Is "once startup positioning was done" (FR-002) defined precisely enough to match FR-003's "first location fix" rule, with no other way to read it? [Clarity, Spec §FR-002, §FR-003] — reviewed by the factory, 2026-11-11
-- [ ] CHK009 - Is "alongside the existing map controls" given a specific location (corner or position relative to the zoom control and attribution)? [Clarity, Spec §FR-007]
+- [x] CHK009 - Is "alongside the existing map controls" given a specific location (corner or position relative to the zoom control and attribution)? [Clarity, Spec §FR-007] — reviewed by Pilot, 2026-11-11
 - [x] CHK010 - Is "small screens" defined with a viewport size or breakpoint for the no-overlap rule? [Clarity, Spec §Edge Cases, §FR-007] — reviewed by the factory, 2026-11-11
 - [x] CHK011 - Is "recognizable icon" defined, or is the chosen symbol named? [Ambiguity, Spec §FR-001] — reviewed by the factory, 2026-11-11
 - [x] CHK012 - Is "the same center and zoom" given a tolerance (for example, exact zoom and center within a set number of pixels or metres), so results can be compared objectively? [Clarity, Spec §FR-002, §SC-001] — reviewed by the factory, 2026-11-11
@@ -43,8 +43,8 @@
 
 ## Scenario Coverage
 
-- [ ] CHK022 - Are requirements defined for the case where the user pans or zooms **before** the first location fix arrives? Does the first fix still re-center the map, overriding the user's manual view? [Coverage, Gap, Spec §FR-003]
-- [ ] CHK023 - Are requirements defined for the case where a destination is chosen before any location fix (the map centers on the destination), and then the first fix arrives? [Coverage, Spec §FR-003, §Edge Cases]
+- [x] CHK022 - Are requirements defined for the case where the user pans or zooms **before** the first location fix arrives? Does the first fix still re-center the map, overriding the user's manual view? [Coverage, Gap, Spec §FR-003] — reviewed by Pilot, 2026-11-11
+- [x] CHK023 - Are requirements defined for the case where a destination is chosen before any location fix (the map centers on the destination), and then the first fix arrives? [Coverage, Spec §FR-003, §Edge Cases] — reviewed by Pilot, 2026-11-11
 - [x] CHK024 - Are requirements defined for when location access is granted after an earlier denial in the same session? [Coverage, Gap, Spec §US1-5] — reviewed by the factory, 2026-11-11
 - [x] CHK025 - Are requirements defined for when the location fails after a successful first fix? Does the starting view stay at the first fix? [Coverage, Exception Flow, Spec §FR-004] — reviewed by the factory, 2026-11-11
 

@@ -43,6 +43,10 @@
 - Q: Is reduced-motion behaviour specified? → A: When the user's system asks for reduced motion, the reset jumps with no animation. (decided by the factory, no question asked)
 - Q: Does "reuse the map library's styling" conflict with a native, keyboard-operable button? → A: No. Only the look and placement are reused; the control itself is a native button. (decided by the factory, no question asked)
 - Q: Is "the reset does not request a new location fix" a testable requirement? → A: Yes, it is now FR-008. (decided by the factory, no question asked)
+- Q: Where exactly does the Reset view button sit on the map? → A: In the bottom-right corner, just above the map credits line, where the search panel never covers it on any screen size.
+- Q: What does the button show: a word, an icon, or both? → A: A house icon (⌂) only, the same size as the other map buttons, with the tooltip and screen-reader name "Reset view".
+- Q: If the person moves the map before their location is found, does the first location fix still move the map to them? → A: Yes, as today: the first fix always centers the map on the person at zoom 15, even if they have moved the map, and that view becomes the starting view.
+- Q: If the person picks a destination before their location is found, what does the first location fix do? → A: As today: the first fix centers the map on the person at zoom 15 (moving away from the destination) and becomes the starting view; the routes are then computed as usual.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -90,18 +94,20 @@ A keyboard or screen-reader user can find and activate the "Reset view" control 
 - Location fails after a successful first fix: the starting view stays at that first fix.
 - The viewport is resized or rotated: a reset still uses the same center and zoom; the visible area may differ.
 - A route or pleasure computation is still in progress: the reset does not cancel or change it.
+- The user pans or zooms before the first location fix: the first fix still centers the map on the user at zoom 15, overriding their manual view (as today), and that view becomes the starting view.
+- The user picks a destination before the first location fix (the map centers on the destination): the first fix still centers the map on the user at zoom 15, moving away from the destination (as today), and that view becomes the starting view; the routes are then computed as usual.
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: The map MUST show a control labeled "Reset view" (text and/or a house icon (⌂) with that accessible name and tooltip) at all times while the map is displayed. The control is always enabled, also when the map is already at the starting view. Its default, hover and active states follow the map library's standard control styles.
+- **FR-001**: The map MUST show a "Reset view" control at all times while the map is displayed. The control shows a house icon (⌂) only, no visible text, at the same size as the other map buttons; its tooltip and accessible name are "Reset view". The control is always enabled, also when the map is already at the starting view. Its default, hover and active states follow the map library's standard control styles.
 - **FR-002**: Activating the control MUST move the map to the starting view: the starting view defined in FR-003. "Same" means exactly the same zoom level and a center within 1 screen pixel.
 - **FR-003**: The starting view MUST be the default view (Paris: 48.8566, 2.3522, at zoom 13) until the first location fix. When the app automatically centers on the user's location at that first fix (location at zoom 15), that location-centered view becomes the starting view.
 - **FR-004**: The default view is provisional. Once the first location fix has set the starting view, it MUST NOT change (later live position updates, searches and route selections do not change it).
 - **FR-005**: Activating the control MUST NOT change anything other than the map view: no clearing of the search input, search results, destination marker, routes, selected route, travel mode, pleasure indicators, user marker or status message. An open destination popup stays open. Route or pleasure computations in progress are not cancelled. Nothing extra is announced to assistive technology.
 - **FR-006**: The control MUST be operable by mouse/touch and by keyboard (focusable, activated with Enter or Space) and MUST have the accessible name "Reset view". After activation, keyboard focus stays on the control.
-- **FR-007**: The control MUST be placed on the map alongside the existing map controls and MUST NOT overlap the search/route panel or the zoom controls, wherever the zoom control is. Moving the zoom control is out of scope.
+- **FR-007**: The control MUST be placed in the bottom-right corner of the map, just above the map credits (attribution) line, and MUST NOT overlap the search/route panel or the zoom controls, wherever the zoom control is. Moving the zoom control is out of scope.
 - **FR-008**: Activating the control MUST NOT request a new location fix.
 - **FR-009**: The control MUST have a touch target of at least 30×30 CSS px (34×34 on touch devices), a visible keyboard focus indicator, and at least 3:1 contrast for its icon and focus indicator against their background.
 - **FR-010**: The move to the starting view SHOULD be a short animation. When the user's system asks for reduced motion, it MUST happen with no animation.
