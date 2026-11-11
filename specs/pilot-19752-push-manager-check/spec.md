@@ -8,6 +8,19 @@
 
 **Input**: User description: "Push manager check — Add a one-line comment to the README"
 
+## Clarifications
+
+### Session 2026-11-11
+
+- Q: Is "one-line" a single physical line? → A: Yes, one physical line ending in a newline (decided by the factory, no question asked)
+- Q: Exact comment syntax? → A: HTML comment `<!-- ... -->` (decided by the factory, no question asked)
+- Q: How is the comment content bounded? → A: It must contain the words "push manager check" and stay under 100 characters (decided by the factory, no question asked)
+- Q: Is placement normative? → A: Yes, appended at the end of the README (decided by the factory, no question asked)
+- Q: Which renderer and who reviews? → A: GitHub's Markdown preview; any maintainer, clock starting when the diff is opened (decided by the factory, no question asked)
+- Q: Which tests? → A: The `npm test` suite (decided by the factory, no question asked)
+- Q: README lacks trailing newline, or comment already present? → A: Still append on its own line; never add a duplicate (decided by the factory, no question asked)
+- Q: What is a successful pipeline check, and what is the push manager? → A: The factory component that pushes the branch and opens the PR; success is the branch pushed and a PR opened showing the one-line diff (decided by the factory, no question asked)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Verify the delivery pipeline with a trivial README change (Priority: P1)
@@ -22,7 +35,7 @@ A maintainer of the software factory wants to confirm that the end-to-end delive
 
 1. **Given** the README on the main branch, **When** the change is applied, **Then** the README diff shows exactly one added line and zero removed or modified lines.
 2. **Given** the updated README, **When** it is rendered as Markdown (e.g., on the repository hosting page), **Then** the added comment is not visible and the rendered content is identical to before.
-3. **Given** the updated repository, **When** the existing automated tests are run, **Then** they pass exactly as before.
+3. **Given** the updated repository, **When** the existing automated tests (`npm test`) are run, **Then** they pass exactly as before.
 
 ### Edge Cases
 
@@ -34,11 +47,13 @@ A maintainer of the software factory wants to confirm that the end-to-end delive
 
 ### Functional Requirements
 
-- **FR-001**: The README MUST gain exactly one new line containing a comment.
-- **FR-002**: The comment MUST be hidden when the README is rendered as Markdown (a Markdown/HTML comment), so the visible documentation is unchanged.
-- **FR-003**: The comment text MUST briefly state its purpose (a push/pipeline check), so a future reader understands why it exists.
+- **FR-001**: The README MUST gain exactly one new physical line, ending in a newline, containing a comment.
+- **FR-002**: The comment MUST be hidden when the README is rendered as Markdown (an HTML comment of the form `<!-- ... -->`), so the visible documentation is unchanged.
+- **FR-003**: The comment text MUST briefly state its purpose (a push/pipeline check), contain the words "push manager check", and be under 100 characters, so a future reader understands why it exists.
 - **FR-004**: No existing README line MUST be modified or removed.
 - **FR-005**: No application code, tests, styles, or configuration MUST be changed by the implementation.
+
+- **FR-006**: The comment MUST be appended at the end of the README, on its own line, and MUST NOT be added again if already present.
 
 ## Success Criteria *(mandatory)*
 
@@ -54,4 +69,6 @@ A maintainer of the software factory wants to confirm that the end-to-end delive
 - "Comment" means a Markdown-hidden comment (HTML comment syntax), not a visible sentence; this keeps the user-facing documentation unchanged, which fits the "check" intent.
 - The comment is appended at the end of the README, on its own line.
 - Suggested wording: a short note that the line exists to verify the push manager / delivery pipeline; exact wording is not significant.
+- Rendering is judged in GitHub's Markdown preview, where HTML comments are hidden; reviewers are any maintainer, timed from opening the diff.
+- The push manager is the factory component that pushes the branch and opens the PR; the check succeeds when the branch is pushed and a PR shows the one-line diff.
 - The purpose is validating the factory's push/PR workflow; there is no end-user-facing functionality.
