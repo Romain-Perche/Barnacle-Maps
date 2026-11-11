@@ -24,6 +24,7 @@ test('comment opens and closes on its own single line', () => {
 // covers FR-001, US1 scenario 2 (comment is outside code blocks, so it stays hidden)
 test('comment is not inside a code fence', () => {
   const idx = lines.indexOf(COMMENT);
+  assert.ok(idx >= 0);
   const fences = lines.slice(0, idx).filter((l) => /^\s*(```|~~~)/.test(l)).length;
   assert.equal(fences % 2, 0);
 });
