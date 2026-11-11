@@ -1,0 +1,2 @@
+- C1 (LOW): SC-004 has no task — dismissed by the factory, 2026-11-11: subjective outcome, not buildable work
+- A1 (LOW): SC-002 depends on the renderer — dismissed by the factory, 2026-11-11: already scoped in Clarifications

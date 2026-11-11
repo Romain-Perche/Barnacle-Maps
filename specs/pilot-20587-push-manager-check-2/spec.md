@@ -16,7 +16,12 @@
 - Q: What exact comment wording? → A: `<!-- Push manager check 2 -->` (decided by the factory, no question asked)
 - Q: What if the README has no final newline? → A: The README currently ends with a single LF and uses LF endings; the new line is appended after it with an LF ending (decided by the factory, no question asked)
 - Q: Which renderer defines "no visible difference"? → A: GitHub's Markdown rendering; renderers that show HTML comments are out of scope (decided by the factory, no question asked)
-- Q: Are tests or docs content added? → A: No, on purpose: this is a pipeline check only (decided by the factory, no question asked)
+- Q: Are tests or docs content added? → A: No docs content. The factory's test gate adds exactly two test files (`test/readme-comment.test.js`, `tests/ai/us1-readme-comment.md`); they are the only allowed files besides the README and the spec folder (decided by the factory, no question asked)
+
+### Session 2026-11-11 (analyze review)
+
+- Q: FR-004 forbids changes outside the spec folder, yet the test gate adds test files. Which wins? → A: FR-004 allows those two test files (decided by the factory, no question asked)
+- Q: Assumptions say the wording is up to the implementer, FR-003 fixes it. → A: The wording is fixed by FR-003 (decided by the factory, no question asked)
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -47,7 +52,7 @@ A maintainer wants a single-line comment added to the project README so the deli
 - **FR-001**: The README MUST gain exactly one new line, and that line MUST be a comment that does not show in the rendered README.
 - **FR-002**: The comment MUST be self-contained on that single line (opened and closed on the same line).
 - **FR-003**: The comment text MUST be short and say what it is for. It is `<!-- Push manager check 2 -->`.
-- **FR-004**: No other line of the README, and no other project file outside this feature's spec folder, MUST change as part of the implementation.
+- **FR-004**: No other line of the README, and no other project file MUST change as part of the implementation, except this feature's spec folder and the two test files `test/readme-comment.test.js` and `tests/ai/us1-readme-comment.md`.
 - **FR-005**: The application's behavior and the existing tests MUST stay unchanged.
 
 ## Success Criteria *(mandatory)*
@@ -62,6 +67,5 @@ A maintainer wants a single-line comment added to the project README so the deli
 ## Assumptions
 
 - "Comment" means a hidden source comment in the README, not a visible sentence; a visible line would change what readers see, which a pipeline check should avoid.
-- The exact wording is up to the implementer as long as it is one line and mentions the push manager check.
 - Placement: at the end of the README, directly after the last line with no blank line added, using the file's LF line ending, so it cannot interfere with the title or existing sections.
-- This is a pipeline/process check; no app features, docs content, or tests are added.
+- This is a pipeline/process check; no app features or docs content are added; the only tests are the two files named in FR-004.

@@ -6,7 +6,7 @@
 
 ## Summary
 
-Append one hidden HTML comment line (`<!-- Push manager check 2 -->`) at the end of `README.md`. No code, tests, or other files change. The rendered README stays identical.
+Append one hidden HTML comment line (`<!-- Push manager check 2 -->`) at the end of `README.md`. No code or other files change; the two test files from the test gate are the only additions. The rendered README stays identical.
 
 ## Technical Context
 
@@ -24,7 +24,7 @@ Append one hidden HTML comment line (`<!-- Push manager check 2 -->`) at the end
 
 **Performance Goals**: N/A
 
-**Constraints**: Exactly 1 line added, 0 removed or changed; no other file touched
+**Constraints**: Exactly 1 line added to the README, 0 removed or changed; no other file touched except the two test files named in FR-004
 
 **Scale/Scope**: One file, one line
 
@@ -50,11 +50,13 @@ No `contracts/`: the feature exposes no interface.
 ### Source Code (repository root)
 
 ```text
-README.md                # only file changed: one comment line appended
-src/ test/               # unchanged
+README.md                          # one comment line appended
+test/readme-comment.test.js        # added by the test gate (FR-004)
+tests/ai/us1-readme-comment.md     # added by the test gate (FR-004)
+src/                               # unchanged
 ```
 
-**Structure Decision**: Existing single static project; only `README.md` is edited.
+**Structure Decision**: Existing single static project; only `README.md` is edited, plus the two test files.
 
 ## Complexity Tracking
 

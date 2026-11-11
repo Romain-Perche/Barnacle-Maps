@@ -10,7 +10,7 @@ Implementation committed on the feature branch; `main` available as base.
 3. Run `tail -n 1 README.md`.
 ### Expected
 - [ ] Step 1 prints `1	0	README.md`
-- [ ] Step 2 lists only `README.md` and files under `specs/`
+- [ ] Step 2 lists only `README.md`, `test/readme-comment.test.js`, `tests/ai/us1-readme-comment.md` and files under `specs/`
 - [ ] Step 3 prints exactly `<!-- Push manager check 2 -->`
 
 ## Scenario 2: Rendered README is unchanged
