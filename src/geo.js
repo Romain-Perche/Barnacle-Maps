@@ -1,6 +1,7 @@
 // Pure helpers for Barnacle Maps (no DOM access and no fetch, so they can be unit tested in Node):
 // formatting, Nominatim search, OSRM walking and car routes (alternatives, detours, de-duplication)
-// and the green-pixel "pleasure" score of a route on map tiles.
+// the green-pixel "pleasure" score of a route on map tiles, and the list of stops of a journey
+// (add, remove, reorder; routes go from the start through every stop in order to the destination).
 
 const EARTH_RADIUS_M = 6371008.8;
 
@@ -52,18 +53,61 @@ export const TRAVEL_MODES = {
 };
 
 // OSRM expects lng,lat order. The "foot" profile gives walking routes, "driving" (mode "car") car routes.
-// `via` forces the route through a waypoint; `alternatives` asks OSRM for alternative routes.
+// `stops` are visited in order, `via` forces the route through a waypoint (after the stops);
+// `alternatives` asks OSRM for alternative routes.
 export function routeUrl(
   from,
   to,
   base,
-  { alternatives = 0, via = null, mode = "foot" } = {},
+  { alternatives = 0, via = null, mode = "foot", stops = [] } = {},
 ) {
   const m = TRAVEL_MODES[mode] || TRAVEL_MODES.foot;
-  const pts = via ? [from, via, to] : [from, to];
+  const pts = [from, ...(stops || []), ...(via ? [via] : []), to];
   const coords = pts.map((p) => `${p.lng},${p.lat}`).join(";");
   const alt = alternatives > 0 ? "&alternatives=3" : "";
   return `${base ?? m.base}/route/v1/${m.profile}/${coords}?overview=full&geometries=geojson${alt}`;
+}
+
+// --- Stops -----------------------------------------------------------------------------------
+// A stop is { name, lat, lng }. Helpers never mutate the list they get.
+
+export const MAX_STOPS = 5;
+// A place closer than this (metres) to an existing stop counts as the same stop.
+export const STOP_DUPLICATE_M = 20;
+
+// Appends a stop. Returns { stops, error } with error null, "limit" or "duplicate".
+export function addStop(stops, place, max = MAX_STOPS) {
+  if (stops.length >= max) return { stops: [...stops], error: "limit" };
+  if (stops.some((s) => haversine(s, place) <= STOP_DUPLICATE_M)) {
+    return { stops: [...stops], error: "duplicate" };
+  }
+  return { stops: [...stops, { name: place.name, lat: place.lat, lng: place.lng }], error: null };
+}
+
+export function removeStop(stops, index) {
+  if (!Number.isInteger(index) || index < 0 || index >= stops.length) return [...stops];
+  return stops.filter((_, i) => i !== index);
+}
+
+// Swaps the stop at index with the one at index + delta (e.g. -1 = up, 1 = down).
+export function moveStop(stops, index, delta) {
+  const out = [...stops];
+  const j = index + delta;
+  if (!Number.isInteger(index) || !Number.isInteger(j)) return out;
+  if (index < 0 || index >= out.length || j < 0 || j >= out.length) return out;
+  [out[index], out[j]] = [out[j], out[index]];
+  return out;
+}
+
+export function mapPointStop({ lat, lng }) {
+  return { name: `Point on map (${lat.toFixed(5)}, ${lng.toFixed(5)})`, lat, lng };
+}
+
+// Sum of the straight-line distances (metres) between consecutive { lat, lng } points.
+export function straightLineLength(points) {
+  let total = 0;
+  for (let i = 1; i < (points || []).length; i++) total += haversine(points[i - 1], points[i]);
+  return total;
 }
 
 // Returns every route as { distance, duration, path: [[lat, lng], ...] }, or [] when none exists.
