@@ -8,6 +8,18 @@
 
 **Input**: User description: "Push manager check — Add a one-line comment to the README"
 
+## Clarifications
+
+### Session 2026-11-11
+
+- Q: Is "comment" a hidden HTML comment, and how is "briefly identify its purpose" bounded? → A: A single-line HTML comment `<!-- ... -->` containing the words "push check", on one line (decided by the factory, no question asked)
+- Q: Which README, and what does "end of the README" mean when there is no trailing newline? → A: The root `README.md`; the line is appended after the last line, and the file keeps a trailing newline. If the final line lacked one, that line may show as touched in the diff; the addition is still counted as one line (decided by the factory, no question asked)
+- Q: What if the last README content is a list, code block or other structure? → A: A blank line is not added; an HTML comment on its own final line is hidden by the renderer and, if the last line is inside a fenced code block, it must be placed after the closing fence (decided by the factory, no question asked)
+- Q: What if the identical comment already exists, and are reruns idempotent? → A: No second line is added; a rerun leaves the README unchanged and the change is then reported as already present (decided by the factory, no question asked)
+- Q: What is the diff baseline, the reference renderer, and the scope of "no manual intervention"? → A: Baseline is the main branch; the reference renderer is GitHub's README view; "no manual intervention" covers branch, commit, push and pull request creation (decided by the factory, no question asked)
+- Q: What happens if push or pull request creation fails? → A: Out of scope for this change; pipeline failure handling belongs to the pipeline itself (decided by the factory, no question asked)
+- Q: Which checks count as "existing tests pass", and does the branch's extra spec files break FR-004? → A: `npm test`; FR-004 excludes `specs/` and `.specify/` artifacts, including checklists (decided by the factory, no question asked)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Verify the delivery pipeline with a trivial README change (Priority: P1)
@@ -35,6 +47,7 @@ A maintainer wants to confirm that the automated delivery pipeline (branch creat
 
 - **FR-001**: The README MUST gain exactly one new line, and that line MUST be a comment that is hidden when the README is rendered.
 - **FR-002**: The comment MUST briefly identify its purpose (a pipeline / push check) so a future reader understands why it exists.
+- **FR-002a**: The comment MUST be a single-line HTML comment containing the words "push check".
 - **FR-003**: No other line in the README MUST be added, removed, or modified.
 - **FR-004**: No file other than the README MUST change as part of the product change (specification artifacts excepted).
 - **FR-005**: The app's behavior and the existing automated tests MUST be unaffected.
@@ -54,3 +67,8 @@ A maintainer wants to confirm that the automated delivery pipeline (branch creat
 - The comment's exact wording is not prescribed; a short note such as identifying it as a push/pipeline check is sufficient.
 - The comment is placed at the end of the README, where it cannot interfere with existing content.
 - "README" refers to the project's root README file.
+- The comment is appended after the last README line, and a README with no trailing newline is given one.
+- If the identical comment is already present, nothing is added and a rerun leaves the README unchanged.
+- The diff baseline is the main branch and the reference renderer is GitHub's README view.
+- "Without manual intervention" covers branch, commit, push and pull request creation; failures of those steps are out of scope.
+- "Existing automated tests" means the suite run by `npm test`.
