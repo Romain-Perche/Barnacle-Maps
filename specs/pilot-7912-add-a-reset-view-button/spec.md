@@ -8,6 +8,12 @@
 
 **Input**: User description: "Add a Reset view button — Add a button on the map that puts the map back to its starting position and zoom."
 
+## Clarifications
+
+### Session 2026-11-11
+
+- Q: When someone presses "Reset view", which view should the map go back to? → A: Option A. It goes back to the first view the user saw once the app was ready: their location at zoom 15 if it was found, otherwise the default view (Paris at zoom 13). The view is fixed once set and does not follow the user as they move.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Return to the starting view in one click (Priority: P1)
@@ -57,7 +63,7 @@ A keyboard or screen-reader user can find and activate the "Reset view" control 
 
 - **FR-001**: The map MUST show a control labeled "Reset view" (text and/or a recognizable icon with that accessible name) at all times while the map is displayed.
 - **FR-002**: Activating the control MUST move the map to the starting view: the same center and zoom level the map had once startup positioning was done.
-- **FR-003**: The starting view MUST be the default view shown when the app opens, or, if the app automatically centers on the user's location on the first location fix, that location-centered view.
+- **FR-003**: The starting view MUST be the default view (Paris at zoom 13) until the first location fix. When the app automatically centers on the user's location at that first fix (location at zoom 15), that location-centered view becomes the starting view.
 - **FR-004**: The starting view MUST NOT change after it has been set (later live position updates, searches and route selections do not change it).
 - **FR-005**: Activating the control MUST NOT change anything other than the map view: no clearing of the search input, search results, destination marker, routes, selected route, travel mode, pleasure indicators, user marker or status message.
 - **FR-006**: The control MUST be operable by mouse/touch and by keyboard (focusable, activated with Enter or Space) and MUST have the accessible name "Reset view".
