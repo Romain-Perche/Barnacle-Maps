@@ -20,9 +20,9 @@ No foundational tasks.
 
 - [X] T004 [US1] Integration test: README diff vs main is `1 0`, one added `<!-- ... push check ... -->` line, last line, single occurrence, only README.md changed, in test/readme-comment.test.js (covers FR-001, FR-002, FR-002a, FR-003, FR-004, SC-001, US1 scenario 1)
 - [X] T005 [US1] AI test: README diff, rendered output unchanged, and `npm test` / app still fine in tests/ai/us1-readme-comment.md (covers FR-001, FR-004, FR-005, SC-002, SC-003, US1 scenario 1, 2, 3)
-- [ ] T001 [US1] Inspect the end of `README.md` (last line, trailing newline present or not, whether it ends inside a fenced code block) and check with `grep -Fx '<!-- push manager check: pipeline verification push check -->' README.md` whether the comment already exists; if it does, skip T002.
-- [ ] T002 [US1] Append the single line `<!-- push manager check: pipeline verification push check -->` after the last line of `README.md` (add a trailing newline first if missing; no blank separator line; if the last line is inside an unclosed fenced code block, place the comment after the closing fence). Do not modify any other line.
-- [ ] T003 [US1] Verify per `specs/pilot-19985-push-manager-check/quickstart.md`: `git diff --numstat main -- README.md` → `1	0`; `git diff --name-only main -- . ':!specs' ':!.specify'` → only `README.md`; run `npm test` in the repo root and confirm all tests pass.
+- [ ] T001 [US1] Inspect the end of `README.md` (last line, trailing newline present or not, whether it ends inside a fenced code block) and check with `grep -Fx '<!-- push check: pipeline verification -->' README.md` whether the comment already exists; if it does, skip T002.
+- [ ] T002 [US1] Append the single line `<!-- push check: pipeline verification -->` after the last line of `README.md` (add a trailing newline first if missing; no blank separator line; if the last line is inside an unclosed fenced code block, place the comment after the closing fence). Do not modify any other line.
+- [ ] T003 [US1] Verify per `specs/pilot-19985-push-manager-check/quickstart.md`: `git diff --numstat main -- README.md` → `1	0`; `git diff --name-only main -- . ':!specs' ':!.specify' ':!.claude' ':!test' ':!tests'` → only `README.md`; run `npm test` in the repo root and confirm all tests pass.
 
 ## Phase 4: Polish
 
@@ -30,7 +30,7 @@ No polish tasks; the change is one line.
 
 ## Dependencies & Execution Order
 
-T001 → T002 → T003 (sequential, same file, no parallel opportunities).
+T004 and T005 (tests, already written) come first and fail until T002 is done. Then T001 → T002 → T003 (sequential, same file, no parallel opportunities). T003 runs the full `npm test`, including T004's test.
 
 ## Implementation Strategy
 

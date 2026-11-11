@@ -1,0 +1,3 @@
+- I3 (MEDIUM): plan notes about paragraph absorption and missing trailing newline do not match the README's real ending — dismissed by the factory, 2026-11-11: the notes are conditional guards that T001 checks, and the end-of-file append is valid for this README
+- C1 (LOW): idempotency not reproducible by diff assertions — dismissed by the factory, 2026-11-11: T004 already asserts the comment occurs exactly once
+- D1 (LOW): FR-002a refines FR-002 — dismissed by the factory, 2026-11-11: deliberate refinement

@@ -18,6 +18,7 @@
 - Q: What if the identical comment already exists, and are reruns idempotent? → A: No second line is added; a rerun leaves the README unchanged and the change is then reported as already present (decided by the factory, no question asked)
 - Q: What is the diff baseline, the reference renderer, and the scope of "no manual intervention"? → A: Baseline is the main branch; the reference renderer is GitHub's README view; "no manual intervention" covers branch, commit, push and pull request creation (decided by the factory, no question asked)
 - Q: What happens if push or pull request creation fails? → A: Out of scope for this change; pipeline failure handling belongs to the pipeline itself (decided by the factory, no question asked)
+- Q: Do the feature's own tests break FR-004, and does `npm test` include them? → A: FR-004 also excepts the feature's test files (`test/readme-comment.test.js`, `tests/ai/`) and `.claude/`; SC-003 means the whole `npm test` suite including the new test, which passes once the comment is added (decided by the factory, no question asked)
 - Q: Which checks count as "existing tests pass", and does the branch's extra spec files break FR-004? → A: `npm test`; FR-004 excludes `specs/` and `.specify/` artifacts, including checklists (decided by the factory, no question asked)
 
 ## User Scenarios & Testing *(mandatory)*
@@ -49,7 +50,7 @@ A maintainer wants to confirm that the automated delivery pipeline (branch creat
 - **FR-002**: The comment MUST briefly identify its purpose (a pipeline / push check) so a future reader understands why it exists.
 - **FR-002a**: The comment MUST be a single-line HTML comment containing the words "push check".
 - **FR-003**: No other line in the README MUST be added, removed, or modified.
-- **FR-004**: No file other than the README MUST change as part of the product change (specification artifacts excepted).
+- **FR-004**: No file other than the README MUST change as part of the product change (specification artifacts, the feature's test files under `test/` and `tests/`, and `.claude/` excepted).
 - **FR-005**: The app's behavior and the existing automated tests MUST be unaffected.
 
 ## Success Criteria *(mandatory)*
@@ -58,7 +59,7 @@ A maintainer wants to confirm that the automated delivery pipeline (branch creat
 
 - **SC-001**: The README diff against the main branch shows exactly 1 line added and 0 lines removed.
 - **SC-002**: The rendered README is visually identical before and after the change (0 visible differences).
-- **SC-003**: 100% of the existing automated tests pass after the change.
+- **SC-003**: 100% of the automated tests (the existing ones plus the new `test/readme-comment.test.js`) pass after the change.
 - **SC-004**: The change reaches a pull request through the normal pipeline without any manual intervention.
 
 ## Assumptions
