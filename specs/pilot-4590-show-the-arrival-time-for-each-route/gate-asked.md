@@ -1,0 +1,3 @@
+## check-plan-completeness, 2026-11-12
+1. CHK014, CHK008, CHK009, CHK016, CHK019
+2. CHK015
