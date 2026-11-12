@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f12d1e4938655c9f7c74db9bbcaf7a3e7e61b9e84e1f3a1dbe3e99e763ccdd77",
+  "claims": [
+    {
+      "id": "claim_011ea9e04f6d4bcdbdcd7347bf1e14b1",
+      "statement": "addStop refuses a sixth stop with error 'limit' and refuses a place within 20 m of an existing stop with error 'duplicate', otherwise appending the stop without mutating the input list.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L93-L104",
+          "version": "repo-lines-v1:sha256:8de39f52a499cb8520476d8ef8ed3c66e12be5c80244040c16f8dc6dfa484091:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiMTIzOTA5ZjIxYTNiODk0YzUxYzVmNmYxZmQzN2Y4NzgyOTA5ZTljNWM2MmY3ZjNjNjA4NTc2YmE2Y2U1YjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkxN2I3OTgyNWQ0ZmZmNDg5ZTkwYjY5OTNjMzJlYjYyMDE2MWI2NWYzMmZkOTYxMDdlNTJiNjU4NDZjOGNjOWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxODE5Yzk4NGM3ZjZiM2JlZGNhODMyYThmOTNkOWE2OTQxOWQ5NGY2ZGQ2MjE1NDZiNGIwMDhhY2Y2OTM3MjYifQ"
+        },
+        {
+          "resource": "repo://test/stops.test.js#L45-L82",
+          "version": "repo-lines-v1:sha256:b1c74231855283ec3ff73d4a561718374a67b79459b856e99a5f9ca7db050583:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkNjM5ZTVlNzkyY2Q5ZjhkYjU0ZmRlYWFmNzNiYjk5YTMyNTc1NWMyM2MyMDQxZWMxNDliNjUzOTUyMTMyZDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllMjlmZjdiNjQyZWY1ODAxNDk2MDAwYTkyMjJlZjFhYmMzYjUwNDc3NWY4YTk1ZTA1ZTVjYjM0MzY2ZmU4NTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZkMWQxOGQ2ODMzYTZiZWI4MGYyOTg1YTY0YTkzY2Q0OTczZmY0NDE1M2E0Y2FiNDk1MTE2MzE1YTUzMzM2ZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFhYzU0M2JjYWZmODZkZDk2ZTEyOWJkYWY5MmJiN2ZlMTIyYWUxYTk1ZDEwOTNlOWRjMzIzNjY5MTJhNjc4OTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d6ca05cce33646ce8eea91c59453e493",
+      "statement": "Every stop change goes through setStops, which re-renders the stop list and markers and recomputes routes.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L393-L406",
+          "version": "repo-lines-v1:sha256:dc7f898899c5fd290ea9c845806415831ece3f47f5faeb7553669e31d6c6fa82:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhYzc2ZWEzZDQ4MTIyZWUwNTg0MTQ5MzI0MmIwNzc0ZDgzZjQxNGU5NzUxOWUyMjY4ZDVhYTk4YTUzMWViYWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1NzNmZTVlODBhOWRjYzA1YTVhY2FlMzJhZmU2MWI1NWI1NDNkNWEwZjA0NjhkYjJjMDE1MTE5ZDczNDczZWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI0ZGNjNjJhZWMxNTJiZDYwYzE4ODQ2NWFmZWY1MWI0OTk3NzI0NDBmYWEyMzVmOTNhMGI2ZDliN2E1OTk3M2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2NWFkYjQ1NGIxODNmMzMzYzRlZTU2MzY1NjMwZDJmNWZlZGRlYTkzNjZiOGFhMjI3ZjBiN2JjNjQxZTY5ZjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7659cc2ef547440cbc002c7ac80dcf49",
+      "statement": "Clicking the map opens an 'Add stop here' popup that adds a stop named after the clicked coordinates.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L408-L419",
+          "version": "repo-lines-v1:sha256:0c864b7fbe5a6bab275f51f743908d0651d2fc6c20802e482a9b561ed7fd0442:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5NTBmNGU1NzJkNmE5NzlhYmI5YmExMmRmOWIxZjhlNjQ3N2Q4OGE3M2RjZTE3M2Q3NDcyNzYzODY0Zjg5MzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg5ODI0ZTg4ZjBiOWFiNGZlZjgzNTI5NDc1Y2QxNTVlY2I0NjM1NjgxMjY0YmI3ZTVlNGQ5YTBlN2Q1MTFhODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdjN2ZiNDBlMmUyYjVmMWM0ODY0OGE3ODM5YWFhYTJhYjhkMTg0NjNkY2Y1NzI4ODA0NDlhYTE2MWY1MjFjYTEifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L121-L123",
+          "version": "repo-lines-v1:sha256:9d4d272a71778642515993a59fb5a41d0b379dd808021eb6f3a426e14927a648:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTEwZTcwMDExMDU0NDA3OGIxMWUyOGJiZjFmZDdlYjYyOGM4ZTVmMjI2OTYwZWFmZjJmNDQwYjBlNjdhZTY3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDI3OWI2ODA1MjBlZDUyNmRjYzRjOGFhMzczNTI3NTkwZTI4MTk1ZTQwZmJlNjEwN2UxZTViNDk1YTQ1NzczNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjljOTM0OWJkNDM0ZmU5ZTk5NzU2MTViZTg1OGM5ZTQ3MTMxMjc5YjA1OTNlZWVkZTYxM2M4ZjliNDU4NGMyMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f4778c5fdc0e4e06b9803c96548eac99",
+      "statement": "moveStop and removeStop return new arrays and leave the list unchanged for out-of-range indices.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L106-L119",
+          "version": "repo-lines-v1:sha256:fe27130bdc18da1d3b0f8cbd55adc8f0ef4934a7540d51dfc814feb5b28371bc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI1MjdhNTM4ZGUxYTVlMmFjMzRlNzU5YzhlNDc4MjliNDNkZGVjMTI3YjdlNWIxMzgxOTBiZDZiMTAzOGU2ZjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVjNzI4MzI1Nzg2NTM2YWY0NzJjNDcwNzMzMDI4MDRkZTIzYmYzYTQwOTQ2OGM3OTM4ZmNkMmQ5NjQ1MzVhYjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkNjY5NzUyZWJjY2EzZDAwYmViNTNjZjJiODAzZTg5NDg2NTkxMTE0ZWI3ZTJiZWI4YzFiM2UyZTc0OTFjYjYifQ"
+        },
+        {
+          "resource": "repo://test/stops.test.js#L83-L101",
+          "version": "repo-lines-v1:sha256:f7090cd5c02eb94e7d27fc1c7ba802e69a18041d8cf44c208afcd428c70aef42:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmZTE2OWZlZjJhM2EzOTExOTdmNmVlNjFhMDczNGFlOTM3Mjc1M2IxMzg4ZDI2M2NlYTQ2YjkwM2EyZjg4YzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1OWVmYzZmZmJhYmNlMTNjYzc0ODJlZWUwMDNjYTJiNmJhNWQ0OTc5MTI2YWUxNTViYzVjOTcwMGQ2ZDE3NzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYwNjczMzU0NmRmNDI1NmQ4NzRkOWNmMTEyMTRmN2RkMzFjMWM0OGE0ZDY0YzQzYTBiNDJmNTBiN2IzZjhiYTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFkODU5ZjczZmViODg1ZWRiMmU4NmNkYzEyNDg0YzU4MjQ2NjZhMmRmNmU4YzUzMjU2ZmYxYmYyYmY4N2M1ZjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c0890d3a79ac4090ad2e5854631796c8",
+      "statement": "Stops are kept when the travel mode changes.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L421-L427",
+          "version": "repo-lines-v1:sha256:6d84a7a7b006eacfd10c66b3983cc2020b5679e0e7b43aa5d47a2e557d3b59b3:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDA1ZDRlZWJlMTQwNzQ1YTAxYTE5MmMzY2M3MmFkNDJkMGUxNWQ4NTFjYmM4NDYyOWM4NTA5ZmVhNjg1MTQ1YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjc3OWQxMThkNmUzY2JmNDUwNTM5NzQ4ZGVlN2E0MzA3YWNiZTY0NDZjYmEyOTdmMjc2MGZhNWQwYmJhMWJjMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T15:51:15.781Z"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:99cfb53cf93a1ac15f64ad95896465fef499e917df1ef32121528f994d758969",
+  "claims": [
+    {
+      "id": "claim_7abc8ac28d654c1a8882bca41c4be20b",
+      "statement": "Walking uses the OSRM foot profile at routing.openstreetmap.de/routed-foot and car uses the driving profile at routing.openstreetmap.de/routed-car; unknown modes fall back to walking.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L69-L88",
+          "version": "repo-lines-v1:sha256:de980b09657a89f0a488a594b53ec575c642da9087ba61b45c4b5596429d9f7e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3N2VmZTZjOTlmZTA1OTUwMjM2ZjVkODAyZmQ5N2ZkNzFmMGYxN2Y4MThkYmI0YTUxZWJjMGVmMzU2MjdlNmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4YmJkNTgxMGI3Mzc0MmE4YjUwZDg3ODkwOGU1OWFjMjYwOTNkNTUyZjE2MjMwNTNmMTViMmFkYjZmYjVkYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY4MTVkYjI1MjBhMzI3YWY4OTU5NGVlNWYzYzRiODE5MjUyY2JmNzEyOTY3NWY3MGNmZjA5ZDJmZGNkYmE3MWQifQ"
+        },
+        {
+          "resource": "repo://test/modes.test.js#L52-L54",
+          "version": "repo-lines-v1:sha256:822c98d99904863925938de9cc93b1ddbdd34f2f2da56ce22fd4f38595603e5b:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDU4ZGRiZTZkYjA1NTIzZjlhNzg4NGU0MzdjNzdjNDUzODVhYWVkZDk2Nzc2MGY3ZTZhYjdhZjg2MDA4MzljMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjgwZDJkZDRmMjg5ZDI2ZGM3NTdjMmI2NWEwNmMzOTIyN2E2NzE3YzRiNDhiNWEzOTc5MmM5ZjExZTQxYWVhNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b4b38d49e6ca41168c0d166c74412ee5",
+      "statement": "routeUrl orders coordinates as start, stops in list order, optional via waypoint, destination, each in lng,lat order, and adds alternatives=3 only when alternatives is positive.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L74-L88",
+          "version": "repo-lines-v1:sha256:d00e3ab85030c44fa87c293e0f74b9a815d22304a16555aead462c2ffd0c2643:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViN2FmOTRlZWIzYmM3MzAzMmUwNDc5NDQzZjRlZGM2YzJiNzQ4ZDU3NjQ0ZDY3ZWNiMWY2ZTNhNTQwYTc2ZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA1NTQ4MGQxMGE2ZDU2ZjRiN2IyNDcyYzM2ODY3NmRhYzM2NGE0NDM4NDhkMWMwMzVjZTJiYTk1ZmE3YjliY2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY4MTVkYjI1MjBhMzI3YWY4OTU5NGVlNWYzYzRiODE5MjUyY2JmNzEyOTY3NWY3MGNmZjA5ZDJmZGNkYmE3MWQifQ"
+        },
+        {
+          "resource": "repo://test/stops.test.js#L24-L35",
+          "version": "repo-lines-v1:sha256:0d6bbe80ad4c47fc98e1e716a0174910f8b3b08e321842672b80f9475fe42927:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY3ZmI2NGQ0YmVhYmYzMDkyMmIyZTRlNzJiZTM3YWVjNTdlYmQ5N2FhMGZiYzlhNzg5YjRiNmIzNzE4MGU4ZDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA0MWI2YTc3YjFmZmM0NTE4ZTIyOTRhMGZlZjY0YWFmMDExMDllOWI1OWIwZTdmYzg3ODdmNWQ0MzA0NmJlZDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgxNGM5ZWNlN2YyNmFlZjU5ODE1ZTYwZWE0OTgyMzQwY2Y1MzIyOGQ4NDgyOGQ3NmQwNjAyNTA1ZGNiNTkxODEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkyZGZhYWUxMjMwYTViMmM4ZGIyYzg1YzU2NDhhZWQzZDE3NDc1MDhlZTVhYTExZjEyODc5ZTliZWU5YThiNzEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_555c6e610fbd414c916baefac85c0c46",
+      "statement": "Detour routes through side waypoints are requested only for walking without stops when OSRM returns a single route; car routes and routes with stops never get detours.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L190-L210",
+          "version": "repo-lines-v1:sha256:8a3bbbf470111f188caea39191e729bff83e44ceac741d407c56d970a4fcafef:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxNTJhZjA1NDcwNzQxNTU4OGY0NTUzYTYzNDdmYTdhNWVhNTk3YmNiMWNkMTJjMTRkNzVkMDEwOTAwMTY4YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljYzA2MzQ2M2FiM2UyZDdhZGIzNDEzMjA3ZmI0MWU5YjMyNzk2YWEwYTE0MTBhNGMzMDU0YzM4NjI2NDRkN2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2YzcwZTkzZmY0MmRiOThlMmNjZDkxMWE1MzliNTYyNmNiZjU1OTJlNmViMjhlYmRjYzliNWI2Y2VmZWFlMDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8f03399083fe4042ade6b6b4472a00e5",
+      "statement": "pickRoutes keeps the fastest route plus up to two others that are at most 1.6 times the shortest distance and overlap every kept route by less than 80 percent.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L240-L262",
+          "version": "repo-lines-v1:sha256:67cf923f45404bb51e9f8945c2575597574db1a05b44d4f5678e3e190b0819b4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyMWY4M2FjNTMwYjA2M2ZhMTYzZjhiYjE3M2I1MzM5NDI1YzM1ZTI4OWIyNTJlMWExOGNkZGMwNTE3ODk1ODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkYThjNjNhMDk5ZGI2ZTQ3MzYwYjExYTViYjEzOTE2YTUwYTgyYzZhYWU1OTkyNjZlMzkxMTNkMWYyNDEwNmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyNGFhMDAxNWVmNTcwODc5NTNjYzZkZmM0M2EyMTRmY2E2ZTcyMTk4MjJkMDFmNWY4MGZmOWY1NDk5MDA0YTQifQ"
+        },
+        {
+          "resource": "repo://test/routes.test.js#L212-L220",
+          "version": "repo-lines-v1:sha256:2f9123fb9bd9f2c53dfd010e21aaebb68e334552ed42865db90cfcfe7637d92c:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmQzNWNlZDM5MjFkNGQzYjEwZmE5NzYzNzIwOWI0OTBmMjE3Yjg4NjdkNjg5YmNmZWQxNzExOTAyZmEwZGRmNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjA3YWU2ZDk2N2Y5YjllNDFlOTI5ODc2YjZhNmQ0ZDBiNDcwZWNiOTc0OWE1MmFmYTU2NDEwODcxYWI4MDRkZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzllZmMxNzhlMjFjZWMzYjA3MjJjYmM0ZTNhMjE5M2E5ODQ2ZDliOWIwYWRkZGQ3ZDQ1NWNlZjQ2Y2YwMmFhZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjhmNWI2N2ViNmZhMDJkOGZmNGQ2NjczMTg2YmUxNmQyZmFhNmU4ZTU2NWQzZmUxZWIzN2M4NjNhNWI0OTAzMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_81e8c2a6e9c24fc0bf320b5bce88fce6",
+      "statement": "detourWaypoints places one waypoint on each side of the start-destination line, offset perpendicular from the midpoint by the larger of 150 m and 0.25 times the straight-line distance.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L185-L205",
+          "version": "repo-lines-v1:sha256:45dc01ed752e7ba6dcc2220ae11b4658d0de62ae8d7a878f6ba73368f85e69ed:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4MzAzNzlmOTAzYzRhMThiYmU0ZTYwMTFkZjQ4ZTZiMTFhYThhYTVjMDM0MDg2MWNiZjg4MzNiMTk4ZGVjOWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBmYmU5MjI5ZTBmMTZmNDYyNTE2MWQ5YTFkYTQ0YWIxYzg5NmMxYThmZjEzNTA1ZjI4Y2RhNDc2NDZjMDgxODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwZDcwZDg1M2UzZDg3N2NjZWUyOWYzN2UyNDdkMjVmZGM1NWQyMTllNmYxMGE3ZDBmNDk5YTRkYzhkNDQ1NzEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2ee37f9c807d4557b4beeb4b428b90ae",
+      "statement": "parseRoutes returns an empty list unless the OSRM response code is Ok, and converts GeoJSON lng,lat coordinates to lat,lng paths.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L132-L142",
+          "version": "repo-lines-v1:sha256:4e2c0dea171335fc8e0477c33bc36cdf649780b70918a9036529b538dbabbec2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZmI0NGI1ZWVlMGRjYzhkZDliMWIzYmMzZWIwOGVjYWY4M2E5NDZjOTk1N2FjMWJmYmMyZTJkMjY5YTdjMDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIzNjZlMzk3Y2E2MjdjOTc3ZDM0ZmMyNTYwNDM0MzRhZWJjZmVhYWE4MTQ3ZjhiMzM3ZWZjMmQ2MzdmNWU2MTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQyYmRjMmZlZTM0OTFhMzRjMzA1N2YxMDQ2YTI1ZTlmNjc2MDBmMmEyMmJiMWJkNWQ1MDRlYmQxZjg4ZDI2MDYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T15:51:15.781Z"
+  }
+}

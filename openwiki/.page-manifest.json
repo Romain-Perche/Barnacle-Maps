@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/overview.md": {
+      "pageVersion": "sha256:3ffac595727bcae275998693e86553748202e3519b73062647a1ba2a2c9b782d",
+      "completedBy": "claude-code",
+      "completedRunId": "d80fa492-e940-4812-aab3-e2f0bc7b312b",
+      "gitHead": "895826704f93f333852b1237d0f15cb1519f3f17",
+      "sourceFingerprint": "sha256:893f33bd6c577270a83948bc671af7d683bd9a9ed4cc4ccb7374f5899c8a5334"
+    },
+    "/openwiki/development/spec-driven-workflow.md": {
+      "pageVersion": "sha256:e51a0740ab2ec4e4c0ddebd3b54e0be2f3ade20febc11bcde1769ec883a344de",
+      "completedBy": "claude-code",
+      "completedRunId": "d80fa492-e940-4812-aab3-e2f0bc7b312b",
+      "gitHead": "895826704f93f333852b1237d0f15cb1519f3f17",
+      "sourceFingerprint": "sha256:893f33bd6c577270a83948bc671af7d683bd9a9ed4cc4ccb7374f5899c8a5334"
+    },
+    "/openwiki/features/arrival-time.md": {
+      "pageVersion": "sha256:d03dea112bf63e2fcb6ad151995d26608b51b8e990365f0efaaaf1a43a7a70cc",
+      "completedBy": "claude-code",
+      "completedRunId": "d80fa492-e940-4812-aab3-e2f0bc7b312b",
+      "gitHead": "895826704f93f333852b1237d0f15cb1519f3f17",
+      "sourceFingerprint": "sha256:893f33bd6c577270a83948bc671af7d683bd9a9ed4cc4ccb7374f5899c8a5334"
+    },
+    "/openwiki/features/pleasure.md": {
+      "pageVersion": "sha256:afe16ee1429e401df51b2cf361ad8d0df854d9ceae796d34ffeac7274a3dc0af",
+      "completedBy": "claude-code",
+      "completedRunId": "d80fa492-e940-4812-aab3-e2f0bc7b312b",
+      "gitHead": "895826704f93f333852b1237d0f15cb1519f3f17",
+      "sourceFingerprint": "sha256:893f33bd6c577270a83948bc671af7d683bd9a9ed4cc4ccb7374f5899c8a5334"
+    },
+    "/openwiki/features/routing.md": {
+      "pageVersion": "sha256:99cfb53cf93a1ac15f64ad95896465fef499e917df1ef32121528f994d758969",
+      "completedBy": "claude-code",
+      "completedRunId": "d80fa492-e940-4812-aab3-e2f0bc7b312b",
+      "gitHead": "895826704f93f333852b1237d0f15cb1519f3f17",
+      "sourceFingerprint": "sha256:893f33bd6c577270a83948bc671af7d683bd9a9ed4cc4ccb7374f5899c8a5334"
+    },
+    "/openwiki/features/search.md": {
+      "pageVersion": "sha256:415a9d732f04c4f86ef58b68e7e61d8d514a43983da1ea9613ff07d22d81a20a",
+      "completedBy": "claude-code",
+      "completedRunId": "d80fa492-e940-4812-aab3-e2f0bc7b312b",
+      "gitHead": "895826704f93f333852b1237d0f15cb1519f3f17",
+      "sourceFingerprint": "sha256:893f33bd6c577270a83948bc671af7d683bd9a9ed4cc4ccb7374f5899c8a5334"
+    },
+    "/openwiki/features/stops.md": {
+      "pageVersion": "sha256:f12d1e4938655c9f7c74db9bbcaf7a3e7e61b9e84e1f3a1dbe3e99e763ccdd77",
+      "completedBy": "claude-code",
+      "completedRunId": "d80fa492-e940-4812-aab3-e2f0bc7b312b",
+      "gitHead": "895826704f93f333852b1237d0f15cb1519f3f17",
+      "sourceFingerprint": "sha256:893f33bd6c577270a83948bc671af7d683bd9a9ed4cc4ccb7374f5899c8a5334"
+    },
+    "/openwiki/operations/running-and-external-services.md": {
+      "pageVersion": "sha256:642c5d440c15920c0e76def3f13c1837bd0ba21cd3ede120aa2de85ae5a0a778",
+      "completedBy": "claude-code",
+      "completedRunId": "d80fa492-e940-4812-aab3-e2f0bc7b312b",
+      "gitHead": "895826704f93f333852b1237d0f15cb1519f3f17",
+      "sourceFingerprint": "sha256:893f33bd6c577270a83948bc671af7d683bd9a9ed4cc4ccb7374f5899c8a5334"
+    },
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:acf2a7b146e509194ed97aebd8e7c3b7eebc26ff39c8b160d61280dbdc43e284",
+      "completedBy": "claude-code",
+      "completedRunId": "d80fa492-e940-4812-aab3-e2f0bc7b312b",
+      "gitHead": "895826704f93f333852b1237d0f15cb1519f3f17",
+      "sourceFingerprint": "sha256:893f33bd6c577270a83948bc671af7d683bd9a9ed4cc4ccb7374f5899c8a5334"
+    },
+    "/openwiki/testing/test-suite.md": {
+      "pageVersion": "sha256:1b2f4587d9a482a05de27b11c3ccd6e5d8dbbb2af9530c45f454c08a8438d6cb",
+      "completedBy": "claude-code",
+      "completedRunId": "d80fa492-e940-4812-aab3-e2f0bc7b312b",
+      "gitHead": "895826704f93f333852b1237d0f15cb1519f3f17",
+      "sourceFingerprint": "sha256:893f33bd6c577270a83948bc671af7d683bd9a9ed4cc4ccb7374f5899c8a5334"
+    }
+  }
+}

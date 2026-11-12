@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:642c5d440c15920c0e76def3f13c1837bd0ba21cd3ede120aa2de85ae5a0a778",
+  "claims": [
+    {
+      "id": "claim_92b3a9afdb9e4235b61f691b2a251bbe",
+      "statement": "The app has no build step: npm start serves the repo with python3 -m http.server on port 8000 and npm test runs node --test on the test directory.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    },
+    {
+      "id": "claim_fb85c0bae4c44c38b7c01639d198439b",
+      "statement": "Leaflet JS and CSS are loaded from the unpkg CDN in index.html without Subresource Integrity attributes, and app.js uses the global window.L.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L7-L30",
+          "version": "repo-lines-v1:sha256:3c70c60b44564e7e5387356e82ea180058cbbffebd1d27c73d746209aca19604:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1ZDI3Y2IxNDI0NDkxOTJiMjgyNzVmNmEwMTRjODI5YjY3ZjJiMjcwNjE5YTJhYjBiNGRmMDYyYTMzYWVhY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMGZhMTUwYTM0NThhMzFiM2Y3YjQ5MGQ2ZDhlMzBlZmVmNDk1MmQ2MTkwODM1MTE5NjdmNzRiYTM3ZjE4ZDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlMDdlZTNiZjk0MmRmMjRlZDFkMjFjM2RmYTk2ZDgxODQ4MjFkZDAyY2NjMThmY2YzMTBkNTc5NzE3MjE4NDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyZWQ1NGVkYzQyZmJiYmMzNjk4OGIyYTE4NGI2N2U0OTU2OGJlNDgwNzgzMjUzOGJhOWI3ZWRkYTUzNzQ0ZDgifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L25-L25",
+          "version": "repo-lines-v1:sha256:a97164b4e1d5f828d40949757b1c789ba960cf0342df95d4f29583c9603ea374:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTk3MTY0YjRlMWQ1ZjgyOGQ0MDk0OTc1N2IxYzc4OWJhOTYwY2YwMzQyZGY5NWQ0ZjI5NTgzYzk2MDNlYTM3NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTk3MTY0YjRlMWQ1ZjgyOGQ0MDk0OTc1N2IxYzc4OWJhOTYwY2YwMzQyZGY5NWQ0ZjI5NTgzYzk2MDNlYTM3NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTY0ZmI2MDg0MjQwMmY1MzhiNmRlNGQxZmQxZjczOTE1YWU4NWFiNGE4NDQxMTM3MTAwMjhkYWQwNTg5Zjg4YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWVkNTRjNWUxOWY5ODYyZThmMzc0ODJiMGMxMTQ1MWRiZDZiNzc3MDE4NGZmNmNiNmZlYzUwNGJhYTQyNzg1YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_29670813a79344979bbc386bea7705b4",
+      "statement": "The browser calls OSM tiles at tile.openstreetmap.org, Nominatim for search and routing.openstreetmap.de OSRM servers for walking and car routes.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L26-L33",
+          "version": "repo-lines-v1:sha256:b645c0460b9f6149ef78211da902fd6ebc2f3b0eebfa6c007a1c8d3b9713b2b3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmNhZTZhZDM1YjViNzgzMDc2NWQ3MmUwMjA4ODQ0MWNkZTg3NjJkNjIxY2QxNTgyMzQ3ODY5YmRhYTE0MjI5ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODhiMzg0YzQyZjdjODMzZjc0NmU4NWJmMGE2ZTM1M2Y0NGQ4MTVjZTE2MTIxODNjODUxZGRkMjFhNjBiMWU1OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTJkZmEwYTAwYTI1M2E5YTVjYmIwM2ZkZjdlODU1NzMyNjBlNDM5NzU0MWMwZTk0NzNmOTFiOTlkZjY1OGIwYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDNlMmM0MWMyMTBjNDJiMTA3Zjk5ZjYyMGUyYjA1NGQ3ZTg5OTVhM2FhZGJjZGI1NmQ1MDc4NzY4ZmY5OGFjMiJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L53-L72",
+          "version": "repo-lines-v1:sha256:c4ccfa551b136ce46e54d61a19ccfc635ed2e9562f98ed485f3b701f5609ecb3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NjFhZTI5YTMwZGIwNmFmOTI2Mzg1NTkxYTllOTdkMTM0OTVhYTIxMTg2ZWJiNzBjMTk2NDRlZjc2MjY4ZDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZhYmVmODcyODJiMWQyNjhlMTM1NzI5YmUxZmFlMTkyMDcxOTI3ODE0OTc3MWJmNjU5N2IyNDhmNmM1ZWRlNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxYzIxMGI5OWJmNDdjZWM4NzI0NjQzOTVkY2UxZGU3NTM1MzRjYjNmNTRhZDNmMmJmNWMyMWM3NjZmNDZlYmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2cf422c6fe764beea4347bb0529103ac",
+      "statement": "When geolocation is denied or unsupported the status line tells the user to allow location access or that geolocation is unsupported.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L91-L99",
+          "version": "repo-lines-v1:sha256:251f09f98f5b0f9454dcf2aad0220ca41af153f03486de48c82c57dbba86e548:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVlN2NkOTRmODRmNGE1NGVhNDBhZjVkNGQyZDVlMzYzMTA3NGFmMjc5ZjM2NDYxMzc1NzcwZTYwMzU3MzEwOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDk0ZWZmNmNkZjBjZjI0MWQ5MjA3MDRkYTQyMmUxZmY0ZDk2ODU1ZjI1M2NiZDBjYTNjYTBjZWZlNmNiMTM4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTQxNjIyZTE1YzRkMDVlM2Q0ZmU3NTFiYjlmMmYwMmU3ODNkOThkMmU5YjMxYmJiMjkwNzgxZGFhZjU0Yjk5MiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_730b838c80394a9496982f2b9f9e92e9",
+      "statement": "The repository has no lockfile, so the SBOM lists no packages.",
+      "evidence": [
+        {
+          "resource": "repo://sbom/SBOM.md",
+          "version": "repo-file-v1:sha256:7578adc9cfb95b9d5ac9a60e5ee1fcf11f75f772126a2dff24d6597edb8e5ea1"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T15:51:15.781Z"
+  }
+}

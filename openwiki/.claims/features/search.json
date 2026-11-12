@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:415a9d732f04c4f86ef58b68e7e61d8d514a43983da1ea9613ff07d22d81a20a",
+  "claims": [
+    {
+      "id": "claim_6dd4e93cfea348ada24c4ea6da55273f",
+      "statement": "Search requests go to Nominatim with format jsonv2 and a limit of 5 results; results without a name or with non-finite coordinates are dropped.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L53-L67",
+          "version": "repo-lines-v1:sha256:c144d401b6bb1bf4d22658ddbdf5d846c141699eff63659f0b2e33ef4e80649c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NjFhZTI5YTMwZGIwNmFmOTI2Mzg1NTkxYTllOTdkMTM0OTVhYTIxMTg2ZWJiNzBjMTk2NDRlZjc2MjY4ZDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZhYmVmODcyODJiMWQyNjhlMTM1NzI5YmUxZmFlMTkyMDcxOTI3ODE0OTc3MWJmNjU5N2IyNDhmNmM1ZWRlNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM1NzRiNWM0MmQ5NmZmOTk5YmM4ZWY5OTZiZDE3OGJkNGQ0OWI5YjUyZDg3ZjkwNzM5N2RkNzFjODA2ZGI4YjcifQ"
+        },
+        {
+          "resource": "repo://test/geo.test.js#L36-L48",
+          "version": "repo-lines-v1:sha256:adb4780742c98470af71b09292311dc7b08d8a8db24a980ccc499b6fd67f884d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhOGY5YWU3ZDBjNDIzMjhlOTQxMTA3NWY4NzcxYzJiNDExN2RhODlhZDE5NGFjMGYwOTMzYTVhMDdjNWQxY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY4Mzg2NTUxYzBhZjU1NGQ3ZmJjYmY4NTFkZWEzZmRlMTI0MzcyMDFjZWFiZjJlYzZiOWIzZGY2MzZjN2YyZWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkxYTVlZDdmODE2MTMxOWRiOThiYzc0N2Q3NmI3YmU5N2JjYzJiYTViNmUxOTUyNTE3Y2VhNmU5Nzg5NWE1YTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a0ba068c7534d39b645e95970a00ee8",
+      "statement": "While typing, suggestions are fetched only when the trimmed query has at least 3 characters, debounced by 500 ms to respect Nominatim's rate limit.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L107-L109",
+          "version": "repo-lines-v1:sha256:60515d131846ffcffc81a67767e704a5bc3c4f673ee9888f1832be0fe365d7f4:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU0MzY3MTI2YWE3ZjZlODUxZDliYzU0NWIzOGU3ODVmNDhhZGY1ZjFiOTBlYTRmODY3MmZlZDhlNjNkZmFlNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2E2NmUzNGNkMTRmMTQ2NDdjMjU1N2NhMzE4NzIzZGY3NGQyYzg4MTc0YjE3NWZkOTM1MzNjOWU1YjBhYzU1NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTEyNGVmZTQ0MmUzMmQ1MDg3MGZjNGUyYjMxYTZmZGNkZmUwNWUyOGZiNWFiMGM5MzFiZmYxY2MwOGRiMjA4MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmI4ZDIxZTE2MzcwMTg5MmFiYzJmODBhYjgyNjZlYWVjNGE1MmQyMDc4ZWIyZWQ3NWIwMWVlYjc1ODkyYmMwOSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L153-L164",
+          "version": "repo-lines-v1:sha256:dbc0c2378da9ff398acecb5e3d69927b76026baec05fabfe83ee339911ab4ab1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzZjNiY2I2YzA0ZDAzMTE3OGM1ZGY3ZWMzYzE0ODhhMDkxZDgyMzdmNGY0OTYyYTI5MjE5MjY3MWZkNDRkMGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0ZDA1YWQ3MTY3YzMxNzdiMWZkY2I4YmExN2MzNjVhMDA2NmNlNDMxNDRhMjFiNjE1MDY0OGFkZTg1N2EwMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjZDYyNmZkMTM3YmJmNzQxMzJkYmFjZTRkMmFkZWY4YzFjYzY4YzM0NjNlY2YwY2NjMjM0Mjg2Yjg2ZGU2YjYifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L50-L51",
+          "version": "repo-lines-v1:sha256:218b8014ecffe55a4a21acc8ac713e37b6010583e8a20eb15d933b26489637fa:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjk1NGU2NWY4ZmY4ZDkzMmU2MTJiMGQ0ZThlOGU2OTY5NWZiMmU3ZGI4Y2IzNDc3MGQ1MDA3MTc4NWNjNjFhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlMDJiYTcxNjIzZGE1NmViMDNmNDFiZmFmOTA4MDI2ZDIxMjhiOTM3OGZlYWUxYWU1NTAyMjIwMDU5ZDE3MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWI0M2VjMjI5NjQ5NjVmZWI2Mjc4MTYzMTdiY2U3OTk0MjE3NWQ5YmE0ZmQxMGU0ZTQ3YTNlOGIxNTU2YjIzOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDYyNWUyNWE2NTUzMGIxY2IxYzQwZjE3YzliZTE4Nzg2NTFjNGIyNTJiYmY1N2U3OGRhNzdlYjBlMDI4YjAwOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_eba9f9560b5342d2943f2a3a90a8c191",
+      "statement": "Each search result row offers a button to route to the place and an 'Add as stop' button that clears the results and input and adds the place as a stop.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L120-L140",
+          "version": "repo-lines-v1:sha256:52fdac0ba3fc82a8c3b2b9432d5bf07d511dbcc3f1ca01cb3a7d557adc60f513:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0YmEzNjVmZmIwYzk5NmE1ODEwYzYyZjE4NDYzOGQzZmM4Njc4NGY4Zjc4ZjgyZDNhYThjZjZlZWVlY2YzODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1ZmY3NTRjY2Q5N2YzZjY5ODA5YzJiYzZmY2Q4YjRjODViMDQyMjIxZjIxNWY2ZGNjNzJlODk5NjBiOGY5OTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI2YmUzYWIxMTEzZTkxZjI1OTRmOTZlYmY3YjI3MmNlMWY2YTQyOTdkODI0Y2FhMTRjNDRjNGJlZjg1ODc4MDEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b71ea17ee2d444138a08d6e45c7dfc13",
+      "statement": "A search response is ignored if searchSeq has changed, and searchSeq is bumped when a destination is chosen, when a result is added as a stop, or when the query becomes too short.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L111-L144",
+          "version": "repo-lines-v1:sha256:3f6573c4212dac1d11c3d328d9ea1f5f5061eda433ec570bcdfe7f815b6753a2:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEyNTVlNmNkYTg4ZWUxNDQxNDZhZmRiZDg0ZDdiMTRmMzIyYjVlNGUzMDkzZjY3MjQ0NTI3ODkwN2MzZGYwMDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzODc4NjMxMmUyMTdkZDA4YjczYTk4NmQyOWQzZmRjNzRiZDIwOGI5YzI1ZDk1OTgxNzVkYzRkZjQ4NGUxNjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxNmYzMTM0ZmQ5MjEwYmM3Zjk5ZjdjMDQ5NWUyZGQ2NjEyYjJhN2M3ZjlmY2ViN2E3OTU3ZmJjMWI4M2FjNmMifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L157-L159",
+          "version": "repo-lines-v1:sha256:268e0545bbeb4146bb88d93384447ed5c83230b91e75ecee0d7f1b88ee2e566e:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzY3MmY0NDI5MjI3NjFkZTI1MjZmMGNiNThhZTY4YjIxYWY0YmYxMzk0MjZiMWE2MjNhOTdjNTExOTA5OGM4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGMzMmQzMTUxZGQ0YWE1MmZhYmNjMzQwMWNkMWJhZDc0ZDkwZDg0NjQzYzNkZGQ1OTUxNWQ4Y2E2Y2I5OTI5NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGY0MTdiZjY1MWYyYTM2OTYzOWIyNzVmMmYwMjhmZWQ0M2Y3NDFkZDQxYzM4YjNlZTcxY2Q3NzViNDgzYzY5NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2QxOWI2ODBkMDZkOWZlMzg0MWE4ZGVlMWViM2Y1ZTg3ZmQzNmNkY2E3NjNjZDkxN2NjMzY1ZjhlMTI0NWU3OCJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L297-L302",
+          "version": "repo-lines-v1:sha256:3db212e19b3fae3e996f649dce197bb6092aff28c91e0ff5923d621f2d99c062:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzA0ODg3NTA1MjczZTliNzEyOTgxMTQ5OGM3ODljMDAwNDM0MzVkM2IwMzMyZWRmZWU4NDU4NGI2ZTM2YTgzNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2ZmZDdiZDg5MmRhZGY4NmViZDFmY2NkMjgzMDY4MTBmOTQyYjc4ZGYxNDZiNjA2OGUzNzgwNWFiMGI4M2Y0MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI1ODBlOTY0ZjgzYTQ3M2Y0M2Q0NDM4NDYyOTQ5ZDY4YjU2MDBmZGE3ODdmMTYzNzQ1ZDAwZGU4OWNiZjM2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWE4ZjAyOTM4ZGI1ODE3MzIzNjBjN2M5MWE0YTk3NDVkZGJiMTllZjRlNzk0NDY2ZmY4ZTUwODFhYmQ4NjBhZiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T15:51:15.781Z"
+  }
+}

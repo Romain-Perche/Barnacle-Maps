@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:1b2f4587d9a482a05de27b11c3ccd6e5d8dbbb2af9530c45f454c08a8438d6cb",
+  "claims": [
+    {
+      "id": "claim_9cec4eea3f80448192571ff860bb4f3a",
+      "statement": "npm test runs Node's built-in test runner over the test directory with no test dependencies.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    },
+    {
+      "id": "claim_06786098bfc54a2187ff95e4949766ba",
+      "statement": "The app harness runs the real src/app.js in Node with a fake DOM, fake Leaflet, fake geolocation and a scripted fetch, importing the module with a unique instance query so each test gets fresh state.",
+      "evidence": [
+        {
+          "resource": "repo://test/support/app-harness.js#L1-L3",
+          "version": "repo-lines-v1:sha256:7c9701f096c0d7523cb90418e942b2aa41b2d6e1f1709ddcee62d8720fcc0c7c:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTNmNjdjYmEyNjQ2ZDUxNTg1OTRjNTE5NzczODVlM2U2ZjU3ZDQ2Yzg1YmE2NDE4NTBmZmE2YTk3Mzc0ZDdlMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTQzM2JhZDFiMmI2N2E1MzIxODY0M2U2NzEwNzdkM2VkMmFiNTkwZGNlYWZmM2FkNGEyYzU3ZGEyNjczMjA3NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTRjMDA4NmVhN2RjYjg3ZDM1MDE1OGMxYTM3Y2I3ZGVmNTY0NDA5MDdiMDc1MTY2NzAzYmEzYzMyM2JlMzUyNiJ9"
+        },
+        {
+          "resource": "repo://test/support/app-harness.js#L238-L302",
+          "version": "repo-lines-v1:sha256:c81c9b28ab3076dd272819da4200ea2033f11db89091c2d26d42fb0d8ebaa0b8:eyJzZWxlY3RlZExpbmVDb3VudCI6NjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2MzliNjhiYjBlZjFmYzFkNjUxZmQ2OGZlODhjMDRkMDgyOTA1OWU3NDYxMmY0ODViZjFlYWM5NDEzYTVkMzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2M2I3YWUzYjNkNjEzYTEwOTZlYmQ0YmUzZDRlMzg2OGYzODVjOWM4ZTgwMTM5NWIyMDljMTdiNzNjYjg3ODMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlYmUxOGRiNWFlMmY0NDI3YzY0ZTVjZmVjOGNjMTViYjcxN2Q4MDdlMjc4NTU5OWUyMzhjZjJjYWJlMTc3NDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3OWVhMDA3N2QzMDJjMDEwYzBhYjFiMDk4MmZkNzI1OTRlOTVhOTk4MDc3NGQ4OGRiODNhYTQzMjdjMjcwNmUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_17602f1f759f4eab99d37b45d6ff89c9",
+      "statement": "In the harness, OSRM and Nominatim requests are answered by scripted handlers and every other request, such as map tiles, returns status 503 so pleasure becomes unavailable.",
+      "evidence": [
+        {
+          "resource": "repo://test/support/app-harness.js#L286-L299",
+          "version": "repo-lines-v1:sha256:047383c3fcb1c3655135417d3d8b3ca6ec1d91981c96536a2bd0795998e21bc0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk2MTc1YmE4YjZmM2VjZDkxNzE4MWNiYTZiMzVmYzgyODAzNjdiNjdlMzM3MjNhYzkxNmRjY2FhZDBjNjYwZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyYTJjYjI1YTEyMmI0NDIyMWE2MjM0ZWM2NjBhN2I1ZmI3ZjliZGU3YjNiOWUyYjNjNTU5YTBkOTZmYWM3MzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNhYjgwOTEzZDQ0MWU3ZDdmMTM2NjVjZjIwMThkYWU5OThhY2VkZjNkYTRmZDBkMDBhNzYyODU3MWMwMjQzOTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU1MGMyMjVkYWE4Y2FiZmVlNmFmZTk3MzcyM2MzMDIxNWM1ODlkNmU4MjM0MTlhYTQwYmRkMzg5ODZhZTIyMzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0f2b99e196af4143b84cfadea5b8d3ee",
+      "statement": "Arrival panel tests control the clock by mocking Date with node:test timers.",
+      "evidence": [
+        {
+          "resource": "repo://test/arrival-panel.test.js#L1-L14",
+          "version": "repo-lines-v1:sha256:93aa1ce5eebf65c78259873084442ff1b46b6d6c9e5a5e4e40748d9fcbcda51e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxZGIwMjMzZGZjMWQyZGVlOTQwZmE4YTMxNjBlZGM1NzNlNGVmYWQ3MWM4MzE2MjEwYzE3ZWI0NmQ4YjBlZGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxY2FiODk1ZjBmM2RiYTI4NWFjN2NkNTdlOGMwNTgyYjhiNzgxODgzM2Q2MWMxZjcxYzJmZGIzNjUwY2VhYTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ce20d041bf8a455dbb03337e0ef21942",
+      "statement": "The AI scenarios in tests/ai run the served app in headless Playwright Chromium with fixed geolocation, Europe/Paris time zone, a fixed clock and stubbed network routes.",
+      "evidence": [
+        {
+          "resource": "repo://tests/ai/us1-arrival-time.md#L4-L13",
+          "version": "repo-lines-v1:sha256:3e812d69a231d8838e7fadf1fba2b70ebd2b462fee2cca1dc16bb612fc51babb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNmU2MjY4YWZkMWIzODc1ZjIyN2ZlN2E1ZDJiNzlhZGU0MGU3NTFhMWU1YmU2ZDkxNjk5NjQ1YmMzNjUyMDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMzAyNGVmYWExYjRjNGUzMDY5ZGZhNDE5NWZhMGE0ZmFkZDY3YjlhOWM4MTMxM2YzOTA1Y2M0NTFjMDIxNDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc5OWZiM2RmOWY5NGNjOWE2YmFhYzU4OWNkYWVkOTVkNDg3NTM2ODdiYTZiMjEwNzk0ODQ2YzVhZjA3OGY5ZjkifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T15:51:15.781Z"
+  }
+}

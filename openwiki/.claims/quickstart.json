@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:acf2a7b146e509194ed97aebd8e7c3b7eebc26ff39c8b160d61280dbdc43e284",
+  "claims": [
+    {
+      "id": "claim_9d22b4ab2ba4433b899e47b779aeea9e",
+      "statement": "Barnacle Maps shows a map with live position, place search and up to 3 routes to the destination, each with distance, duration and arrival time, with walk and car modes, stops and a walking-only pleasure indicator.",
+      "evidence": [
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:5a0ef30015c8918759810658e3f129fa5a36967f01db26d9929ee2c1e01a8ff8"
+        }
+      ]
+    },
+    {
+      "id": "claim_d60fd8de59094ff6a6800dd0cb156bd8",
+      "statement": "The page shell in index.html loads Leaflet and the src/app.js module, and app.js imports its pure helpers from src/geo.js.",
+      "evidence": [
+        {
+          "resource": "repo://index.html",
+          "version": "repo-file-v1:sha256:e5ed6ab5a488ab1277d5dc2f9d23610c06e84a60712468469aa58085831fe4cd"
+        },
+        {
+          "resource": "repo://src/app.js#L1-L23",
+          "version": "repo-lines-v1:sha256:d903af5aa2ac042a3e93cd059aad314a2dc0f69ba11c98bca7e3adaaabb86396:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4MjAwOTY0YTk3ODYzNTUyMmIyYWIwOTBjNjUwNjVkOGVmOGU4NWM0NzMwYmIyZWIwNDYwZDM0YzY3N2RkYmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxZWIzMzBiNzUzNTg5MTQyZjRmZTZlODJlNjlmZDI2Y2I1ZjE2MDNmZWZhYWM5MTc2YmQ0MjFlMWRhM2M4M2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU0Nzc1MjJmZDM2MWZkNGE2ZGEwODJjMmIxNWE5YjRmNjIzMGYzN2ZiZTkyZDUwNTU5MTUzY2Q2NDFiMzRjZjkifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T15:51:15.781Z"
+  }
+}

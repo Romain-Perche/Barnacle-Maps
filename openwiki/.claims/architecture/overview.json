@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:3ffac595727bcae275998693e86553748202e3519b73062647a1ba2a2c9b782d",
+  "claims": [
+    {
+      "id": "claim_aa2da181e9644f11b1647496757a1f1f",
+      "statement": "src/geo.js contains only pure helpers with no DOM access and no fetch, so it can be unit tested in Node; src/app.js imports them and owns DOM, map and network work.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L1-L23",
+          "version": "repo-lines-v1:sha256:d903af5aa2ac042a3e93cd059aad314a2dc0f69ba11c98bca7e3adaaabb86396:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4MjAwOTY0YTk3ODYzNTUyMmIyYWIwOTBjNjUwNjVkOGVmOGU4NWM0NzMwYmIyZWIwNDYwZDM0YzY3N2RkYmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxZWIzMzBiNzUzNTg5MTQyZjRmZTZlODJlNjlmZDI2Y2I1ZjE2MDNmZWZhYWM5MTc2YmQ0MjFlMWRhM2M4M2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU0Nzc1MjJmZDM2MWZkNGE2ZGEwODJjMmIxNWE5YjRmNjIzMGYzN2ZiZTkyZDUwNTU5MTUzY2Q2NDFiMzRjZjkifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L1-L4",
+          "version": "repo-lines-v1:sha256:bc565fd4bb262f158441143fc8e2454d3e2b1582c604a3c42858334d1bd86ef7:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDQ0MWQxYzM2ZDU4MTIwZGM0MjI5YWE3NjZhNTU4YWM5ZGJjY2U1Yjg2NTBiMzM5NGY2MTdmZTMxN2U1ZDUwNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGU3MWE0NjZjMDFjMWNjM2IzM2FiNGJiZmEyYWU1OTU2NWEwYmNmMTAwNmRkNDExOGUyMDZkZWVjMTJjMjg2ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGEwY2Y0YzBjMGM2YzRkZWIxN2E4NmUwNTcxZGIyODhkMjY3ZGUzZjcwNjljMmZjMGI2NDQ4NDYyYzNhNGZmZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_99f02d1cb858480980424cc75563f187",
+      "statement": "updateRoutes snapshots mode, destination and a copy of the stops, increments routeSeq, aborts pleasure scoring and clears drawn routes before computing new ones.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L309-L317",
+          "version": "repo-lines-v1:sha256:fa33c6f19fdbf41e1611d1aeae842db21da4defaaf908352cbe2319446db0a80:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjFjZDdiMGU3MDhiZDI2OGU3MzI5NWQyOGNlYzRlNzUyYzgyM2VlNmQ3NTVkZmUwODkyZmQyN2I0ZjFlNmEyNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2Q4YmQ2OWQ3ZmIyNzYyOTFiOGZmN2E2MWU4ZmY2N2NmYWNmNzllYjNhODM0NGEyMWY5OTAyYmRhMDdjOWFjZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmYzODYyYzkxODU2MTA5NGQyZDQyMzBkYWE5MTczZTJiYzhlMTUxNGJhNjM2NTI2ZGQ1NTM3ZDM5NTI1NWYyOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmY1ZGU5YTQ3YTA3MmUwZjY2NjNjOTQxZDU5ZjhjNzMxYzM4MTJiNzkwNzk4ZWQwMjU4NjM2ZTUxMDI4MDljYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_3d49b651e30a4c1dba6284052e9b9cfe",
+      "statement": "When no position is known yet, updateRoutes sets pendingRoute and the first subsequent position fix triggers the route computation.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L321-L325",
+          "version": "repo-lines-v1:sha256:501cb145b148fde82a637b30480ff9a0ce934a19dcd836dfead0c9245913ce4c:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTk1YjQ3YTk2NzYyM2E0MGFhMGViMDA3ZWI3MmZhMjkxZWYyM2MzYjA1NWRkOGJmYTEwM2ExNGE0NmVjYTU3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmY1ZGU5YTQ3YTA3MmUwZjY2NjNjOTQxZDU5ZjhjNzMxYzM4MTJiNzkwNzk4ZWQwMjU4NjM2ZTUxMDI4MDljYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzAwY2JhZjRjMjIyNDlmZmRjYzMxNDY1MWI0Njg3NWIzMWRkMWQ2MmIzYzU3NjljZDFjYzAxNTdjM2RiNzk5ZSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L88-L88",
+          "version": "repo-lines-v1:sha256:182ae5a177da9e6ba4ca251fd2e3a1a1a0131f3513db919f5dcff96b78ccaf28:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTgyYWU1YTE3N2RhOWU2YmE0Y2EyNTFmZDJlM2ExYTFhMDEzMWYzNTEzZGI5MTlmNWRjZmY5NmI3OGNjYWYyOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTgyYWU1YTE3N2RhOWU2YmE0Y2EyNTFmZDJlM2ExYTFhMDEzMWYzNTEzZGI5MTlmNWRjZmY5NmI3OGNjYWYyOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTg5NmU1NmI4Yzc3YmU2M2QzYmE5MjliYWRhNTNlNzgyYmFiZGM4OGZjMmU1MjhiM2IzYWQ5MmM2YjUzODU3ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzNkYTE3NDAwZTJiZGUxNmZhNjI4ZDgxNDAwZGJmOTlhNDgwZDg1YWIyYWU3MTBmZDcyMGJkNzM1Nzg0NDhmYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_75d6822ab49f4158b4d25b91f31e0dbf",
+      "statement": "Route results are discarded if routeSeq changed while they were being fetched, and search results are discarded if searchSeq changed.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L112-L116",
+          "version": "repo-lines-v1:sha256:4df827e46c399fe59436004d6a275208df6ff908b4e02e6ca6d10f518a56c37c:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWJjZmYyZjQ1MWU0NmY1ODQ3ZWIxYmQyYzFhMDcyOTIyMDdiOGViYzhmMjI4YWNjNDhkZjljOTBkYTBmMzU2MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODRlNDgyOWMwNTkyYTA4MjI5MTJkMGI0OWJhYjRjM2VkNGY4YjMzODE3MWVmYzRiODYzMWViYzljODEzOThiZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGIwNjJhYTkxZDhmYWVlMGU5Y2NjZTBjZDdjZGNkNzBiMWUxMWM2MDMzZjIyMzA0NTgwMTUzNWU4YjljZjQ5OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTVmZjc1NGNjZDk3ZjNmNjk4MDljMmJjNmZjZDhiNGM4NWIwNDIyMjFmMjE1ZjZkY2M3MmU4OTk2MGI4Zjk5NCJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L335-L335",
+          "version": "repo-lines-v1:sha256:790d9f3ab6bc24e155ad0af1ce3fc683e8fdf88e604b7dbaa44680028c0b7d92:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzkwZDlmM2FiNmJjMjRlMTU1YWQwYWYxY2UzZmM2ODNlOGZkZjg4ZTYwNGI3ZGJhYTQ0NjgwMDI4YzBiN2Q5MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzkwZDlmM2FiNmJjMjRlMTU1YWQwYWYxY2UzZmM2ODNlOGZkZjg4ZTYwNGI3ZGJhYTQ0NjgwMDI4YzBiN2Q5MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjUwZGY1ZDRiNDkwNTIzMDhkOTZmMWNhNDhmNjMwNjY3Zjc5YjZhNjc3YTE4MzQwYjFlMzdlYzJmNTY3MmUzMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjA2ZDA4ZmMwZTcwYzUxMGJkYmQ2MWNlZDQ5ODcwYmI5ZWEyNzRjNGJiZDhhMDU0OGUwZTg4MTZkZGE3YzQwMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_7255e76a130e4720b9c49f9fe4b29bdb",
+      "statement": "Clicking a route polyline selects it without opening the map-click add-stop popup because the polyline disables mouse-event bubbling and stops propagation.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L214-L236",
+          "version": "repo-lines-v1:sha256:5f7d899d2c54ec039cc91bd096386b47d1083a438309a0c1b35f17a711c56f5e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExMWJjYWIzNzRhM2M5OTA3ZmZjMTVmNDNhOTFhYzk2NzNhNzlhYzA0NjRiYzIyZWQ4NDE5NmMyZWU4MzQwMmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyZDExY2FmNDNlOTdlZjM2OWU2YmVlZDFhMjY4YmQwNTgzOGYyOWI5ZGQyNTRiZjY5YmE2NDg4NDE0NzIzNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2YzcwZTkzZmY0MmRiOThlMmNjZDkxMWE1MzliNTYyNmNiZjU1OTJlNmViMjhlYmRjYzliNWI2Y2VmZWFlMDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ4YTlhYTVkOTdlYTY1ZmNiMzk0ZjJjYzY4MTU1YTYzOWY2Y2YyZmZlYzhhZmUwNjI0YjdmOGM0NTcwZDk5ODQifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T15:51:15.781Z"
+  }
+}

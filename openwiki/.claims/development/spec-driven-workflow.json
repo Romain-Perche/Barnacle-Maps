@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e51a0740ab2ec4e4c0ddebd3b54e0be2f3ade20febc11bcde1769ec883a344de",
+  "claims": [
+    {
+      "id": "claim_5be352537c704130a7359a99bec409f8",
+      "statement": "The Spec Kit workflow runs specify, plan, tasks and implement with review gates after specify and plan.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/workflows/speckit/workflow.yml#L37-L70",
+          "version": "repo-lines-v1:sha256:c42b41ddfbb0866e56976120259c376ab600074647ac5fef2c6e8a01f2acd511:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQwMWM4NTc0MTcwNTk0MzM1MDczMjBjN2Q2ZjhiZjZmODM5NmNhYmE5YmUxNzFiYjFiNDE5ZGViNDNkY2I3Y2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmYzhiYzA1NGJmNzQxZDU0YmY0ODFjZmZkMjk1NmFmYThjNzUzOTllNWEzMGRhNGE2MWE0NzdkNDM2N2U1MDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJiMjU2ZGY4OGI5NjYyYjg1MTM3ODUyNzE5ODc1OGY5NGI0NmI1NTg4N2NiMmZhYzQ3YTZjN2RmYWM3Yjk1ZmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM1ZDc5YTYwZDBlYjk3NjVjMDc5NGFhNGUzZjUyM2YzNDIxNGVlZjhlNjAyOTNhYzYyMjY2MWE2N2FjNTQ5YTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9ca4a1cfcaed4902888611a9e6db7f17",
+      "statement": "The write-tests gate writes failing deterministic tests and AI test scenarios before implementation, records them in tasks.md, never waits for human approval, and commits as gate(write-tests): tests.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/write-tests/SKILL.md#L10-L40",
+          "version": "repo-lines-v1:sha256:ccc1216690cc72d28df35fbb965b4a0f99b65a8fe5bef21ad873cee44719c456:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFmMTJlOGEyZGI4M2U2MGFhODY4OTI3MzJiMmViYTQ2NmFhMjk2NWU1YjIwOWEyZWUxMWQ1OThiNzhkOWFmYzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdmZjNhZWJiNzU2ZWUxYzNkNDg4NmE4MDg5YjllOTUxZDM2MGE0ODgwOGE5MjdjOGY4OTRjNTBhZjBlYzViZjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFmZGYyM2E3OWZhMjhlMjA2Y2RhNTkwNWI3Mzg4N2Q0NjE5NzJhNjk0ZGEwNTdhZTU1YzBlZGFkYjc5ODgwZjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6cfaf0173c124a8e9653bac75447768c",
+      "statement": "The project constitution is still the unfilled Spec Kit template with placeholder principles.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/memory/constitution.md",
+          "version": "repo-file-v1:sha256:ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3"
+        }
+      ]
+    },
+    {
+      "id": "claim_c6798d5a33b4470697380829a6db5a85",
+      "statement": "The git extension hooks Spec Kit commands, creating a feature branch before specify.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/extensions.yml#L1-L22",
+          "version": "repo-lines-v1:sha256:6b805bf186f2d575bd3629b5d70fc7ee44e62994beb936ccac914c4461ab610f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2NzgzOTAzNTY4MTE5NThmMTM1M2M5NGNmMDQ1YzMzMGIzNDYwYzM0NWE0N2QzNDI4YzczYjg2YTE4N2U0ZjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3Y2NiZDIyYjkyMGE2ZDI2ZjRmZWYyNDBiNDI2MzI0NjU5NDFhZWQ2OWJmMDY0MDI5NjRmMTRlYzljNzZlMGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI2MWY0NThjOTYxMjJhYjlhZjhjOTIyOTI5ZDUxZTJlMjdlZTEwOTc0MzQwNDZiNGI0YzZkNjYwZGY4MjgyNzcifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T15:51:15.781Z"
+  }
+}
