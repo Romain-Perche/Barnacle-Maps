@@ -8,7 +8,7 @@
 ## Automated
 
 ```bash
-npm test                          # all suites, including test/arrival.test.js
+npm test                          # all suites, including test/arrival.test.js and test/route-entry.test.js
 TZ=Europe/Paris npm test          # results must not depend on time zone
 TZ=America/New_York npm test
 ```

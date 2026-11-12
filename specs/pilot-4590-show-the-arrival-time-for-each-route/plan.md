@@ -25,7 +25,7 @@ new DOM structure, no CSS change, no timers.
 
 **Storage**: N/A
 
-**Testing**: `node --test test/` (built-in `node:test` + `node:assert/strict`); new file `test/arrival.test.js`
+**Testing**: `node --test test/` (built-in `node:test` + `node:assert/strict`); new files `test/arrival.test.js` (helper contracts) and `test/route-entry.test.js` (source checks of the `src/app.js` wiring, the README line and helper purity); AI scenarios for the running app in `tests/ai/`. These test files were written before implementation (write-tests gate) and are already committed: implementation extends them only if a case is missing, never recreates them
 
 **Target Platform**: Modern browsers (served statically via `python3 -m http.server`)
 
@@ -35,7 +35,7 @@ new DOM structure, no CSS change, no timers.
 
 **Constraints**: No dependencies, no build step; helpers in `src/geo.js` must stay DOM-free and fetch-free; the device clock/time zone is the source of truth
 
-**Scale/Scope**: ~3 small exported functions in `src/geo.js`, a few lines changed in `src/app.js`, one test file, one README line
+**Scale/Scope**: ~4 small exported functions in `src/geo.js` (`durationMinutes` + 3 arrival helpers), a few lines changed in `src/app.js`, two test files and three AI scenario files (already written), one README line
 
 ## Constitution Check
 
@@ -48,7 +48,7 @@ defines no enforceable gates. The plan is checked against the project's establis
 | Convention | Status |
 |------------|--------|
 | No build step, no dependencies | PASS: uses `Date` only |
-| Pure logic in `src/geo.js` (no DOM, no fetch), unit tested in Node | PASS: helpers take `departure` as an argument; tested in `test/arrival.test.js` |
+| Pure logic in `src/geo.js` (no DOM, no fetch), unit tested in Node | PASS: helpers take `departure` as an argument; tested in `test/arrival.test.js`, purity checked in `test/route-entry.test.js` |
 | Superseded requests must not draw (`routeSeq` guard) | PASS: departure captured after the existing `seq !== routeSeq` check |
 | Existing panel info and accessibility unchanged (FR-007/FR-008) | PASS: text appended to the existing title `<span>` inside the route `<button>`, which is already its accessible name |
 | Simplicity / YAGNI | PASS: no live ticking clock (explicitly out of scope), no locale formatting |
@@ -78,7 +78,13 @@ src/
 ├── geo.js        # + arrivalTime(), formatClock(), formatArrival() (pure)
 └── app.js        # updateRoutes(): capture departure; drawRoutes(): append ", arrive …"
 test/
-└── arrival.test.js   # new: unit tests for the helpers + source check of app.js wiring
+├── arrival.test.js       # new (committed): contract tests for durationMinutes, formatDuration (invalid input),
+│                         #   arrivalTime, formatClock, formatArrival; properties; DST cases (TZ=Europe/Paris)
+└── route-entry.test.js   # new (committed): source checks of app.js wiring, status line, README line, geo.js purity
+tests/ai/
+├── fixtures.md                  # new (committed): shared setup (fixed clock, mocked search/routing)
+├── us1-arrival-time.md          # new (committed): AI scenarios for US1
+└── us2-recomputed-arrival.md    # new (committed): AI scenarios for US2
 README.md         # one line mentioning the arrival time
 ```
 
@@ -91,7 +97,7 @@ in `src/geo.js` (pure, testable), wiring in `src/app.js`, mirroring how `formatD
 2. `src/app.js`:
    - in `updateRoutes()`, right after the `if (seq !== routeSeq) return;` guard and the empty-result check, capture `const departure = new Date();` and call `drawRoutes(routes, m, departure)`;
    - in `drawRoutes(routes, m, departure)`, build the title as `` `Route ${i + 1} · ${formatDistance(route.distance)} · ${formatDuration(route.duration)}, ${formatArrival(departure, route.duration)}` ``.
-3. `test/arrival.test.js`: cases from [quickstart.md](./quickstart.md) (14:07+25 min, rounding, < 1 min shows `arrive` clock + 1, ≥ 1 h, midnight, multi-day, monotonicity, two-digit padding) and a source check that `app.js` imports and uses `formatArrival`.
+3. Tests: `test/arrival.test.js` and `test/route-entry.test.js` already hold every case from [quickstart.md](./quickstart.md) and the contracts (14:07+25 min, rounding, < 1 min shows `arrive` clock + 1, ≥ 1 h, midnight, multi-day, monotonicity, two-digit padding, invalid durations, DST, `app.js` wiring). They fail until steps 1–2 are done. Implementation makes them pass; it does not rewrite them, and does not duplicate their cases in `test/geo.test.js`.
 4. `README.md`: one line: each route shows its duration and the arrival time if you leave now ("25 min, arrive 14:32"); the arrival is the current time plus the routing duration only (no traffic, no waiting at stops).
 5. Status summary line is **not** changed (spec Assumptions).
 
