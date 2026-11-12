@@ -1,6 +1,6 @@
 ---
 name: "review-analyze-findings"
-description: "After /speckit-analyze, show the human every finding with a proposed fix, apply their answers through the spec, plan and tasks, and record the findings they dismiss."
+description: "After /speckit-analyze, fix or dismiss each finding, ask the human only about the findings that need their decision, and record every dismissal."
 argument-hint: "the analyze report, if not in the conversation"
 user-invocable: true
 disable-model-invocation: true
@@ -10,9 +10,10 @@ disable-model-invocation: true
 
 A gate between `/speckit-analyze` and `/speckit-implement`. `/speckit-analyze` reports findings
 (`C1`, `A2`, `D3`, ...) with a severity (CRITICAL, HIGH, MEDIUM, LOW) about inconsistencies,
-gaps and ambiguities across `spec.md`, `plan.md` and `tasks.md`. This skill asks the human about
-each one with a proposed fix, applies the answers through the command that owns each file, and
-records the findings the human dismisses so they are not asked again. The feature moves on to
+gaps and ambiguities across `spec.md`, `plan.md` and `tasks.md`. This skill fixes or dismisses each
+finding itself, through the command that owns each file. It asks the human only about the findings
+that need their decision (rule 12), and records every dismissal so it is not raised again. When no
+finding needs the human, the skill never reaches them. The feature moves on to
 `/speckit-implement` only when no CRITICAL or HIGH finding is left.
 
 ## User Input
@@ -57,10 +58,10 @@ If not empty, it is the report `/speckit-analyze` printed.
    `1. C1: fixed: deleted users' tasks go to the PM (spec.md FR-005, tasks regenerated)`,
    `2. A3: dismissed (the wording is deliberate)`, `3. U2: waiting for your answer`. This way a
    misunderstanding costs little to fix.
-8. **Push:** at the end of each run (Ask or Apply), if files changed: `git add` the changed files
+8. **Commit:** at the end of each run (Ask or Apply), if files changed: `git add` the changed files
    under `specs/` and `tests/` (and any test folders the write-tests record step touched), commit
    with a short message (`gate(review-analyze-findings): ask` / `gate(review-analyze-findings): apply`),
-   then `git push` the current branch. Never force-push.
+   Do not push: the factory checks your commits and pushes them after the run.
 9. **Outcome:** the run's LAST message ends with exactly one fenced json block, and nothing after it:
    - `{"status": "waiting", "ask": "<the comment in markdown>"}` when anything needs a human
      answer (new items, a follow-up question, items still open). On Apply rounds the `ask` starts
@@ -69,13 +70,22 @@ If not empty, it is the report `/speckit-analyze` printed.
      when nothing is open.
    The orchestrator posts `ask` or `readback` to the Linear issue and runs the next round with the
    reply. For a manual test, a person copies `ask` into Linear by hand.
+   **Style:** read `.claude/skills/visual-briefing/SKILL.md` and write every `ask` and `readback` as it
+   says. Keep the format these rules set (numbers, IDs, read-back lines).
 10. **Running other skills from this one:** the Spec Kit skills and the factory skills have
     `disable-model-invocation: true`, so you can't start them with the Skill tool. To "re-run
     `/speckit-X` with argument A", read `.claude/skills/speckit-X/SKILL.md` and follow its
     instructions with `$ARGUMENTS` = A. Run the write-tests record step the same way: follow the
     "Record tests in tasks.md" section of `.claude/skills/write-tests/SKILL.md`.
 11. **Who and when:** a name recorded in a file (dismissals) is the author of the reply that gave
-    the answer. A date is that reply's date (YYYY-MM-DD).
+    the answer. A date is that reply's date (YYYY-MM-DD). For what you decide yourself, the name is
+    `the factory` and the date is today.
+12. **When to ask the human:** only when the fix needs a decision that the issue, `spec.md`,
+    `plan.md` and the repo do not settle: what the feature must do (scope, behaviour the user sees,
+    data kept or shared, a security or privacy trade-off). Fix everything else yourself: wording,
+    duplicate or conflicting lines that the documents settle, missing or wrong tasks, test coverage,
+    terms used two ways, a vague criterion the spec's own context makes measurable. Dismiss false
+    positives yourself, with the reason. Never ask about a MEDIUM or LOW finding.
 
 ## Ask
 
@@ -83,31 +93,27 @@ If not empty, it is the report `/speckit-analyze` printed.
    is none, run `/speckit-analyze` (rule 10). Save the report as `<feature>/analyze-report.md`
    before writing the comment, so the Apply run can read it.
 2. Read `<feature>/analyze-dismissed.md` (if present) and skip every finding whose ID is listed there.
-3. Write one comment:
-   - CRITICAL and HIGH findings first, numbered: `**N. <ID>, <SEVERITY>: <title>**`, the finding
-     in plain words and why it matters, *Fix in spec / plan / tasks:* (where the fix goes), and
-     one proposed fix.
-   - Then MEDIUM and LOW findings grouped at the end, one line each, numbered, with ID and
-     severity, for bulk acceptance ("accept all" means apply all proposed fixes).
-4. Outcome `waiting`.
-
-No findings left (none, or all dismissed): `done`, next `/speckit-implement`.
+3. Sort every remaining finding (rule 12): **fix** it yourself, **dismiss** it yourself, or **ask**
+   the human.
+4. Apply your fixes and dismissals now, as in Apply (the order of the files, one run of each
+   command, dismissal lines with `the factory` as the name).
+5. Nothing to ask: Finish (below). The human is not contacted.
+6. Something to ask: write one comment with only those findings, numbered:
+   `**N. <ID>, <SEVERITY>: <title>**`, the finding in plain words and why it matters,
+   *Fix in spec / plan / tasks:* (where the fix goes), and one proposed fix. End with one line on
+   what you already did: `Fixed by the factory: <ID>, ... Dismissed by the factory: <ID> (<reason>), ...`.
+   Commit (rule 8), outcome `waiting`.
 
 Example:
 
 ```markdown
-**1. C1, CRITICAL: deleting a user has no task**
-FR-005 says admins can delete users, but no task in tasks.md implements it. Without it the
-feature ships without user deletion.
-*Fix in tasks:* re-run /speckit-tasks so FR-005 gets its tasks.
+**1. C1, CRITICAL: what happens to a deleted user's open tasks**
+FR-005 says admins can delete users, but nothing says what happens to their open tasks. Deleting
+them loses work; keeping them leaves tasks nobody owns.
+*Fix in spec:* their open tasks go back to the project's PM, who reassigns them.
 
-**2. A2, HIGH: "fast" search is not measurable**
-SC-002 says search is "fast": nobody can test it.
-*Fix in spec:* "search returns in under 1 second for 10,000 items".
-
-MEDIUM / LOW, accept all or answer by number:
-3. D1, MEDIUM: FR-003 and FR-007 both describe the export; merge them into FR-003.
-4. T2, LOW: "workspace" and "project" are used for the same thing; use "project".
+Fixed by the factory: A2 ("fast" search is now "under 1 second for 10,000 items"), D1, T2.
+Dismissed by the factory: U3 (the wording is deliberate: FR-004 quotes the customer).
 ```
 
 ## Apply
@@ -117,8 +123,7 @@ every reply to its item (rule 6), then:
 
 | Answer | What to do |
 |---|---|
-| Not an issue, MEDIUM / LOW | Dismiss it. |
-| Not an issue, CRITICAL / HIGH | The first time, ask why once (in the `ask`). Dismiss only when the human confirms in a later reply. |
+| Not an issue (any severity) | Dismiss it. |
 | Clear | Apply it, in the order below. |
 | Unclear / unsure | Rules 6 and 7. |
 
@@ -148,8 +153,13 @@ record step is the only other writer of `tasks.md`.
 After applying, re-run `/speckit-analyze` (rule 10) and overwrite `<feature>/analyze-report.md`.
 
 - No CRITICAL or HIGH finding left (other than dismissed ones) and no item open: `done`, next
-  `/speckit-implement`. The readback lists the remaining MEDIUM / LOW findings, if any.
-- Otherwise: `waiting`, with the read-back, then a new Ask that holds only the new findings (IDs
-  not in the previous Ask and not dismissed) and the items still open.
+  `/speckit-implement`. The readback lists what the factory fixed and dismissed, and the remaining
+  MEDIUM / LOW findings, if any.
+- New findings after the re-run: handle them as in Ask (fix or dismiss them yourself; ask only under
+  rule 12), then re-run `/speckit-analyze` once more. Run it at most 3 times in one run of this skill;
+  after that, dismiss the MEDIUM / LOW findings left (`the factory`, "still reported after 3 analyze
+  runs") and ask only about CRITICAL / HIGH ones.
+- Something to ask (new findings under rule 12, or items still open): `waiting`, with the read-back,
+  then only those findings.
 
-Push before the outcome (rule 8).
+Commit before the outcome (rule 8).
