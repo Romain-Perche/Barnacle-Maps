@@ -28,6 +28,25 @@ export function formatDuration(seconds) {
   return m ? `${h} h ${m} min` : `${h} h`;
 }
 
+export function arrivalTime(departure, durationSeconds) {
+  if (!(departure instanceof Date) || Number.isNaN(departure.getTime())) return null;
+  if (typeof durationSeconds !== "number" || !Number.isFinite(durationSeconds) || durationSeconds < 0) return null;
+  return new Date(Math.round((departure.getTime() + durationSeconds * 1000) / 60000) * 60000);
+}
+
+export function formatArrival(departure, durationSeconds) {
+  const a = arrivalTime(departure, durationSeconds);
+  if (!a) return "";
+  const hh = String(a.getHours()).padStart(2, "0");
+  const mm = String(a.getMinutes()).padStart(2, "0");
+  const days = Math.round(
+    (Date.UTC(a.getFullYear(), a.getMonth(), a.getDate()) -
+      Date.UTC(departure.getFullYear(), departure.getMonth(), departure.getDate())) / 86400000,
+  );
+  const suffix = days <= 0 ? "" : days === 1 ? " (+1 day)" : ` (+${days} days)`;
+  return `arrive ${hh}:${mm}${suffix}`;
+}
+
 // Minimum trimmed query length before suggestions are fetched while typing.
 export const MIN_SUGGEST_CHARS = 3;
 

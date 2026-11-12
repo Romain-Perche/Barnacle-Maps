@@ -7,6 +7,7 @@ import {
   detourWaypoints,
   formatDistance,
   formatDuration,
+  formatArrival,
   mapPointStop,
   MAX_STOPS,
   MIN_SUGGEST_CHARS,
@@ -208,7 +209,7 @@ async function fetchRoutes(place, seq, m, st = []) {
   return pickRoutes([...main, ...extra]);
 }
 
-function drawRoutes(routes, m) {
+function drawRoutes(routes, m, departure) {
   routes.forEach((route, i) => {
     // bubblingMouseEvents: false so a click on a route selects it without opening the add-stop popup.
     const line = L.polyline(route.path, { ...ROUTE_STYLE, bubblingMouseEvents: false }).addTo(map);
@@ -216,7 +217,8 @@ function drawRoutes(routes, m) {
     const button = document.createElement("button");
     button.type = "button";
     const title = document.createElement("span");
-    title.textContent = `Route ${i + 1} · ${formatDistance(route.distance)} · ${formatDuration(route.duration)}`;
+    const arrival = formatArrival(departure, route.duration);
+    title.textContent = `Route ${i + 1} · ${formatDistance(route.distance)} · ${formatDuration(route.duration)}${arrival ? `, ${arrival}` : ""}`;
     button.append(title);
     let pleasure = null;
     if (m === "foot") {
@@ -332,7 +334,8 @@ async function updateRoutes() {
   }
   if (seq !== routeSeq) return; // a newer request superseded this one
   if (!routes.length) return setStatus(st.length ? `${noRoute} Try removing a stop.` : noRoute);
-  drawRoutes(routes, m);
+  const departure = new Date();
+  drawRoutes(routes, m, departure);
   const fastest = routes[0];
   const summary = `${formatDistance(fastest.distance)} · ${formatDuration(fastest.duration)}`;
   const car = m === "car";
