@@ -20,12 +20,39 @@ export function formatDistance(meters) {
   return `${(meters / 1000).toFixed(meters < 10000 ? 2 : 1)} km`;
 }
 
+// Whole minutes of a route duration (at least 1); missing, non-finite or negative values count as 0.
+export function durationMinutes(seconds) {
+  const s = Number.isFinite(seconds) && seconds > 0 ? seconds : 0;
+  return Math.max(1, Math.round(s / 60));
+}
+
 export function formatDuration(seconds) {
-  const mins = Math.max(1, Math.round(seconds / 60));
+  const mins = durationMinutes(seconds);
   if (mins < 60) return `${mins} min`;
   const h = Math.floor(mins / 60);
   const m = mins % 60;
   return m ? `${h} h ${m} min` : `${h} h`;
+}
+
+// Arrival moment for a route that starts at `departure` (a Date) and lasts `seconds`.
+// dayOffset = local calendar days between the departure date and the arrival date.
+export function arrivalTime(departure, seconds) {
+  const start = new Date(departure.getTime());
+  start.setSeconds(0, 0);
+  const at = new Date(start.getTime() + durationMinutes(seconds) * 60000);
+  const day = (d) => Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+  return { at, dayOffset: Math.round((day(at) - day(departure)) / 86400000) };
+}
+
+export function formatClock(date) {
+  const p = (n) => String(n).padStart(2, "0");
+  return `${p(date.getHours())}:${p(date.getMinutes())}`;
+}
+
+export function formatArrival(departure, seconds) {
+  const { at, dayOffset } = arrivalTime(departure, seconds);
+  const suffix = dayOffset === 0 ? "" : dayOffset === 1 ? " (+1 day)" : ` (+${dayOffset} days)`;
+  return `arrive ${formatClock(at)}${suffix}`;
 }
 
 // Minimum trimmed query length before suggestions are fetched while typing.
