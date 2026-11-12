@@ -19,7 +19,7 @@ The Technical Context had no open NEEDS CLARIFICATION items: the stack is fixed 
 ## R3. Rounding
 
 - **Decision**: `arrival = departure + seconds * 1000 ms`, then round that instant to the nearest minute (`Math.round(ms / 60000) * 60000`). Don't add the *displayed* (rounded, minimum 1 min) duration.
-- **Rationale**: FR-002 says "plus that route's travel time, rounded to the nearest minute", and the Assumptions say it uses the *exact* travel time. Rounding a monotonic function keeps it monotonic, so a longer route never shows an earlier arrival (US1 scenario 2). The result is always within 30 s of the true arrival (SC-002 allows 1 min).
+- **Rationale**: FR-002 says "plus that route's travel time, rounded to the nearest minute", and the Assumptions say it uses the *exact* travel time. Rounding a monotonic function keeps it monotonic, so a longer route never shows an earlier arrival (US1 scenario 2). The result is always within 30 s of the true arrival (SC-002).
 - **Alternatives considered**: Truncating the departure to the minute and then adding the rounded duration. That can be off by up to about 1.5 min and doesn't match FR-002's wording. Plain truncation (floor) of the arrival is biased early.
 
 ## R4. Local time, 24-hour format, day offset

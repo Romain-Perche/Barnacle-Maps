@@ -36,6 +36,8 @@
 - Q: Should users be told the arrival ignores traffic and delays? → A: no user-visible note; the limitation stays in Assumptions (decided by the factory, no question asked)
 - Q: What if the device clock is wrong? → A: the arrival times are off by the same amount; the device clock is assumed correct (added to Assumptions) (decided by the factory, no question asked)
 - Q: What exactly is rounded to the nearest minute, and how are half-minutes handled? → A: add the exact travel time to the departure moment, then round that arrival instant to the nearest minute; exactly 30 s rounds up. The shown time is never more than 30 s from the real arrival, and a route with a longer travel time never shows an earlier arrival (e.g. leave 14:07:40, 25 min → arrive 14:33)
+- Q: Is the travel time in the Assumptions the shown (rounded) duration? → A: no; it is the exact travel time from the routing data, the value behind the shown duration, as FR-002 requires (Assumption reworded) (decided by the factory, no question asked)
+- Q: Is SC-002's tolerance 1 minute or 30 seconds? → A: 30 seconds, matching FR-002's rounding of the exact arrival instant (SC-002 tightened) (decided by the factory, no question asked)
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -112,7 +114,7 @@ When the routes are computed again — because I change the destination, the tra
 ### Measurable Outcomes
 
 - **SC-001**: 100% of displayed routes show an arrival time whenever routes are listed.
-- **SC-002**: For every route, the displayed arrival time is within 1 minute of the departure moment plus the route's travel time.
+- **SC-002**: For every route, the displayed arrival time is within 30 seconds of the departure moment plus the route's exact travel time.
 - **SC-003**: After any recomputation of routes, the arrival times shown reflect the new departure moment as defined in Key Entities (no stale values) in 100% of cases.
 - **SC-004**: Each route entry shows its arrival time in the same line of text as its duration, so users read it without any extra action or calculation.
 - **SC-005**: In 100% of route entries, the arrival time is part of the entry's accessible name.
@@ -120,7 +122,7 @@ When the routes are computed again — because I change the destination, the tra
 ## Assumptions
 
 - "Leave now" means the moment the routes were computed; all routes in one computation share the same departure moment.
-- Travel time is the duration already shown for each route; no extra time is added for stops (stops are passed through without waiting), traffic, or delays beyond what the routing data provides.
+- Travel time is the exact travel time from the routing data (the value behind the rounded duration shown for each route); no extra time is added for stops (stops are passed through without waiting), traffic, or delays beyond what the routing data provides.
 - The device's local clock and time zone are used; 24-hour format is used everywhere, matching the example in the request.
 - The status line summary under the route list (e.g. "3 walking routes · fastest …") is out of scope and stays unchanged (confirmed in Clarifications, see FR-010).
 - Rounding: the exact arrival instant (departure moment + exact travel time) is rounded to the nearest minute, half-minute up, so the shown time is at most 30 s from the real arrival and may differ by one minute from "current minute + displayed rounded duration" (e.g. leave 14:07:40, 25 min → arrive 14:33).

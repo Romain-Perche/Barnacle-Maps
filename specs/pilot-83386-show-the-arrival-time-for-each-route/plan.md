@@ -26,7 +26,7 @@ Each route entry in the panel will show the local clock time of arrival when lea
 
 **Constraints**: Device local time zone; fixed 24-hour `HH:MM` regardless of locale; no live ticking; DST-safe day offset
 
-**Scale/Scope**: About 25 lines of helper code, about 3 lines changed in `src/app.js`, 1 new test file, 1 line in the README
+**Scale/Scope**: About 25 lines of helper code, about 3 lines changed in `src/app.js`, 1 line in the README. Tests already written by the write-tests step: `test/arrival.test.js` (deterministic) and 2 AI scenarios in `tests/ai/`
 
 ## Constitution Check
 
@@ -71,10 +71,15 @@ src/
 └── app.js               # updateRoutes(): const departure = new Date() after the supersede check;
                          # drawRoutes(routes, m, departure): title += `, ${formatArrival(departure, route.duration)}`
 test/
-└── arrival.test.js      # new: contract tables, rounding, midnight/multi-day, monotonicity
+└── arrival.test.js      # already written (write-tests): contract tables, rounding, midnight/multi-day,
+                         # monotonicity, source checks of app.js; implementation must not overwrite it
+tests/
+└── ai/
+    ├── us1-arrival-time.md      # already written (write-tests): AI browser scenarios for US1
+    └── us2-arrival-refresh.md   # already written (write-tests): AI browser scenarios for US2
 ```
 
-**Structure Decision**: Keep the existing single-project layout (`src/` + `test/` at the repo root). No new directories.
+**Structure Decision**: Keep the existing single-project layout (`src/` + `test/` at the repo root). The only new directory is `tests/ai/`, which holds the AI test scenarios from the write-tests step; the implementation adds no directory.
 
 ## Implementation Notes
 
@@ -83,7 +88,7 @@ test/
    - `formatArrival(departure, seconds)`: `arrive HH:MM`, zero-padded, plus ` (+1 day)` or ` (+N days)` when `dayOffset > 0`.
    - Update the file's header comment to mention arrival time formatting.
 2. **`src/app.js`**: import `formatArrival`. In `updateRoutes()`, after `if (!routes.length) …`, set `const departure = new Date();` and call `drawRoutes(routes, m, departure)`. In `drawRoutes`, add the parameter and extend the title template literal. Leave `setStatus(...)` unchanged.
-3. **Tests**: `test/arrival.test.js` covers every row of [contracts/route-entry.md](./contracts/route-entry.md), the two US2 refresh rows (14:07 → 14:32, 14:12 → 14:37), monotonicity over sorted durations, and that `formatArrival` never matches a 12-hour/AM/PM pattern.
+3. **Tests**: `test/arrival.test.js` already exists (write-tests step) and fails until steps 1, 2 and 4 are done. Do not recreate or overwrite it. It covers every row of [contracts/route-entry.md](./contracts/route-entry.md), the two US2 refresh rows (14:07 → 14:32, 14:12 → 14:37), monotonicity over sorted durations, and that `formatArrival` never matches a 12-hour/AM/PM pattern. It also checks the `src/app.js` source (import, `drawRoutes(routes, m, departure)`, the exact title template, one `new Date()` after the supersede and empty checks, no timer, status line unchanged) and that the README mentions "arrive". The 5 earlier suites (geo, modes, pleasure, routes, stops) must keep passing.
 4. **README**: append a sentence to the routes description.
 
 ## Decisions Made Without Interaction
