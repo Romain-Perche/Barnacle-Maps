@@ -19,7 +19,7 @@
 
 ## Requirement Clarity
 
-- [ ] CHK007 - Is "rounded to the nearest minute" unambiguous about *what* is rounded (the travel time, the arrival instant, or departure + displayed duration) and how exact half-minutes are handled? [Clarity, Spec §FR-002, Spec §Assumptions]
+- [x] CHK007 - Is "rounded to the nearest minute" unambiguous about *what* is rounded (the travel time, the arrival instant, or departure + displayed duration) and how exact half-minutes are handled? [Clarity, Spec §FR-002, Spec §Assumptions] — reviewed by Pilot, 2026-11-12
 - [x] CHK008 - Is "a later calendar day" clearly defined as a local calendar date difference rather than elapsed 24-hour periods? [Clarity, Spec §FR-004] — reviewed by the factory, 2026-11-12
 - [x] CHK009 - Is "device's local time" specific about which time zone applies when the departure and arrival fall on different sides of a DST change? [Clarity, Spec §FR-002, Gap] — reviewed by the factory, 2026-11-12
 - [x] CHK010 - Is the 24-hour format required whatever the device locale or the user's 12-hour preference, and is that stated explicitly? [Clarity, Spec §FR-003, Spec §Assumptions] — reviewed by the factory, 2026-11-12

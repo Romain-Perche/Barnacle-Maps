@@ -35,6 +35,7 @@
 - Q: Should stale times be flagged when no recomputation happens? → A: no; no staleness indicator, out of scope (the request asks for an update only when routes are recomputed) (decided by the factory, no question asked)
 - Q: Should users be told the arrival ignores traffic and delays? → A: no user-visible note; the limitation stays in Assumptions (decided by the factory, no question asked)
 - Q: What if the device clock is wrong? → A: the arrival times are off by the same amount; the device clock is assumed correct (added to Assumptions) (decided by the factory, no question asked)
+- Q: What exactly is rounded to the nearest minute, and how are half-minutes handled? → A: add the exact travel time to the departure moment, then round that arrival instant to the nearest minute; exactly 30 s rounds up. The shown time is never more than 30 s from the real arrival, and a route with a longer travel time never shows an earlier arrival (e.g. leave 14:07:40, 25 min → arrive 14:33)
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -91,7 +92,7 @@ When the routes are computed again — because I change the destination, the tra
 ### Functional Requirements
 
 - **FR-001**: Each route entry in the panel MUST show an arrival time immediately after the route's duration, in the form "<duration>, arrive HH:MM" (e.g. "25 min, arrive 14:32").
-- **FR-002**: The arrival time MUST equal the moment the routes were computed plus that route's travel time, rounded to the nearest minute, expressed in the device's local time. All routes of one computation MUST use the same departure moment.
+- **FR-002**: The arrival time MUST equal the arrival instant (the moment the routes were computed plus that route's exact travel time), rounded to the nearest minute (exactly 30 s rounds up), expressed in the device's local time. The displayed rounded duration MUST NOT be used for this calculation. All routes of one computation MUST use the same departure moment.
 - **FR-003**: The arrival time MUST be shown in 24-hour format with two-digit hours and minutes (e.g. 09:05, 14:32), regardless of the device locale or 12-hour setting. The word "arrive" is fixed, lowercase English.
 - **FR-004**: When the arrival falls on a later local calendar date than the departure moment (comparing calendar dates of the displayed arrival time, not elapsed 24-hour periods), the arrival time MUST be accompanied by a next-day marker indicating the number of days later (e.g. "(+1 day)", "(+2 days)").
 - **FR-005**: The arrival time MUST be shown for every displayed route, in both walking and car modes, and with or without stops.
@@ -122,6 +123,6 @@ When the routes are computed again — because I change the destination, the tra
 - Travel time is the duration already shown for each route; no extra time is added for stops (stops are passed through without waiting), traffic, or delays beyond what the routing data provides.
 - The device's local clock and time zone are used; 24-hour format is used everywhere, matching the example in the request.
 - The status line summary under the route list (e.g. "3 walking routes · fastest …") is out of scope and stays unchanged (confirmed in Clarifications, see FR-010).
-- Rounding: the arrival time uses the exact travel time rounded to the nearest minute, so it may differ by at most one minute from "current time + displayed rounded duration".
+- Rounding: the exact arrival instant (departure moment + exact travel time) is rounded to the nearest minute, half-minute up, so the shown time is at most 30 s from the real arrival and may differ by one minute from "current minute + displayed rounded duration" (e.g. leave 14:07:40, 25 min → arrive 14:33).
 - The device clock is assumed correct; if it is wrong, the arrival times are off by the same amount.
 - No user-visible note says that traffic and delays are ignored; no staleness indicator is shown when time passes without recomputation.
