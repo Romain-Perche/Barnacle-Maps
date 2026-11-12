@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d415a7cd7663c4d8d78481ffdf65cc1d93fd6f24c39921aeb60b3087a121dc86",
+  "claims": [
+    {
+      "id": "claim_698bbc51f008494cb745f50b290ca0fb",
+      "statement": "fetchRoutes requests OSRM alternatives and only forces detours through side waypoints for walking trips without stops when OSRM returned fewer than two routes; failed detour requests are ignored via Promise.allSettled.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L190-L210",
+          "version": "repo-lines-v1:sha256:8a3bbbf470111f188caea39191e729bff83e44ceac741d407c56d970a4fcafef:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxNTJhZjA1NDcwNzQxNTU4OGY0NTUzYTYzNDdmYTdhNWVhNTk3YmNiMWNkMTJjMTRkNzVkMDEwOTAwMTY4YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljYzA2MzQ2M2FiM2UyZDdhZGIzNDEzMjA3ZmI0MWU5YjMyNzk2YWEwYTE0MTBhNGMzMDU0YzM4NjI2NDRkN2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2YzcwZTkzZmY0MmRiOThlMmNjZDkxMWE1MzliNTYyNmNiZjU1OTJlNmViMjhlYmRjYzliNWI2Y2VmZWFlMDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b6aa997f45c04efba60b5000db037713",
+      "statement": "pickRoutes keeps the fastest route plus up to max-1 alternatives that are at most 1.6x the shortest distance and overlap every kept route by less than 80%.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L250-L262",
+          "version": "repo-lines-v1:sha256:6282953381441b925e8b14d9ae53422e0f6e3bdbc7d1561a583ba76a5fc515a9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4NTc1MjliN2FkYTZkYzA1NmIzZjBjNTY3MmYxMjg3OWJlYWU0MzU1NzgxNjZkZTE0ZGRhZDk2NDI0NjAwYWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIxNzZjNjBiOGQwNmNmYWZkMWQ5ZjkyMGNmMjRmZjdhZjRiZGZiODQzNzI5ODE3ZTZkYWE3Y2U3MWQ1YzNiMjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyNGFhMDAxNWVmNTcwODc5NTNjYzZkZmM0M2EyMTRmY2E2ZTcyMTk4MjJkMDFmNWY4MGZmOWY1NDk5MDA0YTQifQ"
+        },
+        {
+          "resource": "repo://test/routes.test.js#L212-L236",
+          "version": "repo-lines-v1:sha256:ef2f5575f4873106b7aea598ec4751f8d410e4d38ca767deaae97cebed55d3c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkMzVjZWQzOTIxZDRkM2IxMGZhOTc2MzcyMDliNDkwZjIxN2I4ODY3ZDY4OWJjZmVkMTcxMTkwMmZhMGRkZjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMwZTQ5ZDVmM2E1ZTA2YmE2MTllN2Q2NzI1OTViZWVmYmQxYzJhZWU0YWQ2ZTkxYTY0NWMzOGUwYmZkZTA3ZjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM5ZWZjMTc4ZTIxY2VjM2IwNzIyY2JjNGUzYTIxOTNhOTg0NmQ5YjliMGFkZGRkN2Q0NTVjZWY0NmNmMDJhYWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjllMjYyOTlhNDgxYTM4MjM3Mjg2NDk5M2JjNzIzYzExZGVlMTJkMTQ2ZjViYTMyM2ZkNWQzZGFiM2Q2MjJiZWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_26f0ff89387842e0bbbc93d788f14a61",
+      "statement": "routeOverlap is the share of a route's 25 m samples lying within 20 m of the other route's polyline.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L240-L248",
+          "version": "repo-lines-v1:sha256:6208e0abe3c5eaf3088bab5871cb27b5db848506563822f2587d0a5baf5b69a7:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTIxZjgzYWM1MzBiMDYzZmExNjNmOGJiMTczYjUzMzk0MjVjMzVlMjg5YjI1MmUxYTE4Y2RkYzA1MTc4OTU4MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWRhOGM2M2EwOTlkYjZlNDczNjBiMTFhNWJiMTM5MTZhNTBhODJjNmFhZTU5OTI2NmUzOTExM2QxZjI0MTA2YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmM4YjI5MDZhZGNjMzI3MTAyOTA4YmRiMzRiODI3NzQ0ZWNmNjkxMDVlNTNlNWM0Y2ZhMzZkZDEyYTMwODM5MCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e09dab8c2fb8401284fa2bad547c26a7",
+      "statement": "Detour waypoints are offset perpendicular from the midpoint of the start-destination line by max(150 m, 0.25 x its length), one on each side.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L185-L205",
+          "version": "repo-lines-v1:sha256:45dc01ed752e7ba6dcc2220ae11b4658d0de62ae8d7a878f6ba73368f85e69ed:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4MzAzNzlmOTAzYzRhMThiYmU0ZTYwMTFkZjQ4ZTZiMTFhYThhYTVjMDM0MDg2MWNiZjg4MzNiMTk4ZGVjOWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBmYmU5MjI5ZTBmMTZmNDYyNTE2MWQ5YTFkYTQ0YWIxYzg5NmMxYThmZjEzNTA1ZjI4Y2RhNDc2NDZjMDgxODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAwZDcwZDg1M2UzZDg3N2NjZWUyOWYzN2UyNDdkMjVmZGM1NWQyMTllNmYxMGE3ZDBmNDk5YTRkYzhkNDQ1NzEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_66354b21e1d54a5c913c452903502662",
+      "statement": "Walk mode uses the routed-foot OSRM server with the foot profile and car mode uses routed-car with the driving profile; changing mode recomputes routes while keeping stops.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L420-L426",
+          "version": "repo-lines-v1:sha256:6d84a7a7b006eacfd10c66b3983cc2020b5679e0e7b43aa5d47a2e557d3b59b3:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDA1ZDRlZWJlMTQwNzQ1YTAxYTE5MmMzY2M3MmFkNDJkMGUxNWQ4NTFjYmM4NDYyOWM4NTA5ZmVhNjg1MTQ1YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjc3OWQxMThkNmUzY2JmNDUwNTM5NzQ4ZGVlN2E0MzA3YWNiZTY0NDZjYmEyOTdmMjc2MGZhNWQwYmJhMWJjMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L69-L72",
+          "version": "repo-lines-v1:sha256:4b193b5cc8bca0a6b8d124b22964f2dd4b2d99f426f37c9d6eeefb437691357c:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDc3ZWZlNmM5OWZlMDU5NTAyMzZmNWQ4MDJmZDk3ZmQ3MWYwZjE3ZjgxOGRiYjRhNTFlYmMwZWYzNTYyN2U2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWExZDFhNjMzOTAyMjljNzk4MzQ3ZTgzYTA0MDU0NDFjOTQwMDAzNTI4NGFkMTY4YzFiZjZjZGYxZDcwYTM3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzhiYmQ1ODEwYjczNzQyYThiNTBkODc4OTA4ZTU5YWMyNjA5M2Q1NTJmMTYyMzA1M2YxNWIyYWRiNmZiNWRjMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDFjMjEwYjk5YmY0N2NlYzg3MjQ2NDM5NWRjZTFkZTc1MzUzNGNiM2Y1NGFkM2YyYmY1YzIxYzc2NmY0NmViZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d2f4c9b9c1194c998855a431e766d0c4",
+      "statement": "Selecting a route by clicking its line or panel button highlights it in blue, brings it to front and sets aria-pressed on its button; route lines do not bubble clicks to the map.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L173-L182",
+          "version": "repo-lines-v1:sha256:65e48095b5658337e18461fcf23926dcb0d1093fba868fd31b6cc613e2bb329a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyZTExNTk5NWM1YThhY2QyMWJiY2JmMDY2YmRkMzI0MjNhY2I0NDIyNDBhYTJhOWY0YmQ4ZWRjNDIyYWVmMGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ2NDNlYWEyZGIxOTA1YTBjYzNiMGJlZGQ4MDBkOTc3NTc1NzA1MGZlNzc4ZjlkZmQ0NGE3Yzg3ZDJkYjFjNGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNmZGY2ODMzYTQ0NTBlZWVhNDhhOWFkMWI5OTcyMjdjMGVlNGFiZmU3YTlkNWM1NWIwNWJjOTQ2ZDhhNWFkMTEifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L212-L237",
+          "version": "repo-lines-v1:sha256:e9a1c51122c39648708490151b50ee653ae9c0e1432201ec58517b60c6b23e44:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwNGNjMGUxZGM3OWI4Y2UyZjJiODdhNmNlZDE2NTdmNTY4ODdiYzZiNjFjOGE5ZjU2MDRhMGQ2ODhmMzM1NTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUzN2ZkNTg5YWE2NGQwMzZiOGEzZDMwYTQ1ZTUyZWQ2ZTlhMmY5MTVkMTczNGY1NmEyZjFlNGYxNWEyMTU3ZGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM3YTlmNWYxYjZkY2FjOTMzNzJiNmViZmJkODA3ZTA4ZmU2ZDcyZWYwMjJkZGYzYjUyZGM1MmM1MWMyNTFiNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4Nzk1YWQ5NTZlYjQ4ODkwMDZhOTA2YzAwOWEwYTUyMjcxMDc3OGIzZTc4N2VhNjNiMWEzYjNiNmEyYTMwMmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fdd26d9d894c416bb625bb08b89343c8",
+      "statement": "routesBbox is exported from geo.js and tested but not used by app.js, which fits bounds with Leaflet featureGroup.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L240-L242",
+          "version": "repo-lines-v1:sha256:b6552e46fea1df59bee9f32f61cd8de84f3545e93236cf7eb593ce2cbb257b5f:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDkwMGFlM2U0NGUwNDk1MmI5YWMxNTgxOTIwZjhjZWFiODhjZTYzOGI4YTEzMDZmOTY3MDcxYWZhNTFjMWM3MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJkNWFmNmMwNmIzZmRjOGM0NDY3MmI1YTEyN2Y2ZGU1YmFiNWM2MjJjNDRjNDdlN2IyN2JhNjk5ZDFmNGUzYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzdlYWRmMjRmY2UzNWUwMWY5MjdhNDhkM2IyMjk0YzcxNGFlNTZhNTdkMTRmOTQyMGEwMmJkZDM2NDhiNjBiMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTk2OTVhNmZmM2FlMWQyYWMzNjNkY2U4YTJiYjVjNDZkYjk1ODdlNDRiYWVjNDVmY2ExNzQ3NGY4MzIyYjZiYyJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L264-L280",
+          "version": "repo-lines-v1:sha256:dd75e7df63075d560614696f971d1fdd105b543829538632dbc09f58d03d4d5d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2MWEwYjJhNmZlMGE4NGVlNWU5MjM3MmFlY2I4MmM5YmRlNzlhZjdmOGNkMGIwM2NkZDM5MTIyNDZlZDEzNGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMTdjZGNjMWQ0YzA5NWIwNzkwNDI3MmNmN2MxNGYyYjRkYjJhZmFkYTM0ZTEzMWJhYzRjZDFhNTY0ODcxODMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ0ZjdkZjVkNTg5YTFmMmNmMjU2M2FiZjM1Yjk5ZGYwNGJhNGVhYWI5MGI0OTE3NTIzNDRmYzNlYTNkNGI4OGYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T11:52:33.190Z"
+  }
+}

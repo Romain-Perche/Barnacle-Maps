@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:0e6a3660560a38ae0c019bf7ff8c79258a82fdf23a84f866e5ceb63d49cfc611",
+  "claims": [
+    {
+      "id": "claim_6bb90cb564794eb1a68fcbcf194cd868",
+      "statement": "Typing schedules a suggestion search after a 500 ms debounce only when the trimmed query has at least MIN_SUGGEST_CHARS (3) characters; shorter queries clear results and invalidate in-flight suggestions.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L107-L109",
+          "version": "repo-lines-v1:sha256:60515d131846ffcffc81a67767e704a5bc3c4f673ee9888f1832be0fe365d7f4:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU0MzY3MTI2YWE3ZjZlODUxZDliYzU0NWIzOGU3ODVmNDhhZGY1ZjFiOTBlYTRmODY3MmZlZDhlNjNkZmFlNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2E2NmUzNGNkMTRmMTQ2NDdjMjU1N2NhMzE4NzIzZGY3NGQyYzg4MTc0YjE3NWZkOTM1MzNjOWU1YjBhYzU1NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTEyNGVmZTQ0MmUzMmQ1MDg3MGZjNGUyYjMxYTZmZGNkZmUwNWUyOGZiNWFiMGM5MzFiZmYxY2MwOGRiMjA4MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmI4ZDIxZTE2MzcwMTg5MmFiYzJmODBhYjgyNjZlYWVjNGE1MmQyMDc4ZWIyZWQ3NWIwMWVlYjc1ODkyYmMwOSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L153-L164",
+          "version": "repo-lines-v1:sha256:dbc0c2378da9ff398acecb5e3d69927b76026baec05fabfe83ee339911ab4ab1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzZjNiY2I2YzA0ZDAzMTE3OGM1ZGY3ZWMzYzE0ODhhMDkxZDgyMzdmNGY0OTYyYTI5MjE5MjY3MWZkNDRkMGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0ZDA1YWQ3MTY3YzMxNzdiMWZkY2I4YmExN2MzNjVhMDA2NmNlNDMxNDRhMjFiNjE1MDY0OGFkZTg1N2EwMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjZDYyNmZkMTM3YmJmNzQxMzJkYmFjZTRkMmFkZWY4YzFjYzY4YzM0NjNlY2YwY2NjMjM0Mjg2Yjg2ZGU2YjYifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L50-L51",
+          "version": "repo-lines-v1:sha256:218b8014ecffe55a4a21acc8ac713e37b6010583e8a20eb15d933b26489637fa:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjk1NGU2NWY4ZmY4ZDkzMmU2MTJiMGQ0ZThlOGU2OTY5NWZiMmU3ZGI4Y2IzNDc3MGQ1MDA3MTc4NWNjNjFhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlMDJiYTcxNjIzZGE1NmViMDNmNDFiZmFmOTA4MDI2ZDIxMjhiOTM3OGZlYWUxYWU1NTAyMjIwMDU5ZDE3MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjFiMThjMzlkNzg1OWMxYzI2YTJjNmMzMzIwNTM5NDljZTA5NTM4ODFjMjNkNjFjZjkwMTNkOWZhNjdlOGE4NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDYyNWUyNWE2NTUzMGIxY2IxYzQwZjE3YzliZTE4Nzg2NTFjNGIyNTJiYmY1N2U3OGRhNzdlYjBlMDI4YjAwOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9cd48beb245642b8baeb7d42b86055c0",
+      "statement": "runSearch ignores responses whose sequence number no longer matches searchSeq, and choosing a result or adding a stop bumps searchSeq.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L111-L144",
+          "version": "repo-lines-v1:sha256:3f6573c4212dac1d11c3d328d9ea1f5f5061eda433ec570bcdfe7f815b6753a2:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEyNTVlNmNkYTg4ZWUxNDQxNDZhZmRiZDg0ZDdiMTRmMzIyYjVlNGUzMDkzZjY3MjQ0NTI3ODkwN2MzZGYwMDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzODc4NjMxMmUyMTdkZDA4YjczYTk4NmQyOWQzZmRjNzRiZDIwOGI5YzI1ZDk1OTgxNzVkYzRkZjQ4NGUxNjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxNmYzMTM0ZmQ5MjEwYmM3Zjk5ZjdjMDQ5NWUyZGQ2NjEyYjJhN2M3ZjlmY2ViN2E3OTU3ZmJjMWI4M2FjNmMifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L296-L305",
+          "version": "repo-lines-v1:sha256:1f99606845825ee436e34a5a9509af8af2a9bdbcfb23eb0982b7139ab0a2089a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwNDg4NzUwNTI3M2U5YjcxMjk4MTE0OThjNzg5YzAwMDQzNDM1ZDNiMDMzMmVkZmVlODQ1ODRiNmUzNmE4MzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZiNTgwZTk2NGY4M2E0NzNmNDNkNDQzODQ2Mjk0OWQ2OGI1NjAwZmRhNzg3ZjE2Mzc0NWQwMGRlODljYmYzNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFhY2IxZDAxOGUzYTdkZjRkOTZiY2JmZTY2OWQ3YzBhMjYxM2E1N2QxNDRmZTkxNDlmYTIwMTUxYmQyNmU0MjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e39ff1318fa341298bf347d71c2749b9",
+      "statement": "Each search result offers a button that routes to the place via showRoute and an 'Add as stop' button that calls tryAddStop.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L120-L140",
+          "version": "repo-lines-v1:sha256:52fdac0ba3fc82a8c3b2b9432d5bf07d511dbcc3f1ca01cb3a7d557adc60f513:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0YmEzNjVmZmIwYzk5NmE1ODEwYzYyZjE4NDYzOGQzZmM4Njc4NGY4Zjc4ZjgyZDNhYThjZjZlZWVlY2YzODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1ZmY3NTRjY2Q5N2YzZjY5ODA5YzJiYzZmY2Q4YjRjODViMDQyMjIxZjIxNWY2ZGNjNzJlODk5NjBiOGY5OTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI2YmUzYWIxMTEzZTkxZjI1OTRmOTZlYmY3YjI3MmNlMWY2YTQyOTdkODI0Y2FhMTRjNDRjNGJlZjg1ODc4MDEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2bbd358670da4347ad7d0946a0d57d07",
+      "statement": "Nominatim search requests ask for at most 5 results in jsonv2 format.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L53-L56",
+          "version": "repo-lines-v1:sha256:b2493e27c69edc5475156ac5d26d93550e2d94ad3eb07585f087244e80abb177:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjY2MWFlMjlhMzBkYjA2YWY5MjYzODU1OTFhOWU5N2QxMzQ5NWFhMjExODZlYmI3MGMxOTY0NGVmNzYyNjhkNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmFiZWY4NzI4MmIxZDI2OGUxMzU3MjliZTFmYWUxOTIwNzE5Mjc4MTQ5NzcxYmY2NTk3YjI0OGY2YzVlZGU3MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWM3MmM2NTliZDA4OGJiMDFkNGNkNDIwOGI1YzhiMzcyNTQyZGZjNTJlZmJhZjEzODVmOTczY2I0MjZiZmE4YSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T11:52:33.190Z"
+  }
+}

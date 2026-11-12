@@ -1,0 +1,7 @@
+# Files
+
+- [Arrival time per route](arrival-time.md) - How each route entry shows "arrive HH:MM" (with a "(+N day)" marker when needed). It covers arrivalTime/formatArrival rounding and day-offset rules, the single departure moment per route computation, and the PILOT-83386 spec and tests.
+- [Place search and suggestions](place-search.md) - How the search box finds places through Nominatim, with an explicit Go submit and debounced type-ahead suggestions. Covers the result list and its "Add as stop" buttons, and how searchSeq drops stale responses.
+- [Pleasure score (green pixels)](pleasure-score.md) - How walking routes are scored by counting green pixels (parks, grass, woods) on zoom-16 OpenStreetMap tiles along each route. Covers rasterisation, the tile and distance limits, timeout and abort, the "most pleasant" marker and the unavailable states.
+- [Routing, alternatives and detours](routing.md) - How Barnacle Maps computes and shows up to three routes with OSRM. Covers the walk and car travel modes, OSRM alternatives, forced walking detours through side waypoints, the pickRoutes selection rules, drawing and selecting routes, and the status messages.
+- [Intermediate stops](stops.md) - How users add up to five ordered stops, from search results or by clicking the map, then reorder, remove or clear them. Covers the duplicate rule, the immutable stop-list helpers, and how stops change routing, detours and the pleasure score.

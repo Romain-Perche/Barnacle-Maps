@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:7f37cf5ec9c42a89d6f3e784ced08f8a0d8ad8ee6dfbe76f75cf4b39206daabb",
+  "claims": [
+    {
+      "id": "claim_ea01f66ad0fd4d3b9e9c3e7b1c1724b6",
+      "statement": "npm start serves the repository with Python's http.server on port 8000 and npm test runs Node's built-in test runner on test/; there is no build step.",
+      "evidence": [
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:44ca6dbfe3ea9f1f7f0b33eb809d0375164108ea4f0fa4d5bab7028a6e5a36eb"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    },
+    {
+      "id": "claim_622ea48c1ae0400888ca8eacaecd3117",
+      "statement": "Configuration is done through source constants such as TILE_URL, DEFAULT_VIEW, SUGGEST_DELAY_MS and the PLEASURE_* limits in app.js; there are no environment variables or config files.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L107-L109",
+          "version": "repo-lines-v1:sha256:60515d131846ffcffc81a67767e704a5bc3c4f673ee9888f1832be0fe365d7f4:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU0MzY3MTI2YWE3ZjZlODUxZDliYzU0NWIzOGU3ODVmNDhhZGY1ZjFiOTBlYTRmODY3MmZlZDhlNjNkZmFlNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2E2NmUzNGNkMTRmMTQ2NDdjMjU1N2NhMzE4NzIzZGY3NGQyYzg4MTc0YjE3NWZkOTM1MzNjOWU1YjBhYzU1NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTEyNGVmZTQ0MmUzMmQ1MDg3MGZjNGUyYjMxYTZmZGNkZmUwNWUyOGZiNWFiMGM5MzFiZmYxY2MwOGRiMjA4MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmI4ZDIxZTE2MzcwMTg5MmFiYzJmODBhYjgyNjZlYWVjNGE1MmQyMDc4ZWIyZWQ3NWIwMWVlYjc1ODkyYmMwOSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L25-L50",
+          "version": "repo-lines-v1:sha256:bd6b5f4669b74b7bf02996f58bb700f05bbb0698d4ed360c8f5320c0c35b4304:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5NzE2NGI0ZTFkNWY4MjhkNDA5NDk3NTdiMWM3ODliYTk2MGNmMDM0MmRmOTVkNGYyOTU4M2M5NjAzZWEzNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2ZTIyNjgxNTU0ZWEwN2MxOTE0ZmZmNmEyOTRmMDBjN2FmNDYxNzc0YWNjNDNlZTQxNWU1NTM0NDEyNzNiNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2NGZiNjA4NDI0MDJmNTM4YjZkZTRkMWZkMWY3MzkxNWFlODVhYjRhODQ0MTEzNzEwMDI4ZGFkMDU4OWY4OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ1OTYyYTRhN2JjZDg5OTAzMjc4OTY2NGU2YjIyYWIxYWU2MDQ1YzhiOTE5M2QwN2JjY2FhZmY5ODUxMzU0ZGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_da263baf0c6b4724818ebd3906c443d0",
+      "statement": "Before the first position fix the map shows Paris at zoom 13, and the first fix centres it on the user at zoom 15.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L27-L29",
+          "version": "repo-lines-v1:sha256:6c13da773536fac8c431f5068800929c3891986aad31e29d3763c77fc466f61a:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjU1ZDhkMzJlOGFmOWVmYjI3OGQ1MmVlYmM5NmVhZGYwYTY5Y2NhODY3NGY3NWIyOWNmNjMwM2JlOWRlMTY4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmI5YzhhM2YyNDc1Mzk0NWZkMjdhMDdjZDk3ZmU1ZDdkZmU4NmY2Y2RjMjE2NzcwZTAzNmE1YmNhMzU4MTVlNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTQ3NzUyMmZkMzYxZmQ0YTZkYTA4MmMyYjE1YTliNGY2MjMwZjM3ZmJlOTJkNTA1NTkxNTNjZDY0MWIzNGNmOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzM0ZWQwMjkzODMzYjRiNDEwZGFkMGIwYTJiZGM5MmY1YzZjNWJhZmY4ZWEzMTJlYWM2NzczYzgxZjhhNWE3YSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L84-L87",
+          "version": "repo-lines-v1:sha256:34bb14bdb258fe8936dc065f11e6ac0e150c6cd0d9fe42a8f797632cf1d113a1:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZlNzk5MzUwY2Y4ZTg4NjUwNmQ0MGFlNTViNzk4Yjc1ZTMyNWE3ZjI0ZDJiNDg2NWZiNmMyMmVlNzg0YTg1ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmNjMWVkYTc3NzhkNWU4YWM0MWY1MjkyMzdjOGNiMzQyOTU0NmZjOGY5MjFkNjczYzQ4OGUyMjEyMTQzMmZhNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDk0ZWZmNmNkZjBjZjI0MWQ5MjA3MDRkYTQyMmUxZmY0ZDk2ODU1ZjI1M2NiZDBjYTNjYTBjZWZlNmNiMTM4MiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T11:52:33.190Z"
+  }
+}

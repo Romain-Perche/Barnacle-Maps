@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:3a46a959ad8cff603ad0f64c56166938337486b488299b7680b8ecbcfc577b80",
+  "claims": [
+    {
+      "id": "claim_461aaa152c924bf687bd1f812d8eb74a",
+      "statement": "Barnacle Maps is a build-free browser app showing a map, live position, place search and up to 3 walking or car routes with distance, duration, arrival time, optional stops and a walking pleasure indicator.",
+      "evidence": [
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:44ca6dbfe3ea9f1f7f0b33eb809d0375164108ea4f0fa4d5bab7028a6e5a36eb"
+        },
+        {
+          "resource": "repo://index.html#L10-L31",
+          "version": "repo-lines-v1:sha256:f03f4b3883293617a857d34113b94f3479d8227721c2d15b8b7ea7af4d51bbe3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzMTMzYWZiNzhjNjU1ZTE0YzAyZGFiNDA3MTZkOGFiMjk5YmY5ZGRmZGY4NGI0MmVjMmFlMjU5NmUwZDNiMzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1MGI4ZDVlYTM3ODk1ZDYzMWEyNjlmY2QxMGEwM2QwMjljZTQ0ODQ3NDJlZDRiZGY3MDQ3NGM3MGMyMWYwM2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEwMzI2ZWE0MDNjZGI2YjkzZmM2N2M4ZTVmOWZkOGUzNzk0MmI1MWI5Y2I4OGRhMTljZDFhY2NlMTVkNDZmNGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQzZWQ4MWNkMTZkZjg4ZDY5MjE2NjQ2ZDhkYWRhNzYzNGIzM2E2OTg2ZTljMjNhNzI2MzFkMTkzM2I2MzVhNTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9eb553bbd4f84112b8c7946bf10f1306",
+      "statement": "The app is started with npm start on http://localhost:8000 and tested with npm test, with no dependencies to install.",
+      "evidence": [
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:44ca6dbfe3ea9f1f7f0b33eb809d0375164108ea4f0fa4d5bab7028a6e5a36eb"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T11:52:33.190Z"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:5156b3dbf6dc7200c4bdacd5c2c2ef16ea0fe0adf736fa6e5f4c1f73e3654022",
+  "claims": [
+    {
+      "id": "claim_aeb6a1c3ed754e7492b668237fc46e69",
+      "statement": "The app is a static page that loads Leaflet 1.9.4 from unpkg and src/app.js as an ES module, with no build step.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L1-L32",
+          "version": "repo-lines-v1:sha256:e5ed6ab5a488ab1277d5dc2f9d23610c06e84a60712468469aa58085831fe4cd:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzNWZjYTg1NzRmMDYwZWVhMjRlYmNkYWU2Yjc4ZjMyNDE0ZjVkZTAzZGExMDg0ZmQwZTczZDcxMDc2OGUzYTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzZWQ4MWNkMTZkZjg4ZDY5MjE2NjQ2ZDhkYWRhNzYzNGIzM2E2OTg2ZTljMjNhNzI2MzFkMTkzM2I2MzVhNTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    },
+    {
+      "id": "claim_39e358895c1a41a5ae3ae931f2ca4a83",
+      "statement": "All runtime state lives in module-level variables in src/app.js and nothing is persisted across reloads.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L52-L64",
+          "version": "repo-lines-v1:sha256:8f6a9d4619e3e02354c8b5a0938069d3b1a450aa0d6b167c83f8b139bc4897ca:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkNzNmMjU1NGJmM2ZhMTBiYjBmYWRmMTJiOWRhZjE2M2MxZWRkM2M3ZWJmZWU4MjYzZmRlNDczNzk0Mjc2NWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmMmZmOWZlNDQ0YTM5Yjg0ZTA1NDBlZWRkZjBmODlkMDFlZTBiN2I3YzQ2ZmI4NDUxZWJiZDRiM2U3NjQ2NzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVjMTgyMmIzZTJjMjY3ODViYWNhZTdiZDlmMGE0M2RjMTY3NDFiODE3MzZjY2Y4ZmJlOTdmYmQzOTVlZmNmY2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZiM2NkOWU1N2ZhNWIwOGQ4NThjMTQ2NzYxZjk0OTFhNjE3Y2ExZDFmYWYzYmJiNjRlZGRjOTAwYjZiMWZhZjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a598ff5f3abf4a3c842a0c490d23eb40",
+      "statement": "updateRoutes increments routeSeq, aborts in-flight pleasure scoring, clears drawn routes and snapshots the stops; later results are dropped when their seq no longer matches routeSeq.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L190-L198",
+          "version": "repo-lines-v1:sha256:af1548099aca8d6868e5b24767144cd3a579840b19ad0b552b330cac2b05e711:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzE1MmFmMDU0NzA3NDE1NTg4ZjQ1NTNhNjM0N2ZhN2E1ZWE1OTdiY2IxY2QxMmMxNGQ3NWQwMTA5MDAxNjhhNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDVjODZkMjIzYmQyMzYxZmViZWI3MjdmODEyNTJmMzUyNjA3YWNiNjJjNDdmNGQ0OTE2ODgwZGJkMjQ0ZGZhNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNjMDYzNDYzYWIzZTJkN2FkYjM0MTMyMDdmYjQxZTliMzI3OTZhYTBhMTQxMGE0YzMwNTRjMzg2MjY0NGQ3YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDUwYmEyNjI2NjExMTBjNTBmYzU3NTA4YTg0NzQ2NzA0OWEzNThhYzlhZGE3ZGNiZWIzMGM5NTU2Mjk2M2U1YiJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L308-L348",
+          "version": "repo-lines-v1:sha256:ec21f121de409c6156922bae1d44d875eb8bd46ea4a2f023c535372b4ae02cb8:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxY2Q3YjBlNzA4YmQyNjhlNzMyOTVkMjhjZWM0ZTc1MmM4MjNlZTZkNzU1ZGZlMDg5MmZkMjdiNGYxZTZhMjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMzg2MmM5MTg1NjEwOTRkMmQ0MjMwZGFhOTE3M2UyYmM4ZTE1MTRiYTYzNjUyNmRkNTUzN2QzOTUyNTVmMjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ4ODgyYWU3MjAzZmEwZTY0MTRlN2NiOTc0YWJkZTIzOTY0YTYzZjliZjZjZTU0NWFhYjZkMGJlN2E3NDRkMzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a6e05b27fc954e01952dc7913a67a500",
+      "statement": "If the user's position is not known yet, updateRoutes sets pendingRoute and the route is computed when the next geolocation fix arrives.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L320-L324",
+          "version": "repo-lines-v1:sha256:501cb145b148fde82a637b30480ff9a0ce934a19dcd836dfead0c9245913ce4c:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTk1YjQ3YTk2NzYyM2E0MGFhMGViMDA3ZWI3MmZhMjkxZWYyM2MzYjA1NWRkOGJmYTEwM2ExNGE0NmVjYTU3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmY1ZGU5YTQ3YTA3MmUwZjY2NjNjOTQxZDU5ZjhjNzMxYzM4MTJiNzkwNzk4ZWQwMjU4NjM2ZTUxMDI4MDljYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzAwY2JhZjRjMjIyNDlmZmRjYzMxNDY1MWI0Njg3NWIzMWRkMWQ2MmIzYzU3NjljZDFjYzAxNTdjM2RiNzk5ZSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L70-L89",
+          "version": "repo-lines-v1:sha256:f16a04932a5932adb8b1ee52dd0bce0513a310b06a63f7b388efa5040cad5af1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlZDk4NmQ4M2ZjZTYzODAxNmIwYzcxOGZmOGE1ZjczMWIzMTUxZGY3MjliODI0ODhkNjAzZDAxM2FkNDMyMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkYmFjNzM2MjNlYWUyZDRhZWZkNjRiNDc4ZDAxYjNiYmRiYjRiYzY2YzQ2ZDY1NDhiOWM3NTIwMmEzZjUxMGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNkODkzZjQxZDQ3NmRlOWJhOGQxMTg4NDQyZWQ2ZjIyYjZkZWNkZDcxMjUxMzdkMmQxMGQ1ODliNjVmZmQ4YjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_79bffa0f08084421b9880e92d37fa0d5",
+      "statement": "drawRoutes selects route 1 by default and fits the map to the route lines, stop markers, destination and user markers.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L212-L243",
+          "version": "repo-lines-v1:sha256:dc57ac04f1eb5b30fecd423502403d92af7bd149f42b69d7570aa94543628adf:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwNGNjMGUxZGM3OWI4Y2UyZjJiODdhNmNlZDE2NTdmNTY4ODdiYzZiNjFjOGE5ZjU2MDRhMGQ2ODhmMzM1NTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM3YTlmNWYxYjZkY2FjOTMzNzJiNmViZmJkODA3ZTA4ZmU2ZDcyZWYwMjJkZGYzYjUyZGM1MmM1MWMyNTFiNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUwMDFmYWI1YjJhMWU4ODJiZjNmYjc4YTc3NTgwZTc4YmFkYTM5Y2I1MTE2M2E0ZTJjYTM4NjgzOTk1OTY4YzAifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T11:52:33.190Z"
+  }
+}

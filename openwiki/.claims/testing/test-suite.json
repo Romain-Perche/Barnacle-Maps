@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:31f2dcdf7d12a8d95cdb74017879ced9f0cf60b2aae51deababf23026dcecbd1",
+  "claims": [
+    {
+      "id": "claim_69a3e6258f9b4cd2b97fdefef7d52525",
+      "statement": "Deterministic tests run with node --test over test/ and import src/geo.js directly without a browser or network.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        },
+        {
+          "resource": "repo://test/geo.test.js#L1-L13",
+          "version": "repo-lines-v1:sha256:105def9dcfb119db6423cbefe36eb8cb7f152a7ba303086c4c0cd0d7980c7c17:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5ODY1YmNjMGI5NTc5NmJjZDE1MjRiMzBkNzFiZmFhN2M5NTY3MDQ3YjA2Mjg2NWRiMmQ0OTA2MGU5MmUzMmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ4MmNiODMyMDgzODRhZTRlZjNjOWE1NWFmMjA1NDhhMzRjOGI4NmZiNWU3ZGUyNmI2ZTE3MDkzZjc5ODVlYTMifQ"
+        },
+        {
+          "resource": "repo://test/routes.test.js#L1-L9",
+          "version": "repo-lines-v1:sha256:264c63e00ccc64cd507c01c2591d6809214d6b45967351134b546c39bcb9e478:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk4NjViY2MwYjk1Nzk2YmNkMTUyNGIzMGQ3MWJmYWE3Yzk1NjcwNDdiMDYyODY1ZGIyZDQ5MDYwZTkyZTMyYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTIzYzg0MWFhYjJhNjZmMmIyN2I5OGJjNjA4YTU0ZWY1ODJiNmI3YjY3NDE1YzJlYjNiMzI0NzVlOWUyNWIzNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWU2YTMyZjE1ZGRjYmQ5MTQ3N2FkZmRiMTA4MDk0NWUyN2Q0ZTEzMTE3ZTEzZjcxZTUyN2Y1ZTYyM2Y2YzA5NCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9d04ad252c3f40b49cac655f7ab2ec68",
+      "statement": "Because app.js needs Leaflet and the DOM, tests verify its wiring by reading its source text and matching patterns.",
+      "evidence": [
+        {
+          "resource": "repo://test/arrival.test.js#L191-L215",
+          "version": "repo-lines-v1:sha256:03f9cffb6b82494ba2d786088003893ec53fc28d7e0a040773d0967aa59dfb8f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5OTFiZTJhMGU1MmI1OTkzZDE3Y2YwMDFhZDcxNzgxYTk2Y2QxMDYxY2UxNTY1YmQ4NjM4M2UzMWZiYTkxOGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzYTAyZTVkYTVkZTg1ZjU2ODU3ODc0Mjg2NjY5NmQzMDdjMDdhYjA4OTY0MmE4N2I0NWZkMjgyMDI3MGJmNTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc0NTZmYmRjNGU2Y2E2YTg4ODkwZmZlYWE0OThjYjRjYmRhZmE5N2NlMzczODIzMzAzY2ZiOWZlOTFhY2EyYzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRhYzU0ODU5MWUxNWUzNjU4YTE2ZmEwY2ZmYzNkYmJiYzM2NmJhYTA5NGYxYmMwMGQwZmI0MTU4M2QyMWJmZGIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5248b2c7328a4b31ab9395a22960673c",
+      "statement": "Arrival tests build departures with the local Date constructor so they pass in any time zone.",
+      "evidence": [
+        {
+          "resource": "repo://test/arrival.test.js#L1-L10",
+          "version": "repo-lines-v1:sha256:26fe99ee1c2c1640da65de9a1cf5a51c5ebf57f6ccc58ba25217ebf9778def3c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhZWZkYmY5YmM1NDJhZDJjYzBlYjQ4MzNkY2E0YThmNjNhNzcwODI5NzY1NmExYTg5NmRjZjUwNGRhZGNjOTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5MDQyMGNhMTk0NmQ0MTgxYjJiMDQ5NTJkZDQyNmQyNTIxNzI1ZDQ1MDg1MWZmN2MzNDVkZDQ4ZDA0YjcyYWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFkYjYyYTA3ZjY2Nzc3MTViYTFmYWE5NmJjY2U5ZTI2OGVmNDliMzhjZDM4OGQxMWY3Zjk0ZjkzOGY4OGM2NjQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_39eb4f9f1bc5416eb3c0469545776d41",
+      "statement": "AI test scenarios in tests/ai drive the running app with headless Playwright, a fixed timezone, Paris geolocation and a frozen clock.",
+      "evidence": [
+        {
+          "resource": "repo://tests/ai/us1-arrival-time.md#L1-L12",
+          "version": "repo-lines-v1:sha256:024ca265b9e68cda4f95086466a7385fa3400d911930dcab031afe18cb0119cf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhMDI3ZWEwYzA1MDkyZjY5ZDc4ZjFjNDA5NDYwNTBjZWQwYTA3YWYxYWMzMTU4MjJmNGNiOGQ2YmYzYzIzNWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3MDc2MGY3ZmUxNTU2Mjk3ZGFkYTU4M2M3Mzg5NmYxYTk1NzBlYmM3MWM1MTQ0NzU0YTlhM2E2NDg0OWY3MWIifQ"
+        },
+        {
+          "resource": "repo://tests/ai/us2-arrival-refresh.md#L1-L12",
+          "version": "repo-lines-v1:sha256:8ada4f571a7001d3ec95946ff481fc16841e3a6b7324051bcdbba2cca6f4a363:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljM2UzMDUyYjFhNDAwMWJlOGQ5ZDdhOTM1MzI2ZDdkYWY1OTU0ZDE5NjQyMDZhZmViNTkxMDNhNzU0YjlmMTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUxYjE0ZGY4Y2M4ZDYzM2ZhOTJiNjE2ZmJhYTg4YzRjZTU2ZTkzMTA4MzU2OWViYmUyNjUyNWUwZTBkZDk4ZTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyYzIwNTJiMTI4YTE5MzRmZTRmNWUwZWQ1NTIxODk3YThhNGQyYTU4YmI3Yzg2MWIyM2RiYzk1ZDg4NjlmMDgifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T11:52:33.190Z"
+  }
+}

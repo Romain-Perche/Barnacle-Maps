@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:1f8371c206dc0582f3553943c4e28c15ad100a37f187d9a96b5d770f34d4c40e",
+  "claims": [
+    {
+      "id": "claim_2a5e70cad97d4c01b9a83cedda2c24fa",
+      "statement": "src/geo.js performs no DOM access and no fetch so its helpers can be unit tested in Node; src/app.js imports them.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L1-L23",
+          "version": "repo-lines-v1:sha256:d2548996c7a4ee59701319b3f0f2c742174a6950753f57d7db9ba333efa83768:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4MjAwOTY0YTk3ODYzNTUyMmIyYWIwOTBjNjUwNjVkOGVmOGU4NWM0NzMwYmIyZWIwNDYwZDM0YzY3N2RkYmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxZWIzMzBiNzUzNTg5MTQyZjRmZTZlODJlNjlmZDI2Y2I1ZjE2MDNmZWZhYWM5MTc2YmQ0MjFlMWRhM2M4M2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU0Nzc1MjJmZDM2MWZkNGE2ZGEwODJjMmIxNWE5YjRmNjIzMGYzN2ZiZTkyZDUwNTU5MTUzY2Q2NDFiMzRjZjkifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L1-L4",
+          "version": "repo-lines-v1:sha256:448f815db14fad7e1f3920a7113c20f0be941853e6877d849d3e76b0066a3db8:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDQ0MWQxYzM2ZDU4MTIwZGM0MjI5YWE3NjZhNTU4YWM5ZGJjY2U1Yjg2NTBiMzM5NGY2MTdmZTMxN2U1ZDUwNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGU3MWE0NjZjMDFjMWNjM2IzM2FiNGJiZmEyYWU1OTU2NWEwYmNmMTAwNmRkNDExOGUyMDZkZWVjMTJjMjg2ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGEwY2Y0YzBjMGM2YzRkZWIxN2E4NmUwNTcxZGIyODhkMjY3ZGUzZjcwNjljMmZjMGI2NDQ4NDYyYzNhNGZmZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d8476030f2a947e9b144606c2bf6ac11",
+      "statement": "routeUrl orders points from, stops, optional via, destination in lng,lat order, always requests overview=full GeoJSON geometry, adds alternatives=3 when alternatives > 0, and falls back to the foot mode for unknown modes.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L69-L88",
+          "version": "repo-lines-v1:sha256:de980b09657a89f0a488a594b53ec575c642da9087ba61b45c4b5596429d9f7e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3N2VmZTZjOTlmZTA1OTUwMjM2ZjVkODAyZmQ5N2ZkNzFmMGYxN2Y4MThkYmI0YTUxZWJjMGVmMzU2MjdlNmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4YmJkNTgxMGI3Mzc0MmE4YjUwZDg3ODkwOGU1OWFjMjYwOTNkNTUyZjE2MjMwNTNmMTViMmFkYjZmYjVkYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY4MTVkYjI1MjBhMzI3YWY4OTU5NGVlNWYzYzRiODE5MjUyY2JmNzEyOTY3NWY3MGNmZjA5ZDJmZGNkYmE3MWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3fa7acc8922842eea1bfc7ebf039dd5a",
+      "statement": "parseRoutes returns an empty list unless the OSRM code is Ok, and flips GeoJSON [lng, lat] coordinates to [lat, lng] paths.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L132-L147",
+          "version": "repo-lines-v1:sha256:b28fc0d9139603e943f1673ff0ff963a3458247fe87104117bf8ac330187cab0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZmI0NGI1ZWVlMGRjYzhkZDliMWIzYmMzZWIwOGVjYWY4M2E5NDZjOTk1N2FjMWJmYmMyZTJkMjY5YTdjMDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIzNjZlMzk3Y2E2MjdjOTc3ZDM0ZmMyNTYwNDM0MzRhZWJjZmVhYWE4MTQ3ZjhiMzM3ZWZjMmQ2MzdmNWU2MTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjViMmFiMmRhZDZiMWY3NDIwYjAwZTFjZWM1NTY4NTlkMWNkOTliOWZiZGUyYzk3OTJmYzVkZmQyZDdlYWRhNjAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3e88804c0ce54414981e9ccb10115582",
+      "statement": "parseSearchResults converts Nominatim results to {name, lat, lng} and drops entries without a name or with non-finite coordinates.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L53-L67",
+          "version": "repo-lines-v1:sha256:c144d401b6bb1bf4d22658ddbdf5d846c141699eff63659f0b2e33ef4e80649c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NjFhZTI5YTMwZGIwNmFmOTI2Mzg1NTkxYTllOTdkMTM0OTVhYTIxMTg2ZWJiNzBjMTk2NDRlZjc2MjY4ZDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZhYmVmODcyODJiMWQyNjhlMTM1NzI5YmUxZmFlMTkyMDcxOTI3ODE0OTc3MWJmNjU5N2IyNDhmNmM1ZWRlNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM1NzRiNWM0MmQ5NmZmOTk5YmM4ZWY5OTZiZDE3OGJkNGQ0OWI5YjUyZDg3ZjkwNzM5N2RkNzFjODA2ZGI4YjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1578c7088a1449dbaa14eb70dd3b1ab7",
+      "statement": "formatDuration shows at least 1 min and switches to hours from 60 minutes; formatDistance uses metres below 1 km, two decimals below 10 km and one decimal above.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L18-L21",
+          "version": "repo-lines-v1:sha256:ec771e979f0386e885a2d58904fa85d1adf69c78e1c4d7524a21f00815bcff16:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWZmNzI2NzY4ZTE3YmY4MGQwZjNkN2RhOTMzNTU4M2FjYTI5MDM2ZjAxNjE5OWExZGVlYmQwYTUzMTY4MmJhMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmM2NWQ3MjI1NmZjZmQ1NDQ4NjY5NmI4YjBjN2MxYWE4Y2M2YTkwYzQwYmI1MDkzMGMyMWI4N2NmNWJlZmY4NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGU2MTdlZDFkNzExMjVjMzE4MjIzMDllMjY0YmJiMDY4MGRmMDBiNDg1MzI1MzhmZTI3MmIyZmYwM2E3MTI4NiJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L42-L48",
+          "version": "repo-lines-v1:sha256:1943f547f20aaae8092b9da19d3b766fe3f019ffc7fa30df2da76aa5f83abb30:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGU2OGU3NTQ4MTJjOGNmYjFiNjE0NDY2MmJlZjA1YWQ5YzIyYjc3NDg2NTY3Nzg5NjM1Mzg2YWM1YzgyN2JjOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWYwOGJjMzc1MWM5YzM1OWQyZWJhODY1ZWJmMTYyZjE2ZTNiNmZhNDhlOTYzNWNhN2RjZWFlZmQyYjUyMDY2MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGQ0ZWUzNDE4OWE5MTI2YTc0MGJkZmNlOTBiNWEwMjc3MTRmYzNkYzQzM2I2YzAyNWM5NjQyNGM5OTQwODVjOCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T11:52:33.190Z"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:5546586be31ca4c9c8872b2e8e29f1fa5cae8c91f4df31772a499c7d798b8882",
+  "claims": [
+    {
+      "id": "claim_f9415896d5e34171b92feee7aaa5d426",
+      "statement": "The Spec Kit workflow runs specify, a spec review gate, plan, a plan review gate, tasks and implement.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/workflows/speckit/workflow.yml",
+          "version": "repo-file-v1:sha256:177761c5e7df28126beea043b5cb45aeaf7958090c022dc11ac71399422fcfbc"
+        }
+      ]
+    },
+    {
+      "id": "claim_9971cf620fea4f8f84eb9141c8ea922f",
+      "statement": "The project constitution in .specify/memory/constitution.md is still the unfilled template.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/memory/constitution.md",
+          "version": "repo-file-v1:sha256:ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3"
+        }
+      ]
+    },
+    {
+      "id": "claim_2b9cf3bee09c4cdfb9a038177979c37b",
+      "statement": "The write-tests gate runs after /speckit-tasks without human approval, writes deterministic tests that fail until the feature is built plus AI scenarios, records them in tasks.md and commits as gate(write-tests): tests.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/write-tests/SKILL.md",
+          "version": "repo-file-v1:sha256:208e30830d0394fa12ece27b5933383399952babfa7d554d560581d6a0afa039"
+        }
+      ]
+    },
+    {
+      "id": "claim_333cb2fad4364981b420b6362871fdd7",
+      "statement": "check-plan-completeness turns unticked checklist items into questions and applies answers to spec and plan; review-analyze-findings fixes or dismisses analyze findings and records dismissals.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/check-plan-completeness/SKILL.md",
+          "version": "repo-file-v1:sha256:d74ecd36a85f7982acd2cf6c2bcadefb82dd926a08944a59e6ea127cecc76e4f"
+        },
+        {
+          "resource": "repo://.claude/skills/review-analyze-findings/SKILL.md",
+          "version": "repo-file-v1:sha256:cc2e941c6828ec10414e5a68f341d27b8085911de8aa1cba3842cf7b5a166ee9"
+        },
+        {
+          "resource": "repo://specs/pilot-83386-show-the-arrival-time-for-each-route/analyze-dismissed.md",
+          "version": "repo-file-v1:sha256:8cb3d7d2bd5387168f5c43e38e9b52469358d588c0de2ba5dfb7b524a377b078"
+        }
+      ]
+    },
+    {
+      "id": "claim_3fdf2d57ce984bb0a433054f8efb2143",
+      "statement": "The Spec Kit git extension supports sequential or timestamp branch numbering and auto-commit hooks, with auto-commit disabled by default.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/extensions/git/README.md",
+          "version": "repo-file-v1:sha256:a2957d9756920058e20adf108dc9754fc3f31519dcbdfe3559f08f95d489f66c"
+        },
+        {
+          "resource": "repo://.specify/extensions/git/git-config.yml",
+          "version": "repo-file-v1:sha256:7451b7fcc96f368de7536f66e1caaa84525c7573b6b3c241e41561374167cab3"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T11:52:33.190Z"
+  }
+}

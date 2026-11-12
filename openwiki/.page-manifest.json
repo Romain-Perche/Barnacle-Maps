@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/geo-helpers.md": {
+      "pageVersion": "sha256:1f8371c206dc0582f3553943c4e28c15ad100a37f187d9a96b5d770f34d4c40e",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    },
+    "/openwiki/architecture/overview.md": {
+      "pageVersion": "sha256:5156b3dbf6dc7200c4bdacd5c2c2ef16ea0fe0adf736fa6e5f4c1f73e3654022",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    },
+    "/openwiki/features/arrival-time.md": {
+      "pageVersion": "sha256:0990e99c2b80551b740513fcf0034b72cd9990b3f3871c209433eb6e8bbced1a",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    },
+    "/openwiki/features/place-search.md": {
+      "pageVersion": "sha256:0e6a3660560a38ae0c019bf7ff8c79258a82fdf23a84f866e5ceb63d49cfc611",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    },
+    "/openwiki/features/pleasure-score.md": {
+      "pageVersion": "sha256:7f78da14fe8af55c1983def4391a67d193c803a8722b3d3f74040421ed672d64",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    },
+    "/openwiki/features/routing.md": {
+      "pageVersion": "sha256:d415a7cd7663c4d8d78481ffdf65cc1d93fd6f24c39921aeb60b3087a121dc86",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    },
+    "/openwiki/features/stops.md": {
+      "pageVersion": "sha256:028fccdd9ce04727f5875a7077526f2c428f4a1ba1ccc218b7ac8cbdc2d5a289",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    },
+    "/openwiki/integrations/external-services.md": {
+      "pageVersion": "sha256:d8b77df373b8a29632f0787785c33462a230b5fccf6cb93543c1eeb7b43ce2e7",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    },
+    "/openwiki/operations/running-locally.md": {
+      "pageVersion": "sha256:7f37cf5ec9c42a89d6f3e784ced08f8a0d8ad8ee6dfbe76f75cf4b39206daabb",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    },
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:3a46a959ad8cff603ad0f64c56166938337486b488299b7680b8ecbcfc577b80",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    },
+    "/openwiki/testing/test-suite.md": {
+      "pageVersion": "sha256:31f2dcdf7d12a8d95cdb74017879ced9f0cf60b2aae51deababf23026dcecbd1",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    },
+    "/openwiki/workflows/spec-driven-development.md": {
+      "pageVersion": "sha256:5546586be31ca4c9c8872b2e8e29f1fa5cae8c91f4df31772a499c7d798b8882",
+      "completedBy": "claude-code",
+      "completedRunId": "5a15a431-bde0-4add-8618-bd8a3977f876",
+      "gitHead": "fb82655a80024219b837517d74f5e805e248b05c",
+      "sourceFingerprint": "sha256:f7edf05e888e33ebc977168253ee54ffdee507bd6f3f20e33a9dd35b919e7e4a"
+    }
+  }
+}

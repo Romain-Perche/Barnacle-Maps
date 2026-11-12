@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:0990e99c2b80551b740513fcf0034b72cd9990b3f3871c209433eb6e8bbced1a",
+  "claims": [
+    {
+      "id": "claim_17b0d7ce1fa04787869518591fcf888f",
+      "statement": "arrivalTime adds the exact travel seconds to the departure, rounds the arrival instant to the nearest minute, and computes dayOffset as the difference of local calendar dates between departure and rounded arrival.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L23-L33",
+          "version": "repo-lines-v1:sha256:ce2a02f8a452434b4018226183b9ef7bc30eea9a1f5181b07216452add73dcde:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyODI3MzBhNzI0NGMwMWNhN2ZiM2Y1MWFkMzE3ODBkY2ZhNzMzYmRjMGEyNDk1ZjA1NGZhMDViYWQyODA4ZWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBiZTZjZDA1MThkYWU1YjQ5OTk4YTIxZjZjNzcxM2ZlZTA3MWZkMjYzYTJkNjZhZmQyZGFhNDE3ZGMyZWMxOGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzMDA1MDU1MGYyMmFkZDQwZDJjMDUxNmUyZjRkMDU4NjE4NDBmNmExM2ZjNzg3YTJhMzE1ZDJmZjQwOGI0Y2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2e8c95948a5642dba763c07ffbbfab95",
+      "statement": "formatArrival renders a zero-padded 24-hour 'arrive HH:MM' string with ' (+1 day)' or ' (+N days)' when the arrival is on a later date.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L35-L40",
+          "version": "repo-lines-v1:sha256:a3a1dea247521e4409aabe77e7cd7533376b75911c2c854a4040e4148de830b7:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDdkODIwZjdiZjhhZjkzZTNiNjM4ZTkzMjNhZmQ0N2E1Nzc3NjY3NzMwNDBkOTcwYzZlMjg1OWJiZWI5NzdkNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI3ZjUxMDA0ODdmMjRkMWNmNWNhMDUzZWYxNzBmNmFkZjNkNGQ4NzUxYWY4NmEwZDY4Y2Y0MDk2NDhhMmRjZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDI4NDNlOTJjNDY4NjE1YTMyMDM3NzhlMGY2M2JhMjVlNTk0N2RjZTRmMGRiZTI0YjdhNzA5NzQxNzQzNTM5MyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d5bed77466414c1f8ac688f2c5e6f86d",
+      "statement": "updateRoutes captures one departure Date after routes are received and passes it to drawRoutes, which appends formatArrival to every route entry title; the status line has no arrival time.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L212-L221",
+          "version": "repo-lines-v1:sha256:4f275a4630877e82dcddc37af6e2418890b708621cc00c0d0693923cf7fde4fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwNGNjMGUxZGM3OWI4Y2UyZjJiODdhNmNlZDE2NTdmNTY4ODdiYzZiNjFjOGE5ZjU2MDRhMGQ2ODhmMzM1NTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRiM2IyZGM5OTRhYmI4ZTYwMWNjNjgxNTQwNzAzYjI2NWFiOWVlNzkxMzE1NWY3MGQ2MjNjNjgzMzIzZTZiOGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM3YTlmNWYxYjZkY2FjOTMzNzJiNmViZmJkODA3ZTA4ZmU2ZDcyZWYwMjJkZGYzYjUyZGM1MmM1MWMyNTFiNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU0NjhmY2M4ODU5MTkyZDUxMWMyMzc0MTdkNTEwN2IxMjhmODZkNzBiNWRiZDliM2NhZmJiMjI3NDg4ZjIzZjQifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L334-L346",
+          "version": "repo-lines-v1:sha256:fbe42dbe731b252ca8e5e18c35c4228027587c26926a84a04e2e4a5af45e6622:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc5MGQ5ZjNhYjZiYzI0ZTE1NWFkMGFmMWNlM2ZjNjgzZThmZGY4OGU2MDRiN2RiYWE0NDY4MDAyOGMwYjdkOTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY1MGRmNWQ0YjQ5MDUyMzA4ZDk2ZjFjYTQ4ZjYzMDY2N2Y3OWI2YTY3N2ExODM0MGIxZTM3ZWMyZjU2NzJlMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk5ZGYxNTVlMTE1ZTU1ODRhOTEyODNiOTRiZjcwMzNhNTFlMzVlNjgwZjcyMzllYWNhNjRkZDhmY2IwYjM2NmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_42a352b0833c4d879681cda5d1690be2",
+      "statement": "test/arrival.test.js checks the arrival helpers against the contract table and checks the app.js wiring by reading its source text.",
+      "evidence": [
+        {
+          "resource": "repo://test/arrival.test.js#L1-L30",
+          "version": "repo-lines-v1:sha256:1693407765f54be9a3e8ba121576d3339ebc26d0e17a0a700251e44465f998b9:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhZWZkYmY5YmM1NDJhZDJjYzBlYjQ4MzNkY2E0YThmNjNhNzcwODI5NzY1NmExYTg5NmRjZjUwNGRhZGNjOTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQzMGI1Mzc3MjQ2MGJhYmQ2ZDM1NTMwZTczMWNmMWU1Nzg4NDgzM2NjZTcwMmQ4NDdjZjljZjA2NGZmMDFjMWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM5YWY5M2I3OTVhN2ExMWY1OWUxMTgyNTk2YTUyZmFhZjkxNDg2ZDM2MTFmYjZhMjhmN2RkYjI4NjNkNDk4MDYifQ"
+        },
+        {
+          "resource": "repo://test/arrival.test.js#L191-L194",
+          "version": "repo-lines-v1:sha256:601dd16ba67e68fcb012c806cc68614fae98e3998ae973396033001a306e35d8:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzk5MWJlMmEwZTUyYjU5OTNkMTdjZjAwMWFkNzE3ODFhOTZjZDEwNjFjZTE1NjViZDg2MzgzZTMxZmJhOTE4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTRhOTZmMzcxZDcwNmE1NGI3NzhjNzljMTkyNzI3NWFmZTIzODcwODI4Y2VjOTM0MTU5NmY0Y2ZjZTMyNDdhMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzQ1NmZiZGM0ZTZjYTZhODg4OTBmZmVhYTQ5OGNiNGNiZGFmYTk3Y2UzNzM4MjMzMDNjZmI5ZmU5MWFjYTJjNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmQ2MjE5MmMyZWJiNDMxYTYxOWNhNjk5Nzc3YjVjNzJmMzVmNmI5NWZkZDhiMjc0YzU0ZWZhOGQ2NDNkM2MzNyJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T11:52:33.190Z"
+  }
+}
