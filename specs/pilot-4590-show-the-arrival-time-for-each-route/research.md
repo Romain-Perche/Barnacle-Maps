@@ -6,17 +6,18 @@ recorded here.
 
 ## R1. Rounding rule (FR-002, edge case "Rounding")
 
-- **Decision**: `arrival = departure truncated to the minute + Math.round(durationSeconds / 60) minutes`.
+- **Decision**: `arrival = departure truncated to the minute + Math.max(1, Math.round(durationSeconds / 60)) minutes`, i.e. the
+  displayed clock plus the exact minute count `formatDuration` displays (spec Clarifications, 2026-11-12, answered by Pilot).
 - **Rationale**: The spec's example is "a route displayed as 25 min at 14:07 shows 14:32, not 14:31 or
   14:33". The user's clock reads 14:07 for the whole minute 14:07:00–14:07:59, so the only rule that
   always matches "clock + displayed duration" is truncate the departure and add the rounded duration.
-  The result is never more than 1 minute away from the exact `now + duration` (SC-002). It is
+  The result is less than 90 seconds away from the exact `now + duration` (SC-002). It is
   monotonic in duration, so a longer route never shows an earlier arrival (US1 scenario 2).
 - **Alternatives considered**:
   - `round(now + duration)`: at 14:07:40 + 25 min it gives 14:33, which contradicts the spec example.
-  - `now + formatDuration minutes` (with the `max(1, …)` clamp): the spec's "very short routes" edge case says
-    to use the *actual* duration, so the clamp is not applied. A 20 s route at 14:07 reads
-    "1 min, arrive 14:07".
+  - Without the `max(1, …)` clamp (actual duration for very short routes): rejected by the spec clarification.
+    The arrival must agree with the "1 min" shown on the same line, so a 20 s route at 14:07 reads
+    "1 min, arrive 14:08", not "arrive 14:07".
 
 ## R2. Departure capture point (FR-002, FR-006, superseded computation)
 

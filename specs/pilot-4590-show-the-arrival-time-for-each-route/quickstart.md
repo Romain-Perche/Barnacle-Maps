@@ -16,7 +16,7 @@ TZ=America/New_York npm test
 Expected: all tests pass. `test/arrival.test.js` covers every row of
 [contracts/arrival-helpers.md](./contracts/arrival-helpers.md), plus:
 - monotonicity: increasing durations from one departure never give an earlier `at`;
-- `|at − (departure + duration)| < 60 s` for random departures and durations;
+- `at` = departure truncated to the minute + the minutes `formatDuration` shows, and `|at − (departure + duration)| < 90 s`, for random departures and durations;
 - `src/app.js` imports `formatArrival` and uses it in the route title.
 
 ## Manual (browser)

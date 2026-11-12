@@ -22,7 +22,7 @@ Lifecycle: created → passed to `drawRoutes` → discarded. A new value is crea
 
 | Field | Type | Rule |
 |-------|------|------|
-| `at` | `Date` | `floorToMinute(departure) + Math.round(route.duration / 60) × 60 000 ms` |
+| `at` | `Date` | `floorToMinute(departure) + Math.max(1, Math.round(route.duration / 60)) × 60 000 ms` (the displayed minutes) |
 | `clock` | string | `HH:MM`, 24-hour, local time, zero-padded |
 | `dayOffset` | integer ≥ 0 | local calendar date of `at` − local calendar date of `departure`, in days |
 | `label` | string | `arrive ${clock}` + (`dayOffset === 1` ? ` (+1 day)` : `dayOffset > 1` ? ` (+${dayOffset} days)` : ``) |
@@ -30,4 +30,5 @@ Lifecycle: created → passed to `drawRoutes` → discarded. A new value is crea
 Validation and invariants:
 - `duration` is a non-negative finite number (guaranteed by `parseRoute`). Negative or non-finite values are not expected; helpers treat them as 0.
 - Monotonic: for the same departure, `d1 ≤ d2 ⇒ at(d1) ≤ at(d2)`.
-- `|at − (departure + duration)| < 1 min`.
+- `at` = displayed clock + displayed duration minutes, exactly.
+- `|at − (departure + duration)| < 90 s`.

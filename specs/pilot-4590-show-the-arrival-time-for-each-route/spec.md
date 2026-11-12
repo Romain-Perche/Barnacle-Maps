@@ -18,7 +18,7 @@
 - Q: Can actions that do not recompute routes change the arrival text? → A: No. Selecting a route or the pleasure scores finishing leave the arrival text unchanged. (decided by the factory, no question asked)
 - Q: What is the exact wording of the later-day indication? → A: One space, then "(+1 day)" for one day or "(+N days)" for N ≥ 2, directly after the time: "arrive 00:15 (+1 day)". Nothing is added for the same day. (decided by the factory, no question asked)
 - Q: Where does the arrival text go in the route entry? → A: On the route's title line, after the duration: "Route 1 · 1.20 km · 25 min, arrive 14:32". The pleasure indicator stays on its own line below, unchanged. (decided by the factory, no question asked)
-- Q: What if the routing service gives a missing or invalid duration? → A: It is treated as 0, so the arrival is the departure minute. The routing service always returns a duration in practice. (decided by the factory, no question asked)
+- Q: What if the routing service gives a missing or invalid duration? → A: It is treated as 0, shown as "1 min" like any very short route, so the arrival is the departure minute + 1. The routing service always returns a duration in practice. (decided by the factory, no question asked)
 - Q: Which time zone and clock are used, and what if they change while routes are shown? → A: The device clock and time zone at the moment of computation. A later clock or time-zone change has no effect until the next computation. (decided by the factory, no question asked)
 - Q: How is "later calendar day" decided? → A: By comparing the local calendar date of the shown arrival time with the local calendar date of the departure, not by counting 24-hour periods. (decided by the factory, no question asked)
 - Q: Where does the arrival go when the duration has several parts ("1 h 20 min")? → A: After the whole duration text: "1 h 20 min, arrive 15:27". (decided by the factory, no question asked)
@@ -31,6 +31,10 @@
 - Q: What does assistive technology read? → A: The full title text, including "arrive HH:MM" and any "(+N days)", as part of the route button's accessible name. (decided by the factory, no question asked)
 - Q: How does the longer text fit a narrow panel? → A: It wraps onto the next line inside the route button. It is never truncated. (decided by the factory, no question asked)
 - Q: Is the limitation "no waiting time at stops" told to the user? → A: Yes. The README says that the arrival time is the current time plus the routing duration only. (decided by the factory, no question asked)
+- Q: How is the arrival time rounded (clock 14:07, real time 14:07:40, route shown as "25 min")? → A: Add the displayed minutes to the displayed clock: "arrive 14:32". The departure is truncated to its minute (the clock the user sees), and the duration minutes are exactly the ones shown in the route entry. The arrival always equals clock + duration shown.
+- Q: What arrival time does a very short route show (clock 14:07, a 20-second route shown as "1 min")? → A: Use the displayed minute: "1 min, arrive 14:08". The arrival always agrees with the duration on the same line.
+- Q: Is SC-002 consistent with the rounding rule? → A: SC-002 is restated: the shown arrival exactly equals the displayed departure clock plus the displayed duration minutes, and it differs from the exact departure + duration by less than 90 seconds.
+- Q: Does the spec match the planner's rounding decision? → A: The spec is the reference; the planner's design is updated to the rule above (displayed clock + displayed minutes, including the 1-minute minimum).
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -72,8 +76,8 @@ As a user who changes the destination, travel mode, or stops (or whose routes ar
 
 - **Arrival after midnight**: If the arrival falls on the next calendar day (e.g., leaving 23:50 on a 25-minute route), the time shown is the next-day clock time (00:15) with a clear indication that it is the next day (e.g., "arrive 00:15 (+1 day)"). Arrivals several days later show the matching number of days.
 - **Long routes** (duration of one hour or more, e.g. "1 h 20 min"): arrival time is still shown in the same "arrive HH:MM" form.
-- **Rounding**: The arrival time is the current time plus the route's duration, rounded to the nearest minute, so that it stays consistent with the rounded duration shown (e.g., a route displayed as "25 min" at 14:07 shows 14:32, not 14:31 or 14:33).
-- **Very short routes** (under a minute): shown as "1 min" today; the arrival time is the current time plus the actual duration, rounded to the nearest minute.
+- **Rounding**: The arrival time is the displayed clock plus the displayed duration minutes, so that it stays consistent with the rounded duration shown (e.g., a route displayed as "25 min" while the clock shows 14:07, real time 14:07:40, shows 14:32, not 14:31 or 14:33).
+- **Very short routes** (under a minute): shown as "1 min" today; the arrival time uses that displayed minute (e.g., a 20-second route at 14:07 reads "1 min, arrive 14:08").
 - **No route found / routing error**: No route entries are shown, so no arrival times are shown; existing messages are unchanged.
 - **Superseded computation**: If a newer route request replaces an older one, only the arrival times of the latest routes are shown.
 
@@ -82,7 +86,7 @@ As a user who changes the destination, travel mode, or stops (or whose routes ar
 ### Functional Requirements
 
 - **FR-001**: For every route listed in the route panel, the system MUST display the estimated arrival clock time immediately after that route's duration, in the form "<duration>, arrive HH:MM" (e.g., "25 min, arrive 14:32"), followed by the later-day indication of FR-004 when it applies. The text is on the route's title line; the pleasure indicator stays on its own line. Narrow panels wrap the text and never truncate it.
-- **FR-002**: The arrival time MUST equal the user's current local time at the moment the routes were computed plus that route's total duration, rounded to the nearest minute. The current time is captured once per computation, when the routes of the latest request are received, and is shared by all routes of that computation. A missing or invalid duration counts as 0.
+- **FR-002**: The arrival time MUST equal the user's current local time at the moment the routes were computed plus that route's total duration, computed as the displayed clock (the departure time truncated to its minute) plus the duration minutes displayed for that route (the duration rounded to the nearest minute, at least 1). The arrival therefore always equals the shown clock plus the shown duration. The current time is captured once per computation, when the routes of the latest request are received, and is shared by all routes of that computation. A missing or invalid duration counts as 0 and is displayed as "1 min".
 - **FR-003**: The arrival time MUST be shown in the user's local time zone using a 24-hour HH:MM format with two-digit hours and minutes (e.g., "09:05", "14:32").
 - **FR-004**: When the arrival falls on a later calendar day than the departure, the system MUST indicate this next to the time as " (+1 day)" or " (+N days)" for N ≥ 2. "Later calendar day" compares local calendar dates, not 24-hour periods. Across a daylight-saving change, the real elapsed duration is added and shown on the local wall clock.
 - **FR-005**: The arrival time MUST be shown for both walking and car routes, and for routes with or without stops; for routes with stops it MUST reflect arrival at the final destination.
@@ -100,7 +104,7 @@ As a user who changes the destination, travel mode, or stops (or whose routes ar
 ### Measurable Outcomes
 
 - **SC-001**: 100% of route entries shown in the panel display an arrival time alongside their duration, in both walking and car modes.
-- **SC-002**: For every route, the displayed arrival time differs by at most 1 minute from the current time at route computation plus the route duration (and exactly matches it after rounding to the nearest minute).
+- **SC-002**: For every route, the displayed arrival time exactly equals the departure clock (HH:MM at route computation) plus the displayed duration minutes, and differs by less than 90 seconds from the exact departure time plus the route duration.
 - **SC-003**: After any route recomputation, the displayed arrival times reflect the new computation's time in 100% of cases (no stale arrival times remain; an arrival time is stale when its departure time is earlier than the latest completed computation).
 - **SC-004**: Users can tell when they will arrive on each route without any additional action (no clicks, hovers, or mental arithmetic), immediately when the routes appear. Met when SC-001 and SC-002 are met.
 

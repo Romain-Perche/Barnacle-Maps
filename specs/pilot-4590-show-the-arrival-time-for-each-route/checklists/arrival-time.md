@@ -20,8 +20,8 @@
 
 ## Requirement Clarity
 
-- [ ] CHK008 - Is "rounded to the nearest minute" clear about what is rounded: the sum (now + duration), the duration alone, or the departure time (seconds truncated)? [Clarity, Ambiguity, Spec §FR-002, Spec §Edge Cases "Rounding"]
-- [ ] CHK009 - Is "consistent with the rounded duration shown" defined so that the displayed minutes plus the displayed clock always give the shown arrival time? [Clarity, Spec §Edge Cases "Rounding"]
+- [x] CHK008 - Is "rounded to the nearest minute" clear about what is rounded: the sum (now + duration), the duration alone, or the departure time (seconds truncated)? [Clarity, Ambiguity, Spec §FR-002, Spec §Edge Cases "Rounding"] — reviewed by Pilot, 2026-11-12
+- [x] CHK009 - Is "consistent with the rounded duration shown" defined so that the displayed minutes plus the displayed clock always give the shown arrival time? [Clarity, Spec §Edge Cases "Rounding"] — reviewed by Pilot, 2026-11-12
 - [x] CHK010 - Is "user's local time zone" defined as the device time zone at computation time, and is it stated what happens if the zone changes while routes are shown? [Clarity, Spec §FR-003, Spec §Assumptions] — reviewed by the factory, 2026-11-12
 - [x] CHK011 - Is "later calendar day" defined using the local calendar date, not elapsed 24-hour periods? [Clarity, Spec §FR-004] — reviewed by the factory, 2026-11-12
 - [x] CHK012 - Is the separator between duration and arrival text (", ") fixed by the requirement, or only illustrated by the example? [Clarity, Spec §FR-001] — covered, ticked by the factory, 2026-11-12
@@ -29,12 +29,12 @@
 
 ## Requirement Consistency
 
-- [ ] CHK014 - Do FR-002 ("rounded to the nearest minute") and the Rounding edge case (14:07 + "25 min" → 14:32, never 14:33) agree when the departure has a seconds part (e.g. 14:07:40)? [Conflict, Spec §FR-002, Spec §Edge Cases]
-- [ ] CHK015 - Do the "very short routes" edge case (use the actual duration) and the Rounding edge case (stay consistent with the displayed duration) agree when "1 min" is shown for a 20-second route? [Conflict, Spec §Edge Cases]
-- [ ] CHK016 - Is SC-002 ("at most 1 minute" difference AND "exactly matches after rounding") internally consistent and aligned with FR-002? [Consistency, Spec §SC-002]
+- [x] CHK014 - Do FR-002 ("rounded to the nearest minute") and the Rounding edge case (14:07 + "25 min" → 14:32, never 14:33) agree when the departure has a seconds part (e.g. 14:07:40)? [Conflict, Spec §FR-002, Spec §Edge Cases] — reviewed by Pilot, 2026-11-12
+- [x] CHK015 - Do the "very short routes" edge case (use the actual duration) and the Rounding edge case (stay consistent with the displayed duration) agree when "1 min" is shown for a 20-second route? [Conflict, Spec §Edge Cases] — reviewed by Pilot, 2026-11-12
+- [x] CHK016 - Is SC-002 ("at most 1 minute" difference AND "exactly matches after rounding") internally consistent and aligned with FR-002? [Consistency, Spec §SC-002] — reviewed by Pilot, 2026-11-12
 - [x] CHK017 - Does the format "<duration>, arrive HH:MM" in FR-001 match the extended format with "(+N day[s])" from FR-004 and the edge cases? [Consistency, Spec §FR-001, Spec §FR-004] — reviewed by the factory, 2026-11-12
 - [x] CHK018 - Are the panel-only scope (Assumptions) and FR-007 (no other changes) consistent with the status summary line, which also shows the fastest duration? [Consistency, Spec §Assumptions, Spec §FR-007] — covered, ticked by the factory, 2026-11-12
-- [ ] CHK019 - Is the planner's rounding decision (research R1) traceable to and consistent with the spec wording, or does the spec need to be updated to match it? [Consistency, Traceability]
+- [x] CHK019 - Is the planner's rounding decision (research R1) traceable to and consistent with the spec wording, or does the spec need to be updated to match it? [Consistency, Traceability] — reviewed by Pilot, 2026-11-12
 
 ## Acceptance Criteria Quality
 
