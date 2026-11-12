@@ -14,10 +14,10 @@
 
 - [x] CHK001 - Does the spec define precisely which instant counts as "the time at which the routes were computed": when the request starts, when the results are received, or when the routes are displayed? [Ambiguity, Spec §FR-002, Assumptions] — reviewed by the factory, 2026-11-12
 - [x] CHK002 - Is the location becoming available (a route waiting for the user's position) listed as a recomputation trigger alongside mode, destination and stop changes? [Gap, Spec §FR-005] — reviewed by the factory, 2026-11-12
-- [ ] CHK003 - Is it specified whether position updates during the session, after routes are shown, should or should not refresh arrival times? [Gap, Spec §FR-005]
+- [x] CHK003 - Is it specified whether position updates during the session, after routes are shown, should or should not refresh arrival times? [Gap, Spec §FR-005] — reviewed by Pilot, 2026-11-12
 - [x] CHK004 - Are requirements defined for what is shown when one route's duration is missing or invalid while the others are valid? [Gap, Spec §FR-006] — reviewed by the factory, 2026-11-12
 - [x] CHK005 - Does the spec say whether the departure time ("now") is itself shown anywhere, so users can interpret the arrival and "+N day" markers? [Gap] — reviewed by the factory, 2026-11-12
-- [ ] CHK006 - Is a requirement stated for whether the earliest-arriving route is visually distinguished, or is SC-004 meant to rely on reading the times alone? [Gap, Spec §SC-004]
+- [x] CHK006 - Is a requirement stated for whether the earliest-arriving route is visually distinguished, or is SC-004 meant to rely on reading the times alone? [Gap, Spec §SC-004] — reviewed by Pilot, 2026-11-12
 
 ## Requirement Clarity
 

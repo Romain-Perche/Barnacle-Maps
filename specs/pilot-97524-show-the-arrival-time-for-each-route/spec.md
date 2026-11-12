@@ -39,6 +39,8 @@
 - Q: Is 24-hour-only a deliberate choice? → A: Yes, it matches the request example; no 12-hour option is offered in this feature. (decided by the factory, no question asked)
 - Q: Are car durations a reliable "leave now" estimate? → A: They are the routing service's estimates without live traffic; this is a known limitation. (decided by the factory, no question asked)
 - Q: What if the device clock is wrong? → A: The arrival times are wrong by the same amount; this is accepted and not detected. (decided by the factory, no question asked)
+- Q: Must the panel mark the route that arrives first? → A: No mark. The user compares the arrival times; the fastest route is already listed first, so it also arrives first.
+- Q: Must arrival times refresh when the user's position changes while walking or driving? → A: No. They refresh only when the routes are computed again (travel mode, destination, stops, or the position becoming available for the first time); later position changes do not recompute routes.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -86,6 +88,7 @@ When the routes are computed again (I change the travel mode, choose another des
 - Rounding past midnight: the rounded arrival decides the day (23:59:40 + 20 s → "arrive 00:00 (+1 day)").
 - Zero or sub-minute duration: the arrival is the computation time plus that duration, rounded; it may equal the current minute.
 - A route with a missing or invalid duration shows no arrival suffix; the other routes keep theirs.
+- The user's position changes after the routes are shown (walking or driving): the routes are not computed again and the arrival times do not change.
 - The page stays open without any recomputation: arrival times are not changed by the passage of time alone (they reflect "leave now" as of the last computation).
 
 ## Requirements *(mandatory)*
@@ -101,6 +104,8 @@ When the routes are computed again (I change the travel mode, choose another des
 - **FR-007**: When no route is displayed (no route found or routing error), no arrival time MUST be displayed.
 - **FR-008**: The arrival text MUST be plain text inside the route entry, so it is part of the entry's accessible name for screen readers.
 - **FR-009**: When a route entry does not fit the panel width, it MUST wrap onto more lines; it MUST NOT be truncated.
+- **FR-010**: Position changes after the routes are shown MUST NOT trigger a recomputation or change the arrival times; only the triggers in FR-005 refresh them.
+- **FR-011**: The panel MUST NOT add a mark, tag or emphasis to the earliest-arriving route; the routes keep their existing order (fastest first) and the user compares the arrival times.
 
 ### Key Entities
 
@@ -113,7 +118,7 @@ When the routes are computed again (I change the travel mode, choose another des
 - **SC-001**: 100% of routes listed in the panel show an arrival time next to their duration.
 - **SC-002**: For every displayed route, the arrival time differs from (computation time + duration) by at most 1 minute, where the computation time is the instant defined in FR-002.
 - **SC-003**: After any recomputation of routes, 100% of displayed arrival times are based on the new computation time, with none left over from the previous set (a leftover is any shown arrival time whose departure instant is older than the latest completed computation).
-- **SC-004**: With 3 routes shown, a reviewer who has not seen them before names the earliest-arriving route in under 5 seconds by reading the panel only, without calculating.
+- **SC-004**: With 3 routes shown, a reviewer who has not seen them before names the earliest-arriving route in under 5 seconds by reading the panel only, without calculating. No extra mark is used (FR-011).
 
 ## Assumptions
 
