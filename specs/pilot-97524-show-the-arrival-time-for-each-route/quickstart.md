@@ -12,7 +12,7 @@ TZ=Pacific/Kiritimati npm test   # same results in a UTC+14 zone
 TZ=America/New_York npm test     # same results in a DST zone
 ```
 
-Expected: all tests pass in every time zone. The arrival tests cover each example row in [contracts/arrival.md](contracts/arrival.md) (US1 scenarios 1 and 3, the rounding edge case, the +1 and +2 day edge cases, and invalid input). The existing guard tests (`L6 geo_module_pure`, `L8 no_new_dependencies`, and the others) still pass.
+Expected: all tests pass in every time zone. The arrival tests cover each example row in [contracts/arrival.md](contracts/arrival.md) (US1 scenarios 1 and 3, the rounding edge case, the +1, +2 and +3 day edge cases, zero and sub-minute durations, and invalid input). The panel tests in `test/arrival-panel.test.js` run the real `src/app.js` with a fake DOM, fake Leaflet, fake fetch and a mocked clock (`test/support/app-harness.js`) and cover US1 scenarios 1–4, US2 scenarios 1–2, FR-005 to FR-011 and SC-003. The existing guard tests (`L6 geo_module_pure`, `L8 no_new_dependencies`, and the others) still pass.
 
 ## Manual end-to-end check (browser)
 

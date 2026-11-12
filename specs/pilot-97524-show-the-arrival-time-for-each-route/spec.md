@@ -41,6 +41,7 @@
 - Q: What if the device clock is wrong? → A: The arrival times are wrong by the same amount; this is accepted and not detected. (decided by the factory, no question asked)
 - Q: Must the panel mark the route that arrives first? → A: No mark. The user compares the arrival times; the fastest route is already listed first, so it also arrives first.
 - Q: Must arrival times refresh when the user's position changes while walking or driving? → A: No. They refresh only when the routes are computed again (travel mode, destination, stops, or the position becoming available for the first time); later position changes do not recompute routes.
+- Q: Does the status summary example use the app's distance format? → A: Yes; it is corrected to "2.10 km", like the route entry example. (decided by the factory, no question asked)
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -128,4 +129,4 @@ When the routes are computed again (I change the travel mode, choose another des
 - The departure time itself is not shown; "+N day" markers are relative to the user's current local day.
 - Durations come from the existing route data; no traffic or schedule adjustments are added. Car durations are therefore estimates without live traffic (known limitation).
 - The device clock is trusted; a wrong clock is not detected.
-- The overall status summary line (e.g. "fastest 2.1 km · 25 min") is out of scope; only the per-route entries in the panel change. The summary line is not a route entry, so this is consistent with FR-001.
+- The overall status summary line (e.g. "fastest 2.10 km · 25 min") is out of scope; only the per-route entries in the panel change. The summary line is not a route entry, so this is consistent with FR-001.

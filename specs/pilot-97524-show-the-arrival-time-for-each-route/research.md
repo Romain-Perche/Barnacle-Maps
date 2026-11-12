@@ -34,7 +34,7 @@ No item in the Technical Context was left as NEEDS CLARIFICATION. The decisions 
 
 ## R6 — Where the text goes in the panel (FR-001, FR-006)
 
-- **Decision**: Append it to the existing title span, which then reads `Route 1 · 2.1 km · 25 min, arrive 14:32` (or `…, arrive 00:15 (+1 day)`). `formatArrival` returns the `arrive HH:MM[ (+N day[s])]` part, and `drawRoutes` joins it with `", "`.
+- **Decision**: Append it to the existing title span, which then reads `Route 1 · 2.10 km · 25 min, arrive 14:32` (or `…, arrive 00:15 (+1 day)`). `formatArrival` returns the `arrive HH:MM[ (+N day[s])]` part, and `drawRoutes` joins it with `", "`.
 - **Rationale**: This is exactly the form the spec asks for ("<duration>, arrive HH:MM"). The distance, duration and pleasure spans are unchanged, and the button stays one readable line for screen readers. It needs no CSS change.
 - **Alternatives considered**: A separate `<span class="arrival">`: it gives styling flexibility nobody asked for, and the spec wants the text "immediately after" the duration.
 
