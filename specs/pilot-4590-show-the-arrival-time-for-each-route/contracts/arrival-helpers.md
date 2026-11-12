@@ -5,8 +5,8 @@ Pure functions with no DOM and no fetch, and they never read the current time th
 ## `arrivalTime(departure, seconds) → { at: Date, dayOffset: number }`
 
 - `departure`: `Date`, the moment the routes were computed.
-- `seconds`: route duration in seconds. Non-finite or negative values are treated as `0`.
-- `at` = `departure` with seconds/ms zeroed + `Math.max(1, Math.round(seconds / 60))` minutes (epoch arithmetic, DST-safe). This is the same minute count `formatDuration` displays, so the arrival always equals the shown clock + the shown duration.
+- `seconds`: route duration in seconds. Missing, non-numeric, non-finite or negative values are treated as `0`.
+- `at` = `departure` with seconds/ms zeroed + `Math.max(1, Math.round(seconds / 60))` minutes (epoch arithmetic, DST-safe). This is the same minute count `formatDuration` displays (both use one shared minute helper that also treats invalid values as `0`, so `formatDuration(NaN)` reads `1 min`), so the arrival always equals the shown clock + the shown duration. `Math.round` rounds halves up (1530 s → 26 min).
 - `dayOffset` = number of local calendar days from `departure`'s date to `at`'s date (≥ 0).
 
 ## `formatClock(date) → string`
@@ -25,9 +25,15 @@ Pure functions with no DOM and no fetch, and they never read the current time th
 | 14:10:00 | 1500 | `arrive 14:35` |
 | 14:07:00 | 1529 (25.48 min) | `arrive 14:32` |
 | 14:07:00 | 1531 (25.52 min) | `arrive 14:33` |
+| 14:07:00 | 1530 (25.5 min) | `arrive 14:33` |
+| 14:07:00 | 2400 (40 min, with a stop) | `arrive 14:47` |
+| 14:07:00 | 3600 (1 h) | `arrive 15:07` |
 | 14:07:00 | 20 | `arrive 14:08` |
 | 14:07:00 | 0 / NaN / -5 | `arrive 14:08` |
 | 08:55:00 | 600 | `arrive 09:05` |
 | 14:07:00 | 4800 (1 h 20 min) | `arrive 15:27` |
 | 23:50:00 | 1500 | `arrive 00:15 (+1 day)` |
 | 23:00:00 | 180000 (50 h) | `arrive 01:00 (+3 days)` |
+| 23:59:59 | 1 | `arrive 00:00 (+1 day)` |
+
+Daylight-saving examples (`TZ=Europe/Paris`): 01:50 + 1500 s on the spring-forward day → `arrive 03:15`; 02:50 (first occurrence) + 1500 s on the fall-back day → `arrive 02:15` (no suffix).

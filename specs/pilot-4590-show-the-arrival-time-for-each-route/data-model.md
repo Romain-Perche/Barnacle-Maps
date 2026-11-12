@@ -7,7 +7,7 @@ No persisted data. All values are derived in memory for one route computation.
 | Field | Type | Source |
 |-------|------|--------|
 | `distance` | number (m) | OSRM via `parseRoutes` |
-| `duration` | number (s) | OSRM via `parseRoutes`. With stops, this is the full duration through all stops to the destination |
+| `duration` | number (s) | OSRM via `parseRoutes` (passed through unchecked). With stops, this is the full duration through all stops to the destination |
 | `path` | `[lat, lng][]` | OSRM |
 
 ## Departure (new, transient)
@@ -28,7 +28,7 @@ Lifecycle: created → passed to `drawRoutes` → discarded. A new value is crea
 | `label` | string | `arrive ${clock}` + (`dayOffset === 1` ? ` (+1 day)` : `dayOffset > 1` ? ` (+${dayOffset} days)` : ``) |
 
 Validation and invariants:
-- `duration` is a non-negative finite number (guaranteed by `parseRoute`). Negative or non-finite values are not expected; helpers treat them as 0.
+- `duration` is normally a non-negative finite number from OSRM, but `parseRoutes` does not check it. Missing, non-numeric, non-finite or negative values are invalid; the shared minute helper (used by `formatDuration` and the arrival helpers) treats them as 0, so they read `1 min`.
 - Monotonic: for the same departure, `d1 ≤ d2 ⇒ at(d1) ≤ at(d2)`.
 - `at` = displayed clock + displayed duration minutes, exactly.
 - `|at − (departure + duration)| < 90 s`.

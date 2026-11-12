@@ -19,7 +19,7 @@ new DOM structure, no CSS change, no timers.
 
 ## Technical Context
 
-**Language/Version**: JavaScript (ES modules), browser + Node.js 26 for tests
+**Language/Version**: JavaScript (ES modules), browser + Node.js ≥ 20 for tests (developed on Node.js 26)
 
 **Primary Dependencies**: None added. Leaflet 1.9.4 (CDN) for the map; OSRM/Nominatim remain the routing/search sources
 
@@ -87,12 +87,12 @@ in `src/geo.js` (pure, testable), wiring in `src/app.js`, mirroring how `formatD
 
 ## Implementation Outline
 
-1. `src/geo.js`: add `arrivalTime(departure, seconds)`, `formatClock(date)`, `formatArrival(departure, seconds)` per [contracts/arrival-helpers.md](./contracts/arrival-helpers.md). The minute count is `Math.max(1, Math.round(seconds / 60))`, the same as `formatDuration`; share it through one small helper so the two can never disagree.
+1. `src/geo.js`: add `arrivalTime(departure, seconds)`, `formatClock(date)`, `formatArrival(departure, seconds)` per [contracts/arrival-helpers.md](./contracts/arrival-helpers.md). The minute count is `Math.max(1, Math.round(seconds / 60))`, the same as `formatDuration`; share it through one small helper so the two can never disagree. The helper treats missing, non-finite or negative durations as 0, so `formatDuration` then reads `1 min` (spec FR-002/FR-007).
 2. `src/app.js`:
    - in `updateRoutes()`, right after the `if (seq !== routeSeq) return;` guard and the empty-result check, capture `const departure = new Date();` and call `drawRoutes(routes, m, departure)`;
    - in `drawRoutes(routes, m, departure)`, build the title as `` `Route ${i + 1} · ${formatDistance(route.distance)} · ${formatDuration(route.duration)}, ${formatArrival(departure, route.duration)}` ``.
 3. `test/arrival.test.js`: cases from [quickstart.md](./quickstart.md) (14:07+25 min, rounding, < 1 min shows `arrive` clock + 1, ≥ 1 h, midnight, multi-day, monotonicity, two-digit padding) and a source check that `app.js` imports and uses `formatArrival`.
-4. `README.md`: mention "arrive HH:MM" next to each route duration.
+4. `README.md`: one line: each route shows its duration and the arrival time if you leave now ("25 min, arrive 14:32"); the arrival is the current time plus the routing duration only (no traffic, no waiting at stops).
 5. Status summary line is **not** changed (spec Assumptions).
 
 ## Complexity Tracking

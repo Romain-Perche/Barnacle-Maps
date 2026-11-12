@@ -17,7 +17,9 @@ Expected: all tests pass. `test/arrival.test.js` covers every row of
 [contracts/arrival-helpers.md](./contracts/arrival-helpers.md), plus:
 - monotonicity: increasing durations from one departure never give an earlier `at`;
 - `at` = departure truncated to the minute + the minutes `formatDuration` shows, and `|at − (departure + duration)| < 90 s`, for random departures and durations;
-- `src/app.js` imports `formatArrival` and uses it in the route title.
+- `src/app.js` imports `formatArrival` and uses it in the route title;
+- `formatDuration` of a missing, non-finite or negative duration reads `1 min`;
+- the daylight-saving rows run only under `TZ=Europe/Paris`.
 
 ## Manual (browser)
 
@@ -29,8 +31,9 @@ npm start    # http://localhost:8000
    **Expect**: every route reads `Route n · … · NN min, arrive HH:MM`, where HH:MM = the clock + NN, and the pleasure line is still below.
 2. Switch to **Car**. **Expect**: arrival times on every car route, no pleasure line.
 3. Add a stop. **Expect**: arrival = clock + full duration shown (through the stop).
-4. Wait ≥ 1 minute without touching anything. **Expect**: the times do not change.
+4. Select another route, then wait for the pleasure scores. **Expect**: the arrival text of every route does not change.
+5. Wait ≥ 1 minute without touching anything. **Expect**: the times do not change.
    Then switch mode back and forth. **Expect**: the times are recomputed from the new clock.
-5. Search a destination with no route (e.g. across an ocean). **Expect**: the existing message and no arrival text.
-6. Screen reader / devtools Accessibility pane: the route button's name includes "arrive HH:MM".
-7. Optional midnight check: set the OS clock to 23:50 and route a ~25 min walk. **Expect**: `arrive 00:15 (+1 day)`.
+6. Search a destination with no route (e.g. across an ocean). **Expect**: the existing message and no arrival text.
+7. Screen reader / devtools Accessibility pane: the route button's name includes "arrive HH:MM".
+8. Optional midnight check: set the OS clock to 23:50 and route a ~25 min walk. **Expect**: `arrive 00:15 (+1 day)`.
