@@ -1,5 +1,5 @@
 // Pure helpers for Barnacle Maps (no DOM access and no fetch, so they can be unit tested in Node):
-// formatting, Nominatim search, OSRM walking and car routes (alternatives, detours, de-duplication)
+// formatting (distance, duration, arrival time), Nominatim search, OSRM walking and car routes (alternatives, detours, de-duplication)
 // the green-pixel "pleasure" score of a route on map tiles, and the list of stops of a journey
 // (add, remove, reorder; routes go from the start through every stop in order to the destination).
 
@@ -18,6 +18,25 @@ export function haversine(a, b) {
 export function formatDistance(meters) {
   if (meters < 1000) return `${Math.round(meters)} m`;
   return `${(meters / 1000).toFixed(meters < 10000 ? 2 : 1)} km`;
+}
+
+// Local clock time of arrival when leaving at `departure` (a Date) and travelling `seconds`,
+// rounded to the nearest minute, with the number of calendar days after the departure day.
+export function arrivalTime(departure, seconds) {
+  const ms = Math.round((+departure + seconds * 1000) / 60000) * 60000;
+  const a = new Date(ms);
+  const d = new Date(+departure);
+  const dayOffset = Math.round(
+    (Date.UTC(a.getFullYear(), a.getMonth(), a.getDate()) - Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())) / 86400000,
+  );
+  return { hours: a.getHours(), minutes: a.getMinutes(), dayOffset };
+}
+
+export function formatArrival(departure, seconds) {
+  const { hours, minutes, dayOffset } = arrivalTime(departure, seconds);
+  const pad = (n) => String(n).padStart(2, "0");
+  const days = dayOffset <= 0 ? "" : dayOffset === 1 ? " (+1 day)" : ` (+${dayOffset} days)`;
+  return `arrive ${pad(hours)}:${pad(minutes)}${days}`;
 }
 
 export function formatDuration(seconds) {

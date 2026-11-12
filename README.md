@@ -1,6 +1,6 @@
 # Barnacle Maps
 
-A small navigation web app: shows a map, your live position, lets you search for a place and shows up to 3 routes to it, each with distance and duration. Switch between walking and car in the panel; walking routes also get a pleasure indicator (walking only). Pick a route in the panel or click it on the map.
+A small navigation web app: shows a map, your live position, lets you search for a place and shows up to 3 routes to it, each with distance and duration and the time you would arrive if you leave now ("arrive 14:32", with "(+1 day)" on a later date). Switch between walking and car in the panel; walking routes also get a pleasure indicator (walking only). Pick a route in the panel or click it on the map.
 
 - Map: [Leaflet](https://leafletjs.com) + OpenStreetMap tiles
 - Search: Nominatim geocoding
