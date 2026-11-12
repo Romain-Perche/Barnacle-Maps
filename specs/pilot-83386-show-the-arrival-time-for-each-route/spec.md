@@ -8,6 +8,12 @@
 
 **Input**: User description: "Show the arrival time for each route. Next to each route duration in the panel, show the clock time when I arrive if I leave now (for example: 25 min, arrive 14:32). It updates when the routes are computed again."
 
+## Clarifications
+
+### Session 2026-11-12
+
+- Q: Should the arrival time also appear in the status line under the route list, or only in each route entry? → A: Only in each route entry (Option A); the status line does not change.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - See when I would arrive on each route (Priority: P1)
@@ -64,6 +70,7 @@ When the routes are computed again — because I change the destination, the tra
 - **FR-007**: The arrival time MUST NOT change between computations (no live ticking).
 - **FR-008**: Existing route information (route number, distance, duration, pleasure indicator, selection behavior) MUST remain unchanged apart from the added arrival time.
 - **FR-009**: The arrival time MUST be part of the route entry's text so it is available to assistive technologies along with the duration.
+- **FR-010**: The status line under the route list (e.g. "3 walking routes · fastest 2.10 km · 25 min") MUST NOT show an arrival time and MUST stay unchanged.
 
 ### Key Entities
 
@@ -84,5 +91,5 @@ When the routes are computed again — because I change the destination, the tra
 - "Leave now" means the moment the routes were computed; all routes in one computation share the same departure moment.
 - Travel time is the duration already shown for each route; no extra time is added for stops (stops are passed through without waiting), traffic, or delays beyond what the routing data provides.
 - The device's local clock and time zone are used; 24-hour format is used everywhere, matching the example in the request.
-- The overall status line summary (e.g. "3 walking routes · fastest …") is out of scope and stays unchanged.
+- The status line summary under the route list (e.g. "3 walking routes · fastest …") is out of scope and stays unchanged (confirmed in Clarifications, see FR-010).
 - Rounding: the arrival time uses the exact travel time rounded to the nearest minute, so it may differ by at most one minute from "current time + displayed rounded duration".
