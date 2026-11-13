@@ -46,6 +46,12 @@ No NEEDS CLARIFICATION items were left in the Technical Context. The design choi
 - **Rationale**: Reserves the bar's height at the bottom so the start and destination markers stay visible (spec small-screen edge case).
 - **Alternatives considered**: A fixed extra padding of 60 px (simpler, but wrong when the bar wraps to two lines on phones).
 
+## R9. Showing the travel mode (clarification 2026-11-13, FR-012)
+
+- **Decision**: Add a first, grey part `.rc-mode` with the panel's own mode word, `TRAVEL_MODES[m].label` ("Walk" / "Car"). The mode comes from the `m` that `drawRoutes(routes, m)` received, stored as `drawnMode`; the announcement becomes `Route N, Walk: 29 min, 2.35 km, arrive 14:39`.
+- **Rationale**: The same word as the radio button needs no new text and no translation. Grey keeps the blue duration the strongest item (Design A). Using the drawn mode, not the radio state, means the bar can never pair car text with walking figures.
+- **Alternatives considered**: An icon (a walker or a car glyph): smaller, but needs a label for screen readers and an emoji renders differently on each system. Putting the mode last: it reads as an afterthought and splits "Arrive" from the figures. Reading the global `mode`: correct today because a mode change clears the routes first, but fragile.
+
 ## R8. Where the card hooks into existing flows
 
 - **Decision**: Hide in `clearRoutes()` and show/update in `selectRoute()`.

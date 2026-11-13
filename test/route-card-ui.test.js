@@ -17,15 +17,15 @@ function rule(selector) {
   return m ? m[1].replace(/\s+/g, " ") : null;
 }
 
-test("markup: #route-card is a hidden, labelled group with duration, distance, arrival in order", () => {
-  // covers FR-002, FR-009 (order), FR-010 (readable text), FR-007 (hidden initially)
+test("markup: #route-card is a hidden, labelled group with mode, duration, distance, arrival in order", () => {
+  // covers FR-002, FR-009 (order), FR-010 (readable text), FR-007 (hidden initially), FR-012 (mode first)
   const card = body.querySelector("#route-card");
   assert.ok(card, "#route-card exists");
   assert.equal(card.hidden, true, "hidden in the initial HTML");
   assert.equal(card.getAttribute("role"), "group");
   assert.equal(card.getAttribute("aria-label"), "Selected route");
   const kids = card.children.filter((c) => c.tagName !== "#TEXT").map((c) => `${c.tagName}.${c.className}`);
-  assert.deepEqual(kids, ["B.rc-duration", "SPAN.rc-distance", "SPAN.rc-arrival"]);
+  assert.deepEqual(kids, ["SPAN.rc-mode", "B.rc-duration", "SPAN.rc-distance", "SPAN.rc-arrival"]);
   assert.equal(card.querySelectorAll("button").length, 0, "informational only: no buttons");
 });
 
@@ -70,6 +70,13 @@ test("styles: hidden really hides; figures never truncate; duration in selected-
   assert.match(rule("#route-card > *") || "", /white-space:\s*nowrap/);
   assert.doesNotMatch(css.match(/#route-card[^{]*\{[^}]*\}/g).join(""), /text-overflow:\s*ellipsis/);
   assert.match(rule("#route-card .rc-duration") || "", /color:\s*#1a73e8/i);
+});
+
+test("styles: the travel mode is grey, so the blue duration stays the strongest item", () => {
+  // covers FR-009, FR-012 (mode "in grey")
+  const r = rule("#route-card .rc-mode");
+  assert.ok(r, "#route-card .rc-mode rule exists");
+  assert.match(r, /color:\s*#666\b/i, "the panel's secondary grey, not the duration blue");
 });
 
 test("styles: .sr-only utility exists", () => {

@@ -107,10 +107,32 @@ test("formatArrival: without a locale it uses the device default", () => {
 
 // --- routeSummary --------------------------------------------------------------------------------
 
-test("routeSummary: Design A example -> 29 min, 2.35 km, 14:39", () => {
-  // covers FR-002, FR-004, FR-009 (design example "29 min | 2.35 km | Arrive 14:39")
-  const s = fn("routeSummary")({ distance: 2350, duration: 1740 }, at(2026, 11, 13, 14, 10), "en-GB");
-  assert.deepEqual({ ...s, arrival: norm(s.arrival) }, { duration: "29 min", distance: "2.35 km", arrival: "14:39" });
+test("routeSummary: Design A example -> Walk, 29 min, 2.35 km, 14:39", () => {
+  // covers FR-002, FR-004, FR-009, FR-012 (design example "Walk | 29 min | 2.35 km | Arrive 14:39")
+  const s = fn("routeSummary")({ distance: 2350, duration: 1740 }, at(2026, 11, 13, 14, 10), "en-GB", "foot");
+  assert.deepEqual(
+    { ...s, arrival: norm(s.arrival) },
+    { mode: "Walk", duration: "29 min", distance: "2.35 km", arrival: "14:39" },
+  );
+});
+
+test("routeSummary: car route -> Car, 10 min, 4.10 km, 14:20", () => {
+  // covers FR-011, FR-012 (travel mode shown for car routes)
+  const s = fn("routeSummary")({ distance: 4100, duration: 600 }, at(2026, 11, 13, 14, 10), "en-GB", "car");
+  assert.deepEqual(
+    { ...s, arrival: norm(s.arrival) },
+    { mode: "Car", duration: "10 min", distance: "4.10 km", arrival: "14:20" },
+  );
+});
+
+test("routeSummary: the mode word is the panel's mode label; missing or unknown mode -> Walk", () => {
+  // covers FR-012 (same word as the panel's mode choice; foot fallback like routeUrl)
+  const routeSummary = fn("routeSummary");
+  const now = at(2026, 11, 13, 14, 10);
+  for (const m of Object.keys(geo.TRAVEL_MODES))
+    assert.equal(routeSummary({ distance: 1500, duration: 600 }, now, "en-GB", m).mode, geo.TRAVEL_MODES[m].label);
+  assert.equal(routeSummary({ distance: 1500, duration: 600 }, now, "en-GB").mode, "Walk");
+  assert.equal(routeSummary({ distance: 1500, duration: 600 }, now, "en-GB", "bike").mode, "Walk");
 });
 
 test("routeSummary: distance and duration are exactly the panel strings", () => {

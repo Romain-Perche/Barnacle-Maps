@@ -14,22 +14,25 @@
 
 - Q: Which design? → A: Design: A, one-line bar centered at the bottom of the map: "29 min | 2.35 km | Arrive 14:39" (see `design-options.html`).
 - Q: How should the arrival time be written? → A: Follow the device's clock setting (e.g. 14:39 or 2:39 PM).
+- Q: Should the card show anything besides duration, distance and arrival time? → A: Please also show the travel mode (walk or car) on the card. (Pilot)
+- Q: Where does the travel mode go on the bar, and how is it written? → A: First, before the duration, as the same word as the panel's mode choice ("Walk" or "Car"), in grey: "Walk | 29 min | 2.35 km | Arrive 14:39". (decided by the factory, to confirm)
 
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - See the selected route's key figures on the map (Priority: P1)
 
-After searching for a destination, the user sees routes drawn on the map. A small summary card appears on the map showing the currently selected route's distance, duration and estimated arrival time. The user can read these figures at a glance while looking at the map, without turning to the side panel.
+After searching for a destination, the user sees routes drawn on the map. A small summary card appears on the map showing the currently selected route's travel mode (Walk or Car), distance, duration and estimated arrival time. The user can read these figures at a glance while looking at the map, without turning to the side panel.
 
 **Why this priority**: This is the whole feature: the key figures of the chosen route are visible where the user is already looking.
 
-**Independent Test**: Search for a destination; when routes appear, check that a card on the map shows the first (selected) route's distance, duration and an arrival time equal to the current time plus that duration.
+**Independent Test**: Search for a destination; when routes appear, check that a card on the map shows the travel mode and the first (selected) route's distance, duration and an arrival time equal to the current time plus that duration.
 
 **Acceptance Scenarios**:
 
-1. **Given** the user has a position and searches for a destination, **When** routes are displayed (the first route being selected by default), **Then** a summary card appears on the map with that route's distance, duration and arrival time.
+1. **Given** the user has a position and searches for a destination, **When** routes are displayed (the first route being selected by default), **Then** a summary card appears on the map with that route's travel mode, distance, duration and arrival time.
 2. **Given** a route is selected, **When** the user reads the card, **Then** the distance and duration shown are identical (same values, same format) to those shown for that route in the panel.
 3. **Given** a route with a duration of 25 minutes is selected at 14:10 local time, **When** the card is shown, **Then** the arrival time reads 14:35.
+4. **Given** walking routes are displayed, **When** the user reads the card, **Then** it shows the travel mode "Walk" (and "Car" for car routes), the same word as the panel's mode choice.
 
 ---
 
@@ -62,7 +65,7 @@ The card disappears when there is no route to describe (routes cleared, a new se
 1. **Given** the card is shown, **When** the routes are cleared or a new route request starts, **Then** the card is hidden until new routes are displayed.
 2. **Given** a route request fails or returns no route, **When** the error is reported, **Then** no card is shown.
 3. **Given** the card is shown, **When** at least one minute passes without any user action, **Then** the arrival time is recomputed from the current time and the selected route's duration.
-4. **Given** the user changes the travel mode or adds/removes/reorders stops, **When** the new routes are displayed, **Then** the card shows the new selected route's figures.
+4. **Given** the user changes the travel mode or adds/removes/reorders stops, **When** the new routes are displayed, **Then** the card shows the new selected route's figures and its travel mode (e.g. "Car" after switching from Walk to Car).
 
 ---
 
@@ -72,7 +75,7 @@ The card disappears when there is no route to describe (routes cleared, a new se
 - Very short routes (under 1 minute): the duration follows the existing panel rule (shown as at least 1 min) and the arrival time is consistent with the displayed duration.
 - Routes with stops: distance, duration and arrival time cover the whole journey through all stops to the destination (the same totals as in the panel).
 - Small screens: the one-line bar stays within the map width (it may wrap or shorten its separators but never truncate a figure) and stays small enough not to hide the selected route's start or destination when the map is fitted to the routes, and does not cover the map's zoom controls or attribution.
-- Walking routes: the pleasure indicator is not part of the card (the card shows only distance, duration and arrival time).
+- Walking routes: the pleasure indicator is not part of the card (the card shows only travel mode, duration, distance and arrival time).
 - The card must not intercept map interactions beyond its own area (clicking the map next to it still works, e.g. to add a stop).
 
 ## Requirements *(mandatory)*
@@ -80,27 +83,28 @@ The card disappears when there is no route to describe (routes cleared, a new se
 ### Functional Requirements
 
 - **FR-001**: The system MUST show a summary card overlaid on the map whenever a route is selected and displayed.
-- **FR-002**: The card MUST show the selected route's distance, duration and estimated arrival time, and nothing that would require the panel to understand it.
+- **FR-002**: The card MUST show the selected route's travel mode, distance, duration and estimated arrival time, and nothing that would require the panel to understand it.
 - **FR-003**: Distance and duration on the card MUST use the same values and the same formatting as the panel entry of the selected route.
 - **FR-004**: The arrival time MUST be the current local time plus the selected route's duration, displayed as a local clock time in hours and minutes, using the device's 12/24-hour clock setting (e.g. "14:39" or "2:39 PM").
 - **FR-005**: When the arrival falls on a later calendar day than the current one, the card MUST indicate it (e.g. "+1 day").
 - **FR-006**: The card MUST update immediately when the selected route changes, whether the selection is made in the panel or on the map.
 - **FR-007**: The card MUST be hidden when no route is displayed: before any search, while new routes are loading, after routes are cleared, and when routing fails or returns no route.
 - **FR-008**: The arrival time MUST be refreshed at least once per minute while the card is visible.
-- **FR-009**: The card MUST follow Design A (`design-options.html`): a single-line bar, centered horizontally near the bottom edge of the map, showing duration (emphasized, in the selected-route blue), distance and "Arrive <time>", in that order. It MUST NOT cover the map's zoom controls or attribution, and MUST NOT block clicks on the map outside its own area.
+- **FR-009**: The card MUST follow Design A (`design-options.html`): a single-line bar, centered horizontally near the bottom edge of the map, showing the travel mode ("Walk" or "Car", in grey), duration (emphasized, in the selected-route blue), distance and "Arrive <time>", in that order. It MUST NOT cover the map's zoom controls or attribution, and MUST NOT block clicks on the map outside its own area.
 - **FR-010**: The card MUST be accessible to assistive technologies: its content is readable as text, and a change of selected route is announced politely (without stealing focus).
 - **FR-011**: The card MUST work identically for walking and car routes, and for routes with or without stops.
+- **FR-012**: The card MUST show the travel mode of the displayed routes, written as the panel's mode choice ("Walk" or "Car"). It is the mode the routes were computed for, not a mode choice whose routes are still loading.
 
 ### Key Entities
 
 - **Selected route**: The route currently highlighted on the map and in the panel; provides distance (meters) and duration (seconds) for the whole journey.
-- **Route summary**: What the card displays — formatted distance, formatted duration, and arrival time derived from the current time and the duration (with an optional next-day indication).
+- **Route summary**: What the card displays — travel mode label ("Walk" or "Car"), formatted distance, formatted duration, and arrival time derived from the current time and the duration (with an optional next-day indication).
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
-- **SC-001**: In 100% of cases where routes are displayed, a card with distance, duration and arrival time is visible on the map without opening or scrolling the panel.
+- **SC-001**: In 100% of cases where routes are displayed, a card with travel mode, distance, duration and arrival time is visible on the map without opening or scrolling the panel.
 - **SC-002**: After selecting a different route (panel or map), the card shows the new figures with no perceptible delay (under 100 ms).
 - **SC-003**: The card's distance and duration match the panel entry for the selected route in 100% of checks.
 - **SC-004**: The displayed arrival time is never more than 1 minute off from "current time + selected route duration" while the card is visible.

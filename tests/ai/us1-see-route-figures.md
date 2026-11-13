@@ -1,5 +1,5 @@
 # US1: See the selected route's key figures on the map
-Covers: FR-001, FR-002, FR-003, FR-004, FR-005, FR-009, FR-010, US1 scenario 1, 2, 3, edge cases "small screens", "walking routes", "card must not intercept map interactions"
+Covers: FR-001, FR-002, FR-003, FR-004, FR-005, FR-009, FR-010, FR-012, US1 scenario 1, 2, 3, 4, edge cases "small screens", "walking routes", "card must not intercept map interactions"
 
 ## Scenario 1: Bar appears with route 1's figures
 ### Setup
@@ -9,11 +9,13 @@ Shared setup in [README.md](README.md), steps 1–4 (en-GB, 14:10, walking fixtu
 2. Read whether `#route-card` is visible.
 3. Type `Louvre` in the search box, press Go, and click the `Louvre` result.
 4. Wait until the panel lists 3 routes.
-5. Read the text of `.rc-duration`, `.rc-distance` and `.rc-arrival`, and take a screenshot.
+5. Read the text of `.rc-mode`, `.rc-duration`, `.rc-distance` and `.rc-arrival`, and take a screenshot.
 ### Expected
 - [ ] At step 2, `#route-card` is not visible.
 - [ ] After step 4, `#route-card` is visible.
-- [ ] `.rc-duration` is `25 min`, `.rc-distance` is `2.35 km`, `.rc-arrival` is `Arrive 14:35`.
+- [ ] `.rc-mode` is `Walk`, `.rc-duration` is `25 min`, `.rc-distance` is `2.35 km`, `.rc-arrival` is `Arrive 14:35`.
+- [ ] `.rc-mode` is the text of the checked travel-mode label in the panel (`Walk`).
+- [ ] `.rc-mode` is left of `.rc-duration` on the screen, and its computed colour is not `rgb(26, 115, 232)`.
 - [ ] The visible text order in the bar is duration, distance, arrival.
 - [ ] The bar contains no "Pleasure" text.
 
@@ -68,10 +70,10 @@ Shared setup with viewport 360×640.
 ### Steps
 1. Search `Louvre` and pick the result.
 2. Take a screenshot. Get the bounding boxes of `#route-card`, `.leaflet-control-attribution`, and the destination marker (`.leaflet-marker-icon`).
-3. Read the full text of `.rc-duration`, `.rc-distance` and `.rc-arrival`, and their `scrollWidth` and `clientWidth`.
+3. Read the full text of `.rc-mode`, `.rc-duration`, `.rc-distance` and `.rc-arrival`, and their `scrollWidth` and `clientWidth`.
 ### Expected
 - [ ] The bar's left edge is ≥ 0 and its right edge is ≤ 360.
-- [ ] For each part, `scrollWidth <= clientWidth` (no figure truncated), and the texts are `25 min`, `2.35 km`, `Arrive 14:35`.
+- [ ] For each part, `scrollWidth <= clientWidth` (no figure truncated), and the texts are `Walk`, `25 min`, `2.35 km`, `Arrive 14:35`.
 - [ ] The bar does not intersect the attribution box.
 - [ ] The bar does not intersect the destination marker box.
 
@@ -82,5 +84,5 @@ Same as scenario 1, after step 4.
 1. Get the ARIA snapshot of the bar: `page.locator('#route-card').ariaSnapshot()`.
 2. Read the focused element (`document.activeElement`) before and after the routes appear.
 ### Expected
-- [ ] The snapshot contains a group named `Selected route` that contains the texts `25 min`, `2.35 km` and `Arrive 14:35`.
+- [ ] The snapshot contains a group named `Selected route` that contains the texts `Walk`, `25 min`, `2.35 km` and `Arrive 14:35`.
 - [ ] The focused element is not `#route-card` or any element inside it.

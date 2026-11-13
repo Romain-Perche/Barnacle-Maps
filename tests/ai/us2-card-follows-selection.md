@@ -1,5 +1,5 @@
 # US2: Card follows the route the user picks
-Covers: FR-006, FR-010, US2 scenario 1, 2, 3, SC-002
+Covers: FR-006, FR-010, FR-012, US2 scenario 1, 2, 3, SC-002
 
 ## Scenario 1: Select route 2 in the panel
 ### Setup
@@ -9,7 +9,7 @@ Shared setup in [README.md](README.md) (en-GB, 14:10, walking fixture with 3 rou
 2. Read `.rc-duration`, `.rc-distance`, `.rc-arrival` and `#route-card-live`.
 ### Expected
 - [ ] `.rc-duration` is `29 min`, `.rc-distance` is `2.60 km`, `.rc-arrival` is `Arrive 14:39`.
-- [ ] `#route-card-live` text starts with `Route 2:` and contains `29 min` and `2.60 km`.
+- [ ] `#route-card-live` text starts with `Route 2, Walk:` and contains `29 min` and `2.60 km`.
 - [ ] `#route-card-live` has `aria-live="polite"`.
 - [ ] `document.activeElement` is the `Route 2` panel button (focus was not moved to the bar).
 

@@ -36,6 +36,7 @@ function card(app) {
   return {
     el,
     hidden: el.hidden,
+    mode: () => part(".rc-mode"),
     duration: () => part(".rc-duration"),
     distance: () => part(".rc-distance"),
     arrival: () => part(".rc-arrival"),
@@ -68,11 +69,12 @@ test("FR-007: the bar is hidden before any search", async () => {
 
 // --- US1: see the selected route's key figures --------------------------------------------------
 
-test("US1 scenario 1: routes displayed -> bar shows route 1's distance, duration and arrival", async () => {
+test("US1 scenario 1: routes displayed -> bar shows route 1's mode, distance, duration and arrival", async () => {
   // covers FR-001, FR-002, US1 scenario 1, SC-001
   const app = await withRoutes();
   const c = card(app);
   assert.equal(c.hidden, false, "bar visible once routes are shown");
+  assert.equal(c.mode(), "Walk");
   assert.equal(c.duration(), "25 min");
   assert.equal(c.distance(), "2.35 km");
   assert.match(c.arrival(), /^Arrive \S/);
@@ -91,6 +93,14 @@ test("US1 scenario 3: 25 min route selected at 14:10 -> arrival reads 14:35", as
   // covers FR-004, US1 scenario 3
   const app = await withRoutes();
   assert.match(card(app).arrival(), arriveRe(14, 35));
+});
+
+test("US1 scenario 4: walking routes -> the bar says Walk, the panel's mode word", async () => {
+  // covers FR-012, US1 scenario 4
+  const app = await withRoutes();
+  const checked = app.$("mode").querySelectorAll("label").find((l) => l.querySelector("input").checked);
+  assert.equal(card(app).mode(), checked.textContent.trim());
+  assert.equal(card(app).mode(), "Walk");
 });
 
 test("FR-005 edge case: arrival on the next day shows +1 day", async () => {
@@ -153,6 +163,7 @@ test("FR-010: a selection change is announced politely; the minute refresh is no
   assert.equal(live.getAttribute("aria-live"), "polite");
   app.routeButtons()[1].click();
   assert.match(live.textContent, /Route 2/);
+  assert.match(live.textContent, /Walk/);
   assert.match(live.textContent, /29 min/);
   assert.match(live.textContent, /2\.60 km/);
   const writes = live.textWrites;
@@ -172,6 +183,7 @@ test("US3 scenario 1: the bar hides while a new route request loads", async () =
   app.net.release();
   await flush();
   assert.equal(card(app).hidden, false, "shown again once new routes are displayed");
+  assert.equal(card(app).mode(), "Car", "the mode of the routes now displayed");
 });
 
 test("US3 scenario 2: routing fails -> no bar", async () => {
@@ -210,6 +222,7 @@ test("US3 scenario 4: changing the travel mode shows the new selected route", as
   await app.setMode("car");
   const c = card(app);
   assert.equal(c.hidden, false);
+  assert.equal(c.mode(), "Car");
   assert.equal(c.duration(), "10 min");
   assert.equal(c.distance(), "4.10 km");
   assert.match(c.arrival(), arriveRe(14, 20));
@@ -222,6 +235,7 @@ test("US3 scenario 4: adding a stop shows the whole-journey figures", async () =
   await app.clickMapAndAddStop(48.855, 2.355);
   const c = card(app);
   assert.equal(c.hidden, false);
+  assert.equal(c.mode(), "Walk", "adding a stop keeps the mode");
   assert.equal(c.duration(), "40 min");
   assert.equal(c.distance(), "3.20 km");
   assert.equal(c.duration(), app.panelFigures(0).duration);

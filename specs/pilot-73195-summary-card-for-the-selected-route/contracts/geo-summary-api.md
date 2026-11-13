@@ -32,12 +32,19 @@ All functions are pure. They take `now` as a parameter and never read the clock,
 
 Tests should compare after `.replace(/\s/g, " ")`, because some ICU versions put U+202F before AM/PM.
 
-## `routeSummary(route: { distance, duration }, now: Date, locale?: string) → { duration, distance, arrival }`
+## `routeSummary(route: { distance, duration }, now: Date, locale?: string, mode?: string) → { mode, duration, distance, arrival }`
 
+- `mode = (TRAVEL_MODES[mode] || TRAVEL_MODES.foot).label`: `"Walk"` for `"foot"`, `"Car"` for `"car"` (FR-012)
 - `duration = formatDuration(route.duration)`
 - `distance = formatDistance(route.distance)`
 - `arrival = formatArrival(now, route.duration, locale)`
 
-Example: `routeSummary({ distance: 2350, duration: 1740 }, 14:10, "en-GB")` → `{ duration: "29 min", distance: "2.35 km", arrival: "14:39" }`
+Examples:
 
-Invariant (FR-003): `duration` and `distance` are always `===` the strings the panel builds for the same route.
+| route | now | locale | mode | result |
+|---|---|---|---|---|
+| `{ distance: 2350, duration: 1740 }` | 14:10 | `en-GB` | `"foot"` | `{ mode: "Walk", duration: "29 min", distance: "2.35 km", arrival: "14:39" }` |
+| `{ distance: 4100, duration: 600 }` | 14:10 | `en-GB` | `"car"` | `{ mode: "Car", duration: "10 min", distance: "4.10 km", arrival: "14:20" }` |
+| `{ distance: 2350, duration: 1740 }` | 14:10 | `en-GB` | omitted | `mode: "Walk"` |
+
+Invariants: `duration` and `distance` are always `===` the strings the panel builds for the same route (FR-003). `mode` is always `===` the label of the panel's mode radio for that mode (FR-012).

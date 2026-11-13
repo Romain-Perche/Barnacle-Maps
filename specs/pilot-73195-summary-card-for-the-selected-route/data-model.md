@@ -14,6 +14,8 @@ Source: `parseRoutes()` output, stored as `routeLayers[selectedRoute].route` in 
 
 Selection state: `selectedRoute` (index) together with `routeLayers` (empty ⇒ no route displayed).
 
+Drawn mode (new): `drawnMode` (`"foot"` | `"car"`), the mode the displayed routes were computed for, set in `drawRoutes(routes, m)`.
+
 ## Arrival info (new, from `arrivalInfo(now, seconds)`)
 
 | Field | Type | Rule |
@@ -21,10 +23,11 @@ Selection state: `selectedRoute` (index) together with `routeLayers` (empty ⇒ 
 | `time` | `Date` | `now + max(1, round(seconds/60)) × 60 000 ms` |
 | `dayOffset` | integer ≥ 0 | Calendar days between local `now` and local `time` (DST-safe, see research R3) |
 
-## Route summary (new, from `routeSummary(route, now, locale?)`)
+## Route summary (new, from `routeSummary(route, now, locale?, mode?)`)
 
 | Field | Type | Rule |
 |---|---|---|
+| `mode` | string | `TRAVEL_MODES[mode].label`: `"Walk"` or `"Car"`, the panel's mode word; foot when missing or unknown (FR-012) |
 | `duration` | string | `formatDuration(route.duration)`, identical to the panel (FR-003) |
 | `distance` | string | `formatDistance(route.distance)`, identical to the panel (FR-003) |
 | `arrival` | string | `formatArrival(now, route.duration, locale)`, e.g. `"14:39"`, `"2:39 PM"`, `"00:20 +1 day"` (FR-004, FR-005) |

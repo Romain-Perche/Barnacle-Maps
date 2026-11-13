@@ -6,7 +6,7 @@
 
 ## Summary
 
-Show a one-line bar (Design A) centered at the bottom of the map with the selected route's duration, distance and "Arrive <time>". Formatting and arrival-time math go in pure, unit-tested helpers in `src/geo.js` (`arrivalInfo`, `formatArrival`, `routeSummary`). Distance and duration reuse the panel's `formatDistance` / `formatDuration`, and arrival is computed from the *displayed* (rounded) minutes so the figures always match. `src/app.js` renders the bar from `selectRoute()`, hides it in `clearRoutes()` (which already runs on every new request, failure and empty result), and refreshes it on each minute boundary while it is visible. The bar is a static `#route-card` element placed next to `#map`, with a separate visually hidden polite live region that announces only selection changes, not the minute ticks.
+Show a one-line bar (Design A) centered at the bottom of the map with the selected route's travel mode ("Walk" or "Car", grey), duration, distance and "Arrive <time>" (clarification 2026-11-13: Pilot asked for the travel mode). Formatting and arrival-time math go in pure, unit-tested helpers in `src/geo.js` (`arrivalInfo`, `formatArrival`, `routeSummary`, which also returns the mode label from `TRAVEL_MODES`). Distance and duration reuse the panel's `formatDistance` / `formatDuration`, and arrival is computed from the *displayed* (rounded) minutes so the figures always match. `src/app.js` remembers the mode the drawn routes were computed for (`drawnMode`, set in `drawRoutes`), renders the bar from `selectRoute()`, hides it in `clearRoutes()` (which already runs on every new request, failure and empty result), and refreshes it on each minute boundary while it is visible. The bar is a static `#route-card` element placed next to `#map`, with a separate visually hidden polite live region that announces only selection changes, not the minute ticks.
 
 ## Technical Context
 
@@ -29,7 +29,7 @@ Show a one-line bar (Design A) centered at the bottom of the map with the select
 
 **Constraints**: `src/geo.js` must stay DOM-free (test L6 forbids the strings `document`, `window`, `fetch(`). No package dependencies (L8). Existing tests must keep passing.
 
-**Scale/Scope**: 1 HTML element, 1 sr-only element, ~40 lines in app.js, ~40 lines in geo.js, ~20 lines of CSS. The 3 test files + 1 test helper are already written.
+**Scale/Scope**: 1 HTML element (4 parts), 1 sr-only element, ~40 lines in app.js, ~40 lines in geo.js, ~20 lines of CSS. The 3 test files + 1 test helper are already written.
 
 ## Constitution Check
 
@@ -90,16 +90,17 @@ README.md           # + one line describing the card
 
 ## Implementation Outline
 
-1. **geo.js**: add `arrivalInfo(now, seconds)` → `{ time: Date, dayOffset }` using displayed minutes `max(1, round(s/60))`, and `formatArrival(now, seconds, locale?)` → `"14:35"`, `"2:35 PM"`, or `"00:20 +1 day"`. Add `routeSummary(route, now, locale?)` → `{ duration, distance, arrival }`. See [contracts/geo-summary-api.md](./contracts/geo-summary-api.md).
-2. **index.html**: add `#route-card` (sibling after `#map`, before `#panel`) and the sr-only live region. See [contracts/route-card-ui.md](./contracts/route-card-ui.md).
-3. **styles.css**: style the Design A bar: absolute, `left:50%` + `translateX(-50%)`, `bottom: 28px` (above the attribution), `z-index:1000`, `max-width: calc(100% - 24px)`, `flex-wrap: wrap` with `white-space: nowrap` per item, so figures never get truncated. Also add the `.sr-only` utility.
+1. **geo.js**: add `arrivalInfo(now, seconds)` → `{ time: Date, dayOffset }` using displayed minutes `max(1, round(s/60))`, and `formatArrival(now, seconds, locale?)` → `"14:35"`, `"2:35 PM"`, or `"00:20 +1 day"`. Add `routeSummary(route, now, locale?, mode?)` → `{ mode, duration, distance, arrival }`, where `mode` is `TRAVEL_MODES[mode].label` (`"Walk"`/`"Car"`, foot when unknown or missing, like `routeUrl`). See [contracts/geo-summary-api.md](./contracts/geo-summary-api.md).
+2. **index.html**: add `#route-card` with `.rc-mode`, `.rc-duration`, `.rc-distance`, `.rc-arrival` in that order (sibling after `#map`, before `#panel`) and the sr-only live region. See [contracts/route-card-ui.md](./contracts/route-card-ui.md).
+3. **styles.css**: style the Design A bar: absolute, `left:50%` + `translateX(-50%)`, `bottom: 28px` (above the attribution), `z-index:1000`, `max-width: calc(100% - 24px)`, `flex-wrap: wrap` with `white-space: nowrap` per item, so figures never get truncated. `.rc-mode` is grey (`#666`, the panel's secondary text colour) so the blue duration stays the strongest item. Also add the `.sr-only` utility.
 4. **app.js**:
-   - `renderCard()`: if `routeLayers[selectedRoute]` exists, fill the three spans from `routeSummary(route, new Date())`, unhide, and (re)arm the minute timer. Otherwise call `hideCard()`.
-   - `selectRoute(i)` calls `renderCard()` and writes the announcement to `#route-card-live` (selection changes only).
+   - `drawRoutes(routes, m)` sets `drawnMode = m` before `selectRoute(0)`. The mode radio is not read, so the bar never shows a mode whose routes are still loading (FR-012).
+   - `renderCard()`: if `routeLayers[selectedRoute]` exists, fill the four parts from `routeSummary(route, new Date(), undefined, drawnMode)`, unhide, and (re)arm the minute timer. Otherwise call `hideCard()`.
+   - `selectRoute(i)` calls `renderCard()` and writes the announcement `Route N, <Mode>: <duration>, <distance>, arrive <time>` to `#route-card-live` (selection changes only).
    - `clearRoutes()` calls `hideCard()` (hide, clear the timer, clear the live text).
    - Minute timer: `setTimeout` until the next wall-clock minute boundary, then `renderCard()` re-arms it. The tick doesn't touch the live region.
    - `drawRoutes()`: `selectRoute(0)` already runs before `fitBounds`. Change the padding to `{ paddingTopLeft: [40, 40], paddingBottomRight: [40, 40 + card height + 28] }` so the bar never hides the start or destination.
-5. **Tests**: they already exist and fail (written by /write-tests). The implementation is done when `npm test` is fully green. Do not weaken the tests. The integration tests depend on the exact ids and classes in contracts/route-card-ui.md (`#route-card`, `.rc-duration`, `.rc-distance`, `.rc-arrival`, `#route-card-live`), on `selectRoute`/`clearRoutes` being the hook points, and on `setTimeout`/`setInterval`/`Date` (mocked in tests) for the minute refresh.
+5. **Tests**: they already exist and fail (written by /write-tests). The implementation is done when `npm test` is fully green. Do not weaken the tests. The integration tests depend on the exact ids and classes in contracts/route-card-ui.md (`#route-card`, `.rc-mode`, `.rc-duration`, `.rc-distance`, `.rc-arrival`, `#route-card-live`), on `selectRoute`/`clearRoutes` being the hook points, and on `setTimeout`/`setInterval`/`Date` (mocked in tests) for the minute refresh.
 6. **README.md**: add one line about the summary bar.
 
 ## Complexity Tracking

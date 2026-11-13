@@ -17,4 +17,4 @@ Shared setup for every scenario file in this folder:
 
 Expected panel entries with the walking fixture: `Route 1 · 2.35 km · 25 min`, `Route 2 · 2.60 km · 29 min`, `Route 3 · 3.00 km · 35 min`.
 
-The bar is `#route-card`. Its parts are `.rc-duration`, `.rc-distance` and `.rc-arrival`. The announcement region is `#route-card-live`.
+The bar is `#route-card`. Its parts are `.rc-mode`, `.rc-duration`, `.rc-distance` and `.rc-arrival`, in that order. The announcement region is `#route-card-live`.

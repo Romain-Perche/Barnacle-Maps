@@ -1,5 +1,5 @@
 # US3: Card stays accurate and out of the way
-Covers: FR-007, FR-008, FR-010, FR-011, US3 scenario 1, 2, 3, 4, SC-004, SC-005
+Covers: FR-007, FR-008, FR-010, FR-011, FR-012, US3 scenario 1, 2, 3, 4, SC-004, SC-005
 
 ## Scenario 1: Hidden while a new request loads
 ### Setup
@@ -12,7 +12,7 @@ Shared setup in [README.md](README.md) (en-GB, 14:10). Make the `**/routed-car/*
 5. Read `#route-card` parts.
 ### Expected
 - [ ] At step 3, `#route-card` is not visible and `#status` is `Computing driving routes…`.
-- [ ] At step 5, `#route-card` is visible with `.rc-duration` `10 min`, `.rc-distance` `4.10 km`, `.rc-arrival` `Arrive 14:20`.
+- [ ] At step 5, `#route-card` is visible with `.rc-mode` `Car`, `.rc-duration` `10 min`, `.rc-distance` `4.10 km`, `.rc-arrival` `Arrive 14:20`.
 
 ## Scenario 2: Routing fails or finds no route
 ### Setup
@@ -55,6 +55,6 @@ Shared setup. Search `Louvre` and pick the result.
 7. Click the stop's remove button (`Remove stop 1`), after changing the `**/routed-foot/**` handler back to [fixtures/foot-3-routes.json](fixtures/foot-3-routes.json). Wait for 3 routes.
 8. Read the bar parts.
 ### Expected
-- [ ] Step 2: bar shows `10 min`, `4.10 km`, `Arrive 14:20`; the panel route text contains `4.10 km · 10 min`.
-- [ ] Step 6: bar shows `40 min`, `3.20 km`, `Arrive 14:50`; the panel route text contains `3.20 km · 40 min`.
-- [ ] Step 8: bar shows `25 min`, `2.35 km`, `Arrive 14:35`.
+- [ ] Step 2: bar shows `Car`, `10 min`, `4.10 km`, `Arrive 14:20`; the panel route text contains `4.10 km · 10 min`.
+- [ ] Step 6: bar shows `Walk`, `40 min`, `3.20 km`, `Arrive 14:50`; the panel route text contains `3.20 km · 40 min`.
+- [ ] Step 8: bar shows `Walk`, `25 min`, `2.35 km`, `Arrive 14:35`.

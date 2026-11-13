@@ -44,11 +44,12 @@ Single static project at the repo root: `index.html`, `styles.css`, `src/geo.js`
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T002 [P] Add the bar markup to index.html right after `<div id="map"></div>` and before `<div id="panel">`: `<div id="route-card" role="group" aria-label="Selected route" hidden><b class="rc-duration"></b><span class="rc-distance"></span><span class="rc-arrival"></span></div>` followed by `<p id="route-card-live" class="sr-only" aria-live="polite"></p>`. Keep the existing order `#results` < `#routes` < `#status` inside `#panel` unchanged (test L1).
+- [ ] T002 [P] Add the bar markup to index.html right after `<div id="map"></div>` and before `<div id="panel">`: `<div id="route-card" role="group" aria-label="Selected route" hidden><span class="rc-mode"></span><b class="rc-duration"></b><span class="rc-distance"></span><span class="rc-arrival"></span></div>` followed by `<p id="route-card-live" class="sr-only" aria-live="polite"></p>`. Keep the existing order `#results` < `#routes` < `#status` inside `#panel` unchanged (test L1).
 - [ ] T003 [P] Add Design A styles to styles.css per contracts/route-card-ui.md:
   - `#route-card { position:absolute; left:50%; transform:translateX(-50%); bottom:28px; z-index:1000; display:flex; flex-wrap:wrap; justify-content:center; align-items:baseline; gap:4px 12px; max-width:calc(100% - 24px); box-sizing:border-box; background:#fff; border-radius:8px; padding:7px 14px; box-shadow:0 2px 8px rgba(0,0,0,.3); font-size:13px }`
   - `#route-card[hidden] { display:none }`
   - `#route-card > * { white-space:nowrap }`
+  - `#route-card .rc-mode { color:#666 }` (travel mode in grey, FR-012)
   - `#route-card .rc-duration { color:#1a73e8; font-size:15px }`
   - `#route-card > * + * { border-left:1px solid #ddd; padding-left:12px }`
   - a standard `.sr-only` utility (`position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0`)
@@ -60,19 +61,19 @@ Single static project at the repo root: `index.html`, `styles.css`, `src/geo.js`
 
 ## Phase 3: User Story 1 - See the selected route's key figures on the map (Priority: P1) 🎯 MVP
 
-**Goal**: When routes are displayed, the bar shows the selected (by default the first) route's duration, distance and "Arrive <time>", matching the panel.
+**Goal**: When routes are displayed, the bar shows the travel mode ("Walk"/"Car") and the selected (by default the first) route's duration, distance and "Arrive <time>", matching the panel.
 
-**Independent Test**: Search a destination. The bar appears bottom-center with Route 1's duration and distance exactly as in the panel, and an arrival time equal to the current time plus the displayed minutes (quickstart scenarios 2–3).
+**Independent Test**: Search a destination. The bar appears bottom-center with `Walk`, then Route 1's duration and distance exactly as in the panel, and an arrival time equal to the current time plus the displayed minutes (quickstart scenarios 2–3).
 
 ### Tests for User Story 1
 
 > The tests already exist (written by /write-tests). Confirm they FAIL before T005.
 
 - [ ] T004 [US1] Run `node --test test/summary.test.js test/route-card-ui.test.js test/route-card.integration.test.js` and confirm the US1 tests listed below fail (red) before T005. The tests were already written by /write-tests: do not rewrite or weaken them.
-- [X] T016 [US1] Contract test for the pure summary helpers arrivalInfo/formatArrival/routeSummary in test/summary.test.js (covers FR-002, FR-003, FR-004, FR-005, US1 scenario 2, 3, SC-003, edge cases "arrival on a later day" and "very short routes")
-- [X] T017 [US1] Contract test for the bar markup and Design A styles in test/route-card-ui.test.js (covers FR-002, FR-007, FR-009, FR-010, edge cases "small screens" and "must not intercept map interactions")
-- [X] T018 [US1] Integration test for the bar on first display (tests "FR-007: … before any search", "US1 scenario 1/2/3", "FR-005 edge case", "FR-009 edge case") in test/route-card.integration.test.js (covers FR-001, FR-002, FR-003, FR-004, FR-005, FR-007, FR-009, US1 scenario 1, 2, 3, SC-001, SC-003)
-- [X] T019 [US1] AI test: see the selected route's figures in tests/ai/us1-see-route-figures.md (covers FR-001–FR-005, FR-009, FR-010, US1 scenario 1, 2, 3)
+- [X] T016 [US1] Contract test for the pure summary helpers arrivalInfo/formatArrival/routeSummary in test/summary.test.js (covers FR-002, FR-003, FR-004, FR-005, FR-011, FR-012, US1 scenario 2, 3, SC-003, edge cases "arrival on a later day" and "very short routes")
+- [X] T017 [US1] Contract test for the bar markup and Design A styles in test/route-card-ui.test.js (covers FR-002, FR-007, FR-009, FR-010, FR-012, edge cases "small screens" and "must not intercept map interactions")
+- [X] T018 [US1] Integration test for the bar on first display (tests "FR-007: … before any search", "US1 scenario 1/2/3/4", "FR-005 edge case", "FR-009 edge case") in test/route-card.integration.test.js (covers FR-001, FR-002, FR-003, FR-004, FR-005, FR-007, FR-009, FR-012, US1 scenario 1, 2, 3, 4, SC-001, SC-003)
+- [X] T019 [US1] AI test: see the selected route's figures in tests/ai/us1-see-route-figures.md (covers FR-001–FR-005, FR-009, FR-010, FR-012, US1 scenario 1, 2, 3, 4)
 
 ### Implementation for User Story 1
 
@@ -86,17 +87,18 @@ Single static project at the repo root: `index.html`, `styles.css`, `src/geo.js`
     - `hc = new Intl.DateTimeFormat(locale, { hour: "numeric" }).resolvedOptions().hourCycle`
     - format `time` with `{ hour: hc === "h11" || hc === "h12" ? "numeric" : "2-digit", minute: "2-digit" }`
     - append `" +1 day"` if `dayOffset === 1` or `` ` +${dayOffset} days` `` if `dayOffset > 1`
-  - `routeSummary(route, now, locale)` returns `{ duration: formatDuration(route.duration), distance: formatDistance(route.distance), arrival: formatArrival(now, route.duration, locale) }`
+  - `routeSummary(route, now, locale, mode)` returns `{ mode: (TRAVEL_MODES[mode] || TRAVEL_MODES.foot).label, duration: formatDuration(route.duration), distance: formatDistance(route.distance), arrival: formatArrival(now, route.duration, locale) }` (`"Walk"` / `"Car"`, FR-012)
 
   Add them to the header comment's list of responsibilities without using the forbidden words. Run `node --test test/summary.test.js` and confirm it passes.
 - [ ] T006 [US1] In src/app.js:
   - import `routeSummary` from ./geo.js
   - add `const card = document.getElementById("route-card")` and `const cardLive = document.getElementById("route-card-live")` next to the other element lookups
-  - add `let cardTimer = null;` to the state block
+  - add `let cardTimer = null;` and `let drawnMode = "foot";` (mode of the displayed routes, FR-012) to the state block
+  - in `drawRoutes(routes, m)`, set `drawnMode = m` before `selectRoute(0)`
   - add a function `renderCard()`:
     - `const entry = routeLayers[selectedRoute]; if (!entry) return hideCard();`
-    - `const s = routeSummary(entry.route, new Date());`
-    - set `card.querySelector(".rc-duration").textContent = s.duration`, `.rc-distance` to `s.distance`, and `.rc-arrival` to `` `Arrive ${s.arrival}` ``
+    - `const s = routeSummary(entry.route, new Date(), undefined, drawnMode);`
+    - set `card.querySelector(".rc-mode").textContent = s.mode`, `.rc-duration` to `s.duration`, `.rc-distance` to `s.distance`, and `.rc-arrival` to `` `Arrive ${s.arrival}` ``
     - set `card.hidden = false`
     - return `s`
   - add a function `hideCard()` that sets `card.hidden = true` (the timer and live-region parts come in US3/US2)
@@ -111,16 +113,16 @@ Single static project at the repo root: `index.html`, `styles.css`, `src/geo.js`
 
 **Goal**: Selecting another route from the panel or the map updates the bar immediately, and assistive technology announces the change politely.
 
-**Independent Test**: With ≥ 2 routes, click Route 2 in the panel and then Route 3 on the map. The bar shows each route's figures in turn, and `#route-card-live` reads `Route N: …` (quickstart scenario 4).
+**Independent Test**: With ≥ 2 routes, click Route 2 in the panel and then Route 3 on the map. The bar shows each route's figures in turn, and `#route-card-live` reads `Route N, Walk: …` (quickstart scenario 4).
 
-- [X] T020 [US2] Integration test for selection changes (tests "US2 scenario 1/2/3", "FR-010: a selection change is announced politely…") in test/route-card.integration.test.js (covers FR-006, FR-010, US2 scenario 1, 2, 3, SC-002)
-- [X] T021 [US2] AI test: card follows the selected route in tests/ai/us2-card-follows-selection.md (covers FR-006, FR-010, US2 scenario 1, 2, 3)
+- [X] T020 [US2] Integration test for selection changes (tests "US2 scenario 1/2/3", "FR-010: a selection change is announced politely…") in test/route-card.integration.test.js (covers FR-006, FR-010, FR-012, US2 scenario 1, 2, 3, SC-002)
+- [X] T021 [US2] AI test: card follows the selected route in tests/ai/us2-card-follows-selection.md (covers FR-006, FR-010, FR-012, US2 scenario 1, 2, 3)
 
 ### Implementation for User Story 2
 
 - [ ] T008 [US2] In src/app.js `selectRoute(i)`:
   - use the summary returned by `renderCard()`
-  - when it is truthy, set `cardLive.textContent = `Route ${i + 1}: ${s.duration}, ${s.distance}, arrive ${s.arrival}``
+  - when it is truthy, set `cardLive.textContent = `Route ${i + 1}, ${s.mode}: ${s.duration}, ${s.distance}, arrive ${s.arrival}``
   - only `selectRoute` writes `cardLive`; the minute tick in T011 must not (research R5)
   - confirm that both existing call paths (`button` click handler and `line.on("click")` in `drawRoutes`) go through `selectRoute(i)` and need no other change (FR-006)
 - [ ] T009 [US2] In src/app.js `hideCard()`: also clear the announcement with `cardLive.textContent = ""` so no stale route is announced after routes are cleared.
@@ -133,13 +135,13 @@ Single static project at the repo root: `index.html`, `styles.css`, `src/geo.js`
 
 **Goal**: The bar is hidden whenever there is no route (loading, cleared, failed, empty), reappears with fresh figures after mode/stop changes, keeps the arrival time current, and flags arrivals on a later day.
 
-**Independent Test**: Display routes, switch Walk → Car. The bar disappears while loading and returns with the new Route 1. Leave the page open across a minute boundary and the arrival advances (quickstart scenarios 1, 6, 7, 8, 9).
+**Independent Test**: Display routes, switch Walk → Car. The bar disappears while loading and returns with `Car` and the new Route 1. Leave the page open across a minute boundary and the arrival advances (quickstart scenarios 1, 6, 7, 8, 9).
 
 ### Tests for User Story 3
 
 - [ ] T010 [P] [US3] Run `node --test test/route-card.integration.test.js` and confirm the US3 tests listed below fail (red) before T011. Do not rewrite or weaken them.
-- [X] T022 [US3] Integration test for hiding, refresh and new routes (tests "US3 scenario 1/2/3/4") in test/route-card.integration.test.js (covers FR-007, FR-008, FR-011, US3 scenario 1, 2, 3, 4, SC-004, SC-005)
-- [X] T023 [US3] AI test: card stays accurate and out of the way in tests/ai/us3-accurate-and-out-of-the-way.md (covers FR-007, FR-008, FR-010, FR-011, US3 scenario 1, 2, 3, 4)
+- [X] T022 [US3] Integration test for hiding, refresh and new routes (tests "US3 scenario 1/2/3/4") in test/route-card.integration.test.js (covers FR-007, FR-008, FR-011, FR-012, US3 scenario 1, 2, 3, 4, SC-004, SC-005)
+- [X] T023 [US3] AI test: card stays accurate and out of the way in tests/ai/us3-accurate-and-out-of-the-way.md (covers FR-007, FR-008, FR-010, FR-011, FR-012, US3 scenario 1, 2, 3, 4)
 
 ### Implementation for User Story 3
 
@@ -156,7 +158,7 @@ Single static project at the repo root: `index.html`, `styles.css`, `src/geo.js`
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T013 [P] Update README.md: add one bullet saying that a bar at the bottom of the map shows the selected route's duration, distance and arrival time (device clock format, "+1 day" when arriving on a later day), refreshed every minute. Keep the existing "up to 3" and "pleasure" wording (test L3).
+- [ ] T013 [P] Update README.md: add one bullet saying that a bar at the bottom of the map shows the travel mode and the selected route's duration, distance and arrival time (device clock format, "+1 day" when arriving on a later day), refreshed every minute. Keep the existing "up to 3" and "pleasure" wording (test L3).
 - [ ] T014 Run `npm test` at the repo root. All tests must pass: L1–L8 in test/routes.test.js, test/summary.test.js, test/route-card-ui.test.js and test/route-card.integration.test.js.
 - [ ] T015 Walk through every scenario in specs/pilot-73195-summary-card-for-the-selected-route/quickstart.md (`npm start`, http://localhost:8000) and note the results. Check especially the 360 px width (no truncation, attribution not covered) and that clicking beside the bar still opens "Add stop here".
 
