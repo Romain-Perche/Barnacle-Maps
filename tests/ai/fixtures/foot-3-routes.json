@@ -1,0 +1,68 @@
+{
+ "code": "Ok",
+ "routes": [
+  {
+   "distance": 2350,
+   "duration": 1500,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      2.35,
+      48.85
+     ],
+     [
+      2.35,
+      48.86
+     ],
+     [
+      2.36,
+      48.86
+     ]
+    ]
+   }
+  },
+  {
+   "distance": 2600,
+   "duration": 1740,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      2.35,
+      48.85
+     ],
+     [
+      2.36,
+      48.85
+     ],
+     [
+      2.36,
+      48.86
+     ]
+    ]
+   }
+  },
+  {
+   "distance": 3000,
+   "duration": 2100,
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      2.35,
+      48.85
+     ],
+     [
+      2.355,
+      48.855
+     ],
+     [
+      2.36,
+      48.86
+     ]
+    ]
+   }
+  }
+ ]
+}
