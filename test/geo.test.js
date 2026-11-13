@@ -22,7 +22,7 @@ test("haversine: same point is zero", () => {
 
 test("formatDistance", () => {
   assert.equal(formatDistance(420.4), "420 m");
-  assert.equal(formatDistance(1500), "1.50 km");
+  assert.equal(formatDistance(1500), "1.5 km"); // FR-009: old "1.50 km" format updated
   assert.equal(formatDistance(12345), "12.3 km");
 });
 
