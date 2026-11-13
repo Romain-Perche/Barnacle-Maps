@@ -7,6 +7,7 @@ import {
   detourWaypoints,
   formatDistance,
   formatDuration,
+  routeSummary,
   mapPointStop,
   MAX_STOPS,
   MIN_SUGGEST_CHARS,
@@ -162,7 +163,40 @@ input.addEventListener("input", () => {
   suggestTimer = setTimeout(() => runSearch(q, { announce: false }), SUGGEST_DELAY_MS);
 });
 
+let drawnMode = "foot"; // the mode the drawn routes were computed for
+let cardTimer = null;
+const card = document.getElementById("route-card");
+const cardLive = document.getElementById("route-card-live");
+
+function hideCard() {
+  clearTimeout(cardTimer);
+  cardTimer = null;
+  card.hidden = true;
+  cardLive.textContent = "";
+}
+
+// Fills the bar for the selected route; returns the summary (or null when there is no route).
+function renderCard() {
+  clearTimeout(cardTimer);
+  cardTimer = null;
+  const entry = routeLayers[selectedRoute];
+  if (!entry) {
+    hideCard();
+    return null;
+  }
+  const now = new Date();
+  const s = routeSummary(entry.route, now, undefined, drawnMode);
+  card.querySelector(".rc-mode").textContent = s.mode;
+  card.querySelector(".rc-duration").textContent = s.duration;
+  card.querySelector(".rc-distance").textContent = s.distance;
+  card.querySelector(".rc-arrival").textContent = `Arrive ${s.arrival}`;
+  card.hidden = false;
+  cardTimer = setTimeout(renderCard, 60000 - (now.getTime() % 60000));
+  return s;
+}
+
 function clearRoutes() {
+  hideCard();
   for (const { line } of routeLayers) line.remove();
   routeLayers = [];
   selectedRoute = 0;
@@ -178,6 +212,8 @@ function selectRoute(i) {
     button.classList.toggle("selected", on);
   });
   routeLayers[i]?.line.bringToFront();
+  const s = renderCard();
+  if (s) cardLive.textContent = `Route ${i + 1}, ${s.mode}: ${s.duration}, ${s.distance}, arrive ${s.arrival}`;
 }
 
 function setPleasure(entry, text, { title = "", label = text } = {}) {
@@ -235,10 +271,14 @@ function drawRoutes(routes, m) {
     button.addEventListener("click", () => selectRoute(i));
     routeLayers.push(entry);
   });
+  drawnMode = m;
   selectRoute(0);
   const layers = [...routeLayers.map((r) => r.line), ...stopMarkers, destMarker, userMarker].filter(Boolean);
   const bounds = L.featureGroup(layers).getBounds();
-  map.fitBounds(bounds, { padding: [40, 40] });
+  map.fitBounds(bounds, {
+    paddingTopLeft: [40, 40],
+    paddingBottomRight: [40, 40 + card.offsetHeight + 28],
+  });
 }
 
 async function loadTile(x, y, signal) {

@@ -40,3 +40,19 @@ html, body { height: 100%; margin: 0; font-family: system-ui, sans-serif; }
 #status:empty { display: none; }
 
 #routes .pleasure.best { color: #188038; font-weight: 600; }
+
+#route-card {
+  position: absolute; left: 50%; transform: translateX(-50%); bottom: 28px; z-index: 1000;
+  background: #fff; border-radius: 8px; padding: 7px 14px; box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; align-items: baseline;
+  max-width: calc(100% - 24px); box-sizing: border-box; font-size: 13px;
+}
+#route-card[hidden] { display: none; }
+#route-card > * { white-space: nowrap; }
+#route-card > * + * { border-left: 1px solid #ddd; padding-left: 12px; }
+#route-card .rc-mode { color: #666; }
+#route-card .rc-duration { color: #1a73e8; font-size: 15px; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap;
+}

@@ -336,3 +336,34 @@ export function bestPleasure(counts) {
   for (let i = 1; i < counts.length; i++) if (counts[i] > counts[best]) best = i;
   return counts[best] > 0 ? best : -1;
 }
+
+// --- Route summary ---------------------------------------------------------------------------
+// Arrival is computed from the displayed (rounded) minutes so it always matches the duration text.
+export function arrivalInfo(now, seconds) {
+  const minutes = Math.max(1, Math.round(seconds / 60));
+  const time = new Date(now.getTime() + minutes * 60_000);
+  const midnight = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const dayOffset = Math.round((midnight(time) - midnight(now)) / 86_400_000);
+  return { time, dayOffset };
+}
+
+export function formatArrival(now, seconds, locale) {
+  const { time, dayOffset } = arrivalInfo(now, seconds);
+  const hc = new Intl.DateTimeFormat(locale, { hour: "numeric" }).resolvedOptions().hourCycle;
+  const twelve = hc === "h11" || hc === "h12";
+  const text = new Intl.DateTimeFormat(locale, {
+    hour: twelve ? "numeric" : "2-digit",
+    minute: "2-digit",
+  }).format(time);
+  if (dayOffset === 1) return `${text} +1 day`;
+  return dayOffset > 1 ? `${text} +${dayOffset} days` : text;
+}
+
+export function routeSummary(route, now, locale, mode) {
+  return {
+    mode: (TRAVEL_MODES[mode] || TRAVEL_MODES.foot).label,
+    duration: formatDuration(route.duration),
+    distance: formatDistance(route.distance),
+    arrival: formatArrival(now, route.duration, locale),
+  };
+}

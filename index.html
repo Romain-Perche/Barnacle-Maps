@@ -9,6 +9,10 @@
 </head>
 <body>
   <div id="map"></div>
+  <div id="route-card" role="group" aria-label="Selected route" hidden>
+    <span class="rc-mode"></span><b class="rc-duration"></b><span class="rc-distance"></span><span class="rc-arrival"></span>
+  </div>
+  <p id="route-card-live" class="sr-only" aria-live="polite"></p>
   <div id="panel">
     <form id="search-form">
       <input id="search-input" type="search" placeholder="Search a place" autocomplete="off" aria-label="Search a place">

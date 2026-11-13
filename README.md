@@ -10,3 +10,4 @@ A small navigation web app: shows a map, your live position, lets you search for
 - Pleasure: counts the green pixels (parks, grass, woods in the OpenStreetMap style) on the OSM map tiles (zoom 16) along each walking route. The route with the most green pixels is marked "most pleasant". It shows "Pleasure unavailable" if tiles cannot be loaded or the walk is very long.
 
 No build step or dependencies. Run `npm start` and open http://localhost:8000 (geolocation requires localhost or HTTPS). Run tests with `npm test`.
+- Selecting a route shows a summary bar at the bottom of the map (mode, duration, distance, arrival time).
