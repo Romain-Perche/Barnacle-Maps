@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:21c5e97e3c8fe3a17c39bcd37fa89cb2cf13ccef5460f4e39c0b8860b2134102",
+  "claims": [
+    {
+      "id": "claim_94bd06c0f0ea4a449a205124bf741c70",
+      "statement": "runSearch discards a search response whose sequence number is no longer the latest searchSeq, so only the newest search renders results.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L108-L146",
+          "version": "repo-lines-v1:sha256:ca6f120fb7d63fcb09cd3182f622ce255e9ec520e5d87927c6aa3e37dc6d55f3:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1NDM2NzEyNmFhN2Y2ZTg1MWQ5YmM1NDViMzhlNzg1ZjQ4YWRmNWYxYjkwZWE0Zjg2NzJmZWQ4ZTYzZGZhZTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExMjRlZmU0NDJlMzJkNTA4NzBmYzRlMmIzMWE2ZmRjZGZlMDVlMjhmYjVhYjBjOTMxYmZmMWNjMDhkYjIwODMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE2NmJmZWU2ZDRmZTMxNmI5ZWFjMThlYzlmYTBiYmMzNGUwN2VkZWUyZjhiNzE0YzM4NjFhM2M3YmUzOTRkNTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_953bd26ece1d45cd9ba1ff9482de9a65",
+      "statement": "updateRoutes increments routeSeq, aborts any running pleasure job, and ignores route responses that a newer request superseded.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L322-L349",
+          "version": "repo-lines-v1:sha256:b35379ac77c3c2a9354a4ab0b76494c15c9953e0c126248a37f2f09f03d8e2c3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxY2Q3YjBlNzA4YmQyNjhlNzMyOTVkMjhjZWM0ZTc1MmM4MjNlZTZkNzU1ZGZlMDg5MmZkMjdiNGYxZTZhMjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAyY2JjOGM3NGM1ZDU5YWIzM2Y4ZjAxYjJmYThmMjZmNzA5Njk2ZDZlMGVmNzNlNDU1YzExYjkyNjYyNDljZDkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMzg2MmM5MTg1NjEwOTRkMmQ0MjMwZGFhOTE3M2UyYmM4ZTE1MTRiYTYzNjUyNmRkNTUzN2QzOTUyNTVmMjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYxMjA5MjIxMjA1ZjBiNmVmNGRhNTNjNGUwYmQ5NjE0NTJhNTNhN2QyNjkxNmI1NDY0OGUwOGQ0ODQ1NWI4ZWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c484f73ee27b4848b43c36b0cff5e904",
+      "statement": "If a destination is chosen before the user's position is known, updateRoutes sets pendingRoute and the first position fix triggers the route computation.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L333-L337",
+          "version": "repo-lines-v1:sha256:a91f9c95013b538fb35628bf3933ec7fe31a47e718c2b5687f4e40a28b688aba:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDY5NTEzZDM5ZjM4OGI1MWRmMzFkNzY2ZDY3ZTI3OTQ2ZTcxNmU4YzkzZDQ5YjY2YmI0NTQ1ZGE1NDYyZTU4ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzAxMjUzOGMyNWEwZWYwNzg4NzEwM2EwOTcxZTM5MjNmMzdmMmIwMjcxZGViN2I4ZjlkNDI5OWQ2ZTMyYzIxYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjRhYzA1NzQ4ZDUxY2E3MTEzZmE0ZjM0YTdiNTNlYTRkNjk0Njk2YWQwMjQ5MTEwZjRkMTA4ZWYzOTgyNTBjNSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L71-L90",
+          "version": "repo-lines-v1:sha256:f16a04932a5932adb8b1ee52dd0bce0513a310b06a63f7b388efa5040cad5af1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlZDk4NmQ4M2ZjZTYzODAxNmIwYzcxOGZmOGE1ZjczMWIzMTUxZGY3MjliODI0ODhkNjAzZDAxM2FkNDMyMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkYmFjNzM2MjNlYWUyZDRhZWZkNjRiNDc4ZDAxYjNiYmRiYjRiYzY2YzQ2ZDY1NDhiOWM3NTIwMmEzZjUxMGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNkODkzZjQxZDQ3NmRlOWJhOGQxMTg4NDQyZWQ2ZjIyYjZkZWNkZDcxMjUxMzdkMmQxMGQ1ODliNjVmZmQ4YjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ecc1dec14ab240a6a3001f15ee240814",
+      "statement": "The panel's routes list and status line are hidden by CSS while empty.",
+      "evidence": [
+        {
+          "resource": "repo://styles.css#L38-L51",
+          "version": "repo-lines-v1:sha256:92e110a89c66074337cdcd2c9b8c3d6d106de510d34be2c4d199f9ba92a186ea:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmNGU4NDk5ZjJkNGY4YjRkNDc3ZDYzOGM4MDcyN2Q0YzdjNzAxOGQ1NGUwMzM4OTczY2U1MzQ1MzBmNDFmZTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmNzNhOTJmZmRmOGJiMDQ4YjViMjA2MzdjZDdhNWE1OWZjZjgwYjk0NTg5NmQ2N2YzZDA1OGM4ZDc4YWJlZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFjNTVkNDJmNjJjZDBkZjY3NzRmMjY1OTAwYzdhZjI2ZTk5NDc2MjAwNGRkNmQ5OGUwN2M0YzcyMTc1ZGZhNjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T16:11:40.024Z"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "zones": [
+    {"id": "browser", "label": "User's browser"},
+    {"id": "dev-host", "label": "Local host serving the files"},
+    {"id": "third-party", "label": "Third-party web services"}
+  ],
+  "actors": [
+    {"id": "user", "label": "Browser user"},
+    {"id": "geolocation", "label": "Browser geolocation API", "zone": "browser"},
+    {"id": "nominatim", "label": "Nominatim geocoding (nominatim.openstreetmap.org)", "zone": "third-party"},
+    {"id": "osrm", "label": "OSRM routing (routing.openstreetmap.de)", "zone": "third-party"},
+    {"id": "osm-tiles", "label": "OSM tile server (tile.openstreetmap.org)", "zone": "third-party"},
+    {"id": "unpkg", "label": "unpkg CDN (Leaflet 1.9.4)", "zone": "third-party"}
+  ],
+  "processes": [
+    {"id": "static-server", "label": "Static file server (python3 -m http.server 8000)", "zone": "dev-host", "sources": ["package.json"]},
+    {"id": "web-app", "label": "Barnacle Maps web app", "zone": "browser", "sources": ["index.html", "src/app.js", "src/geo.js"]}
+  ],
+  "stores": [],
+  "flows": [
+    {"from": "static-server", "to": "web-app", "data": "HTML, JS and CSS files", "sources": ["package.json", "index.html"]},
+    {"from": "unpkg", "to": "web-app", "data": "Leaflet script and stylesheet", "sources": ["index.html"]},
+    {"from": "user", "to": "web-app", "data": "search text, destination, stops, travel mode, route choice", "sources": ["index.html", "src/app.js"]},
+    {"from": "web-app", "to": "user", "data": "map, search results, routes, pleasure scores, status", "sources": ["src/app.js"]},
+    {"from": "geolocation", "to": "web-app", "data": "live device position", "sources": ["src/app.js"]},
+    {"from": "web-app", "to": "nominatim", "data": "search query text", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "nominatim", "to": "web-app", "data": "matching places (name, lat, lng)", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "web-app", "to": "osrm", "data": "position, stops, waypoints and destination coordinates", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "osrm", "to": "web-app", "data": "route geometries, distances and durations", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "osm-tiles", "to": "web-app", "data": "map tile images (display and pleasure scoring)", "sources": ["src/app.js"]}
+  ]
+}

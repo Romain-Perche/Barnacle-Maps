@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:92ca1e9990ace79fa0c3af8f568943b1b5e139406b53f38eae861105af3864c1",
+  "claims": [
+    {
+      "id": "claim_06e6b5b03654421eb2e31c9da6de3294",
+      "statement": "Tests run with Node's built-in node:test via npm test, with no test framework dependency.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        },
+        {
+          "resource": "repo://test/geo.test.js#L1-L2",
+          "version": "repo-lines-v1:sha256:8d9ca929c9847e41c6375645bb5a43639aa9792e063d6ead933adb57df61320b:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk4NjViY2MwYjk1Nzk2YmNkMTUyNGIzMGQ3MWJmYWE3Yzk1NjcwNDdiMDYyODY1ZGIyZDQ5MDYwZTkyZTMyYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzZjN2NjZTBhNzBiMzRlZmEzYWUzODBlYTEyMDZlNGZmMDAzM2ZmMmY3NmU3YzZkZmU0Y2UzZjdkY2QwODYyMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGM2NzI5N2Q3N2RlNWUzNWNhNDkxMDIzYWYwODZlYjY5MTFkNThhNDQ2MDgwMzQ3OGQ2ZjgzMTFiZmIzOWMyYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bcc529a6204f4a82b36fca99c4d64cfe",
+      "statement": "The clear-button tests check the shipped source files as text because the repo has no DOM library, extracting listener bodies up to the next addEventListener.",
+      "evidence": [
+        {
+          "resource": "repo://test/clear-button.test.js#L1-L19",
+          "version": "repo-lines-v1:sha256:eed56bfa9eb95a815e62d8d1027dc34897f5df7ac125d505b10d4c320e94a678:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlYTM2OWFhNWY0OTA3YjQxMjY0N2EyODc5OWJhYjQ2ZjI3ZDViZjdhZGNhMmEwOTY3NGRjYzJlOGRjM2I0NTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEzNzhjNWQxMzc5ZTZhOTQ2ZjllOWViMDllM2Q0NDMxNmM5YWE1NzdiMmUyODNhODBhNGQ2ZDc1YzdlYjhhNDAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f9f5b32977ca429c9e7685c59e498c46",
+      "statement": "AI test scenarios in tests/ai describe Playwright steps against npm start and stub Nominatim when it is unreachable.",
+      "evidence": [
+        {
+          "resource": "repo://tests/ai/us1-clear-search-text.md#L1-L25",
+          "version": "repo-lines-v1:sha256:222a87087c36682420b5a672865c5c8b34e316900bc97ee1d747530fd641435d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5Y2QyNTJmOGM2MDYyNDQyYmUzYzdjYzYzZTVmNzRhNzc2ZTNhN2ViMGMxYmQyN2IxMjMyMDQ4OGY5NjJhNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlM2NkZjhhZDM4N2YzN2UwMGJlYmE0ZDUzNTQ2Y2FhMDk2YTE5NTg2NjFmMWU0YjcwZGY2M2YzZGI1NWFjMGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmUzYTRlYzhmODMwYzgzNTZlOGVmMDQ1OWI4YmM4MzllYTQyYjg5MWUyOTY1MDAyMTk3YTI5YWM3Yzg0MjcifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T16:11:40.024Z"
+  }
+}

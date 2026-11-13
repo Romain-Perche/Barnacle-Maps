@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:af7147e57d78ffbb31042cebe5ee176d556be76f0ee31d440dee0389db873023",
+  "claims": [
+    {
+      "id": "claim_6eef8e67def2486787e0134a108a210e",
+      "statement": "Suggestions are fetched while typing only after at least 3 trimmed characters and a 500 ms debounce.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L108-L111",
+          "version": "repo-lines-v1:sha256:c08d56fb09fe81937f2f70391ba803d550774c91b55405c81d163e74a0e61956:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU0MzY3MTI2YWE3ZjZlODUxZDliYzU0NWIzOGU3ODVmNDhhZGY1ZjFiOTBlYTRmODY3MmZlZDhlNjNkZmFlNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTEyNGVmZTQ0MmUzMmQ1MDg3MGZjNGUyYjMxYTZmZGNkZmUwNWUyOGZiNWFiMGM5MzFiZmYxY2MwOGRiMjA4MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWYzYmJkZjE3MzFiMjhhYWQ5OTEwYzhlNWQ5YTQyNzg3NDA5Nzk4NjE2M2RiMWEyMjcxMDZmOGIwMWU1YTRmNCJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L165-L177",
+          "version": "repo-lines-v1:sha256:c754957bd09f9beb86774eb0063e5466531e9ecc2bd57106634b98f5f1543249:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzZjNiY2I2YzA0ZDAzMTE3OGM1ZGY3ZWMzYzE0ODhhMDkxZDgyMzdmNGY0OTYyYTI5MjE5MjY3MWZkNDRkMGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0ZDA1YWQ3MTY3YzMxNzdiMWZkY2I4YmExN2MzNjVhMDA2NmNlNDMxNDRhMjFiNjE1MDY0OGFkZTg1N2EwMmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBjZDYyNmZkMTM3YmJmNzQxMzJkYmFjZTRkMmFkZWY4YzFjYzY4YzM0NjNlY2YwY2NjMjM0Mjg2Yjg2ZGU2YjYifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L31-L32",
+          "version": "repo-lines-v1:sha256:218b8014ecffe55a4a21acc8ac713e37b6010583e8a20eb15d933b26489637fa:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjk1NGU2NWY4ZmY4ZDkzMmU2MTJiMGQ0ZThlOGU2OTY5NWZiMmU3ZGI4Y2IzNDc3MGQ1MDA3MTc4NWNjNjFhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlMDJiYTcxNjIzZGE1NmViMDNmNDFiZmFmOTA4MDI2ZDIxMjhiOTM3OGZlYWUxYWU1NTAyMjIwMDU5ZDE3MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjFiMThjMzlkNzg1OWMxYzI2YTJjNmMzMzIwNTM5NDljZTA5NTM4ODFjMjNkNjFjZjkwMTNkOWZhNjdlOGE4NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDYyNWUyNWE2NTUzMGIxY2IxYzQwZjE3YzliZTE4Nzg2NTFjNGIyNTJiYmY1N2U3OGRhNzdlYjBlMDI4YjAwOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_dd92420d6b4c4483a9c994153ca81757",
+      "statement": "Searches query Nominatim's jsonv2 search endpoint with a limit of 5 results.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L34-L37",
+          "version": "repo-lines-v1:sha256:b2493e27c69edc5475156ac5d26d93550e2d94ad3eb07585f087244e80abb177:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjY2MWFlMjlhMzBkYjA2YWY5MjYzODU1OTFhOWU5N2QxMzQ5NWFhMjExODZlYmI3MGMxOTY0NGVmNzYyNjhkNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmFiZWY4NzI4MmIxZDI2OGUxMzU3MjliZTFmYWUxOTIwNzE5Mjc4MTQ5NzcxYmY2NTk3YjI0OGY2YzVlZGU3MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWM3MmM2NTliZDA4OGJiMDFkNGNkNDIwOGI1YzhiMzcyNTQyZGZjNTJlZmJhZjEzODVmOTczY2I0MjZiZmE4YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_228dd649b89d4346bebf89a8f1c00878",
+      "statement": "Clicking the clear button cancels pending suggestions, drops in-flight searches, empties the box, results and status, hides the button and refocuses the input, without touching destination, routes or stops.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L148-L156",
+          "version": "repo-lines-v1:sha256:a0fe0657929e63f68e8137b349cb410f33661ebcf8696d4a82d5b3ee93251bef:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzJjMDE1NmMxOWU2MmY5YTA4N2JlNTI3ZDE4ZTM5MGQ2ZGIzODZiYTA1OGYzMzM1NTQyYzFhZWRkZWUyYjRmOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI1ODBlOTY0ZjgzYTQ3M2Y0M2Q0NDM4NDYyOTQ5ZDY4YjU2MDBmZGE3ODdmMTYzNzQ1ZDAwZGU4OWNiZjM2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTE2ZjMxMzRmZDkyMTBiYzdmOTlmN2MwNDk1ZTJkZDY2MTJiMmE3YzdmOWZjZWI3YTc5NTdmYmMxYjgzYWM2YyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0361f36be11e429f9cc17917ba5dd635",
+      "statement": "The clear button is a non-submitting button labelled 'Clear search', hidden initially and shown whenever the input is non-empty.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L14-L17",
+          "version": "repo-lines-v1:sha256:16dd715c66d9784e862b4d53be77b8aca99a768bee313e4690bfb38aa3e78eca:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2Q2MGNiNGJhMGM0MTE5MGFkZTMyOTE3ZjU2ZDg2NzNhOGE4MTM4OWIzMGFmZjMxZDQwOTc0NGM5OTg5NWRiYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTUyYmFlM2RlZDY2OWI2ODdlOTI1Y2UwZjI4MzU5M2QyNTIwYWE0N2Y5OWZhMWI5ZWE2YTVjMGRhYTA0ZmYzZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzgxOTBkMDU3YmY5NmVlZmM5YTNkN2IzMjViMGFmZTk4MDJhMGUzNjBiNzEyNTU0MjYxNDRlOGRlZmM5NjFhZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTYwNzQyOGMyNmZhOTEyZTQyNzk2M2NlZGIyN2JjNDUzOGU3ZTAxZmFmNWM3NWIwN2U0ODYwYzAzYjk2YjZlMSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L37-L37",
+          "version": "repo-lines-v1:sha256:df35a2c8b5bec562f600bff83765aa214f31a33dd5c82daf9b94249dbdbe4174:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGYzNWEyYzhiNWJlYzU2MmY2MDBiZmY4Mzc2NWFhMjE0ZjMxYTMzZGQ1YzgyZGFmOWI5NDI0OWRiZGJlNDE3NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGYzNWEyYzhiNWJlYzU2MmY2MDBiZmY4Mzc2NWFhMjE0ZjMxYTMzZGQ1YzgyZGFmOWI5NDI0OWRiZGJlNDE3NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDI2OGIzODdmYzFhNmU3ODMxYjNmNTc5YzE2YjA0NzkyYjlhNjVhNzJjZGNjNjg4Yjg5YmE2NmE1M2YzMzZmNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGYwMjllZmU3NDUyZDZhYWEzNzc0YTc3ZTIzYTc1M2MyNjJhMzZkNTAzODU2MDQ2ZWI2OGJiMGYzZmY4ZDE4YiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0ea2d84d846e40a3a379ea05adf8a6b1",
+      "statement": "CSS hides native search cancel controls so only the app's clear button is shown.",
+      "evidence": [
+        {
+          "resource": "repo://styles.css#L11-L19",
+          "version": "repo-lines-v1:sha256:60af025dac5ee1b9bb602d05eaf7df2adbf412677e95c302397dd79384c9f212:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzNhOTkzZWNkMDZjOTgzZGZhMzY5NjJiMjlmM2JhNzRmZWIxYTQ2MjkyM2FjNDk5ODk4ZWJkNjhkMmJhY2I5MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTAxN2VhMmY1MWJhYmFiZWNiMzM0MWNkYjhjZDRhMzVlYzg3MGMxYTgyZWQ0YWY4NzdkMGQ2ZGIwMTM4MzRiOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmFiMjY4YzMyOWYxMTkwMzI5NDA3OWMwMjczMTNmNjc3NGVjMmUwZTc1ODJkOTRmZTFjZGU2ZjljZWI3NjE5NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWNkYjg0ZDFjNGYxNjk3ZTNhZmQxODk4MmQxNjkxNTYxMDIwMGEzMjY0Yzg4YzIwOWI1NTUyYjE2NGVmODBjNiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T16:11:40.024Z"
+  }
+}

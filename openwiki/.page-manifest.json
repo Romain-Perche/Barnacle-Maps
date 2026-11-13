@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/app-state-and-ui.md": {
+      "pageVersion": "sha256:21c5e97e3c8fe3a17c39bcd37fa89cb2cf13ccef5460f4e39c0b8860b2134102",
+      "completedBy": "claude-code",
+      "completedRunId": "48cc279b-0008-498b-9fa6-17fb95713ad7",
+      "gitHead": "c4d365f56ec88114297f8b547df736faaf9c3479",
+      "sourceFingerprint": "sha256:487d6dd700febc90a17df0efd955adaadad59e2b9aa4db4bb078c0e79198fa73"
+    },
+    "/openwiki/architecture/overview.md": {
+      "pageVersion": "sha256:dc477e19596ed7977496b88cad3b912d5d441d18fd6ed31745da6122d5970abd",
+      "completedBy": "claude-code",
+      "completedRunId": "48cc279b-0008-498b-9fa6-17fb95713ad7",
+      "gitHead": "c4d365f56ec88114297f8b547df736faaf9c3479",
+      "sourceFingerprint": "sha256:487d6dd700febc90a17df0efd955adaadad59e2b9aa4db4bb078c0e79198fa73"
+    },
+    "/openwiki/development/spec-workflow.md": {
+      "pageVersion": "sha256:c039b135a1852985ad93340291be082099f0ec2f2031c79f99a90980701de90b",
+      "completedBy": "claude-code",
+      "completedRunId": "48cc279b-0008-498b-9fa6-17fb95713ad7",
+      "gitHead": "c4d365f56ec88114297f8b547df736faaf9c3479",
+      "sourceFingerprint": "sha256:487d6dd700febc90a17df0efd955adaadad59e2b9aa4db4bb078c0e79198fa73"
+    },
+    "/openwiki/features/pleasure.md": {
+      "pageVersion": "sha256:9b222adbe67172e9a7ec6c0a5f3146aa97e3f0b3fefd9a71686698045cc9f138",
+      "completedBy": "claude-code",
+      "completedRunId": "48cc279b-0008-498b-9fa6-17fb95713ad7",
+      "gitHead": "c4d365f56ec88114297f8b547df736faaf9c3479",
+      "sourceFingerprint": "sha256:487d6dd700febc90a17df0efd955adaadad59e2b9aa4db4bb078c0e79198fa73"
+    },
+    "/openwiki/features/routing.md": {
+      "pageVersion": "sha256:408312d1b4766d44321224348b483ea78bdcd49f3632a78deba52be85d25f5f2",
+      "completedBy": "claude-code",
+      "completedRunId": "48cc279b-0008-498b-9fa6-17fb95713ad7",
+      "gitHead": "c4d365f56ec88114297f8b547df736faaf9c3479",
+      "sourceFingerprint": "sha256:487d6dd700febc90a17df0efd955adaadad59e2b9aa4db4bb078c0e79198fa73"
+    },
+    "/openwiki/features/search.md": {
+      "pageVersion": "sha256:af7147e57d78ffbb31042cebe5ee176d556be76f0ee31d440dee0389db873023",
+      "completedBy": "claude-code",
+      "completedRunId": "48cc279b-0008-498b-9fa6-17fb95713ad7",
+      "gitHead": "c4d365f56ec88114297f8b547df736faaf9c3479",
+      "sourceFingerprint": "sha256:487d6dd700febc90a17df0efd955adaadad59e2b9aa4db4bb078c0e79198fa73"
+    },
+    "/openwiki/features/stops.md": {
+      "pageVersion": "sha256:3fedabcae27d0153515de4e53d142d7fd70daa236c4959e96262ac87b7148511",
+      "completedBy": "claude-code",
+      "completedRunId": "48cc279b-0008-498b-9fa6-17fb95713ad7",
+      "gitHead": "c4d365f56ec88114297f8b547df736faaf9c3479",
+      "sourceFingerprint": "sha256:487d6dd700febc90a17df0efd955adaadad59e2b9aa4db4bb078c0e79198fa73"
+    },
+    "/openwiki/integrations/external-services.md": {
+      "pageVersion": "sha256:fa011c38e65e145de52c9f4ba7713da9cb200fc4eb427da5e886cbf6a1b5b772",
+      "completedBy": "claude-code",
+      "completedRunId": "48cc279b-0008-498b-9fa6-17fb95713ad7",
+      "gitHead": "c4d365f56ec88114297f8b547df736faaf9c3479",
+      "sourceFingerprint": "sha256:487d6dd700febc90a17df0efd955adaadad59e2b9aa4db4bb078c0e79198fa73"
+    },
+    "/openwiki/operations/running-and-deployment.md": {
+      "pageVersion": "sha256:85fdab7939a85875925d70e80effc4c46e6c6451a1e1a53f7175553e2eb93fb7",
+      "completedBy": "claude-code",
+      "completedRunId": "48cc279b-0008-498b-9fa6-17fb95713ad7",
+      "gitHead": "c4d365f56ec88114297f8b547df736faaf9c3479",
+      "sourceFingerprint": "sha256:487d6dd700febc90a17df0efd955adaadad59e2b9aa4db4bb078c0e79198fa73"
+    },
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:e0e9fc8a59f922aeeb508059ce252a8cff623a03d7a2ae3566b51a7e4f01a569",
+      "completedBy": "claude-code",
+      "completedRunId": "48cc279b-0008-498b-9fa6-17fb95713ad7",
+      "gitHead": "c4d365f56ec88114297f8b547df736faaf9c3479",
+      "sourceFingerprint": "sha256:487d6dd700febc90a17df0efd955adaadad59e2b9aa4db4bb078c0e79198fa73"
+    },
+    "/openwiki/testing/test-strategy.md": {
+      "pageVersion": "sha256:92ca1e9990ace79fa0c3af8f568943b1b5e139406b53f38eae861105af3864c1",
+      "completedBy": "claude-code",
+      "completedRunId": "48cc279b-0008-498b-9fa6-17fb95713ad7",
+      "gitHead": "c4d365f56ec88114297f8b547df736faaf9c3479",
+      "sourceFingerprint": "sha256:487d6dd700febc90a17df0efd955adaadad59e2b9aa4db4bb078c0e79198fa73"
+    }
+  }
+}

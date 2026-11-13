@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:c039b135a1852985ad93340291be082099f0ec2f2031c79f99a90980701de90b",
+  "claims": [
+    {
+      "id": "claim_c549e4959fb04629bebb712420c699a8",
+      "statement": "The Spec Kit workflow runs specify, a spec review gate, plan, a plan review gate, tasks and implement, aborting when a gate is rejected.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/workflows/speckit/workflow.yml#L39-L74",
+          "version": "repo-lines-v1:sha256:0739dac86a76ce2beeac6731c6a4c63fe6062643e14706ba3eece39c47e6e71f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjM2I1ZGFiZDk5YTk1MDY1YjA4YTRmZjFlM2Q0Mzg2MWE4NDdmZGU3ZTkxZTdiOTE2MDg4YjE3NDZjYTEwNGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiMWIwZTZkNjBhNDMxMjMzMTJmMGIyM2YzYThiYjY3NDk1ZjY3MDU1MjViNDIzODYxZjFkMmI5NWY0ZWZjNTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk5N2NjMjIyZGE1YWIwNmUzZjM2NmI2MGRhOTQwMjRjZTZkMDc5YmRmOTUwOTIwZjI5MjE1NGZlMWYzY2JhNjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0c05d8d560234ed1bfc5aa88ed922dd6",
+      "statement": "The git extension hook creates a feature branch before the specify step.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/extensions.yml#L14-L22",
+          "version": "repo-lines-v1:sha256:309019a9602aae4f7484acf962318345742fe8202e321ed5abedba4ca014fd62:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmJiMjZjMDNiNTc2ODAxMjYwZmE1YWQzODM1MzNiNDJjODMyY2QyZDMyODBjNzc2NjM5ZmJjOGRmYjg4ZmRlYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDdjY2JkMjJiOTIwYTZkMjZmNGZlZjI0MGI0MjYzMjQ2NTk0MWFlZDY5YmYwNjQwMjk2NGYxNGVjOWM3NmUwZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWJlM2ViYjAxYmRmMWQwODkyNDJhZDQxM2MwZGViYWVmYjc3N2MzZWY1ZWI1YTg4NzVlNzU2MzExNGYyNTdiMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjYxZjQ1OGM5NjEyMmFiOWFmOGM5MjI5MjlkNTFlMmUyN2VlMTA5NzQzNDA0NmI0YjRjNmQ2NjBkZjgyODI3NyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f8ab4c220b7a4013836d9267bff37ae3",
+      "statement": "Each feature keeps its spec, plan, tasks, contracts and checklists in its own folder under specs/.",
+      "evidence": [
+        {
+          "resource": "repo://specs/pilot-85820-clear-button-for-the-search-box/spec.md#L1-L18",
+          "version": "repo-lines-v1:sha256:dd33e9a3426b846a7bb566048bd48fbd32eec35bc2aa3820844dae1a80e8cabf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxNWQyOTYxZTYxZTkxMzUzZGUyZWIzMmNhNjcyNjZjNzc3OWJhYmUwMzg3NjNlNWZiNjg0Y2E1ZTlmMmQ5ODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzNWM4ZTAzM2RmMjBkODNlMzE0M2UyNjY3YWQ5OWMyYTM4Yzc3MTVmM2ZkZGI1OWY5OTE1YWU0NmNiNjBiNDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0ZjZmOTBkNTUzNTJmYmZmYTc4M2Q1ZTBjODQzMjQxMzE4MzA5NDQyNGFlYWYyM2I1YThmYjE4MGIxMGFkOGUifQ"
+        },
+        {
+          "resource": "repo://specs/pilot-85820-clear-button-for-the-search-box/tasks.md",
+          "version": "repo-file-v1:sha256:ebd91ef474e4c3bd78cb72421e8daa0a657950894454a439e73ee3bf5950bbd3"
+        }
+      ]
+    },
+    {
+      "id": "claim_a93a89f3b45b4bfaa3a71479bc8035d0",
+      "statement": "The write-tests skill runs after speckit-tasks and writes deterministic tests and AI test scenarios.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/write-tests/SKILL.md#L1-L5",
+          "version": "repo-lines-v1:sha256:c00d395a5aa6d03f420907866a52aeda6b085f7f44b5289f4dc3c11c1699cc76:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjUyZDcxMTEwM2Q1MGE0Mzc4MzBjNmZiY2QwNGZiNGJhYjQ5YTBmODJmNmQyNmQxYzc5MWM2ZTg0ODhkZDA5MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFiNzE2ZGI4ZGVmYmNkM2JmZDU1ZmIwNWZlNWRlOWY3NTBkODUwMGU0YWU2NTIxYzQ2YTYzYjFhMDAxYTA2ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTk2Yzg1Zjg1MDNjYTMxZjdlZTUyZTY3YWQ1MTVjNDJjMzJkM2E4MzRhMWRlZTNiYzFlM2U3MmFhZTI1OGY5ZCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T16:11:40.024Z"
+  }
+}

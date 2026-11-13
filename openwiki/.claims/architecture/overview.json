@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:dc477e19596ed7977496b88cad3b912d5d441d18fd6ed31745da6122d5970abd",
+  "claims": [
+    {
+      "id": "claim_c34dc041d16f4c58a243abb125c12602",
+      "statement": "index.html loads Leaflet 1.9.4 from unpkg.com and the application as the ES module src/app.js.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L32-L33",
+          "version": "repo-lines-v1:sha256:1514674cfb24473401fb4d4052cc4bae5eb0fa363ba3bbf6b58707bc5a589816:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2RhMzlkNmY1YjU1YmU0ODAxMDcwMjA1MGVlZmM2MmU3MTI2OTAyZDlkOTQwYjc1MjkyZTFlZTNkOTRkMTkzZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWEwZmExNTBhMzQ1OGEzMWIzZjdiNDkwZDZkOGUzMGVmZWY0OTUyZDYxOTA4MzUxMTk2N2Y3NGJhMzdmMThkNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjQ4MThmNWM5OTNhMjAzMzA2NDUwNTEzMTFjODA3OThkOTdhNTg0OWY0NGM0OTgyZGI2OGI1ZGNjNzNlZGJkNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDJlZDU0ZWRjNDJmYmJiYzM2OTg4YjJhMTg0YjY3ZTQ5NTY4YmU0ODA3ODMyNTM4YmE5YjdlZGRhNTM3NDRkOCJ9"
+        },
+        {
+          "resource": "repo://index.html#L7-L7",
+          "version": "repo-lines-v1:sha256:d5d27cb142449192b28275f6a014c829b67f2b270619a2ab0b4df062a33aeacf:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDVkMjdjYjE0MjQ0OTE5MmIyODI3NWY2YTAxNGM4MjliNjdmMmIyNzA2MTlhMmFiMGI0ZGYwNjJhMzNhZWFjZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDVkMjdjYjE0MjQ0OTE5MmIyODI3NWY2YTAxNGM4MjliNjdmMmIyNzA2MTlhMmFiMGI0ZGYwNjJhMzNhZWFjZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmUwN2VlM2JmOTQyZGYyNGVkMWQyMWMzZGZhOTZkODE4NDgyMWRkMDJjY2MxOGZjZjMxMGQ1Nzk3MTcyMTg0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDFjZThlOWI0MDJiZDdhYTVjODI4ODE1NTZhYzUzM2M0OWJiZjI3OWM4MmVjZjIyNjNlMDBhZjdiNTAyZGIxZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_7b674fb3a89c4cbd8c65db0e317e785c",
+      "statement": "src/geo.js holds pure helpers with no DOM access and no fetch so they can be unit tested in Node.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L1-L4",
+          "version": "repo-lines-v1:sha256:bc565fd4bb262f158441143fc8e2454d3e2b1582c604a3c42858334d1bd86ef7:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDQ0MWQxYzM2ZDU4MTIwZGM0MjI5YWE3NjZhNTU4YWM5ZGJjY2U1Yjg2NTBiMzM5NGY2MTdmZTMxN2U1ZDUwNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGU3MWE0NjZjMDFjMWNjM2IzM2FiNGJiZmEyYWU1OTU2NWEwYmNmMTAwNmRkNDExOGUyMDZkZWVjMTJjMjg2ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGEwY2Y0YzBjMGM2YzRkZWIxN2E4NmUwNTcxZGIyODhkMjY3ZGUzZjcwNjljMmZjMGI2NDQ4NDYyYzNhNGZmZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_601c68a65ae24e1d939eea5c54a16504",
+      "statement": "The app has no build step: npm start serves the repo with python3 -m http.server on port 8000 and npm test runs node --test on test/.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    },
+    {
+      "id": "claim_9478a7a7e1b446ad96f8fcdec0d7087d",
+      "statement": "On load app.js creates the Leaflet map at a default Paris view, adds the OSM tile layer and watches the device position.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L24-L33",
+          "version": "repo-lines-v1:sha256:54914485d6742394763099fb17c47b11b25ab58d9217f573eeaf2f3cd2f9e65e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5NzE2NGI0ZTFkNWY4MjhkNDA5NDk3NTdiMWM3ODliYTk2MGNmMDM0MmRmOTVkNGYyOTU4M2M5NjAzZWEzNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2NGZiNjA4NDI0MDJmNTM4YjZkZTRkMWZkMWY3MzkxNWFlODVhYjRhODQ0MTEzNzEwMDI4ZGFkMDU4OWY4OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyNjhiMzg3ZmMxYTZlNzgzMWIzZjU3OWMxNmIwNDc5MmI5YTY1YTcyY2RjYzY4OGI4OWJhNjZhNTNmMzM2ZjYifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L92-L100",
+          "version": "repo-lines-v1:sha256:251f09f98f5b0f9454dcf2aad0220ca41af153f03486de48c82c57dbba86e548:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVlN2NkOTRmODRmNGE1NGVhNDBhZjVkNGQyZDVlMzYzMTA3NGFmMjc5ZjM2NDYxMzc1NzcwZTYwMzU3MzEwOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDk0ZWZmNmNkZjBjZjI0MWQ5MjA3MDRkYTQyMmUxZmY0ZDk2ODU1ZjI1M2NiZDBjYTNjYTBjZWZlNmNiMTM4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTQxNjIyZTE1YzRkMDVlM2Q0ZmU3NTFiYjlmMmYwMmU3ODNkOThkMmU5YjMxYmJiMjkwNzgxZGFhZjU0Yjk5MiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T16:11:40.024Z"
+  }
+}

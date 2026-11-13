@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:408312d1b4766d44321224348b483ea78bdcd49f3632a78deba52be85d25f5f2",
+  "claims": [
+    {
+      "id": "claim_f7f0ad518e5149cea0b505a5e6dfcea0",
+      "statement": "Walking routes use the routed-foot OSRM server with the foot profile and car routes use routed-car with the driving profile; unknown modes fall back to walking.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L50-L70",
+          "version": "repo-lines-v1:sha256:4e79317a9d6f8891bcd08289b78b37435529a3a06ceac3086c00aefd233a0c84:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3N2VmZTZjOTlmZTA1OTUwMjM2ZjVkODAyZmQ5N2ZkNzFmMGYxN2Y4MThkYmI0YTUxZWJjMGVmMzU2MjdlNmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4YmJkNTgxMGI3Mzc0MmE4YjUwZDg3ODkwOGU1OWFjMjYwOTNkNTUyZjE2MjMwNTNmMTViMmFkYjZmYjVkYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkxN2I3OTgyNWQ0ZmZmNDg5ZTkwYjY5OTNjMzJlYjYyMDE2MWI2NWYzMmZkOTYxMDdlNTJiNjU4NDZjOGNjOWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_82cadd21fd8d489db54c67c89d88e988",
+      "statement": "routeUrl orders points as start, stops, optional via waypoint, destination, in lng,lat order, and adds alternatives=3 when alternatives are requested.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L55-L70",
+          "version": "repo-lines-v1:sha256:ac16df18f127df81c077e966e279c52a27eea7e4efaf0daea65ee4284dd84697:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViN2FmOTRlZWIzYmM3MzAzMmUwNDc5NDQzZjRlZGM2YzJiNzQ4ZDU3NjQ0ZDY3ZWNiMWY2ZTNhNTQwYTc2ZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA1NTQ4MGQxMGE2ZDU2ZjRiN2IyNDcyYzM2ODY3NmRhYzM2NGE0NDM4NDhkMWMwMzVjZTJiYTk1ZmE3YjliY2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkxN2I3OTgyNWQ0ZmZmNDg5ZTkwYjY5OTNjMzJlYjYyMDE2MWI2NWYzMmZkOTYxMDdlNTJiNjU4NDZjOGNjOWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7b3c9bd781a548e9aabd21689eb04d5d",
+      "statement": "Forced detour routes through side waypoints are requested only for walks without stops when OSRM returns fewer than two routes.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L203-L223",
+          "version": "repo-lines-v1:sha256:8a3bbbf470111f188caea39191e729bff83e44ceac741d407c56d970a4fcafef:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxNTJhZjA1NDcwNzQxNTU4OGY0NTUzYTYzNDdmYTdhNWVhNTk3YmNiMWNkMTJjMTRkNzVkMDEwOTAwMTY4YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljYzA2MzQ2M2FiM2UyZDdhZGIzNDEzMjA3ZmI0MWU5YjMyNzk2YWEwYTE0MTBhNGMzMDU0YzM4NjI2NDRkN2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3NzMxNTliZjk4NTQ2ZmQyZmU3M2E5OWRjYmZlNjQ2ZjI2MWUzYWExMjZjZTE5MTI2YzA5NGUwMWRlN2VkNTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ae1dcfc8c39f4aef8406b223d6f7945c",
+      "statement": "pickRoutes keeps at most three routes: the fastest plus alternatives no longer than 1.6 times the shortest distance and overlapping each kept route by less than 80 percent.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L221-L243",
+          "version": "repo-lines-v1:sha256:67cf923f45404bb51e9f8945c2575597574db1a05b44d4f5678e3e190b0819b4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyMWY4M2FjNTMwYjA2M2ZhMTYzZjhiYjE3M2I1MzM5NDI1YzM1ZTI4OWIyNTJlMWExOGNkZGMwNTE3ODk1ODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkYThjNjNhMDk5ZGI2ZTQ3MzYwYjExYTViYjEzOTE2YTUwYTgyYzZhYWU1OTkyNjZlMzkxMTNkMWYyNDEwNmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyNGFhMDAxNWVmNTcwODc5NTNjYzZkZmM0M2EyMTRmY2E2ZTcyMTk4MjJkMDFmNWY4MGZmOWY1NDk5MDA0YTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8698b58ad3864d84b997befe878a4c66",
+      "statement": "Clicking a route line selects it without bubbling to the map click handler that offers to add a stop.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L225-L250",
+          "version": "repo-lines-v1:sha256:17ad8211e6588933f000acb160a94ea35962fa5e29f4f9bb7c98999a252309fa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3YjJkMWZkMzRjN2Q3M2Y4Nzc2M2M1MTkxNWMwMGMyNjU2YTdkZThlODEzODM3MTJkN2QxMGY4MmRiNzQ2MjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUzN2ZkNTg5YWE2NGQwMzZiOGEzZDMwYTQ1ZTUyZWQ2ZTlhMmY5MTVkMTczNGY1NmEyZjFlNGYxNWEyMTU3ZGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM3YTlmNWYxYjZkY2FjOTMzNzJiNmViZmJkODA3ZTA4ZmU2ZDcyZWYwMjJkZGYzYjUyZGM1MmM1MWMyNTFiNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4Nzk1YWQ5NTZlYjQ4ODkwMDZhOTA2YzAwOWEwYTUyMjcxMDc3OGIzZTc4N2VhNjNiMWEzYjNiNmEyYTMwMmYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T16:11:40.024Z"
+  }
+}

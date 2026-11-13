@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:85fdab7939a85875925d70e80effc4c46e6c6451a1e1a53f7175553e2eb93fb7",
+  "claims": [
+    {
+      "id": "claim_4c6055cea7f74d2eb4887ff705611469",
+      "statement": "npm start serves the repository as static files with python3 -m http.server on port 8000.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    },
+    {
+      "id": "claim_e579275f7b3e4536bbfd5817bc6e10cd",
+      "statement": "When geolocation is unavailable or denied the app shows a status asking the user to allow location access.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L92-L100",
+          "version": "repo-lines-v1:sha256:251f09f98f5b0f9454dcf2aad0220ca41af153f03486de48c82c57dbba86e548:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVlN2NkOTRmODRmNGE1NGVhNDBhZjVkNGQyZDVlMzYzMTA3NGFmMjc5ZjM2NDYxMzc1NzcwZTYwMzU3MzEwOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDk0ZWZmNmNkZjBjZjI0MWQ5MjA3MDRkYTQyMmUxZmY0ZDk2ODU1ZjI1M2NiZDBjYTNjYTBjZWZlNmNiMTM4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTQxNjIyZTE1YzRkMDVlM2Q0ZmU3NTFiYjlmMmYwMmU3ODNkOThkMmU5YjMxYmJiMjkwNzgxZGFhZjU0Yjk5MiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c54022c7d0f94d4ab9a58034b25aaa4f",
+      "statement": "Service URLs are hard-coded constants in src/app.js and src/geo.js rather than configuration.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L25-L25",
+          "version": "repo-lines-v1:sha256:2cae6ad35b5b7830765d72e02088441cde8762d621cd1582347869bdaa14229d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmNhZTZhZDM1YjViNzgzMDc2NWQ3MmUwMjA4ODQ0MWNkZTg3NjJkNjIxY2QxNTgyMzQ3ODY5YmRhYTE0MjI5ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmNhZTZhZDM1YjViNzgzMDc2NWQ3MmUwMjA4ODQ0MWNkZTg3NjJkNjIxY2QxNTgyMzQ3ODY5YmRhYTE0MjI5ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTJkZmEwYTAwYTI1M2E5YTVjYmIwM2ZkZjdlODU1NzMyNjBlNDM5NzU0MWMwZTk0NzNmOTFiOTlkZjY1OGIwYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmMxM2RhNzczNTM2ZmFjOGM0MzFmNTA2ODgwMDkyOWMzODkxOTg2YWFkMzFlMjlkMzc2M2M3N2ZjNDY2ZjYxYSJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L34-L34",
+          "version": "repo-lines-v1:sha256:f661ae29a30db06af926385591a9e97d13495aa21186ebb70c19644ef76268d5:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjY2MWFlMjlhMzBkYjA2YWY5MjYzODU1OTFhOWU5N2QxMzQ5NWFhMjExODZlYmI3MGMxOTY0NGVmNzYyNjhkNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjY2MWFlMjlhMzBkYjA2YWY5MjYzODU1OTFhOWU5N2QxMzQ5NWFhMjExODZlYmI3MGMxOTY0NGVmNzYyNjhkNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmFiZWY4NzI4MmIxZDI2OGUxMzU3MjliZTFmYWUxOTIwNzE5Mjc4MTQ5NzcxYmY2NTk3YjI0OGY2YzVlZGU3MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODkzZTU5NTg2ZTViNGRmMDk2OTY4MThlZWEwZGU2MmVmOGNiZGYzZDM5YjdlOTgxZWM5ZDkyNDU4YTBkODQyOSJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L50-L53",
+          "version": "repo-lines-v1:sha256:4b193b5cc8bca0a6b8d124b22964f2dd4b2d99f426f37c9d6eeefb437691357c:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDc3ZWZlNmM5OWZlMDU5NTAyMzZmNWQ4MDJmZDk3ZmQ3MWYwZjE3ZjgxOGRiYjRhNTFlYmMwZWYzNTYyN2U2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWExZDFhNjMzOTAyMjljNzk4MzQ3ZTgzYTA0MDU0NDFjOTQwMDAzNTI4NGFkMTY4YzFiZjZjZGYxZDcwYTM3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzhiYmQ1ODEwYjczNzQyYThiNTBkODc4OTA4ZTU5YWMyNjA5M2Q1NTJmMTYyMzA1M2YxNWIyYWRiNmZiNWRjMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDFjMjEwYjk5YmY0N2NlYzg3MjQ2NDM5NWRjZTFkZTc1MzUzNGNiM2Y1NGFkM2YyYmY1YzIxYzc2NmY0NmViZiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T16:11:40.024Z"
+  }
+}
