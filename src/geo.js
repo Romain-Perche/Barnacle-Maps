@@ -48,11 +48,18 @@ export function parseSearchResults(json) {
 }
 
 export const TRAVEL_MODES = {
-  foot: { label: "Walk", base: "https://routing.openstreetmap.de/routed-foot", profile: "foot" },
-  car: { label: "Car", base: "https://routing.openstreetmap.de/routed-car", profile: "driving" },
+  foot: { label: "Walk", base: "https://routing.openstreetmap.de/routed-foot", profile: "foot", adjective: "walking", by: "on foot" },
+  car: { label: "Car", base: "https://routing.openstreetmap.de/routed-car", profile: "driving", adjective: "driving", by: "by car" },
+  bike: {
+    label: "Bike",
+    base: "https://routing.openstreetmap.de/routed-bike",
+    profile: "bike",
+    adjective: "cycling",
+    by: "by bike",
+  },
 };
 
-// OSRM expects lng,lat order. The "foot" profile gives walking routes, "driving" (mode "car") car routes.
+// OSRM expects lng,lat order. The "foot" profile gives walking routes, "driving" (mode "car") car routes, "bike" (mode "bike") cycling routes.
 // `stops` are visited in order, `via` forces the route through a waypoint (after the stops);
 // `alternatives` asks OSRM for alternative routes.
 export function routeUrl(

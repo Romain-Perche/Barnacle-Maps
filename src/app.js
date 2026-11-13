@@ -321,8 +321,9 @@ async function updateRoutes() {
     map.setView([place.lat, place.lng], 15);
     return setStatus("Waiting for your location to compute a route…");
   }
-  setStatus(m === "car" ? "Computing driving routes…" : "Computing walking routes…");
-  const noRoute = m === "car" ? "No driving route found." : "No walking route found.";
+  const t = TRAVEL_MODES[m] || TRAVEL_MODES.foot;
+  setStatus(`Computing ${t.adjective} routes…`);
+  const noRoute = `No ${t.adjective} route found.`; // e.g. "No walking route found."
   let routes;
   try {
     routes = await fetchRoutes(place, seq, m, st);
@@ -335,14 +336,13 @@ async function updateRoutes() {
   drawRoutes(routes, m);
   const fastest = routes[0];
   const summary = `${formatDistance(fastest.distance)} · ${formatDuration(fastest.duration)}`;
-  const car = m === "car";
   const via = st.length ? ` via ${st.length} stop${st.length > 1 ? "s" : ""}` : "";
   setStatus(
     routes.length === 1
-      ? `${summary} ${car ? "by car" : "on foot"}${via}`
-      : `${routes.length} ${car ? "driving" : "walking"} routes${via} · fastest ${summary}`,
+      ? `${summary} ${t.by}${via}`
+      : `${routes.length} ${t.adjective} routes${via} · fastest ${summary}`,
   );
-  if (!car) scorePleasure(place, seq, st);
+  if (m === "foot") scorePleasure(place, seq, st);
 }
 
 // --- Stops ----------------------------------------------------------------------------------
