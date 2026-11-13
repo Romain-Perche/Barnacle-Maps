@@ -15,9 +15,23 @@ export function haversine(a, b) {
   return 2 * EARTH_RADIUS_M * Math.asin(Math.sqrt(h));
 }
 
-export function formatDistance(meters) {
-  if (meters < 1000) return `${Math.round(meters)} m`;
-  return `${(meters / 1000).toFixed(meters < 10000 ? 2 : 1)} km`;
+// `convert` loads without blocking the app (import map in index.html in the browser, node_modules in Node).
+// Until it has loaded, or if it fails, distances use the fallback: whole metres.
+let convert;
+export const distanceFormatReady = import("convert").then(
+  (m) => {
+    convert = m.convert;
+  },
+  () => {},
+);
+
+export function formatDistance(meters, conv = convert) {
+  if (typeof meters !== "number" || !Number.isFinite(meters) || meters < 0) return "—";
+  const m = Math.round(meters);
+  if (!conv) return `${m} m`;
+  if (m === 0) return "0 m";
+  const { quantity, unit } = conv(m, "m").to("best", "metric");
+  return `${+quantity.toFixed(1)} ${unit}`;
 }
 
 export function formatDuration(seconds) {
