@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barnacle Maps: clear button for the search box (design options)</title>
+<style>
+  :root { color-scheme: light dark; --bg:#f4f5f7; --fg:#202124; --muted:#5f6368; --card:#fff; --line:#dadce0; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1e1f22; --fg:#e8eaed; --muted:#9aa0a6; --card:#2a2b2f; --line:#3c4043; } }
+  body { margin:0; padding:24px; font-family: system-ui, sans-serif; background:var(--bg); color:var(--fg); }
+  h1 { font-size:20px; margin:0 0 4px; }
+  p.lead { margin:0 0 20px; color:var(--muted); font-size:14px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap:20px; }
+  .option { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px; }
+  .option h2 { font-size:16px; margin:0 0 10px; }
+  .option p.good { margin:10px 0 0; font-size:14px; color:var(--muted); }
+
+  /* Faithful mock of the app (the app has one light look; it is the same in dark mode) */
+  .map { position:relative; height:330px; border-radius:6px; overflow:hidden;
+    background:
+      linear-gradient(90deg, transparent 47%, #fff 47%, #fff 50%, transparent 50%),
+      linear-gradient(0deg, transparent 60%, #fff 60%, #fff 63%, transparent 63%),
+      radial-gradient(circle at 75% 70%, #c8facc 0 18%, transparent 18.5%),
+      radial-gradient(circle at 20% 85%, #add19e 0 12%, transparent 12.5%),
+      #f2efe9; }
+  .panel { position:absolute; top:12px; left:12px; width:calc(100% - 24px); max-width:360px; box-sizing:border-box;
+    background:#fff; border-radius:8px; padding:8px; box-shadow:0 2px 8px rgba(0,0,0,.3);
+    color:#000; font-family: system-ui, sans-serif; }
+  .form { display:flex; gap:6px; }
+  .box { flex:1; position:relative; display:flex; align-items:center; border:1px solid #767676; border-radius:2px; background:#fff; }
+  .box .text { flex:1; padding:8px; font-size:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .go { padding:1px 8px; font-size:13px; background:#efefef; border:1px solid #767676; border-radius:3px; display:flex; align-items:center; }
+  .mode { display:flex; gap:12px; margin:6px 0 0; font-size:14px; align-items:center; }
+  .radio { display:inline-block; width:11px; height:11px; border:1px solid #767676; border-radius:50%; vertical-align:-1px; margin-right:3px; box-sizing:border-box; }
+  .radio.on { border:3.5px solid #1a73e8; }
+  ul.results { list-style:none; margin:6px 0 0; padding:0; font-size:13px; }
+  ul.results li { display:flex; gap:4px; }
+  ul.results .name { flex:1; padding:6px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  ul.results .add { padding:6px; color:#1a73e8; white-space:nowrap; }
+
+  /* A: plain grey × */
+  .xa { width:28px; height:28px; display:flex; align-items:center; justify-content:center;
+    font-size:22px; line-height:1; color:#5f6368; margin-right:2px; }
+  /* B: grey filled circle with white × */
+  .xb { width:28px; height:28px; display:flex; align-items:center; justify-content:center; margin-right:2px; }
+  .xb span { width:18px; height:18px; border-radius:50%; background:#9aa0a6; color:#fff;
+    font-size:14px; font-weight:700; line-height:18px; text-align:center; }
+  /* C: blue × matching the app's accent (#1a73e8) */
+  .xc { width:28px; height:28px; display:flex; align-items:center; justify-content:center;
+    font-size:22px; font-weight:600; line-height:1; color:#1a73e8; margin-right:2px; }
+  .focus { outline:2px solid #1a73e8; outline-offset:-1px; }
+</style>
+</head>
+<body>
+<h1>Clear button (×) in the search box: which design?</h1>
+<p class="lead">Each mock shows the panel after typing "Eiffel" with suggestions listed. In all designs the × appears only when the box has text, sits inside the box on the right, and has a 28×28 tap area.</p>
+<div class="grid">
+
+  <div class="option">
+    <h2>A: plain grey ×</h2>
+    <div class="map"><div class="panel">
+      <div class="form">
+        <div class="box focus"><div class="text">Eiffel</div><div class="xa">×</div></div>
+        <div class="go">Go</div>
+      </div>
+      <div class="mode"><span><span class="radio on"></span>Walk</span><span><span class="radio"></span>Car</span></div>
+      <ul class="results">
+        <li><span class="name">Tour Eiffel, 5, Avenue Anatole France, Paris</span><span class="add">Add as stop</span></li>
+        <li><span class="name">Rue Eiffel, Levallois-Perret, Hauts-de-Seine</span><span class="add">Add as stop</span></li>
+        <li><span class="name">Eiffel, Rhineland-Palatinate, Germany</span><span class="add">Add as stop</span></li>
+      </ul>
+    </div></div>
+    <p class="good">Good for: the quietest look; matches the panel's plain, unstyled controls.</p>
+  </div>
+
+  <div class="option">
+    <h2>B: grey circle with white ×</h2>
+    <div class="map"><div class="panel">
+      <div class="form">
+        <div class="box focus"><div class="text">Eiffel</div><div class="xb"><span>×</span></div></div>
+        <div class="go">Go</div>
+      </div>
+      <div class="mode"><span><span class="radio on"></span>Walk</span><span><span class="radio"></span>Car</span></div>
+      <ul class="results">
+        <li><span class="name">Tour Eiffel, 5, Avenue Anatole France, Paris</span><span class="add">Add as stop</span></li>
+        <li><span class="name">Rue Eiffel, Levallois-Perret, Hauts-de-Seine</span><span class="add">Add as stop</span></li>
+        <li><span class="name">Eiffel, Rhineland-Palatinate, Germany</span><span class="add">Add as stop</span></li>
+      </ul>
+    </div></div>
+    <p class="good">Good for: the familiar phone-style clear control; easy to spot and recognise.</p>
+  </div>
+
+  <div class="option">
+    <h2>C: blue ×</h2>
+    <div class="map"><div class="panel">
+      <div class="form">
+        <div class="box focus"><div class="text">Eiffel</div><div class="xc">×</div></div>
+        <div class="go">Go</div>
+      </div>
+      <div class="mode"><span><span class="radio on"></span>Walk</span><span><span class="radio"></span>Car</span></div>
+      <ul class="results">
+        <li><span class="name">Tour Eiffel, 5, Avenue Anatole France, Paris</span><span class="add">Add as stop</span></li>
+        <li><span class="name">Rue Eiffel, Levallois-Perret, Hauts-de-Seine</span><span class="add">Add as stop</span></li>
+        <li><span class="name">Eiffel, Rhineland-Palatinate, Germany</span><span class="add">Add as stop</span></li>
+      </ul>
+    </div></div>
+    <p class="good">Good for: matching the blue of "Add as stop" and the selected route, so it reads as an action.</p>
+  </div>
+
+</div>
+</body>
+</html>
