@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:b8fef3686532fee713867c26177052aba6d5dfdc5b91b0306ef4a0d422278293",
+  "claims": [
+    {
+      "id": "claim_0392d00ee31b4636be845fce9db799f8",
+      "statement": "Barnacle Maps is a no-build web app that shows a Leaflet/OpenStreetMap map with the live position, searches places with Nominatim and shows up to 3 walking or car routes from OSRM.",
+      "evidence": [
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:beb457a1411a8b1db78e131d2322949b27a882329a316a42bd0aa1737602a76e"
+        },
+        {
+          "resource": "repo://src/geo.js#L246-L257",
+          "version": "repo-lines-v1:sha256:c18287f3d09b38ffa6449586e8781d21f1faccc135053e681c18db2f846218e4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkNTI4NmM2NGM1Mjg3OGU3ZTA0Njg1MzQyN2VhOTJkMjQ3NDJkNjhmNTdlYTFmMzk0MjhhNjNmY2VmYjNmZGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM1MjY2MWUzNjU3ZjhjODE1MGM5ZmVmZjJjN2Y5ZGVhMGYwNTgwYWNjNmNmYTFjOTcwNzhjZjAxN2VmNzE2NTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyNGFhMDAxNWVmNTcwODc5NTNjYzZkZmM0M2EyMTRmY2E2ZTcyMTk4MjJkMDFmNWY4MGZmOWY1NDk5MDA0YTQifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L48-L67",
+          "version": "repo-lines-v1:sha256:c4ccfa551b136ce46e54d61a19ccfc635ed2e9562f98ed485f3b701f5609ecb3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NjFhZTI5YTMwZGIwNmFmOTI2Mzg1NTkxYTllOTdkMTM0OTVhYTIxMTg2ZWJiNzBjMTk2NDRlZjc2MjY4ZDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZhYmVmODcyODJiMWQyNjhlMTM1NzI5YmUxZmFlMTkyMDcxOTI3ODE0OTc3MWJmNjU5N2IyNDhmNmM1ZWRlNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxYzIxMGI5OWJmNDdjZWM4NzI0NjQzOTVkY2UxZGU3NTM1MzRjYjNmNTRhZDNmMmJmNWMyMWM3NjZmNDZlYmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4ee53461ee58454587f796c7dfb1a5ea",
+      "statement": "npm start serves the app on port 8000 with Python's http.server and npm test runs node --test after npm install.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:b8ef48149fd90536540467c5294f8cbd4c0468f0b1cb4c4cc67c7e15b6997ce6"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T11:32:10.059Z"
+  }
+}

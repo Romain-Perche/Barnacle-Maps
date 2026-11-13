@@ -1,0 +1,78 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "lockfile:package-lock.json",
+      "name": "package-lock.json",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:Class",
+          "value": "lang-pkgs"
+        },
+        {
+          "name": "aquasecurity:trivy:Type",
+          "value": "npm"
+        }
+      ],
+      "type": "application"
+    },
+    {
+      "bom-ref": "pkg:npm/convert@8.0.2",
+      "name": "convert",
+      "properties": [
+        {
+          "name": "aquasecurity:trivy:PkgID",
+          "value": "convert@8.0.2"
+        },
+        {
+          "name": "aquasecurity:trivy:PkgType",
+          "value": "npm"
+        }
+      ],
+      "purl": "pkg:npm/convert@8.0.2",
+      "type": "library",
+      "version": "8.0.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:npm/convert@8.0.2"
+      ],
+      "ref": "lockfile:package-lock.json"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:npm/convert@8.0.2"
+    },
+    {
+      "dependsOn": [
+        "lockfile:package-lock.json"
+      ],
+      "ref": "repo"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "repo",
+      "name": "Romain-Perche/Barnacle-Maps",
+      "type": "application"
+    },
+    "tools": {
+      "components": [
+        {
+          "group": "aquasecurity",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
+          "name": "trivy",
+          "type": "application",
+          "version": "0.76.1"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.7",
+  "version": 1
+}

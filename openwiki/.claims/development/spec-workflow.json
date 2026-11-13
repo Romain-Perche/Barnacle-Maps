@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:08498f635a8654007c2a591a627d690751a2d5f1c2f8f208f0e95225d60a272b",
+  "claims": [
+    {
+      "id": "claim_646c224db19b47c2b89e166c16fff727",
+      "statement": "The check-plan-completeness skill runs between speckit-checklist and speckit-tasks and settles every unticked checklist item by asking the human a few questions and deciding the rest.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/check-plan-completeness/SKILL.md#L1-L20",
+          "version": "repo-lines-v1:sha256:6360369761a0503b48a8432fa69020a188a9c69c732e1ea8cc47e060470cab7a:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1MmQ3MTExMDNkNTBhNDM3ODMwYzZmYmNkMDRmYjRiYWI0OWEwZjgyZjZkMjZkMWM3OTFjNmU4NDg4ZGQwOTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2ZjFmYTdiNTczMzdhZmJiNjY3NTRmMmVkMWU3ZWI3YzFhZmI4MzBlOWVmZWY1MGIzMzgxMDViZjk0OGJhYzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxYjAzZmJmYmQ5ZTM4M2NkOTllOGMyMDRjYTkyNDkzYmJkOGI4MDA0Y2NiMDQ0ODA0ZmNmOGFlYzcxMWQ1ZDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_75eb2f0bf90c4bf9bbb75961019aa6be",
+      "statement": "The write-tests skill runs between speckit-tasks and speckit-analyze, writing deterministic tests and AI test scenarios before code and recording them in tasks.md without human approval.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/write-tests/SKILL.md#L1-L15",
+          "version": "repo-lines-v1:sha256:58b2c18d730e2369999999cb4d6134828ca75c424a996381e4108878ff10ce90:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1MmQ3MTExMDNkNTBhNDM3ODMwYzZmYmNkMDRmYjRiYWI0OWEwZjgyZjZkMjZkMWM3OTFjNmU4NDg4ZGQwOTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwNGYwMjVlNjdkYzAyOWQzYWQyZDU2YjRhMDEyMzgxMjBhOGQ3YWJkM2MzODFjMzg4Mjg3YmE0NzBjNzRmZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdlMDg2MWZiNDA5MThhZjE5NzRiNzhlNmExYWExODFkODRjZjM4NDg2ZDM3MTU0OGVmMzViNGZlNmMyYjA3NTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_278abac29d8746e1a70991736b1ee052",
+      "statement": "The Spec Kit git extension creates a feature branch before specify (non-optional) and offers optional commit hooks around other commands.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/extensions.yml#L1-L60",
+          "version": "repo-lines-v1:sha256:8b0f7611e05a22f17d7cfbbc410e901c4dc243d2186fae504b24756e6f74e0cd:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2NzgzOTAzNTY4MTE5NThmMTM1M2M5NGNmMDQ1YzMzMGIzNDYwYzM0NWE0N2QzNDI4YzczYjg2YTE4N2U0ZjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVkMjU2MzQ1MDc3MzUyYjkwYjE4YzNlOWJhMmViMjJhNThjZjhmNjlmZTRiOGUwZWVjZGEzNTcyZjQ3Y2ViMzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY4NGM3OGEwYzlmMzYxNzI5MzE2ZWUxMmE3MzM5OWI4Y2ViMTJlZWIzY2E0Yjg5YzljYTI5MTY3YmEzMDUwYzcifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T11:32:10.059Z"
+  }
+}

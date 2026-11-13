@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:01aa064d1655da77f09f0c58885b984bb49e01a7127642018af8a925d659993e",
+  "claims": [
+    {
+      "id": "claim_aabafd1dd2df421ea6a410c0b87b1546",
+      "statement": "Tests run with Node's built-in test runner via node --test test/ and have no dev dependencies.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:b8ef48149fd90536540467c5294f8cbd4c0468f0b1cb4c4cc67c7e15b6997ce6"
+        },
+        {
+          "resource": "repo://test/routes.test.js#L302-L307",
+          "version": "repo-lines-v1:sha256:1825088c8fac13b90ccd1b771d4c6da2dfe3307261a90cd18dea3f35a9314138:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTg3MGY4Yjk2MTlmMmM1NTQ5NDJkMDEyYzBhNTU3ZGI3NjA2MTU5M2E1NjYwZTI0YmY4OTdhMGQ0NjcwY2U5NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWE0YzI4YTRmZDQxMDE3ODNkNWZhNGQ0NmU4ZjVlN2YxNWI1NGEyODMxM2M3OTQ4YTJkZmYwYTNmZGQxNWU5MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_22821082e7c547c1805c00cb19ccb1cb",
+      "statement": "routes.test.js group L checks source text, including that src/geo.js contains no document, fetch( or window and that convert is the only dependency.",
+      "evidence": [
+        {
+          "resource": "repo://test/routes.test.js#L264-L307",
+          "version": "repo-lines-v1:sha256:b35e801de1edf815fe4ea1f282c195834f471e4c524619071b422361e6f8fb93:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmMWNkNWNkOGMzNWI0OWY4NDVkMWI5MjA5NGViOTc5NGQ4ZTJjY2EyMDg2ZjRmZDIwZDRkMjhmZWE4ZjE3NzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY5ZWExZGM5YjU2ZmI1MjYyMWQwMDAxNmQ4ZTIxZGRkMDY1OTJjMGVmYjg4MjRjNjM2NDZlMjQwNjQyNjRiYjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_19b0bb8659e048348dfcdbd5a2118997",
+      "statement": "AI test scenarios run the app with npm start in headless Playwright with fixed geolocation and mock Nominatim and OSRM responses with page.route.",
+      "evidence": [
+        {
+          "resource": "repo://tests/ai/us1-route-distances.md#L1-L20",
+          "version": "repo-lines-v1:sha256:a0efdd31549953baece67ca17dc06c57b0b4d6500ef4509b18f502867f92b908:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3MmI5NDcwY2MyODdjYzMxMGIzMmIyZWU5ZGI2NzJlNWM4OGFiNDZmMzFkYmRkMTRlZTQ2ZDI0YWIxODU4ZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxNWJmMmJjOTdiMGFlMWUxZGZjMjliOGZmMDQxY2U3ZTdjOTljNzJjYmUwNmU2M2NmMDg3ZTg5M2FhM2NhZTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMxYjIyYzk4ZWY5MjI4ZTg1N2M2Y2Y2MzQzODk4ZWIzZmQwYTBkMzE2N2Q0Y2RhM2RhYWIxYTMyYWIyZDcxYzIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_301b72c264ef46d3818710b864354723",
+      "statement": "distance-package.contract.test.js checks that convert is pinned to an exact version in package.json and package-lock.json with an integrity hash.",
+      "evidence": [
+        {
+          "resource": "repo://test/distance-package.contract.test.js#L1-L30",
+          "version": "repo-lines-v1:sha256:de2b038f9b2233591047f93024d2c1b93a2e5e58627e83962adf410c7c3a9c92:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliOTdhMDk4Zjg2NzIyODVjMDgxYmQwMjY3ZjBmYTgyMzdhOGJhNWY5YmIxZmRlNzc1MGIxMTc3OTM4NmFkMmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliOTkyMTFhMDZhZWNmNGU5YzRmNWMzMmVjOGUxNGFlNjZkZTJkYmFlOTI3NTQxZmU0NTY2MzU2NGIxMDE0MTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJjMjBjNTM5NWU5MGJkYTU4ZWM1M2JmZTE3NjQxMjA3MTMwYmJhNmQzMDJmYmMwNWI1NmRhYTk3Y2QyYjg3ZjMifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T11:32:10.059Z"
+  }
+}

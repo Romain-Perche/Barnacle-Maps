@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:28aba942a47696beaab63788331f16d8501b86f11d175dc15447a2fa5b874fa7",
+  "claims": [
+    {
+      "id": "claim_e68f5ef67baf44de9ac97de627a7aab9",
+      "statement": "npm start serves the repo with python3 -m http.server on port 8000 and npm test runs node --test on test/; there is no build script.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:b8ef48149fd90536540467c5294f8cbd4c0468f0b1cb4c4cc67c7e15b6997ce6"
+        }
+      ]
+    },
+    {
+      "id": "claim_6c6cb10544ad4b69a8a074ba904b54b2",
+      "statement": "convert is the only npm dependency, pinned to an exact version and locked with an integrity hash; node_modules is git-ignored.",
+      "evidence": [
+        {
+          "resource": "repo://.gitignore",
+          "version": "repo-file-v1:sha256:26984f11f8655963ff9347297c12273b41134e1c804c960d767e3ca0de833b56"
+        },
+        {
+          "resource": "repo://package-lock.json",
+          "version": "repo-file-v1:sha256:a07f5cd6c193f09f7cba7f879b3fb768127cf91e1d5fc4e883b30f59c3729f4f"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:b8ef48149fd90536540467c5294f8cbd4c0468f0b1cb4c4cc67c7e15b6997ce6"
+        }
+      ]
+    },
+    {
+      "id": "claim_17b1350e83754cd29a8aff4f0917583f",
+      "statement": "Without geolocation the app shows a location-unavailable message and cannot compute routes.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L307-L325",
+          "version": "repo-lines-v1:sha256:61e556521d5d6ccdd3efc13ce7dda605a7cbbb05ceee9d3b8f39d259b6b7c5ce:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxY2Q3YjBlNzA4YmQyNjhlNzMyOTVkMjhjZWM0ZTc1MmM4MjNlZTZkNzU1ZGZlMDg5MmZkMjdiNGYxZTZhMjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllNTk5MDRiYzM4M2M4N2NmMjI1ZTRjMzU3Y2ZmNWM5NmZhMzg5MmYyZDQxYTRkZDhlNTY3ODk1Nzc1YjYyNTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMzg2MmM5MTg1NjEwOTRkMmQ0MjMwZGFhOTE3M2UyYmM4ZTE1MTRiYTYzNjUyNmRkNTUzN2QzOTUyNTVmMjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg3OTgyYmRlZTQ2MGJkMGI3ZDMzNGY5MTI0MTEzZDVmNTE4ZWJhZWVhNDA5MjQ0YTRkMjRhZTc1YzZmZTRjYzUifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L90-L98",
+          "version": "repo-lines-v1:sha256:251f09f98f5b0f9454dcf2aad0220ca41af153f03486de48c82c57dbba86e548:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVlN2NkOTRmODRmNGE1NGVhNDBhZjVkNGQyZDVlMzYzMTA3NGFmMjc5ZjM2NDYxMzc1NzcwZTYwMzU3MzEwOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDk0ZWZmNmNkZjBjZjI0MWQ5MjA3MDRkYTQyMmUxZmY0ZDk2ODU1ZjI1M2NiZDBjYTNjYTBjZWZlNmNiMTM4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTQxNjIyZTE1YzRkMDVlM2Q0ZmU3NTFiYjlmMmYwMmU3ODNkOThkMmU5YjMxYmJiMjkwNzgxZGFhZjU0Yjk5MiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T11:32:10.059Z"
+  }
+}

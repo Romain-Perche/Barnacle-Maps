@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:4a591842398ce46281d796992f44514855ea6d9bc4692b2abf52221d806df6aa",
+  "claims": [
+    {
+      "id": "claim_ccd713c20dd843c7bc47c0412cbc7ab0",
+      "statement": "geo.js loads the convert package with a non-awaited dynamic import exported as distanceFormatReady; until it resolves, or if it fails, formatDistance falls back to whole metres.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L18-L35",
+          "version": "repo-lines-v1:sha256:a1de44a904bb82bae9e22c0076b3aa4f3411177bb851f9b89e58a8dfbd4c5c08:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4ZjA1Mjg5NWM1NWI3ZjFhYTY1ZDAxYjU4ZWFiZjUxOGRhNzFhOGUyMGEyMGE2YTJhMzhjODQwYWY5NDNkYWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJjNjVkNzIyNTZmY2ZkNTQ0ODY2OTZiOGIwYzdjMWFhOGNjNmE5MGM0MGJiNTA5MzBjMjFiODdjZjViZWZmODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAyODQzZTkyYzQ2ODYxNWEzMjAzNzc4ZTBmNjNiYTI1ZTU5NDdkY2U0ZjBkYmUyNGI3YTcwOTc0MTc0MzUzOTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7df0fb7d6b4440868f4c79f4147612b5",
+      "statement": "formatDistance returns an em dash for non-number, non-finite or negative input, rounds to whole metres, and uses convert's best metric unit with at most one decimal.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L28-L35",
+          "version": "repo-lines-v1:sha256:ce33f360b3a3430e83814f81a7237a962a11a5dc4a4d1f35e262d01659df7513:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTlkODU2MDI0OTdiZGE1YTdmYmZjNGMyZjFlOWRkYWUyNzE5YzE5NDgwMzE3OGRiNGMyYzYxODFjY2VhY2Y1MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWZiYTk0MzZmZDJkMGM5NDk0ODhmZDI3OWUzYmMwODcwMjNkZjBlZWViMTBmOGViOWRjYzk1MTBjN2M5MjIzZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDI4NDNlOTJjNDY4NjE1YTMyMDM3NzhlMGY2M2JhMjVlNTk0N2RjZTRmMGRiZTI0YjdhNzA5NzQxNzQzNTM5MyJ9"
+        },
+        {
+          "resource": "repo://test/format-distance.contract.test.js",
+          "version": "repo-file-v1:sha256:1c04b2c61bc46cf4e974f566f088bc5d89dcd30fa97f3a7e76fdc7c60fd09329"
+        }
+      ]
+    },
+    {
+      "id": "claim_2ad5f3a7ce3c4edb9c3824dcbafefcdb",
+      "statement": "In the browser the bare 'convert' specifier is resolved by an import map in index.html pointing to unpkg; in Node it resolves from node_modules.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L30-L30",
+          "version": "repo-lines-v1:sha256:7f1cef67a96f7511f64c5105749a6bbdfb157a5f493573c405fb291e6bd74cb1:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2YxY2VmNjdhOTZmNzUxMWY2NGM1MTA1NzQ5YTZiYmRmYjE1N2E1ZjQ5MzU3M2M0MDVmYjI5MWU2YmQ3NGNiMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2YxY2VmNjdhOTZmNzUxMWY2NGM1MTA1NzQ5YTZiYmRmYjE1N2E1ZjQ5MzU3M2M0MDVmYjI5MWU2YmQ3NGNiMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDI2NTBmMjY2ZGU4OGI1MjY0OGU0MmM4MDRkZWVhZmM1N2ZlMDg1ODQ5NDliZjE4MjZhMjUwMjJjMDVhMDE4NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjRkN2VlNzU2OTQzM2EzYzUyYTczZGViMzVjODE0ODFiM2U0ZWFkZTg4ZThjYmRmMTc3YzFmMzNiOWQwY2ZiMSJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L18-L19",
+          "version": "repo-lines-v1:sha256:2fb923f9b5d81a38313ec17357d1411148cf0bddc0e70a5f1bb2e966036d2127:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzhmMDUyODk1YzU1YjdmMWFhNjVkMDFiNThlYWJmNTE4ZGE3MWE4ZTIwYTIwYTZhMmEzOGM4NDBhZjk0M2RhYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGM4OGQyMTY4MGMzNjliYjRlNDBiZDkyODk4MDljNmFjY2I2MzJmYjVhMWVmY2Q0OTFmODI5OWE2NTY1ZGZmNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmM2NWQ3MjI1NmZjZmQ1NDQ4NjY5NmI4YjBjN2MxYWE4Y2M2YTkwYzQwYmI1MDkzMGMyMWI4N2NmNWJlZmY4NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWRhMWM0NTkxNmFjYmNkNTZkZjI1MzgyMDlkYmE1ZTJkOWY4OGNmMzhjMTY5ODY2YTc4YmQ2NWM2M2EyOTZjYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6783c1da49a9469e8661e3188d0a47c1",
+      "statement": "formatDuration rounds to whole minutes with a minimum of 1 and switches to hours from 60 minutes.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L37-L43",
+          "version": "repo-lines-v1:sha256:1943f547f20aaae8092b9da19d3b766fe3f019ffc7fa30df2da76aa5f83abb30:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGU2OGU3NTQ4MTJjOGNmYjFiNjE0NDY2MmJlZjA1YWQ5YzIyYjc3NDg2NTY3Nzg5NjM1Mzg2YWM1YzgyN2JjOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTZmZDQ4MTFmYmY5NGUxZThmNDhhY2Q0NzAzMTNiNTFmYThiNjMyMTQzNjNjZjhlZDcxNTQxZDliMTBjMjcwZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGQ0ZWUzNDE4OWE5MTI2YTc0MGJkZmNlOTBiNWEwMjc3MTRmYzNkYzQzM2I2YzAyNWM5NjQyNGM5OTQwODVjOCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T11:32:10.059Z"
+  }
+}

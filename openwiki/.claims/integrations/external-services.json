@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:756c738008a5d7f005d2ae2d0994b68b6f0dfb6f387237b4a1ac4323a3faa599",
+  "claims": [
+    {
+      "id": "claim_0d31be2004cf4874ad1e4f46595b306d",
+      "statement": "The browser calls Nominatim for search, routing.openstreetmap.de OSRM for routes, tile.openstreetmap.org for map and pleasure tiles, and unpkg for Leaflet and convert, with no API keys or credentials.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L7-L30",
+          "version": "repo-lines-v1:sha256:426c3c6a8930fbc6b163222020cd4a8c093f531b684496fee019c1ef31c3f151:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1ZDI3Y2IxNDI0NDkxOTJiMjgyNzVmNmEwMTRjODI5YjY3ZjJiMjcwNjE5YTJhYjBiNGRmMDYyYTMzYWVhY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmMWNlZjY3YTk2Zjc1MTFmNjRjNTEwNTc0OWE2YmJkZmIxNTdhNWY0OTM1NzNjNDA1ZmIyOTFlNmJkNzRjYjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlMDdlZTNiZjk0MmRmMjRlZDFkMjFjM2RmYTk2ZDgxODQ4MjFkZDAyY2NjMThmY2YzMTBkNTc5NzE3MjE4NDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0ZDdlZTc1Njk0MzNhM2M1MmE3M2RlYjM1YzgxNDgxYjNlNGVhZGU4OGU4Y2JkZjE3N2MxZjMzYjlkMGNmYjEifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L24-L32",
+          "version": "repo-lines-v1:sha256:36a9b45c63e92171b7e683d2c65cb2e451b9ef02d9e43514936dbd4a61b3dae4:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTk3MTY0YjRlMWQ1ZjgyOGQ0MDk0OTc1N2IxYzc4OWJhOTYwY2YwMzQyZGY5NWQ0ZjI5NTgzYzk2MDNlYTM3NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODhiMzg0YzQyZjdjODMzZjc0NmU4NWJmMGE2ZTM1M2Y0NGQ4MTVjZTE2MTIxODNjODUxZGRkMjFhNjBiMWU1OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTY0ZmI2MDg0MjQwMmY1MzhiNmRlNGQxZmQxZjczOTE1YWU4NWFiNGE4NDQxMTM3MTAwMjhkYWQwNTg5Zjg4YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDNlMmM0MWMyMTBjNDJiMTA3Zjk5ZjYyMGUyYjA1NGQ3ZTg5OTVhM2FhZGJjZGI1NmQ1MDc4NzY4ZmY5OGFjMiJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L244-L246",
+          "version": "repo-lines-v1:sha256:20483cafb76e4ff98e9e4b45e9f01ea807a8fe7ffbbdfc7b9288c79213f0e5ab:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWRmZTI0YmFiOTNmMjkxY2M3ODkyODMwYjViZjdkZjQ0ZDNiODNlOTA3NGZmY2M1Y2VmMGNiYjA5N2JmM2JmZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzRmOTE5NGYzYmQxZWJmMjc2NjNjYjdkZWE3ZDMzYjJjZjhmN2Q3ZDg3ZWNiMGJmNWY0MWUzNGU0MjQ4ZDkyNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDdmMjQ4M2JjYzYzYzE2ZWJiZmQ4MjhlNjMwMDM3MjZhNGJlZmQ3ZjUxNDQ4NjdjMzU1ZTkwYjRkYjY4YWI1OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTMwOTdlODRhMDNhZDk2Mzg3OGJjY2E3NzZkNjBmMTRhOTZhNzU4YzJlMTk3MTBhZWYzZDc1ODc0MGM0ZjIxZSJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L48-L67",
+          "version": "repo-lines-v1:sha256:c4ccfa551b136ce46e54d61a19ccfc635ed2e9562f98ed485f3b701f5609ecb3:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NjFhZTI5YTMwZGIwNmFmOTI2Mzg1NTkxYTllOTdkMTM0OTVhYTIxMTg2ZWJiNzBjMTk2NDRlZjc2MjY4ZDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZhYmVmODcyODJiMWQyNjhlMTM1NzI5YmUxZmFlMTkyMDcxOTI3ODE0OTc3MWJmNjU5N2IyNDhmNmM1ZWRlNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxYzIxMGI5OWJmNDdjZWM4NzI0NjQzOTVkY2UxZGU3NTM1MzRjYjNmNTRhZDNmMmJmNWMyMWM3NjZmNDZlYmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7b21649a89894fac9c250dcd03e3405e",
+      "statement": "The user's geolocated position is sent to OSRM as the start coordinate of every routing request.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L189-L192",
+          "version": "repo-lines-v1:sha256:f82a7e730fc8726d9da86aa7d92cfe6310001c6c7dabd03849210167f58cbed4:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzE1MmFmMDU0NzA3NDE1NTg4ZjQ1NTNhNjM0N2ZhN2E1ZWE1OTdiY2IxY2QxMmMxNGQ3NWQwMTA5MDAxNjhhNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTVlZjAxYmMwOGRiYzNiNjNlNGU3NWVhM2QyNmE1Yjk0MTg5MTg3N2UyN2FkODkxMzI5Yzg0MTFkN2Q4ZGM0ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNjMDYzNDYzYWIzZTJkN2FkYjM0MTMyMDdmYjQxZTliMzI3OTZhYTBhMTQxMGE0YzMwNTRjMzg2MjY0NGQ3YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzRlMTk3ZDI2MzZjYjI0ZjkzYmQ0NzZiZjIyYzgwNGVmYThhMTc4Mjk0ODllMjU1ZTNiMDVmNDAwMjUyNjM0MCJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L90-L98",
+          "version": "repo-lines-v1:sha256:251f09f98f5b0f9454dcf2aad0220ca41af153f03486de48c82c57dbba86e548:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVlN2NkOTRmODRmNGE1NGVhNDBhZjVkNGQyZDVlMzYzMTA3NGFmMjc5ZjM2NDYxMzc1NzcwZTYwMzU3MzEwOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDk0ZWZmNmNkZjBjZjI0MWQ5MjA3MDRkYTQyMmUxZmY0ZDk2ODU1ZjI1M2NiZDBjYTNjYTBjZWZlNmNiMTM4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTQxNjIyZTE1YzRkMDVlM2Q0ZmU3NTFiYjlmMmYwMmU3ODNkOThkMmU5YjMxYmJiMjkwNzgxZGFhZjU0Yjk5MiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_508e265884be4b799b230c05c6591e7f",
+      "statement": "Leaflet popup and tooltip content for the destination and stops is passed as strings built from place names, while panel texts use textContent.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L110-L143",
+          "version": "repo-lines-v1:sha256:3f6573c4212dac1d11c3d328d9ea1f5f5061eda433ec570bcdfe7f815b6753a2:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEyNTVlNmNkYTg4ZWUxNDQxNDZhZmRiZDg0ZDdiMTRmMzIyYjVlNGUzMDkzZjY3MjQ0NTI3ODkwN2MzZGYwMDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzODc4NjMxMmUyMTdkZDA4YjczYTk4NmQyOWQzZmRjNzRiZDIwOGI5YzI1ZDk1OTgxNzVkYzRkZjQ4NGUxNjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUxNmYzMTM0ZmQ5MjEwYmM3Zjk5ZjdjMDQ5NWUyZGQ2NjEyYjJhN2M3ZjlmY2ViN2E3OTU3ZmJjMWI4M2FjNmMifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L302-L302",
+          "version": "repo-lines-v1:sha256:78b7d38521f2ffd771f79224917fddbf162f8079fe454cf320df231a292f5a9e:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzhiN2QzODUyMWYyZmZkNzcxZjc5MjI0OTE3ZmRkYmYxNjJmODA3OWZlNDU0Y2YzMjBkZjIzMWEyOTJmNWE5ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzhiN2QzODUyMWYyZmZkNzcxZjc5MjI0OTE3ZmRkYmYxNjJmODA3OWZlNDU0Y2YzMjBkZjIzMWEyOTJmNWE5ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjI4ZmVmYzk5ODA5ZGVmOTAxNmMyZjFjNjI2YzE0ZDk4YjM4NWMxYWI5OTFkNzg2YjVhNGUyZmYxNjU4YWZjZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjYzMTgwOTdkNjRlNmE3NjE5ZmI0OWMxMWE5MjZjY2ZkY2YyMzRmZDRmNWQ4MTU4YjQxZDQ3MjI5YTJkYjg0NiJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L360-L370",
+          "version": "repo-lines-v1:sha256:08698680328a4aae0968c8c34c9aedeefa4b3915596b448259dc6127b629eb54:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4NGYyODQ1N2Y2MTk4NDRlMWY0MzM2MTAxMTE2YWMwZjg4Yzk1YjE1OTFiMmJlNDQ1ZGZlYzEwZDA0ZDYwMmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhZDUyYTQyZWFkNTgzNTZkYTkyOTJmOGIzMjBlMmNhOGRlZGIyOTYzZTdkNzMzMTc1MGE4YzgyYTJhZDgwOTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjczN2RjNmZkYjA0NjBlODQ5MGZlNjQyYTJjMmYwYjMzNjNkNTg1ODMxY2UzNTk5NjJiOTg5MWYwM2RhOGY3MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEzMjJkNDcyMGE0MzllZDk3MTE2ODdlNDE3NmYxZTI1Y2I5NTQwODZhZjM2NmEwZTRiZGUwYWJjMDk0OTZiYWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f5cfad82726d48e7b23ec6bbbd170496",
+      "statement": "unpkg resources in index.html are version-pinned but have no Subresource Integrity attributes.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L7-L30",
+          "version": "repo-lines-v1:sha256:426c3c6a8930fbc6b163222020cd4a8c093f531b684496fee019c1ef31c3f151:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1ZDI3Y2IxNDI0NDkxOTJiMjgyNzVmNmEwMTRjODI5YjY3ZjJiMjcwNjE5YTJhYjBiNGRmMDYyYTMzYWVhY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmMWNlZjY3YTk2Zjc1MTFmNjRjNTEwNTc0OWE2YmJkZmIxNTdhNWY0OTM1NzNjNDA1ZmIyOTFlNmJkNzRjYjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJlMDdlZTNiZjk0MmRmMjRlZDFkMjFjM2RmYTk2ZDgxODQ4MjFkZDAyY2NjMThmY2YzMTBkNTc5NzE3MjE4NDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0ZDdlZTc1Njk0MzNhM2M1MmE3M2RlYjM1YzgxNDgxYjNlNGVhZGU4OGU4Y2JkZjE3N2MxZjMzYjlkMGNmYjEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T11:32:10.059Z"
+  }
+}

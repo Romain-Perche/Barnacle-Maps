@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "zones": [
+    {"id": "dev_host", "label": "Local host running the static server"},
+    {"id": "browser", "label": "User's browser"},
+    {"id": "osm", "label": "OpenStreetMap services (third party)"},
+    {"id": "osrm_host", "label": "routing.openstreetmap.de (third party)"},
+    {"id": "cdn", "label": "unpkg CDN (third party)"}
+  ],
+  "actors": [
+    {"id": "user", "label": "Browser user"},
+    {"id": "nominatim", "label": "Nominatim geocoding API", "zone": "osm"},
+    {"id": "osm_tiles", "label": "OSM tile server", "zone": "osm"},
+    {"id": "osrm", "label": "OSRM routing (foot and car profiles)", "zone": "osrm_host"},
+    {"id": "unpkg", "label": "unpkg (Leaflet, convert)", "zone": "cdn"}
+  ],
+  "processes": [
+    {"id": "static_server", "label": "python3 http.server on port 8000", "zone": "dev_host", "sources": ["package.json"]},
+    {"id": "web_app", "label": "Barnacle Maps web app", "zone": "browser", "sources": ["src/app.js", "src/geo.js", "index.html"]}
+  ],
+  "stores": [
+    {"id": "site_files", "label": "Static site files (HTML, CSS, JS)", "zone": "dev_host", "sources": ["index.html", "styles.css", "src"]}
+  ],
+  "flows": [
+    {"from": "site_files", "to": "static_server", "data": "HTML, CSS and JS files", "sources": ["package.json", "index.html"]},
+    {"from": "static_server", "to": "web_app", "data": "app page and modules", "sources": ["package.json", "index.html"]},
+    {"from": "unpkg", "to": "web_app", "data": "Leaflet and convert library code", "sources": ["index.html", "src/geo.js"]},
+    {"from": "user", "to": "web_app", "data": "search text, destination, stops, travel mode, route picks", "sources": ["src/app.js"]},
+    {"from": "user", "to": "web_app", "data": "device position (geolocation)", "sources": ["src/app.js"]},
+    {"from": "web_app", "to": "user", "data": "map, routes, distances, durations, pleasure, status", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "web_app", "to": "nominatim", "data": "place search query", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "nominatim", "to": "web_app", "data": "matching places with coordinates", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "web_app", "to": "osrm", "data": "position, stop, detour and destination coordinates", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "osrm", "to": "web_app", "data": "route geometries, distances and durations", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "osm_tiles", "to": "web_app", "data": "map tile images (display and pleasure scoring)", "sources": ["src/app.js"]}
+  ]
+}
