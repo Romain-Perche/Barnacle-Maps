@@ -64,6 +64,16 @@ test("styles: Design A bottom-centered bar above the map and its attribution", (
   assert.match(r, /background:\s*#fff/);
 });
 
+test("styles: the centered bar sizes to its content, not to the 50% shrink-to-fit cap", () => {
+  // covers FR-009 (single line), edge case "small screens": with left:50% the auto width of an
+  // absolute box is capped at half the map, so the bar wraps on screens under ~520px. An
+  // intrinsic width lets it use up to max-width (map width - 24px) before it wraps.
+  const r = rule("#route-card");
+  assert.ok(r, "#route-card rule exists");
+  assert.match(r, /(^|[;\s])width:\s*(max-content|fit-content)/, "width: max-content (or fit-content)");
+  assert.match(r, /max-width:\s*calc\(100%\s*-\s*\d+px\)/, "still capped to the map width");
+});
+
 test("styles: hidden really hides; figures never truncate; duration in selected-route blue", () => {
   // covers FR-007 (hidden), FR-009 (duration emphasized in #1a73e8), edge case "never truncate a figure"
   assert.match(rule("#route-card[hidden]") || "", /display:\s*none/);
