@@ -32,4 +32,4 @@
 ## Notes
 
 - The feature request itself is technical (use an npm package), so FR-005–FR-007 and User Story 2 necessarily mention a package dependency; no specific package, language, or framework is named. Package selection is deferred to `/speckit-plan`.
-- Kilometre precision (one decimal) was inferred from the user's "1.2 km" example; documented in Assumptions as a visible change from the current "1.50 km" output.
+- Kilometre precision (always one decimal) was confirmed in clarification on 2026-11-13. It is a visible change from the current "1.50 km" output.

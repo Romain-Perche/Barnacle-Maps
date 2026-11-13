@@ -8,6 +8,12 @@
 
 **Input**: User description: "Format distances with a small library — Use a small, well-known npm package to format the distances shown on the map (e.g. 1.2 km)."
 
+## Clarifications
+
+### Session 2026-11-13
+
+- Q: How many decimals should kilometre distances show? → A: Always one decimal (1.2 km, 12.3 km); today's "1.50 km" becomes "1.5 km". The person approved all other proposals and recommended defaults in this spec.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Read route distances in a clear, consistent format (Priority: P1)
@@ -46,7 +52,7 @@ The project maintainer wants distance formatting handled by a small, widely used
 ### Edge Cases
 
 - Distance of 0 m reads "0 m".
-- Values that round up to 1,000 m (e.g. 999.6 m) read "1.0 km" (or "1 km") rather than "1000 m".
+- Values that round up to 1,000 m (e.g. 999.6 m) read "1.0 km" rather than "1000 m".
 - Fractional metre values below 1 km are rounded to whole metres (e.g. 420.4 m → "420 m").
 - Very long distances (e.g. 123,456 m) read "123.5 km" without a thousands separator issue or scientific notation.
 - If the formatting package fails to load in the browser, the rest of the app (map, search, routes) still works and distances fall back to a readable value rather than breaking the panel.
@@ -58,7 +64,7 @@ The project maintainer wants distance formatting handled by a small, widely used
 
 - **FR-001**: The app MUST format every distance shown to the user (route list titles and route summary) through a single shared formatting function.
 - **FR-002**: Distances below 1,000 m MUST be shown in whole metres with the unit "m" (e.g. "420 m").
-- **FR-003**: Distances of 1,000 m or more (after rounding) MUST be shown in kilometres with one decimal place and the unit "km" (e.g. "1.2 km", "12.3 km").
+- **FR-003**: Distances of 1,000 m or more (after rounding) MUST always be shown in kilometres with exactly one decimal place and the unit "km", at every length (e.g. "1.0 km", "1.5 km", "12.3 km", "123.5 km").
 - **FR-004**: The number and unit MUST be separated by a single space and use a "." decimal separator, matching the rest of the English UI.
 - **FR-005**: The formatting MUST be performed by a small (minimal footprint, no or few transitive dependencies), well-known, actively maintained, permissively licensed npm package.
 - **FR-006**: The package MUST work both in the browser (served without a build step, consistent with how the app is run today) and in the automated test runner.
@@ -80,7 +86,7 @@ The project maintainer wants distance formatting handled by a small, widely used
 ## Assumptions
 
 - "Distances shown on the map" means the route distances displayed in the route panel (route titles and summary); there are no other distance labels on the map today.
-- One decimal for kilometres is chosen, following the user's example "1.2 km"; this changes today's output for 1–10 km (e.g. "1.50 km" becomes "1.5 km"), and the existing test will be updated accordingly.
+- One decimal for kilometres was confirmed in clarification. This changes today's output for 1–10 km (e.g. "1.50 km" becomes "1.5 km"). The existing test will be updated to match.
 - Metric units only; no imperial (miles/feet) option and no user-selectable units.
 - Output stays in English formatting regardless of browser locale, to match the rest of the UI.
 - The project currently has "no build step or dependencies"; adding one npm package is accepted by the request. In the browser the package may be loaded the same way Leaflet already is (from a public CDN at a pinned version) or served locally; the tests may require a one-time documented install step.
