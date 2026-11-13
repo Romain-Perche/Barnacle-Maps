@@ -8,6 +8,12 @@
 
 **Input**: User description: "Format distances with a small library — Use a small, well-known npm package to format the distances shown on the map (e.g. 1.2 km)."
 
+## Clarifications
+
+### Session 2026-11-13
+
+- Q: How should the app load the distance-formatting package in the browser? → A: Option A — from a public CDN (unpkg), like the map library; declared as a project dependency only so the automated tests can use it. If it cannot load, distances fall back to a plain format and the rest of the app keeps working. (Reply also approved every other proposal in the spec as written.)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Read route distances at a glance (Priority: P1)
@@ -60,7 +66,7 @@ A maintainer of the app no longer owns hand-written unit-conversion and rounding
 - **FR-003**: Distances of 1,000 m or more (after rounding) MUST be shown in kilometres with at most one decimal place and the unit "km" (e.g. "1.2 km", "12.3 km"); a trailing ".0" MUST be omitted (e.g. "2 km").
 - **FR-004**: The number and unit MUST be separated by a single space, and the decimal separator MUST be a dot, matching the rest of the English UI.
 - **FR-005**: The formatting MUST be delegated to a single small, well-known, open-source npm package (small install footprint, no transitive runtime dependencies preferred, widely downloaded, permissive licence).
-- **FR-006**: The app MUST keep running without a build step: the package MUST be loadable directly by the browser (as the map library already is) and by the automated tests.
+- **FR-006**: The app MUST keep running without a build step: the browser MUST load the package from the same public CDN as the map library (unpkg), at a pinned version, and the automated tests MUST use the same package declared as a project dependency. If the package cannot be loaded, distances MUST fall back to a plain format that follows FR-002 to FR-004 where possible, and the rest of the app MUST keep working.
 - **FR-007**: Durations and every other displayed value MUST remain unchanged.
 - **FR-008**: Invalid or missing distances MUST NOT produce "NaN" or crash the route display.
 - **FR-009**: Automated tests MUST cover the examples and edge cases listed above, and existing tests that assert the old format ("1.50 km") MUST be updated to the new format.
@@ -82,5 +88,5 @@ A maintainer of the app no longer owns hand-written unit-conversion and rounding
 - Metric units only (m / km), matching the current app; no imperial units or user setting for units.
 - English formatting (dot decimal separator) is kept, matching the current English-only UI; localisation is out of scope.
 - One decimal place for kilometres is chosen to match the example "1.2 km" in the request, replacing the current two-decimal format under 10 km.
-- The package is loaded in the browser the same way the map library already is (from a public CDN), so the "no build step" property of the app is preserved; the package is also declared in the project's dependency list for tests.
+- The package is loaded in the browser from the same public CDN as the map library (confirmed in Clarifications), so the "no build step" property of the app is preserved; the package is also declared in the project's dependency list for tests.
 - Duration formatting stays hand-written and unchanged (the request concerns distances only).
