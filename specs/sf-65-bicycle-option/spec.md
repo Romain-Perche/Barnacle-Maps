@@ -35,6 +35,7 @@
 - Q: Which usage limits apply to the routing source? → A: The provider's fair-use policy; bike sends one request per route update (no detour requests), so load is not higher than walking (decided by the factory, no question asked)
 - Q: Where does the Bike option go in the travel mode selector? → A: At the end: Walk · Car · Bike, labelled "Bike"
 - Q: No bike route exists, but a walking route exists (e.g. pedestrian-only zone). What does the user see? → A: Only "No cycling route found.", as for the other modes; no hint to Walk and no automatic mode change
+- Q: Does SC-004 forbid new test files for bike? → A: No; the pre-existing tests stay unchanged and pass, the travel-mode tests are extended, and new bike tests (e.g. `test/bike-ui.test.js`, `tests/ai/`) may be added (decided by the factory, no question asked)
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -116,7 +117,7 @@ A user who has added stops to the journey selects "Bike" and gets a cycling rout
 - **SC-001**: A user with a destination already chosen sees cycling routes with durations in a single action (one click on "Bike").
 - **SC-002**: On a reference set of 5 urban trips of 1–10 km, the displayed cycling duration is shorter than the walking duration for each trip.
 - **SC-003**: 100% of displayed cycling routes show both a distance and a duration.
-- **SC-004**: Existing walking and car scenarios (including stops and pleasure indicator) behave identically to before the change: the existing automated tests pass (only the travel-mode list test is extended for bike) and the walk/car steps of the quickstart give the same results.
+- **SC-004**: Existing walking and car scenarios (including stops and pleasure indicator) behave identically to before the change: the pre-existing automated tests pass unchanged (only the travel-mode tests in `test/modes.test.js` are extended for bike; new bike tests may be added in new files) and the walk/car steps of the quickstart give the same results.
 
 ## Assumptions
 

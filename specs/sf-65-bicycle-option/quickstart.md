@@ -13,7 +13,7 @@ npm test
 
 Expected: all tests pass, including `test/modes.test.js` checks that `TRAVEL_MODES` has `foot`, `car`, `bike`,
 every mode has `label`/`base`/`profile`/`adjective`/`by`, and the bike URLs match
-[contracts/travel-modes.md](contracts/travel-modes.md). Existing walk/car/stops/pleasure tests are unchanged and pass (SC-004).
+[contracts/travel-modes.md](contracts/travel-modes.md). `test/bike-ui.test.js` checks the Walk · Car · Bike radios (Walk checked) and the README bike line. Existing walk/car/stops/pleasure test files are unchanged and pass (SC-004).
 
 ## Endpoint sanity check (not done during planning: no network access from the sandbox)
 
