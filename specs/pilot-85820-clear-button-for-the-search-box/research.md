@@ -1,0 +1,11 @@
+# Research: Clear button for the search box
+
+No NEEDS CLARIFICATION items remain; decisions below.
+
+1. **Custom button, not native `type="search"` cancel.** Decision: add our own `<button type="button" id="search-clear" aria-label="Clear search" hidden>×</button>` and hide the native control with `::-webkit-search-cancel-button { display: none; appearance: none }` and `::-ms-clear { display: none }`. Rationale: native control is inconsistent across browsers, ignores the spec'd "clear results/cancel search" behaviour, and Firefox has none (FR-011). Alternatives: rely on native (rejected: inconsistent); change input to `type="text"` (rejected: loses mobile search keyboard semantics).
+2. **Visibility via the `hidden` attribute, synced by one function.** Decision: `syncClear()` sets `clearBtn.hidden = input.value === ""`; call it from the `input` event and after every programmatic `input.value =` (showRoute, Add-as-stop). Rationale: programmatic assignments do not fire `input` events (FR-002). Alternative: CSS `:placeholder-shown` (rejected: spaces-only input and older Safari differences; spec wants button for spaces-only text, which `:placeholder-shown` actually handles, but it still can't be used with `hidden`/a11y focus order cleanly — JS sync is explicit and consistent).
+3. **Cancel pending searches.** Decision: handler does `clearTimeout(suggestTimer); searchSeq++;` — the same mechanism already used by "Add as stop" and `showRoute` — so late responses fail the `seq !== searchSeq` check (FR-005).
+4. **Layout.** Decision: wrap input in `span.search-box { position: relative; flex: 1; display: flex }`; button absolutely positioned at right, ~28×28 px hit area, grey `×` glyph, no background; input gets `padding-right: 32px` so text never runs under it (FR-010, long-text edge case). Keep input `flex: 1`.
+5. **Focus.** Decision: `input.focus()` after clearing (FR-007). Because the button then becomes hidden, focus must move first-class to the input, not be lost.
+6. **No submit.** Button is `type="button"` so it never submits the form (FR-008). Handler does not touch `currentPlace`, routes, stops or mode.
+7. **Tests.** Repo only unit-tests pure modules; the logic here is DOM-bound, so verification is the manual quickstart. No new test harness (YAGNI).
