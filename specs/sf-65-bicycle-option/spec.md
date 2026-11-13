@@ -33,6 +33,8 @@
 - Q: How does the user recover after a bike routing failure? → A: Selecting a mode again, changing a stop or choosing a destination recomputes; no automatic retry (decided by the factory, no question asked)
 - Q: Is the bicycle routing source validated? → A: Recorded as routing.openstreetmap.de/routed-bike; checked with the quickstart request before implementation; if it fails at runtime, the normal error status shows (decided by the factory, no question asked)
 - Q: Which usage limits apply to the routing source? → A: The provider's fair-use policy; bike sends one request per route update (no detour requests), so load is not higher than walking (decided by the factory, no question asked)
+- Q: Where does the Bike option go in the travel mode selector? → A: At the end: Walk · Car · Bike, labelled "Bike"
+- Q: No bike route exists, but a walking route exists (e.g. pedestrian-only zone). What does the user see? → A: Only "No cycling route found.", as for the other modes; no hint to Walk and no automatic mode change
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -74,6 +76,7 @@ A user who has added stops to the journey selects "Bike" and gets a cycling rout
 ### Edge Cases
 
 - No cycling route exists between the points (e.g. island, no cycle-accessible road): show "No cycling route found." and no routes, as other modes do.
+- A point the bicycle network cannot reach but walking can (e.g. pedestrian-only zone): show only "No cycling route found." (with stops: "No cycling route found. Try removing a stop."), as other modes do; the app does not suggest Walk and does not change mode automatically.
 - The routing service for bicycles is unavailable or fails: show an error status, consistent with the existing walk/car failure behaviour; switching to another mode still works.
 - The user switches mode while bike routes are still being computed: only the routes of the latest selected mode are shown (stale results are discarded).
 - Only one cycling route is available: show just that one; no artificial detour routes are forced for bike (as for car).
@@ -88,7 +91,7 @@ A user who has added stops to the journey selects "Bike" and gets a cycling rout
 
 ### Functional Requirements
 
-- **FR-001**: The travel mode selector MUST offer a third option, "Bike", alongside "Walk" and "Car".
+- **FR-001**: The travel mode selector MUST offer a third option, labelled "Bike", placed after "Walk" and "Car" (order: Walk · Car · Bike).
 - **FR-002**: When "Bike" is selected and a destination is set, the system MUST compute routes suited to cycling (the routes returned by the bicycle profile of the routing source) from the user's position (through any stops, in order) to the destination.
 - **FR-003**: The system MUST display up to 3 cycling routes, each with its distance and estimated cycling duration, in the same format as walking and car routes ("850 m" / "2.35 km", "12 min" / "1 h 5 min"), chosen with the same filtering as the other modes (fastest first, then distinct alternatives that are not much longer).
 - **FR-004**: The cycling duration MUST reflect cycling travel time as estimated by the routing source for bicycles (not walking or driving time).

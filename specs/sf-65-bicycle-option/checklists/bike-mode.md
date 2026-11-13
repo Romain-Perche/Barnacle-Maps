@@ -10,7 +10,7 @@
 
 ## Requirement Completeness
 
-- [ ] CHK001 Are the position of "Bike" in the mode selector and its exact label specified, or only "alongside Walk and Car"? [Completeness, Spec §FR-001, contracts/ui.md]
+- [x] CHK001 Are the position of "Bike" in the mode selector and its exact label specified, or only "alongside Walk and Car"? [Completeness, Spec §FR-001, contracts/ui.md] — reviewed by alexis.noe2003@gmail.com, 2026-11-13
 - [x] CHK002 Are status texts specified for every bike outcome (computing, one route, several routes, no route, failure, with/without stops), not only by example ("e.g.")? [Completeness, Spec §FR-006, contracts/ui.md] — reviewed by the factory, 2026-11-13
 - [x] CHK003 Is the bike behaviour defined when a destination is set but the user's position is not yet known ("Waiting for your location…")? [Gap, Spec §FR-002] — reviewed by the factory, 2026-11-13
 - [x] CHK004 Is the bike behaviour defined when "Bike" is selected before any destination is chosen? [Gap, Spec §FR-009] — reviewed by the factory, 2026-11-13
@@ -47,7 +47,7 @@
 - [x] CHK023 Are requirements defined for switching mode while bike routes are computing, including which status text remains visible? [Coverage, Spec §Edge Cases] — reviewed by the factory, 2026-11-13
 - [x] CHK024 Are requirements defined for changing the destination while bike routes are computing? [Coverage, Gap] — reviewed by the factory, 2026-11-13
 - [x] CHK025 Is the "no cycling route" case with stops specified (e.g. a hint to remove a stop, as other modes do)? [Coverage, Spec §Edge Cases, contracts/ui.md] — reviewed by the factory, 2026-11-13
-- [ ] CHK026 Are requirements defined for points the bicycle network cannot reach but walking can (e.g. pedestrian-only zones, motorway-only areas)? [Edge Case, Gap]
+- [x] CHK026 Are requirements defined for points the bicycle network cannot reach but walking can (e.g. pedestrian-only zones, motorway-only areas)? [Edge Case, Gap] — reviewed by alexis.noe2003@gmail.com, 2026-11-13
 - [x] CHK027 Is behaviour specified for very long bike trips beyond duration format (e.g. any distance limit, as pleasure has for walking)? [Edge Case, Spec §Edge Cases] — reviewed by the factory, 2026-11-13
 - [x] CHK028 Is a recovery path stated after a bike routing failure (re-selecting Bike, changing stops, retry)? [Coverage, Recovery, Gap] — reviewed by the factory, 2026-11-13
 
