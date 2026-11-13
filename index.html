@@ -11,7 +11,10 @@
   <div id="map"></div>
   <div id="panel">
     <form id="search-form">
-      <input id="search-input" type="search" placeholder="Search a place" autocomplete="off" aria-label="Search a place">
+      <span class="search-box">
+        <input id="search-input" type="search" placeholder="Search a place" autocomplete="off" aria-label="Search a place">
+        <button type="button" id="search-clear" aria-label="Clear search" hidden>×</button>
+      </span>
       <button type="submit">Go</button>
     </form>
     <div id="mode" role="radiogroup" aria-label="Travel mode">

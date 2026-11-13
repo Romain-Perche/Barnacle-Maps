@@ -33,6 +33,8 @@ L.tileLayer(`${TILE_URL}/{z}/{x}/{y}.png`, {
 
 const form = document.getElementById("search-form");
 const input = document.getElementById("search-input");
+const clearBtn = document.getElementById("search-clear");
+function syncClear() { clearBtn.hidden = input.value === ""; }
 const results = document.getElementById("results");
 const status = document.getElementById("status");
 const routesList = document.getElementById("routes");
@@ -132,6 +134,7 @@ async function runSearch(q, { announce = true } = {}) {
         clearTimeout(suggestTimer);
         results.replaceChildren();
         input.value = "";
+        syncClear();
         tryAddStop(place);
       });
       li.append(btn, add);
@@ -151,6 +154,7 @@ form.addEventListener("submit", (e) => {
 
 // Pre-fill: suggest places while typing (debounced to respect Nominatim's rate limit).
 input.addEventListener("input", () => {
+  syncClear();
   clearTimeout(suggestTimer);
   const q = input.value.trim();
   if (q.length < MIN_SUGGEST_CHARS) {
@@ -160,6 +164,16 @@ input.addEventListener("input", () => {
     return;
   }
   suggestTimer = setTimeout(() => runSearch(q, { announce: false }), SUGGEST_DELAY_MS);
+});
+
+clearBtn.addEventListener("click", () => {
+  clearTimeout(suggestTimer);
+  searchSeq++;
+  input.value = "";
+  results.replaceChildren();
+  setStatus("");
+  syncClear();
+  input.focus();
 });
 
 function clearRoutes() {
@@ -297,6 +311,7 @@ function showRoute(place) {
   searchSeq++;
   clearTimeout(suggestTimer);
   input.value = place.name;
+  syncClear();
   results.replaceChildren();
   destMarker?.remove();
   destMarker = L.marker([place.lat, place.lng]).addTo(map).bindPopup(place.name);
