@@ -40,6 +40,11 @@
 - Q: Are accessibility needs for "m"/"km" in scope? → A: Out of scope; the abbreviations are the same as before this feature (decided by the factory, no question asked)
 - Q: Is reliance on unpkg an accepted risk? → A: Yes, the same accepted risk as the map library; the app maintainers own it (decided by the factory, no question asked)
 
+### Session 2026-11-13 (check-plan-completeness, Pilot)
+
+- Q: What exactly do distances look like when the package cannot be loaded (or has not loaded yet), and how does that fit SC-005? → A: The fallback shows whole metres only, e.g. "1500 m" or "412700 m"; invalid values still show "—". No hand-written km logic is kept, so SC-005 stays as written.
+- Q: How do we make sure the package file served by the CDN has not been tampered with? → A: The same trust model as the map library: one exact pinned version and no integrity hash.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Read route distances at a glance (Priority: P1)
@@ -81,7 +86,7 @@ A maintainer of the app no longer owns hand-written unit-conversion and rounding
 - Very long routes (e.g. 1,234,567 m, a long car trip) show "1234.6 km" (no thousands separator) — always in kilometres, never in another unit (no miles, no megametres).
 - Fractional metres below 1: 0.4 m shows "0 m", 0.5 m shows "1 m".
 - Missing or invalid distance (anything that is not a finite number ≥ 0: undefined, null, strings, NaN, Infinity, negatives): the app must not crash; it shows "—", never "NaN km".
-- The package fails to load, or has not loaded yet, in the browser: the rest of the app (map, search, routes) still works and never waits for the package; distances use the fallback format.
+- The package fails to load, or has not loaded yet, in the browser: the rest of the app (map, search, routes) still works and never waits for the package; distances use the fallback format: whole metres only (e.g. 1,500 m shows "1500 m", 412,700 m shows "412700 m"; 420.4 m shows "420 m"; invalid values still show "—").
 
 ## Requirements *(mandatory)*
 
@@ -92,7 +97,7 @@ A maintainer of the app no longer owns hand-written unit-conversion and rounding
 - **FR-003**: Distances of 1,000 m or more (after rounding to the nearest whole metre) MUST be shown in kilometres with at most one decimal place and the unit "km" (e.g. "1.2 km", "12.3 km"), rounded to the nearest 0.1 km (exact ties may round either way); a trailing ".0" MUST be omitted (e.g. "2 km").
 - **FR-004**: The number and unit MUST be separated by a single normal space, the unit MUST be exactly "m" or "km" (lower case), the decimal separator MUST be a dot, and there MUST be no thousands separator, matching the rest of the English UI.
 - **FR-005**: The formatting MUST be delegated to a single small, well-known, open-source npm package (no runtime dependencies, loadable as an ES module without a build step, public source repository, a release within the last 2 years, licence MIT, ISC, BSD-2-Clause, BSD-3-Clause or Apache-2.0).
-- **FR-006**: The app MUST keep running without a build step: the browser MUST load the package from the same public CDN as the map library (unpkg), at one exact pinned version (the same version as declared for the tests), without delaying the start of the app, and the automated tests MUST use the same package declared as a project dependency. If the package cannot be loaded, distances MUST fall back to a plain format that follows FR-002 to FR-004 where possible, and the rest of the app MUST keep working.
+- **FR-006**: The app MUST keep running without a build step: the browser MUST load the package from the same public CDN as the map library (unpkg), at one exact pinned version (the same version as declared for the tests), without delaying the start of the app, and the automated tests MUST use the same package declared as a project dependency. If the package cannot be loaded (or has not loaded yet), distances MUST fall back to whole metres only: the value rounded to the nearest whole metre, a normal space, then "m", with no thousands separator (e.g. "1500 m"); invalid values show "—" (FR-008). No kilometre conversion is done in the fallback. The rest of the app MUST keep working. The package is trusted the same way as the map library: one exact pinned version, no integrity hash.
 - **FR-007**: Durations and every other displayed value MUST remain unchanged.
 - **FR-008**: Invalid or missing distances MUST NOT produce "NaN" or crash the route display; they show "—".
 - **FR-009**: Automated tests MUST cover the examples and edge cases listed above, including the fallback format, and existing tests that assert the old format ("1.50 km") MUST be updated to the new format.
@@ -117,6 +122,6 @@ A maintainer of the app no longer owns hand-written unit-conversion and rounding
 - The package is loaded in the browser from the same public CDN as the map library (confirmed in Clarifications), so the "no build step" property of the app is preserved; the package is also declared in the project's dependency list for tests.
 - Supported browsers are those with import maps (Chrome/Edge 89+, Firefox 108+, Safari 16.4+).
 - Accessibility of the "m"/"km" abbreviations is out of scope (unchanged from before).
-- Relying on unpkg is the same accepted risk as for the map library; the app maintainers own it.
+- Relying on unpkg is the same accepted risk as for the map library; the app maintainers own it. No subresource integrity hash is used, as for the map library; the exact pinned version is the only safeguard.
 - Routes with stops show their total distance with the same formatting function.
 - Duration formatting stays hand-written and unchanged (the request concerns distances only).

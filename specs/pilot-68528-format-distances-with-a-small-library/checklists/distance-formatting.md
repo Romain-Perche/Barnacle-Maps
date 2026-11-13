@@ -15,7 +15,7 @@
 - [x] CHK003 - Is the kilometre rounding mode specified (half-up vs. half-even vs. floating-point behaviour, e.g. 1,050 m and 1,150 m)? [Gap, Spec §FR-003] — reviewed by the factory, 2026-11-13
 - [x] CHK004 - Is the placeholder for an invalid or missing distance specified as one exact value, rather than "nothing or a neutral placeholder"? [Gap, Spec §FR-008, Edge Cases] — reviewed by the factory, 2026-11-13
 - [x] CHK005 - Are negative distances classified (invalid vs. formatted)? [Gap, Edge Cases] — reviewed by the factory, 2026-11-13
-- [ ] CHK006 - Is the exact fallback output format defined when the package cannot be loaded, including which of FR-002 to FR-004 it must still meet? [Clarity, Spec §FR-006]
+- [x] CHK006 - Is the exact fallback output format defined when the package cannot be loaded, including which of FR-002 to FR-004 it must still meet? [Clarity, Spec §FR-006] — reviewed by Pilot, 2026-11-13
 - [x] CHK007 - Do the requirements state whether the fallback path itself must be covered by automated tests? [Gap, Spec §FR-009, Edge Cases] — reviewed by the factory, 2026-11-13
 - [x] CHK008 - Does FR-010 also require documenting any new contributor step (installing dependencies before running tests)? [Gap, Spec §FR-010, SC-003] — reviewed by the factory, 2026-11-13
 
@@ -31,7 +31,7 @@
 ## Requirement Consistency
 
 - [x] CHK015 - Is the "no thousands separator" rule (only in Edge Cases) also stated in the functional requirements next to the decimal-separator rule? [Consistency, Spec §FR-004, Edge Cases] — reviewed by the factory, 2026-11-13
-- [ ] CHK016 - Does SC-005 ("no hand-written unit selection or rounding logic left") conflict with FR-006 (a fallback that "follows FR-002 to FR-004 where possible") and FR-008 (custom invalid-input handling)? [Conflict, Spec §SC-005, §FR-006, §FR-008]
+- [x] CHK016 - Does SC-005 ("no hand-written unit selection or rounding logic left") conflict with FR-006 (a fallback that "follows FR-002 to FR-004 where possible") and FR-008 (custom invalid-input handling)? [Conflict, Spec §SC-005, §FR-006, §FR-008] — reviewed by Pilot, 2026-11-13
 - [x] CHK017 - Is SC-003 ("exactly one new runtime dependency") consistent with loading the package from a CDN, i.e. is it clear whether the CDN script and the package.json entry count as one dependency? [Consistency, Spec §SC-003, §FR-006] — reviewed by the factory, 2026-11-13
 - [x] CHK018 - Are the User Story 1 acceptance scenarios consistent with the 999.6 m → "1 km" edge case and the FR-003 boundary wording? [Consistency, Spec §US1, Edge Cases] — covered, ticked by the factory, 2026-11-13
 
@@ -50,7 +50,7 @@
 
 ## Non-Functional Requirements
 
-- [ ] CHK026 - Are supply-chain integrity requirements stated for the CDN-loaded package (e.g. subresource integrity or explicit acceptance of the same trust model as the map library)? [Gap, Security, Spec §FR-006]
+- [x] CHK026 - Are supply-chain integrity requirements stated for the CDN-loaded package (e.g. subresource integrity or explicit acceptance of the same trust model as the map library)? [Gap, Security, Spec §FR-006] — reviewed by Pilot, 2026-11-13
 - [x] CHK027 - Is the minimum browser support stated, given that the loading approach may rely on newer browser features? [Gap, Dependency, Spec §FR-006] — reviewed by the factory, 2026-11-13
 - [x] CHK028 - Are accessibility expectations for the abbreviated units (e.g. screen readers announcing "m"/"km") either specified or explicitly out of scope? [Gap, Accessibility] — reviewed by the factory, 2026-11-13
 
