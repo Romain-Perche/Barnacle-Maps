@@ -11,7 +11,7 @@ npm install          # installs convert@8.0.2 (the only dependency)
 npm test             # node --test test/
 ```
 
-Expected: all tests pass. The `formatDistance` tests in `test/geo.test.js` cover every row of
+Expected: all tests pass. `test/format-distance.contract.test.js` covers every row of
 [contracts/format-distance.md](./contracts/format-distance.md), including the fallback (`conv = null`).
 No test still expects `"1.50 km"`.
 

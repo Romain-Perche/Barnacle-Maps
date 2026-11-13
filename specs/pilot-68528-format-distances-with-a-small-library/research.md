@@ -67,14 +67,14 @@ search and routing would not work either. A caught dynamic import keeps every ot
 (FR-006). Awaiting at the top level would make a slow CDN delay the whole app, which is why the import is not awaited.
 
 **Alternatives considered**: A hand-written km fallback that copies the old logic would satisfy
-FR-003 even offline, but it brings back the code that SC-005 asks to remove, and FR-006 only says
-"where possible". Loading the package lazily inside `formatDistance` would make the function
+FR-003 even offline, but it brings back the code that SC-005 asks to remove, and FR-006 now requires whole metres only
+in the fallback. Loading the package lazily inside `formatDistance` would make the function
 asynchronous and change both call sites for no benefit.
 
 ## 4. Tests in Node
 
 **Decision**: Add `"dependencies": { "convert": "8.0.2" }` to `package.json` and commit the
-generated `package-lock.json`. Add `.gitignore` with `node_modules/`. Contributors run
+generated `package-lock.json`. Add a `node_modules/` line to the existing `.gitignore`. Contributors run
 `npm install` once before `npm test`; the README says so. `npm start` does not change (SC-003).
 
 To test the fallback, call `formatDistance(1500, null)`. The optional second parameter avoids

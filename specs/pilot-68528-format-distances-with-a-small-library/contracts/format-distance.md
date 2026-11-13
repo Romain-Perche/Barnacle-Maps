@@ -28,7 +28,7 @@ export function formatDistance(meters, conv = convert): string
 | `999.5` | `"1 km"` | boundary |
 | `0.5` | `"1 m"` | boundary |
 | `9999.96` | `"10 km"` | boundary |
-| `NaN`, `undefined`, `null`, `"abc"`, `"5"`, `Infinity`, `-5` | `"—"` | FR-008, never "NaN" |
+| `NaN`, `undefined`, `null`, `"abc"`, `"5"`, `Infinity`, `-Infinity`, `-5` | `"—"` | FR-008, never "NaN" |
 
 Always: exactly one space between the number and the unit, `.` as the decimal separator, at most
 one decimal place, unit `m` or `km` (FR-002 to FR-004, SC-002).
@@ -39,6 +39,7 @@ one decimal place, unit `m` or `km` (FR-002 to FR-004, SC-002).
 |-------|--------|
 | `1500` | `"1500 m"` |
 | `420.4` | `"420 m"` |
+| `412700` | `"412700 m"` |
 | `NaN` | `"—"` |
 
 The function never throws.
