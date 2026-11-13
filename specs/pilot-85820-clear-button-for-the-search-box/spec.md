@@ -8,6 +8,13 @@
 
 **Input**: User description: "When I have typed a place in the search box, show a small clear button (×) inside the box that empties it and hides the result list, so I do not have to delete the text by hand."
 
+## Clarifications
+
+### Session 2026-11-13
+
+- Q: Which design do you want for the clear button (×)? → A: Design: A, plain grey × inside the box on its right edge (see design-options.html).
+- Q: After you choose a destination, what does the × clear? → A: Only the search text and the result list; the destination, routes and stops stay.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Clear the search text in one tap (Priority: P1)
@@ -71,7 +78,7 @@ A keyboard or screen-reader user can reach and activate the clear button and und
 
 ### Functional Requirements
 
-- **FR-001**: The search box MUST show a small clear button (×) inside the box, on its trailing edge, whenever the box contains any text, and MUST hide it whenever the box is empty.
+- **FR-001**: The search box MUST show a small, plain grey clear button (×) inside the box, on its right edge (Design A in design-options.html), whenever the box contains any text, and MUST hide it whenever the box is empty.
 - **FR-002**: The clear button's visibility MUST update on every change to the box's content, whether from typing, deleting, pasting, or the app filling it in (e.g. with the chosen destination's name or emptying it after "Add as stop").
 - **FR-003**: Activating the clear button MUST empty the search box.
 - **FR-004**: Activating the clear button MUST hide/empty the search result list.
@@ -95,8 +102,8 @@ A keyboard or screen-reader user can reach and activate the clear button and und
 
 ## Assumptions
 
-- "Clear" affects only the search text, the result list, and the search status message; the destination and routes are kept because the user may just want to search for a stop. Removing the destination is out of scope.
+- "Clear" affects only the search text, the result list, and the search status message; the destination, routes and stops are kept (confirmed in Clarifications). Removing the destination is out of scope.
 - The clear button appears for any non-empty content (including text shorter than the minimum length that triggers suggestions).
 - No keyboard shortcut (such as Escape) is added; that is out of scope for this feature.
-- The × uses the app's existing visual style; no new icons or assets are required.
+- The × follows Design A (plain grey ×, matching the panel's plain controls); no new icons or assets are required.
 - The feature works within the existing single-page app with no new external services.
