@@ -8,6 +8,6 @@ A small navigation web app: shows a map, your live position, lets you search for
 - Car routes: OSRM car profile (`routing.openstreetmap.de/routed-car`), up to 3 alternatives, without the pleasure indicator.
 - Stops: add up to 5 stops with "Add as stop" next to a search result, or by clicking the map and choosing "Add stop here". Routes go from your position through every stop, in list order, to the destination. Reorder stops with the arrows, remove one, or use "Clear stops"; stops are kept when you change the travel mode or the destination. With stops, OSRM usually returns fewer alternatives (often a single route) and no detour routes are added.
 - Pleasure: counts the green pixels (parks, grass, woods in the OpenStreetMap style) on the OSM map tiles (zoom 16) along each walking route. The route with the most green pixels is marked "most pleasant". It shows "Pleasure unavailable" if tiles cannot be loaded or the walk is very long.
+- Selecting a route shows a summary bar at the bottom of the map (mode, duration, distance, arrival time).
 
 No build step or dependencies. Run `npm start` and open http://localhost:8000 (geolocation requires localhost or HTTPS). Run tests with `npm test`.
-- Selecting a route shows a summary bar at the bottom of the map (mode, duration, distance, arrival time).
