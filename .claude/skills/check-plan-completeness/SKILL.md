@@ -10,9 +10,10 @@ disable-model-invocation: true
 
 A gate between `/speckit-checklist` and `/speckit-tasks`. `/speckit-checklist` writes items
 (`CHK001`, `CHK002`, ...) that ask whether the requirements are complete, clear and consistent.
-This skill shows the human every item not yet ticked, with a proposed answer, writes their answers
-into the spec (and the plan when the design changes), and ticks the items they settled. The
-feature moves on to `/speckit-tasks` only when every item is ticked.
+This skill settles every item not yet ticked. It asks the human about the few items that matter
+most (5 questions at most for the whole feature, rule 12) and decides every other item itself with
+its proposal. It writes the answers and its decisions into the spec (and the plan when the design
+changes), and ticks the items. The feature moves on to `/speckit-tasks` only when every item is ticked.
 
 ## User Input
 
@@ -39,10 +40,13 @@ No argument is needed: the inputs come from the run's `history` (rule 3).
    - **Ask** when the history has no Ask comment from this skill, or when its latest Ask has
      already been applied (a `done` outcome after it).
    - **Apply** when the latest Ask from this skill has replies after it. Read that Ask comment and
-     every reply after it. The items are rebuilt from the comment (numbers + `CHK` IDs) and from
-     the checklist files in the repo, never from memory.
+     every reply after it. The items are rebuilt from `<feature>/gate-asked.md` (question number ->
+     `CHK` ID, rule 5) and from the checklist files in the repo, never from memory.
 5. **One comment per round:** each run posts exactly one comment, given as the outcome (rule 9).
-   Every item in it has a number and its checklist ID, e.g. `**1. CHK007**`.
+   Every question has a number. The comment never shows a `CHK` ID or a file name.
+   Before the outcome, add this round to `<feature>/gate-asked.md` (create it if missing): a line
+   `## check-plan-completeness, <date>`, then one line per question, `<number>. <ID>`. Commit it (rule 8). The
+   Apply run finds each item's ID there.
 6. **Matching answers:** replies are free text. Match each answer to its item by meaning; a
    number or ID helps but is optional. Never guess. Classify each item:
    - **covered:** the human confirms the spec or plan already covers it: tick it;
@@ -52,12 +56,13 @@ No argument is needed: the inputs come from the run's `history` (rule 3).
      don't ask again: keep the item open (as unsure) and say so;
    - **unsure** (the human doesn't know yet, or didn't answer the item): the item stays open and
      the step stays blocked until a later reply.
-7. **Read-back:** every Apply run starts its comment with a read-back, one line per item:
-   `1. CHK007: covered, ticked`, `2. CHK009: noted: the PM reassigns them (spec.md FR-005)`,
-   `3. CHK011: waiting for your answer`. This way a misunderstanding costs little to fix.
-8. **Push:** at the end of each run (Ask or Apply), if files changed: `git add` the changed files
+7. **Read-back:** every Apply run starts its comment with a read-back, one line per question the
+   human was asked (rule 13), named by its topic in a few words, never by its `CHK` ID:
+   `1. Deleted users' tasks: covered.`, `2. Task owner: the PM reassigns them.`,
+   `3. Login limit: waiting for your answer.` This way a misunderstanding costs little to fix.
+8. **Commit:** at the end of each run (Ask or Apply), if files changed: `git add` the changed files
    under `specs/`, commit with a short message (`gate(check-plan-completeness): ask` /
-   `gate(check-plan-completeness): apply`), then `git push` the current branch. Never force-push.
+   `gate(check-plan-completeness): apply`). Do not push: the factory checks your commits and pushes them after the run.
 9. **Outcome:** the run's LAST message ends with exactly one fenced json block, and nothing after it:
    - `{"status": "waiting", "ask": "<the comment in markdown>"}` when anything needs a human
      answer (new items, a follow-up question, items still open). On Apply rounds the `ask` starts
@@ -66,12 +71,24 @@ No argument is needed: the inputs come from the run's `history` (rule 3).
      when nothing is open.
    The orchestrator posts `ask` or `readback` to the Linear issue and runs the next round with the
    reply. For a manual test, a person copies `ask` into Linear by hand.
+   **Style:** read `.claude/skills/visual-briefing/SKILL.md` and write every `ask` and `readback` as it
+   says. Keep the format these rules set (numbers, IDs, read-back lines).
 10. **Running other skills from this one:** the Spec Kit skills and the factory skills have
     `disable-model-invocation: true`, so you can't start them with the Skill tool. To "re-run
     `/speckit-X` with argument A", read `.claude/skills/speckit-X/SKILL.md` and follow its
     instructions with `$ARGUMENTS` = A.
 11. **Who and when:** a name recorded in a file (ticks) is the author of the reply that gave the
-    answer. A date is that reply's date (YYYY-MM-DD).
+    answer. A date is that reply's date (YYYY-MM-DD). For an item you decide yourself, the name is
+    `the factory` and the date is today.
+12. **Question budget: 5 questions at most for the whole feature.** Count every numbered item in
+    every earlier Ask comment of this skill in the history (follow-up questions count too); what is
+    left of 5 is this run's budget. Spend it only on the gaps where a wrong guess costs the most:
+    scope, data kept or shared, security and privacy, or what the user sees and does. Decide every
+    other item yourself (Apply, "Decided by the factory"). When the budget is spent, never ask again:
+    decide unclear or unanswered items yourself with your proposal.
+13. **The human sees only their questions.** Your own decisions and the items you tick as covered
+    go into the files (`spec.md` Clarifications, the ticks), never into a comment or a read-back:
+    no list of them, no count of them.
 
 ## Ask
 
@@ -80,31 +97,41 @@ No argument is needed: the inputs come from the run's `history` (rule 3).
 2. For each item, read what `spec.md`, `plan.md` and the other design files (`data-model.md`,
    `contracts/`, `research.md`, `quickstart.md`) say about it. Decide whether it is a gap or
    already looks covered.
-3. Write one comment, numbered, one entry per gap:
-   - `**N. CHK0xx** (checklists/<file>.md)`
-   - the gap in plain words;
-   - what the spec or plan says today: one quoted line at most, with its reference (e.g. FR-005);
-   - *Proposal:* one concrete solution the human can accept as is.
-4. End with one line listing the items that already look covered:
-   `Look covered, confirm in bulk: N. CHK0xx, ...`.
-5. Write no file. Outcome: `waiting`.
+3. Pick the gaps to ask about: at most the budget left (rule 12), the most important first. Every
+   other item: decide it now (Apply, "Decided by the factory") and tick it. Items that already look
+   covered: tick them (` — covered, ticked by the factory, <date>`).
+4. If you ask nothing: commit (rule 8), outcome `done`, next `/speckit-tasks`, with the
+   read-back `Every checklist item is settled.` and nothing else (rule 13).
+5. Otherwise write one comment, numbered, one entry per gap, in this format only: the gap as one
+   question, 2 to 4 options (one line each), and your recommendation with one short reason. Your
+   recommendation is the proposal you apply if the human accepts it.
+6. Nothing else goes in the comment (rule 13): no `CHK` ID, no file name, no quote of the spec.
+7. Write `<feature>/gate-asked.md` (rule 5), commit your decisions (rule 8). Outcome: `waiting`.
 
 If there are no unticked items: outcome `done`, next `/speckit-tasks`.
 
 Example:
 
 ```markdown
-**1. CHK007** (checklists/ux.md)
-What happens to a deleted user's open tasks is not said.
-Today: "Admins can delete users" (FR-005).
-*Proposal:* their open tasks go back to the project's PM, who reassigns them.
+**1. What happens to a deleted user's open tasks?**
+- **A:** They go back to the project's PM, who reassigns them.
+- **B:** They are deleted with the user.
 
-**2. CHK012** (checklists/security.md)
-No limit on login attempts.
-Today: nothing in spec.md or plan.md.
-*Proposal:* lock the account for 15 minutes after 5 failed attempts in a row.
+My recommendation: A, because no work is lost.
 
-Look covered, confirm in bulk: 3. CHK003, 4. CHK009
+**2. What happens after many failed logins?**
+- **A:** Lock the account for 15 minutes after 5 failed attempts in a row.
+- **B:** No limit.
+
+My recommendation: A, because it stops password guessing.
+```
+
+`<feature>/gate-asked.md` for this round:
+
+```markdown
+## check-plan-completeness, 2026-11-06
+1. CHK007
+2. CHK012
 ```
 
 ## Apply
@@ -115,9 +142,10 @@ to its item (rule 6), then for each item:
 | Answer | What to do |
 |---|---|
 | Covered | Tick it. |
+| Decided by the factory (not asked, rule 12) | As "Clear", with your proposal as the answer and `A: <proposal> (decided by the factory, no question asked)`. Then tick. |
 | Clear | Write a `- Q: <the gap as a question> → A: <the answer>` line under `## Clarifications` / `### Session <reply date>` in `spec.md` (create the headings if they're missing, as `/speckit-clarify` does: `## Clarifications` just after the overview section), plus the change in the right section of `spec.md` (requirement, edge case, success criterion or assumption). Then tick. |
 | Clear, and it changes the design (an entity, field, interface, integration or constraint) | As above, then re-run `/speckit-plan` with the answer as its argument (rule 10). Run it once per run, with all the design answers together. |
-| Unclear / unsure | Rules 6 and 7; no tick. |
+| Unclear / unsure | Rules 6 and 7; no tick, while the budget allows a follow-up. Budget spent: decide it yourself. |
 
 **Ticking:** change `- [ ]` to `- [x]` on that item's line only, and append
 ` — reviewed by <name>, <date>` (rule 11). Never tick an item the human didn't answer. Never change
@@ -128,10 +156,10 @@ Example: `- [x] CHK007 Are deleted users' open tasks handled? [Gap] — reviewed
 ## Finish
 
 - Items still open (unclear or unsure): outcome `waiting`. The `ask` has the read-back, the
-  follow-up questions, and the list of items still waiting
-  (`Blocked until these are answered: 3. CHK011, ...`).
+  follow-up questions, and the list of questions still waiting
+  (`Blocked until these are answered: 3. Login limit, ...`).
 - All ticked and no design change: `done`, next `/speckit-tasks`.
 - All ticked and the design changed (`/speckit-plan` ran): `done`, next `/speckit-checklist`, then
   this skill again (it only sees the new unticked items).
 
-Push before the outcome (rule 8).
+Commit before the outcome (rule 8).
