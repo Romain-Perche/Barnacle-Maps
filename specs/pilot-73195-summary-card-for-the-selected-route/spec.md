@@ -8,6 +8,13 @@
 
 **Input**: User description: "Summary card for the selected route — When I pick a route, show a small card on the map with its distance, duration and arrival time, so I can see it without looking at the panel."
 
+## Clarifications
+
+### Session 2026-11-13
+
+- Q: Which design? → A: Design: A, one-line bar centered at the bottom of the map: "29 min | 2.35 km | Arrive 14:39" (see `design-options.html`).
+- Q: How should the arrival time be written? → A: Follow the device's clock setting (e.g. 14:39 or 2:39 PM).
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - See the selected route's key figures on the map (Priority: P1)
@@ -64,7 +71,7 @@ The card disappears when there is no route to describe (routes cleared, a new se
 - Arrival on a later day (e.g. a long walk started late in the evening): the arrival time is followed by a next-day indication (e.g. "+1 day") so it is not mistaken for a time today.
 - Very short routes (under 1 minute): the duration follows the existing panel rule (shown as at least 1 min) and the arrival time is consistent with the displayed duration.
 - Routes with stops: distance, duration and arrival time cover the whole journey through all stops to the destination (the same totals as in the panel).
-- Small screens: the card stays small enough not to hide the selected route's start or destination when the map is fitted to the routes, and does not cover the map's zoom controls or attribution.
+- Small screens: the one-line bar stays within the map width (it may wrap or shorten its separators but never truncate a figure) and stays small enough not to hide the selected route's start or destination when the map is fitted to the routes, and does not cover the map's zoom controls or attribution.
 - Walking routes: the pleasure indicator is not part of the card (the card shows only distance, duration and arrival time).
 - The card must not intercept map interactions beyond its own area (clicking the map next to it still works, e.g. to add a stop).
 
@@ -75,12 +82,12 @@ The card disappears when there is no route to describe (routes cleared, a new se
 - **FR-001**: The system MUST show a summary card overlaid on the map whenever a route is selected and displayed.
 - **FR-002**: The card MUST show the selected route's distance, duration and estimated arrival time, and nothing that would require the panel to understand it.
 - **FR-003**: Distance and duration on the card MUST use the same values and the same formatting as the panel entry of the selected route.
-- **FR-004**: The arrival time MUST be the current local time plus the selected route's duration, displayed as a local clock time in hours and minutes.
+- **FR-004**: The arrival time MUST be the current local time plus the selected route's duration, displayed as a local clock time in hours and minutes, using the device's 12/24-hour clock setting (e.g. "14:39" or "2:39 PM").
 - **FR-005**: When the arrival falls on a later calendar day than the current one, the card MUST indicate it (e.g. "+1 day").
 - **FR-006**: The card MUST update immediately when the selected route changes, whether the selection is made in the panel or on the map.
 - **FR-007**: The card MUST be hidden when no route is displayed: before any search, while new routes are loading, after routes are cleared, and when routing fails or returns no route.
 - **FR-008**: The arrival time MUST be refreshed at least once per minute while the card is visible.
-- **FR-009**: The card MUST NOT cover the map's zoom controls or attribution, and MUST NOT block clicks on the map outside its own area.
+- **FR-009**: The card MUST follow Design A (`design-options.html`): a single-line bar, centered horizontally near the bottom edge of the map, showing duration (emphasized, in the selected-route blue), distance and "Arrive <time>", in that order. It MUST NOT cover the map's zoom controls or attribution, and MUST NOT block clicks on the map outside its own area.
 - **FR-010**: The card MUST be accessible to assistive technologies: its content is readable as text, and a change of selected route is announced politely (without stealing focus).
 - **FR-011**: The card MUST work identically for walking and car routes, and for routes with or without stops.
 
@@ -103,7 +110,7 @@ The card disappears when there is no route to describe (routes cleared, a new se
 
 - The first route remains selected by default when routes are displayed, as today; the card therefore appears as soon as routes are shown.
 - "Arrival time" means estimated arrival if the user leaves now; there is no departure-time picker in scope.
-- Arrival time uses the device's local time zone and its usual 12/24-hour clock convention.
+- Arrival time uses the device's local time zone.
 - The card is informational only: it has no buttons and is not a substitute for the panel (no route switching, no close button in this version).
-- The card is placed in a corner of the map that does not collide with existing map controls; exact placement and styling are design decisions for planning.
+- The card follows Design A (bottom-centered one-line bar); exact sizes and spacing are settled in planning against `design-options.html`.
 - Durations and distances come from the existing routing results; no new data source is needed.
