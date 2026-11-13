@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "zones": [
+    {"id": "browser", "label": "User's browser"},
+    {"id": "dev_host", "label": "Local host serving the files"},
+    {"id": "osm", "label": "OpenStreetMap services (third party)"},
+    {"id": "cdn", "label": "unpkg CDN (third party)"}
+  ],
+  "actors": [
+    {"id": "user", "label": "Browser user"},
+    {"id": "geolocation", "label": "Device geolocation (browser API)"},
+    {"id": "nominatim", "label": "Nominatim geocoding API", "zone": "osm"},
+    {"id": "osrm", "label": "OSRM routing (routing.openstreetmap.de)", "zone": "osm"},
+    {"id": "tiles", "label": "OSM tile server (tile.openstreetmap.org)", "zone": "osm"},
+    {"id": "unpkg", "label": "unpkg (Leaflet JS and CSS)", "zone": "cdn"}
+  ],
+  "processes": [
+    {"id": "static_server", "label": "Static file server (python3 -m http.server)", "zone": "dev_host", "sources": ["package.json"]},
+    {"id": "app", "label": "Barnacle Maps web app (map, search, routes, stops, card)", "zone": "browser", "sources": ["src/app.js", "src/geo.js", "index.html"]},
+    {"id": "pleasure", "label": "Pleasure scorer (green pixels on map tiles)", "zone": "browser", "sources": ["src/app.js", "src/geo.js"]}
+  ],
+  "stores": [
+    {"id": "site_files", "label": "Site files (index.html, styles.css, src/)", "zone": "dev_host", "sources": ["index.html", "styles.css", "src"]}
+  ],
+  "flows": [
+    {"from": "site_files", "to": "static_server", "data": "HTML, CSS and JS modules", "sources": ["package.json"]},
+    {"from": "static_server", "to": "app", "data": "page and app code", "sources": ["package.json", "index.html"]},
+    {"from": "unpkg", "to": "app", "data": "Leaflet library and stylesheet", "sources": ["index.html"]},
+    {"from": "user", "to": "app", "data": "search text, place picks, stops, travel mode, route choice", "sources": ["src/app.js", "index.html"]},
+    {"from": "geolocation", "to": "app", "data": "live position (lat, lng)", "sources": ["src/app.js"]},
+    {"from": "app", "to": "nominatim", "data": "place search query", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "nominatim", "to": "app", "data": "matching places (name, lat, lon)", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "app", "to": "osrm", "data": "start, stops, via and destination coordinates", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "osrm", "to": "app", "data": "routes (GeoJSON path, distance, duration)", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "tiles", "to": "app", "data": "map tiles for display", "sources": ["src/app.js"]},
+    {"from": "app", "to": "pleasure", "data": "walking route paths", "sources": ["src/app.js"]},
+    {"from": "tiles", "to": "pleasure", "data": "zoom 16 tile images for pixel counting", "sources": ["src/app.js"]},
+    {"from": "pleasure", "to": "app", "data": "green pixel counts per route", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "app", "to": "user", "data": "map, routes, status, selected route summary card", "sources": ["src/app.js", "index.html"]}
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:338be2fcc3bbd1c4a133d962fd569f7bd59f248535e6fae1fdc122fe0b2ff65a",
+  "claims": [
+    {
+      "id": "claim_b0f060b5090b480a983d0b5a324fe74f",
+      "statement": "npm start serves the repository with Python's built-in http.server on port 8000 and npm test runs node --test on test/.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    },
+    {
+      "id": "claim_dd41324139a8497abe98ae7737009e49",
+      "statement": "Before the first position fix the map shows a default view of Paris at zoom 13.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L27-L29",
+          "version": "repo-lines-v1:sha256:6c13da773536fac8c431f5068800929c3891986aad31e29d3763c77fc466f61a:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjU1ZDhkMzJlOGFmOWVmYjI3OGQ1MmVlYmM5NmVhZGYwYTY5Y2NhODY3NGY3NWIyOWNmNjMwM2JlOWRlMTY4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmI5YzhhM2YyNDc1Mzk0NWZkMjdhMDdjZDk3ZmU1ZDdkZmU4NmY2Y2RjMjE2NzcwZTAzNmE1YmNhMzU4MTVlNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTQ3NzUyMmZkMzYxZmQ0YTZkYTA4MmMyYjE1YTliNGY2MjMwZjM3ZmJlOTJkNTA1NTkxNTNjZDY0MWIzNGNmOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzM0ZWQwMjkzODMzYjRiNDEwZGFkMGIwYTJiZGM5MmY1YzZjNWJhZmY4ZWEzMTJlYWM2NzczYzgxZjhhNWE3YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_823ad7f6e4754c4bad2c19aa047c706a",
+      "statement": "Pleasure scoring limits are source constants: zoom 16, 4 px radius, 150 tiles, 20 s timeout and 15 km straight-line distance.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L44-L48",
+          "version": "repo-lines-v1:sha256:33ec967f30acc92a62b73269945838286dfede48ce14b4f552994c932a779c23:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGZkYTFhMWZjYWZmNTVmOGZhOGI3ZDFiYTAzNzBkZjBhNWQwNzEwMmM0N2I5ZmRlNTQ5NzI2ODg0NTc5ZmJkMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmUxMmE1YTU5ZjJmZjRkMjExYTM5MTdhY2Q2NDBmNGU4MTFiNTg1MTQ1NzlmYzk5Y2QyYzVlODFlZDc1YmY4YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjk5MzEyNTZlZWVjMTY4MTFjNzczNGIxN2M2NzVhZTQxMjg1MGQ1ZjliMzExMWU3MzAyMGRlNjhiYmZiMDYzNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWMxODIyYjNlMmMyNjc4NWJhY2FlN2JkOWYwYTQzZGMxNjc0MWI4MTczNmNjZjhmYmU5N2ZiZDM5NWVmY2ZjZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1183520c348b4e958babea44a708f9fc",
+      "statement": "Stop limits are source constants: at most 5 stops and a 20 m duplicate radius.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L74-L76",
+          "version": "repo-lines-v1:sha256:9d592ae32af1cfdc51157019eff089ffb1d4f6337fe4ef57a79ea9ffc03337ed:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmIxMjM5MDlmMjFhM2I4OTRjNTFjNWY2ZjFmZDM3Zjg3ODI5MDllOWM1YzYyZjdmM2M2MDg1NzZiYTZjZTViNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDBlYmU5NjI3MmQwZjZiYTU1NmYxZmU4ZGQzOTdiOTlkOGVjMTRhNjVmOTE4MmQxOWYxMmUyMWZiYzAxYTY2MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTE3Yjc5ODI1ZDRmZmY0ODllOTBiNjk5M2MzMmViNjIwMTYxYjY1ZjMyZmQ5NjEwN2U1MmI2NTg0NmM4Y2M5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWYzOTUwNmUzNmJmZWFjZTg0ZWM3Yjk2OTc0NzA5ZGJkNzM3YTMxYzQ5ZmE1YmYwNmYwMGVlNGVkODRhMjY5MSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T13:06:33.368Z"
+  }
+}

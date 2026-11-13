@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:8c881fb5eca72ca0338ad235fa4a1fe58c7b7f470dbfae34a2aaffd7f62f681b",
+  "claims": [
+    {
+      "id": "claim_23be8c6c730e4591817f1bef277f4100",
+      "statement": "Tests run with Node's built-in test runner via npm test, with no test dependencies.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        },
+        {
+          "resource": "repo://test/geo.test.js#L1-L12",
+          "version": "repo-lines-v1:sha256:aaa2bd1604f01d668e15573cce6b47fc548ab316e023dfe14a3e2ea47b922bc8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5ODY1YmNjMGI5NTc5NmJjZDE1MjRiMzBkNzFiZmFhN2M5NTY3MDQ3YjA2Mjg2NWRiMmQ0OTA2MGU5MmUzMmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxMGQxYjY5MTJhOWIzMGEyM2I3YmQ1ZmY0MmIyZTJkMDAzNmY5ZWI2YTYyOGRmNTM5OTFjMGZiYzgwOTE4YjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY0MmRiMjdkMjQzNjg5ZjNkNGU2MzU3OTE0Yzg5OGYyNjE0OTA5MWQ5NWQ0ODM5YWVjYzVlZTkxMWZlOGYwYzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_888831d2fe7c46ea865ec9823121604a",
+      "statement": "The fake browser helper builds a minimal DOM from the real index.html, a fake Leaflet, a scripted fetch and geolocation, and imports src/app.js fresh for each boot.",
+      "evidence": [
+        {
+          "resource": "repo://test/helpers/fake-browser.js#L1-L3",
+          "version": "repo-lines-v1:sha256:db549a55bd7be49f22031e3cf204ad20a13de99d5c889bb6490ab53a11955cbc:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzkwNmZmZjI5ODNmY2FlNDg0MGU5NWI4NjMzYTBjM2I5Y2NjMjRlMTBjYTVlMDIyOTZmNTI2Nzk4MTYyZTdmZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDExNDMyODRhZWJlMDJhYzEyNzQ2ZDk3OWNiZjFmZDkwZjljOTJiMGIyNDVjYTBhNjA0YWU4YmRkNzJkODAyMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTcxN2ZkMWFlZTEzMzU1YmJmMTFiZGNiODk4ZDlmYzcwYWRiOTNkZGQ5NjEwMzk3Zjc3ZmIzMzY0OWE5NDdlMCJ9"
+        },
+        {
+          "resource": "repo://test/helpers/fake-browser.js#L217-L238",
+          "version": "repo-lines-v1:sha256:3a681d7414951b5020af8686e8d99f55dd92aa8b5d2ea7b39f0c6f1bdc91aab4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIzZjBhMzY0OGM5ODMwMDBjNGUxMDEwZjExYWRjODdmZWFjNWEyZGRjZDdiMDI3NzM0MjM4ZDdjNzM5NmNkNGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyODdiNzBmZTgzY2UxNTU5NmU1OGUwZjU4NmE1NDQzOTMzNzFhYmI1YTU1MWY0MWFlYjVkZGMzNGJjMzQxMWIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBjODBkZDJlOTVhZjU1NjhmOWRiYmQ1NzJiOGMyOGU0YzllZDExYzgzNDhlOGYzNTk3NDY5Yzk1ODBjMjhjYjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg3Y2U2NjI2Yzg2NTg1ZjE5MzM2OTg1NzMzNDE4Yjk1OTExYWYxNjFlNjUwODYzYmIwZmNiZWUwYTBmZTFkODkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1b45b7985f8949ccb15acd5da7da754f",
+      "statement": "Route card integration tests fix the current time with node:test mock timers and drive search, position and route selection through the fake browser.",
+      "evidence": [
+        {
+          "resource": "repo://test/route-card.integration.test.js#L46-L57",
+          "version": "repo-lines-v1:sha256:26e737d1a1004c5861e9b1ba8dd13405c72632b12fb2cfad5d13399cbcefff6e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE3MWJhZmMxZjRkNWM1NTAxZWZiOThhNDAyNmEwYzkwMWY5MGUzZTdiMzEwZTk4ZTAwOWVkYzZlZTUxYjdhMzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNjYWNlZDg5MzliYTVkZmIxYzE0YzJhN2E2OTkyYWM0MmZjYzY2YzZkZGRlMDgzNmIxMDkzYjVlYWQyZmZmMzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyMDQwZTA5NWE5NGUyYWRhNzRlNDIxZjM3MTg3NTFhOTFhODEwYmZkNjZmNDhmNGU5MzljN2I3NDgwZWI2NzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkxOWNkYmI5ZWU4M2FhMWViYzExNjAzZDcxZTNhNGQzODNkMTAzOWY1NjRlOWFiNGQ1ZmEyNWI5YWYwN2JiNGUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9da7bebf20414fc0b01a4f09d43c335f",
+      "statement": "AI test scenarios run the app with headless Playwright, fixed geolocation and clock, and network stubs backed by fixtures in tests/ai/fixtures.",
+      "evidence": [
+        {
+          "resource": "repo://tests/ai/README.md",
+          "version": "repo-file-v1:sha256:471d01bb943a80c79dcaa3c12d67abd3f322eff3e34e53b49ddfd9950a2e572a"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T13:06:33.368Z"
+  }
+}

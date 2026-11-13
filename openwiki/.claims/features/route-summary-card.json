@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:ab26a85f0c0295be54ce649a03ee52d193487ac54dd59cb7314f5b4498e68149",
+  "claims": [
+    {
+      "id": "claim_9d9a7594d3dc4b8a8be512e6ceb96056",
+      "statement": "routeSummary returns the travel mode label (falling back to Walk), the panel's duration and distance strings, and the formatted arrival time.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L362-L369",
+          "version": "repo-lines-v1:sha256:cf73e5ecd1c29ab8713112d6eada36918322d77926208ed1c2f4ed16cbda7a30:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjI4NGUyOWVhN2M5NjUxMDg4YWQwZWNhNTVmYjY5MTEyMjY5MDExMTUwY2YzNTNiYjkxMDliZDIyODI0MjdjYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTM0MWQwN2I4NTcyZThlZmVmMTJiNGY5NTdiMTg3ZjM2ZThjNmM5NTNhZWE2YmRmMjU4MDMzYmRmZjZhM2U2ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://test/summary.test.js#L128-L148",
+          "version": "repo-lines-v1:sha256:fd57471e928f28e81b9e4fa49b41f35865124211142384a452615255ca90b95e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxZDQ5ZGZmZDg0ZjhjOWMzOGExOTUwOGZjY2Q3MGIwZGM1MzUxZWViZDM4MjllOWIzMjM3MjM3OTFiZWY4NmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4MGQyZGQ0ZjI4OWQyNmRjNzU3YzJiNjVhMDZjMzkyMjdhNjcxN2M0YjQ4YjVhMzk3OTJjOWYxMWU0MWFlYTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_29105eb38b6649dbb078492ea44e1a5c",
+      "statement": "Arrival time is computed from the rounded displayed minutes (at least 1) and shows +1 day or +N days when it falls on a later calendar day.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L340-L360",
+          "version": "repo-lines-v1:sha256:f8b51651be5a3af8cb37cf6aee7390120012e588d9f76283a7774f40791351f1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ0ZGFhYzY2ODM4YzdkMDRmZGY4ZGYzZTQ1YjQzYTQ3MDVlMjI0Nzg5ZGIwNjliNGU5YWM3Y2M3OWViNzc3YzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1MjIxNGY4ZTcxNmY2NjQwODdlZjQ3MWMyMzgwNjg0MzZlM2RhZmNmMWEwMmQxZWRjMWE2NWQ2ZTlmNWExMDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIwNWI0YzQ2NmY0ZGJmM2UzMzZjYjc0ZjBhNzk5YmZjM2RjMTM3YzlhMWM4ZDRiYWQ2NDlkMGZmMjczNzE5NTMifQ"
+        },
+        {
+          "resource": "repo://test/summary.test.js#L38-L70",
+          "version": "repo-lines-v1:sha256:19209a008e3748728a2910913ad07d82f173cb543271fb6ab3bece17af9aecbc:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmNjRjMDA1NzU4ODM4NDM2N2RkZTNkMmU4MzViN2RiYzA5ZThhZjc3MTgzNjQ1MTI2NjQ3YjY5YmIyNmI1YzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYzM2ZhNzQ4YWIyMjc5ZTBiMTEzMjZkNGNmNzhiODVhYzkyNmM4ODc2YTNkNTliMjhkYTRlZmMwMjk5NjQyODgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVjYmUzZDk3YTRlNjcyNGFlOWVmZmViZGY0ZThlZGNhNGMzNmJkOTE5MDM0NzgzZjNhOGI4MTZjNzg0MmExZGIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8b13e759a2b9452fa46772949e712571",
+      "statement": "renderCard fills the bar for the selected route using drawnMode and reschedules itself at the next minute boundary to keep the arrival current.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L178-L196",
+          "version": "repo-lines-v1:sha256:3681bc5cb73a95ef7427c148e12ef6a8cdf121e2aee1c340ccfa0707dc149c20:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkMmU1MjZkODE5NTVkYzIzMGIyY2JkYzM3ZjJiMDg5NWRhOTM1NzczZGFkYTVjN2E4YTUwYjJjODMzYjVkN2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE0MzVlMTE3MzA5NTdkZmNkMWE0YzY2MzYzYWRiNzQwZjBmOGNkNGRkZTQ1ZTMxNjRmMWI2YjhlY2VlNTRlZWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjNDI5ZDFhMjEyMDUyZmQzMDNkNjE3ODYyNGU0NjI4OTA1ZWYyNDVkNGMyYmRhNWZhNWVjYzRmODljZGU1YzgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_565d427428e04916bf2d25ba47870f1a",
+      "statement": "Selecting a route writes a summary to the polite live region, while the minute refresh does not re-announce.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L206-L217",
+          "version": "repo-lines-v1:sha256:9830699e2de616106112f78aea919e1db575992db58b52e59b413f360a7e4fc3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyZTExNTk5NWM1YThhY2QyMWJiY2JmMDY2YmRkMzI0MjNhY2I0NDIyNDBhYTJhOWY0YmQ4ZWRjNDIyYWVmMGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ2NDNlYWEyZGIxOTA1YTBjYzNiMGJlZGQ4MDBkOTc3NTc1NzA1MGZlNzc4ZjlkZmQ0NGE3Yzg3ZDJkYjFjNGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNmZGY2ODMzYTQ0NTBlZWVhNDhhOWFkMWI5OTcyMjdjMGVlNGFiZmU3YTlkNWM1NWIwNWJjOTQ2ZDhhNWFkMTEifQ"
+        },
+        {
+          "resource": "repo://test/route-card.integration.test.js#L158-L176",
+          "version": "repo-lines-v1:sha256:eb6af438ae0c5ca45b274071161b0930d91229e5eb9d51fc50186df60fa4419f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5ZWUwZTk5OThjMjEwOWEwYjgyOWU4NzI0ZjY3ZDI0ZmU3NjE3NTNlN2U3MDRmYmQxYTkzOWU4MDRkZGM5MDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ3NDUxNzc2YTkyYmM2NmZlZWQxNDliZDczN2U4YTgwMjc0Y2JiZDdlZjQ0MDE4MjViZjRmNWRmNmM0ZDI4ZjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI0Yzc2ZGQwZTJlZDIyMDA3MGY2ZDkzZjhjOWEwYWM0ZmRjMjE1ZTU2MzBiNTgzMGIxZmU3MjI2OTc2MzhmNjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5d71a243186d4aa4a574e2c9f3ea7c5c",
+      "statement": "clearRoutes hides the card, so the bar is hidden while a new route request loads, after routing errors and when no route is found.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L171-L204",
+          "version": "repo-lines-v1:sha256:602e7a0a4889c3179911de6a657b223fd6eabd41c3f26633768f5ddd502fac1d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlYjk2ZjE3MjRiYjZiMzE5ZTkwYzhhYTlhZmUyMDI1M2M4ZTFiN2EzZjkwNWJhODQ0OTY3MTc1M2Y2M2ZmZWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVlZDEwNmI1MWM1MzNkNzdkMzFiMmI2YTQ0NzQ4ZDg0N2EyZjU5ODY3MWY2MDc2YzY2MWEyNjNmYzY2ZmE0Y2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0ODEyZjZmZGI5NzM1OTgwOWRkNjJlOGMxNWYwNWNhYjRmMWRkMjYzMTEwZWZhMTJlOGZmOGJkNTQ3MTBiYjIifQ"
+        },
+        {
+          "resource": "repo://test/route-card.integration.test.js#L177-L206",
+          "version": "repo-lines-v1:sha256:3e842ee52cd686545054d75e6bdfc45521da454b4b2fecf53a4b5c56a2d89dc5:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3NjY1YjQ3ZTFkODIxMGU0NmE4MjcyMjU0MjczMjM1NDQwN2Q2MjBmMWEzNzI0MmJhOTRjYjRlNjdmNGRjYzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjllNmZjY2MyM2E2YzY4OTgxMTM1ZDdjYjMyYTkxYjFjYTEyMzc3YTJlNDk2MWU4ZGIwN2Q2NTVjYWE2NjdlNWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNmMDBkMWYxMzQ0MzQzOTlhMmNmMGI5MmI3Njg5ODA4MTYzMjMwNDhmMTY0ZWM1MDRiNDcyOTA0YzUwMjI1NDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7f54240407f04ab6a505c72ec1ad1e29",
+      "statement": "When fitting the map to the routes, bottom padding reserves the card height plus 28 px.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L276-L281",
+          "version": "repo-lines-v1:sha256:47439610008feac80a1ead04d867c74294999796110ef7cf63e00d1f14c0c210:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDkwMGFlM2U0NGUwNDk1MmI5YWMxNTgxOTIwZjhjZWFiODhjZTYzOGI4YTEzMDZmOTY3MDcxYWZhNTFjMWM3MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2EzZTQ2Zjk0Mjc2YjZmNmY0ZWQxZjAyYWY3OGJlZjZhMmVlMWM0MzlkZDU1ODRiOTczOTQ4MzEzMjE0ZDJiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTY3NGIzY2FlZmQ3OTI4ZjRmMTEzM2U0NDQ3NTI1YTRlMzBiZmEzZGIxYmYxOGI5Y2FiM2NkZTVkNTgxNDA4YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTk2OTVhNmZmM2FlMWQyYWMzNjNkY2U4YTJiYjVjNDZkYjk1ODdlNDRiYWVjNDVmY2ExNzQ3NGY4MzIyYjZiYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b8904152ab46456fa32ede733d4eed6c",
+      "statement": "The card is styled as a bottom-centred, content-sized bar 28 px above the map bottom with non-truncating items.",
+      "evidence": [
+        {
+          "resource": "repo://styles.css#L43-L54",
+          "version": "repo-lines-v1:sha256:57cbc4a496e75703741c51aaa0a29257e7e32209d664e316c625e7546050dd33:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkZTZhMmUwYmFjODZkN2Y4NDg4NjE4YjZkZDMwMmZmNjQ4YzkwYzU2ZjI3OWUxNGQxMzA4MjFlZmFhNWVlMzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMzZDBhMmJhYTc4NTdkM2I1NzU5Y2QwZjhiM2E5OWNlNGY1YjIwN2U2YjA3MDg0MzI4YWVhYjI0MGM3ZTllNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRmMzQwYzcxY2ZlMTRhZmE5NTFhYWU2NjhlMzEwMzc2MGY1N2I3Yjc5MDVkMGFkY2NmYWEwOGM5NzM2OTA5YjEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T13:06:33.368Z"
+  }
+}

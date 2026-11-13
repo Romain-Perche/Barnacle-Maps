@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:33eda384328db5a3c1a3d98e92bac74a08f54f4a125c6d34a8dd65ced6a65c31",
+  "claims": [
+    {
+      "id": "claim_d8086252af3f47b58ee2d2d7c5df42de",
+      "statement": "updateRoutes snapshots mode, destination and stops, increments routeSeq, aborts running pleasure scoring and clears the drawn routes before fetching new ones.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L347-L355",
+          "version": "repo-lines-v1:sha256:fa33c6f19fdbf41e1611d1aeae842db21da4defaaf908352cbe2319446db0a80:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjFjZDdiMGU3MDhiZDI2OGU3MzI5NWQyOGNlYzRlNzUyYzgyM2VlNmQ3NTVkZmUwODkyZmQyN2I0ZjFlNmEyNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2Q4YmQ2OWQ3ZmIyNzYyOTFiOGZmN2E2MWU4ZmY2N2NmYWNmNzllYjNhODM0NGEyMWY5OTAyYmRhMDdjOWFjZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmYzODYyYzkxODU2MTA5NGQyZDQyMzBkYWE5MTczZTJiYzhlMTUxNGJhNjM2NTI2ZGQ1NTM3ZDM5NTI1NWYyOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmY1ZGU5YTQ3YTA3MmUwZjY2NjNjOTQxZDU5ZjhjNzMxYzM4MTJiNzkwNzk4ZWQwMjU4NjM2ZTUxMDI4MDljYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d79bf40e31f14ae08ba71e189f5f24af",
+      "statement": "If no position is known when a destination is chosen, the app sets pendingRoute and recomputes routes on the next geolocation fix.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L359-L363",
+          "version": "repo-lines-v1:sha256:501cb145b148fde82a637b30480ff9a0ce934a19dcd836dfead0c9245913ce4c:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTk1YjQ3YTk2NzYyM2E0MGFhMGViMDA3ZWI3MmZhMjkxZWYyM2MzYjA1NWRkOGJmYTEwM2ExNGE0NmVjYTU3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmY1ZGU5YTQ3YTA3MmUwZjY2NjNjOTQxZDU5ZjhjNzMxYzM4MTJiNzkwNzk4ZWQwMjU4NjM2ZTUxMDI4MDljYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzAwY2JhZjRjMjIyNDlmZmRjYzMxNDY1MWI0Njg3NWIzMWRkMWQ2MmIzYzU3NjljZDFjYzAxNTdjM2RiNzk5ZSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L88-L88",
+          "version": "repo-lines-v1:sha256:182ae5a177da9e6ba4ca251fd2e3a1a1a0131f3513db919f5dcff96b78ccaf28:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTgyYWU1YTE3N2RhOWU2YmE0Y2EyNTFmZDJlM2ExYTFhMDEzMWYzNTEzZGI5MTlmNWRjZmY5NmI3OGNjYWYyOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTgyYWU1YTE3N2RhOWU2YmE0Y2EyNTFmZDJlM2ExYTFhMDEzMWYzNTEzZGI5MTlmNWRjZmY5NmI3OGNjYWYyOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTg5NmU1NmI4Yzc3YmU2M2QzYmE5MjliYWRhNTNlNzgyYmFiZGM4OGZjMmU1MjhiM2IzYWQ5MmM2YjUzODU3ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzNkYTE3NDAwZTJiZGUxNmZhNjI4ZDgxNDAwZGJmOTlhNDgwZDg1YWIyYWU3MTBmZDcyMGJkNzM1Nzg0NDhmYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5076fb76d6ba4c8c9ace7f528007ae3e",
+      "statement": "Routing and pleasure results are discarded when routeSeq has moved on, so only the latest request draws routes or writes statuses.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L298-L316",
+          "version": "repo-lines-v1:sha256:a8f386284505a657c87256eecfaa924b82acaa08eb0e26365234cd4efeac3d27:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlYTBjNzk0NjQ4NWQzOGZjNzhmZjFkZGQ4N2YzOTdjYzgzMmExZjQwNGQ4YTE1YTk5ZTEwYWNkZTI1OWRjYTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0NmNhNTFhYjgwMTdjNmE1MThjYjcyYmExMzBhYTczNmFhNGZjOTg5Mzc2MzM0NDU2NmJjM2QwODUzMGJjY2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgxMjVjY2U3YmM3MjQ2MjcwMWJmNmE2NTdkYmFkZWQ2NGE1NTEwYjA0MjRmOTA3Yzg1MjA1ZmNjOWQ5ODQ3MGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNmZjNiZjZmNmUwZmFkMWExZDRlYjJmYTJkMmU3NTA1OTgwOTQ5NjRiM2I1NzQyMjE1OGFmMmNlY2VkMmFlMGMifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L368-L373",
+          "version": "repo-lines-v1:sha256:95d173515ac6015b8d8387611ff493bd45499cfb6d86691d5964d97c7fe67ea2:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTU4ZWY2MWNiN2NjN2UxMDdmMTM4ZjEyMTAwMjAwNGQ0N2ZkZGJlYWE0ZDQ3ZWM1ZmU5NDFkMGQ4Zjc3MmIxZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzkwZDlmM2FiNmJjMjRlMTU1YWQwYWYxY2UzZmM2ODNlOGZkZjg4ZTYwNGI3ZGJhYTQ0NjgwMDI4YzBiN2Q5MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmY3YTBmZGE4NDhhMzg1YWY0NzI0YWM5NWMyMWZiMzI5YzM3MmUxNDNmZjk2OWMxYWU3Y2Q2YTc5M2I4ZjVhOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDIxMDNkMmM5MDFiMDg1ZTgzMDAyZTE2N2JmY2VhNDQ5ZGRkMTQzYTZmMGQwY2JhYjFiM2EwZTIxNWY0YjY1YyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f42fbd128a9a43bdb016eaa23c4e1b09",
+      "statement": "Search responses are dropped when searchSeq has changed since the search started.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L111-L117",
+          "version": "repo-lines-v1:sha256:14183dbd9e4d39c92d8ffc18db4fa4b2c98a8b82182efb8057e7211b9bc32daf:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTI1NWU2Y2RhODhlZTE0NDE0NmFmZGJkODRkN2IxNGYzMjJiNWU0ZTMwOTNmNjcyNDQ1Mjc4OTA3YzNkZjAwMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGMzMmQzMTUxZGQ0YWE1MmZhYmNjMzQwMWNkMWJhZDc0ZDkwZDg0NjQzYzNkZGQ1OTUxNWQ4Y2E2Y2I5OTI5NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTM4Nzg2MzEyZTIxN2RkMDhiNzNhOTg2ZDI5ZDNmZGM3NGJkMjA4YjljMjVkOTU5ODE3NWRjNGRmNDg0ZTE2NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWViZmZmZTBjOTFiYTQ0NDRhNTgwNzk2MjkzNWY0NzRjNGFhODc3ODIxNzdlMDVkNTBmNTdhNDlhM2FiYTJkOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_50392c117a4c4a61b833bc3901d533e9",
+      "statement": "The app tracks the user's position with navigator.geolocation.watchPosition and centres the map at zoom 15 on the first fix.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L70-L99",
+          "version": "repo-lines-v1:sha256:053a1c449760b386b580761c598543da0aedd700cef044a14bfc2e05c7084d7d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlZDk4NmQ4M2ZjZTYzODAxNmIwYzcxOGZmOGE1ZjczMWIzMTUxZGY3MjliODI0ODhkNjAzZDAxM2FkNDMyMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkYmFjNzM2MjNlYWUyZDRhZWZkNjRiNDc4ZDAxYjNiYmRiYjRiYzY2YzQ2ZDY1NDhiOWM3NTIwMmEzZjUxMGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU0MTYyMmUxNWM0ZDA1ZTNkNGZlNzUxYmI5ZjJmMDJlNzgzZDk4ZDJlOWIzMWJiYjI5MDc4MWRhYWY1NGI5OTIifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T13:06:33.368Z"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:c9e6a22b4797226c2f8de16e8fce3a6928293a454c5452aefba20067b5161d32",
+  "claims": [
+    {
+      "id": "claim_57be2d830fa3456590cfc0be04f39514",
+      "statement": "Barnacle Maps shows up to three walking or car routes to a searched place from the user's live position, optionally through up to five stops.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L232-L232",
+          "version": "repo-lines-v1:sha256:8d5286c64c52878e7e046853427ea92d24742d68f57ea1f39428a63fcefb3fdf:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGQ1Mjg2YzY0YzUyODc4ZTdlMDQ2ODUzNDI3ZWE5MmQyNDc0MmQ2OGY1N2VhMWYzOTQyOGE2M2ZjZWZiM2ZkZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGQ1Mjg2YzY0YzUyODc4ZTdlMDQ2ODUzNDI3ZWE5MmQyNDc0MmQ2OGY1N2VhMWYzOTQyOGE2M2ZjZWZiM2ZkZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzUyNjYxZTM2NTdmOGM4MTUwYzlmZWZmMmM3ZjlkZWEwZjA1ODBhY2M2Y2ZhMWM5NzA3OGNmMDE3ZWY3MTY1MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzA1OWI2NjY4NzA1YjA2ZGExOWI2ZDcwYmY5NzVjOWE0OGFmOGM3YmMxZGY4MDE0ZGZhYWM3NWNiOTUzZTgyMSJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L50-L53",
+          "version": "repo-lines-v1:sha256:4b193b5cc8bca0a6b8d124b22964f2dd4b2d99f426f37c9d6eeefb437691357c:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDc3ZWZlNmM5OWZlMDU5NTAyMzZmNWQ4MDJmZDk3ZmQ3MWYwZjE3ZjgxOGRiYjRhNTFlYmMwZWYzNTYyN2U2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWExZDFhNjMzOTAyMjljNzk4MzQ3ZTgzYTA0MDU0NDFjOTQwMDAzNTI4NGFkMTY4YzFiZjZjZGYxZDcwYTM3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzhiYmQ1ODEwYjczNzQyYThiNTBkODc4OTA4ZTU5YWMyNjA5M2Q1NTJmMTYyMzA1M2YxNWIyYWRiNmZiNWRjMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDFjMjEwYjk5YmY0N2NlYzg3MjQ2NDM5NWRjZTFkZTc1MzUzNGNiM2Y1NGFkM2YyYmY1YzIxYzc2NmY0NmViZiJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L74-L74",
+          "version": "repo-lines-v1:sha256:2b123909f21a3b894c51c5f6f1fd37f8782909e9c5c62f7f3c608576ba6ce5b7:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmIxMjM5MDlmMjFhM2I4OTRjNTFjNWY2ZjFmZDM3Zjg3ODI5MDllOWM1YzYyZjdmM2M2MDg1NzZiYTZjZTViNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmIxMjM5MDlmMjFhM2I4OTRjNTFjNWY2ZjFmZDM3Zjg3ODI5MDllOWM1YzYyZjdmM2M2MDg1NzZiYTZjZTViNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTE3Yjc5ODI1ZDRmZmY0ODllOTBiNjk5M2MzMmViNjIwMTYxYjY1ZjMyZmQ5NjEwN2U1MmI2NTg0NmM4Y2M5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWZkMTdjZmM1YTM1MmExZTczYjQ1MDU2ZGZiYjU0ZmMwMTBmOTY5NTExMzUxZjFkMjBiMDQyZmM3ODQ2NmJhNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_eef86ff31d264726a6a069b4dbe04179",
+      "statement": "The app is run with npm start on port 8000 and tested with npm test.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T13:06:33.368Z"
+  }
+}
