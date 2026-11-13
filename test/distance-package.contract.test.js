@@ -16,6 +16,16 @@ test("package.json declares exactly one dependency: convert at an exact version 
   assert.equal(pkg.dependencies.convert, "8.0.2");
 });
 
+// covers FR-005, FR-006: the dependency is pinned in the committed lockfile (same version as package.json and the CDN URL)
+test("package-lock.json pins convert 8.0.2 with an integrity hash", () => {
+  const lock = JSON.parse(read("package-lock.json"));
+  assert.deepEqual(lock.packages[""].dependencies, { convert: "8.0.2" });
+  const entry = lock.packages["node_modules/convert"];
+  assert.ok(entry, "convert is in the lockfile");
+  assert.equal(entry.version, "8.0.2");
+  assert.match(entry.integrity ?? "", /^sha512-/);
+});
+
 // covers SC-003, US2 scenario 2: no build step, same start command
 test("npm scripts unchanged: no build step (SC-003, US2 scenario 2)", () => {
   assert.equal(pkg.scripts.start, "python3 -m http.server 8000");
@@ -38,10 +48,9 @@ test("index.html import map maps convert to unpkg at the package.json version, b
 // covers FR-005, US2 scenario 3: the package is installed for tests and drives formatDistance
 test("convert resolves in Node and formatDistance uses it (FR-005, US2 scenario 3)", async () => {
   const { convert } = await import("convert");
-  assert.deepEqual(
-    { ...convert(1500, "m").to("best", "metric") },
-    { quantity: 1.5, unit: "km" },
-  );
+  const best = convert(1500, "m").to("best", "metric");
+  assert.equal(best.quantity, 1.5);
+  assert.equal(best.unit, "km");
   const geo = await import("../src/geo.js");
   await geo.distanceFormatReady;
   assert.equal(geo.formatDistance(1500), "1.5 km", "with the package loaded, km output comes from the package");

@@ -299,9 +299,9 @@ test("L7 geo_exports", () => {
     "pointToSegmentDistance", "pickRoutes", "routesBbox", "haversine", "lngLatToPixel", "pathPixels",
     "pathTiles", "isGreenPixel", "countGreenPixels", "bestPleasure"]) assert.equal(typeof geo[n], "function", n);
 });
-test("L8 no_new_dependencies", () => {
+test("L8 only_convert_dependency", () => {
   const p = JSON.parse(read("package.json"));
-  assert.equal(p.dependencies, undefined);
+  assert.deepEqual(p.dependencies, { convert: "8.0.2" });
   assert.equal(p.devDependencies, undefined);
   assert.equal(p.scripts.test, "node --test test/");
 });
