@@ -145,6 +145,16 @@ async function runSearch(q, { announce = true } = {}) {
   }
 }
 
+clearBtn.addEventListener("click", () => {
+  clearTimeout(suggestTimer);
+  searchSeq++;
+  input.value = "";
+  results.replaceChildren();
+  setStatus("");
+  syncClear();
+  input.focus();
+});
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   clearTimeout(suggestTimer);
@@ -164,16 +174,6 @@ input.addEventListener("input", () => {
     return;
   }
   suggestTimer = setTimeout(() => runSearch(q, { announce: false }), SUGGEST_DELAY_MS);
-});
-
-clearBtn.addEventListener("click", () => {
-  clearTimeout(suggestTimer);
-  searchSeq++;
-  input.value = "";
-  results.replaceChildren();
-  setStatus("");
-  syncClear();
-  input.focus();
 });
 
 function clearRoutes() {
