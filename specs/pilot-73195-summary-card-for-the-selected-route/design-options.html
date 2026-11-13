@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Barnacle Maps · Summary card designs</title><style>
+:root{color-scheme:light dark;--bg:#f6f7f9;--fg:#1f1f1f;--muted:#555;--frame:#d0d4da}
+@media (prefers-color-scheme:dark){:root{--bg:#16181c;--fg:#e8eaed;--muted:#a8adb5;--frame:#3a3f47}
+ .map{filter:brightness(.82)}}
+body{margin:0;padding:24px;background:var(--bg);color:var(--fg);font-family:system-ui,sans-serif}
+h1{font-size:20px;margin:0 0 4px}p.lead{margin:0 0 20px;color:var(--muted);font-size:14px}
+.grid{display:flex;flex-wrap:wrap;gap:24px}
+figure{margin:0;width:420px}figcaption{margin-top:8px;font-size:14px;color:var(--muted)}figcaption b{color:var(--fg)}
+.map{position:relative;width:420px;height:420px;overflow:hidden;border:1px solid var(--frame);border-radius:8px;font-size:12px;color:#1f1f1f}
+.tiles{position:absolute;inset:0;width:100%;height:100%}
+.panel{position:absolute;top:10px;left:10px;width:210px;background:#fff;border-radius:8px;padding:7px;box-shadow:0 2px 8px rgba(0,0,0,.3);z-index:2}
+.sf{display:flex;gap:4px}.in{flex:1;border:1px solid #767676;padding:4px;font-size:12px}.go{border:1px solid #767676;background:#efefef;padding:3px 7px;border-radius:2px}
+.mode{display:flex;gap:10px;margin-top:5px;font-size:11px}
+.routes{list-style:none;margin:5px 0 0;padding:0}.routes li{padding:4px 6px;border-left:3px solid transparent;font-size:11.5px}
+.routes li.sel{border-left-color:#1a73e8;background:#e8f0fe}.routes small{display:block;font-size:10px;color:#666;margin-top:1px}
+.routes small.best{color:#188038;font-weight:600}.st{margin:5px 0 0;font-size:11px}
+.attr{position:absolute;right:0;bottom:0;background:rgba(255,255,255,.8);font-size:9px;padding:1px 5px;z-index:2}
+.cardA{position:absolute;left:50%;transform:translateX(-50%);bottom:24px;display:flex;gap:12px;align-items:baseline;background:#fff;border-radius:8px;padding:7px 14px;box-shadow:0 2px 8px rgba(0,0,0,.3);font-size:13px;white-space:nowrap;z-index:2}
+.cardA b{color:#1a73e8;font-size:15px}.cardA span+span{border-left:1px solid #ddd;padding-left:12px}
+.cardB{position:absolute;top:10px;right:10px;background:#fff;border-radius:8px;padding:8px 12px;box-shadow:0 2px 8px rgba(0,0,0,.3);border-left:3px solid #1a73e8;font-size:12px;line-height:1.45;z-index:2}
+.cardB .t{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:.04em}.cardB .big{font-size:18px;font-weight:600;color:#1a73e8}
+.cardC{position:absolute;left:200px;top:212px;background:#1a73e8;color:#fff;border-radius:6px;padding:4px 8px;font-size:11.5px;line-height:1.35;box-shadow:0 1px 4px rgba(0,0,0,.35);z-index:2}
+.cardC:after{content:"";position:absolute;left:18px;top:-6px;border:6px solid transparent;border-top:0;border-bottom-color:#1a73e8}
+@media (prefers-color-scheme:dark){.panel,.cardA,.cardB,.attr{filter:none}}
+</style></head><body>
+<h1>Summary card for the selected route: which design?</h1>
+<p class="lead">Walking to "Jardin du Luxembourg" at 14:10. Route 1 (blue) is selected. Each mock shows the real panel, colors and route list; only the card is new.</p>
+<div class="grid"><figure><div class="map"><svg class="tiles" viewBox="0 0 560 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="560" height="420" fill="#f2efe9"/>
+<rect x="300" y="150" width="150" height="110" rx="6" fill="#add19e"/>
+<rect x="60" y="300" width="90" height="70" fill="#c8facc"/>
+<path d="M0 395 C120 380 260 410 560 385 L560 420 L0 420Z" fill="#aad3df"/>
+<g stroke="#d9d0c3" stroke-width="12" fill="none"><path d="M0 120 H560"/><path d="M0 280 H560"/><path d="M180 0 V420"/><path d="M470 0 V420"/><path d="M0 40 L560 230"/></g>
+<g stroke="#fff" stroke-width="9" fill="none"><path d="M0 120 H560"/><path d="M0 280 H560"/><path d="M180 0 V420"/><path d="M470 0 V420"/><path d="M0 40 L560 230"/></g>
+<g stroke="#fff" stroke-width="4" fill="none"><path d="M260 0 V420"/><path d="M380 0 V420"/><path d="M0 200 H560"/><path d="M0 340 H560"/></g>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M250 330 L250 280 L470 280 L470 165 L420 165" stroke="#888" stroke-width="5" opacity=".7"/>
+<path d="M250 330 L180 330 L180 120 L420 120 L420 165" stroke="#888" stroke-width="5" opacity=".7"/>
+<path d="M250 330 L260 280 L260 200 L380 200 L380 165 L420 165" stroke="#1a73e8" stroke-width="6"/>
+</g>
+<circle cx="250" cy="330" r="8" fill="#1a73e8" fill-opacity=".9" stroke="#fff" stroke-width="3"/>
+<path d="M420 165 c-9 -12 -12 -18 -12 -24 a12 12 0 0 1 24 0 c0 6 -3 12 -12 24z" fill="#2a81cb" stroke="#1e5f96" stroke-width="1.5"/><circle cx="420" cy="141" r="4.5" fill="#fff"/>
+</svg><div class="panel"><div class="sf"><span class="in">Jardin du Luxembourg</span><span class="go">Go</span></div>
+<div class="mode"><span>&#9673; Walk</span><span>&#9675; Car</span></div>
+<ul class="routes">
+<li class="sel">Route 1 · 2.35 km · 29 min<small>Pleasure: 920 green px</small></li>
+<li>Route 2 · 2.61 km · 33 min<small class="best">Pleasure: 1840 green px · most pleasant</small></li>
+<li>Route 3 · 2.90 km · 37 min<small>Pleasure: 1310 green px</small></li></ul>
+<p class="st">3 walking routes · fastest 2.35 km · 29 min</p></div><div class="cardA"><b>29 min</b><span>2.35 km</span><span>Arrive 14:39</span></div><div class="attr">Leaflet | &copy; OpenStreetMap contributors</div></div><figcaption><b>A · Bottom bar.</b> One line along the bottom edge: easy to read with one glance, never near the panel, good on phones.</figcaption></figure><figure><div class="map"><svg class="tiles" viewBox="0 0 560 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="560" height="420" fill="#f2efe9"/>
+<rect x="300" y="150" width="150" height="110" rx="6" fill="#add19e"/>
+<rect x="60" y="300" width="90" height="70" fill="#c8facc"/>
+<path d="M0 395 C120 380 260 410 560 385 L560 420 L0 420Z" fill="#aad3df"/>
+<g stroke="#d9d0c3" stroke-width="12" fill="none"><path d="M0 120 H560"/><path d="M0 280 H560"/><path d="M180 0 V420"/><path d="M470 0 V420"/><path d="M0 40 L560 230"/></g>
+<g stroke="#fff" stroke-width="9" fill="none"><path d="M0 120 H560"/><path d="M0 280 H560"/><path d="M180 0 V420"/><path d="M470 0 V420"/><path d="M0 40 L560 230"/></g>
+<g stroke="#fff" stroke-width="4" fill="none"><path d="M260 0 V420"/><path d="M380 0 V420"/><path d="M0 200 H560"/><path d="M0 340 H560"/></g>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M250 330 L250 280 L470 280 L470 165 L420 165" stroke="#888" stroke-width="5" opacity=".7"/>
+<path d="M250 330 L180 330 L180 120 L420 120 L420 165" stroke="#888" stroke-width="5" opacity=".7"/>
+<path d="M250 330 L260 280 L260 200 L380 200 L380 165 L420 165" stroke="#1a73e8" stroke-width="6"/>
+</g>
+<circle cx="250" cy="330" r="8" fill="#1a73e8" fill-opacity=".9" stroke="#fff" stroke-width="3"/>
+<path d="M420 165 c-9 -12 -12 -18 -12 -24 a12 12 0 0 1 24 0 c0 6 -3 12 -12 24z" fill="#2a81cb" stroke="#1e5f96" stroke-width="1.5"/><circle cx="420" cy="141" r="4.5" fill="#fff"/>
+</svg><div class="panel"><div class="sf"><span class="in">Jardin du Luxembourg</span><span class="go">Go</span></div>
+<div class="mode"><span>&#9673; Walk</span><span>&#9675; Car</span></div>
+<ul class="routes">
+<li class="sel">Route 1 · 2.35 km · 29 min<small>Pleasure: 920 green px</small></li>
+<li>Route 2 · 2.61 km · 33 min<small class="best">Pleasure: 1840 green px · most pleasant</small></li>
+<li>Route 3 · 2.90 km · 37 min<small>Pleasure: 1310 green px</small></li></ul>
+<p class="st">3 walking routes · fastest 2.35 km · 29 min</p></div><div class="cardB"><div class="t">Route 1</div><div class="big">29 min</div><div>2.35 km</div><div>Arrive <b>14:39</b></div></div><div class="attr">Leaflet | &copy; OpenStreetMap contributors</div></div><figcaption><b>B · Top-right card.</b> Stacked card in the free top-right corner: the duration is large, and the route number links it to the panel.</figcaption></figure><figure><div class="map"><svg class="tiles" viewBox="0 0 560 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="560" height="420" fill="#f2efe9"/>
+<rect x="300" y="150" width="150" height="110" rx="6" fill="#add19e"/>
+<rect x="60" y="300" width="90" height="70" fill="#c8facc"/>
+<path d="M0 395 C120 380 260 410 560 385 L560 420 L0 420Z" fill="#aad3df"/>
+<g stroke="#d9d0c3" stroke-width="12" fill="none"><path d="M0 120 H560"/><path d="M0 280 H560"/><path d="M180 0 V420"/><path d="M470 0 V420"/><path d="M0 40 L560 230"/></g>
+<g stroke="#fff" stroke-width="9" fill="none"><path d="M0 120 H560"/><path d="M0 280 H560"/><path d="M180 0 V420"/><path d="M470 0 V420"/><path d="M0 40 L560 230"/></g>
+<g stroke="#fff" stroke-width="4" fill="none"><path d="M260 0 V420"/><path d="M380 0 V420"/><path d="M0 200 H560"/><path d="M0 340 H560"/></g>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M250 330 L250 280 L470 280 L470 165 L420 165" stroke="#888" stroke-width="5" opacity=".7"/>
+<path d="M250 330 L180 330 L180 120 L420 120 L420 165" stroke="#888" stroke-width="5" opacity=".7"/>
+<path d="M250 330 L260 280 L260 200 L380 200 L380 165 L420 165" stroke="#1a73e8" stroke-width="6"/>
+</g>
+<circle cx="250" cy="330" r="8" fill="#1a73e8" fill-opacity=".9" stroke="#fff" stroke-width="3"/>
+<path d="M420 165 c-9 -12 -12 -18 -12 -24 a12 12 0 0 1 24 0 c0 6 -3 12 -12 24z" fill="#2a81cb" stroke="#1e5f96" stroke-width="1.5"/><circle cx="420" cy="141" r="4.5" fill="#fff"/>
+</svg><div class="panel"><div class="sf"><span class="in">Jardin du Luxembourg</span><span class="go">Go</span></div>
+<div class="mode"><span>&#9673; Walk</span><span>&#9675; Car</span></div>
+<ul class="routes">
+<li class="sel">Route 1 · 2.35 km · 29 min<small>Pleasure: 920 green px</small></li>
+<li>Route 2 · 2.61 km · 33 min<small class="best">Pleasure: 1840 green px · most pleasant</small></li>
+<li>Route 3 · 2.90 km · 37 min<small>Pleasure: 1310 green px</small></li></ul>
+<p class="st">3 walking routes · fastest 2.35 km · 29 min</p></div><div class="cardC">29 min · 2.35 km<br>Arrive 14:39</div><div class="attr">Leaflet | &copy; OpenStreetMap contributors</div></div><figcaption><b>C · Label on the route.</b> Bubble pinned to the selected blue line: clearly tied to that route, but it moves and can cover map detail.</figcaption></figure></div></body></html>
