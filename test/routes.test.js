@@ -286,8 +286,7 @@ test("L4 app_js_imports_and_state", () => {
   assert.ok(!a.includes("routeLine"));
 });
 test("L5 app_js_strings", () => {
-  // SF-70: mode texts moved to TRAVEL_MODES in src/geo.js, so the shipped source is app.js + geo.js.
-  const a = read("src/app.js") + read("src/geo.js");
+  const a = read("src/app.js");
   for (const s of ["Pleasure unavailable", "No walking route found.", "aria-pressed"])
     assert.ok(a.includes(s), s);
 });
