@@ -32,5 +32,5 @@
 ## Notes
 
 - Validation passed on first iteration; no clarification markers were needed.
-- Informed defaults (documented in spec Assumptions): pleasure indicator applies to bike routes; Bike added to the existing selector style without redesign; routing provider's bicycle profile is used.
+- Clarified 2026-11-16: Design C (segmented buttons with icons), pleasure indicator on bike routes, standard cycling profile. Checklist re-validated: 16/16 passing.
 - Items marked incomplete require spec updates before `/speckit-clarify` or `/speckit-plan`

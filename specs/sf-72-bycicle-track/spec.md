@@ -8,11 +8,19 @@
 
 **Input**: User description: "bycicle track — in addition to by foot and by car, I want to be able to select bicycles as a travel possibility"
 
+## Clarifications
+
+### Session 2026-11-16
+
+- Q: Which design do you want for the Bike option in the travel mode selector? → A: Design: C, segmented buttons with icons (🚶 Walk | 🚗 Car | 🚲 Bike), see `design-options.html`.
+- Q: Do bike routes show the pleasure indicator (green pixels, "most pleasant")? → A: Yes, bike routes show it with the same rules as walking routes.
+- Q: What does "bicycle track" mean for the routes? → A: Normal cycling routes from the routing service (which already prefers bike paths); no bike-path share is shown.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Get cycling routes to a destination (Priority: P1)
 
-A user who plans to ride a bicycle selects "Bike" in the travel mode selector, next to the existing Walk and Car options, searches for a place, and sees up to 3 routes suited to cycling, each with its distance and estimated cycling duration. They pick a route in the panel or by clicking it on the map, exactly as for the other modes.
+A user who plans to ride a bicycle selects "🚲 Bike" in the travel mode selector, next to the existing Walk and Car options, searches for a place, and sees up to 3 routes suited to cycling, each with its distance and estimated cycling duration. They pick a route in the panel or by clicking it on the map, exactly as for the other modes.
 
 **Why this priority**: This is the whole feature: without cycling routes, no value is delivered.
 
@@ -20,7 +28,7 @@ A user who plans to ride a bicycle selects "Bike" in the travel mode selector, n
 
 **Acceptance Scenarios**:
 
-1. **Given** the app is open, **When** the user looks at the travel mode selector, **Then** it offers three options, Walk, Car and Bike, with Walk selected by default.
+1. **Given** the app is open, **When** the user looks at the travel mode selector, **Then** it is one row of three segmented buttons, "🚶 Walk", "🚗 Car" and "🚲 Bike", with Walk selected by default and the selected button highlighted (design C).
 2. **Given** the user has selected Bike and their position is known, **When** they choose a destination, **Then** up to 3 cycling routes are shown on the map and in the panel, each with distance and duration, and the fastest is pre-selected.
 3. **Given** cycling routes are displayed, **When** the user clicks a route on the map or in the panel, **Then** that route becomes the selected one, as in the other modes.
 4. **Given** cycling routes are being computed or have been computed, **When** the user reads the status line, **Then** the wording refers to cycling (e.g. "Computing cycling routes…", "by bike", "cycling routes").
@@ -72,8 +80,8 @@ A user who has added stops gets cycling routes that go from their position throu
 
 ### Functional Requirements
 
-- **FR-001**: The travel mode selector MUST offer three options — Walk, Car and Bike — in the same control; the selected option MUST be visibly indicated and exposed as selected to assistive technology; Walk MUST remain the default.
-- **FR-002**: When Bike is selected, the system MUST compute routes with a bicycle-specific routing profile (roads allowed for and timed for bicycles), not the walking or car profile.
+- **FR-001**: The travel mode selector MUST offer three options as one row of segmented buttons with icons, "🚶 Walk", "🚗 Car" and "🚲 Bike" (design C in `design-options.html`); the selected option MUST be visibly indicated and exposed as selected to assistive technology; Walk MUST remain the default.
+- **FR-002**: When Bike is selected, the system MUST compute routes with the routing service's bicycle profile (roads allowed for and timed for bicycles), not the walking or car profile; the system MUST NOT add its own bike-path preference or show a bike-path share per route.
 - **FR-003**: The system MUST display up to 3 cycling routes, each with distance and estimated duration, and pre-select the fastest one.
 - **FR-004**: Cycling routes MUST be selectable from the panel and from the map, as for the other modes.
 - **FR-005**: Cycling routes MUST show the pleasure indicator with the same rules and limits as walking routes; car routes MUST still not show it.
@@ -96,13 +104,13 @@ A user who has added stops gets cycling routes that go from their position throu
 - **SC-001**: A user can see cycling routes for a new destination in 2 interactions (select Bike, choose destination), or 1 interaction if a destination is already chosen.
 - **SC-002**: For typical urban trips of 2–10 km, displayed cycling durations are shorter than walking durations for the same trip in 100% of tested cases.
 - **SC-003**: Cycling routes appear in about the same time as walking or car routes for the same trip (no noticeable extra wait).
-- **SC-004**: Walk and Car behaviour (routes, pleasure indicator, detours, stops) is unchanged: all existing automated tests continue to pass.
+- **SC-004**: Walk and Car behaviour (routes, pleasure indicator, detours, stops) is unchanged apart from the new selector look: all existing automated tests continue to pass.
 
 ## Assumptions
 
 - The public OpenStreetMap-based routing provider already used for walking and car offers a bicycle profile, which will be used for cycling routes.
 - Cycling durations are those estimated by the routing service; no user-configurable cycling speed is provided.
-- The pleasure indicator applies to bike routes (cyclists also value green surroundings) and reuses the walking limits (distance, tile count, timeout) unchanged.
-- The Bike option is added in the same visual style as the existing Walk/Car selector; no redesign of the selector is in scope.
-- No distinction is made between bicycle types (e-bike, road bike, etc.) or between dedicated bike tracks and other bike-allowed roads; "bycicle track" in the request is understood as "bicycle travel mode".
+- The pleasure indicator for bike routes reuses the walking limits (distance, tile count, timeout) unchanged.
+- The selector icons are emoji characters, so nothing extra is loaded; the Walk and Car options get the same segmented look as Bike.
+- No distinction is made between bicycle types (e-bike, road bike, etc.) or between dedicated bike tracks and other bike-allowed roads beyond what the routing service already does; "bycicle track" in the request is understood as "bicycle travel mode".
 - The selected mode is not persisted across page reloads (consistent with current behaviour).
