@@ -33,7 +33,7 @@ No argument is needed: the inputs come from the run's `history`.
 5. **Running other skills:** they have `disable-model-invocation: true`. To run `/speckit-X` with argument
    A, read `.claude/skills/speckit-X/SKILL.md` and follow it with `$ARGUMENTS` = A. The same for the
    write-tests steps: read `.claude/skills/write-tests/SKILL.md` and follow the step named.
-6. **Commit** what you changed (`git add` under `specs/` and the test folders), message
+6. **Commit** what you changed (`git add` under `specs/`, the test folders and `.factory/test-env.md`), message
    `gate(plan-review): apply`. Do not push: the factory checks your commits and pushes them.
 7. **Outcome:** the run's LAST message ends with exactly one fenced json block, and nothing after it:
    - `{"status": "waiting", "ask": "<the Linear comment>"}` after Show (the usual end);
@@ -55,6 +55,8 @@ question in the latest comment by meaning; a number helps but is optional. For e
    step 5 ("Reread the plan").
 4. If the answer adds, removes or changes a dependency, update `<feature>/dependencies.json`
    (write-tests, "New dependencies").
+5. If the answer is about how to test an outside service or a real run, change `.factory/test-env.md` and the
+   tests to it (write-tests, section 0 and section 3).
 
 An answer you cannot understand: keep the question open and ask it again in the next comment, said
 another way.

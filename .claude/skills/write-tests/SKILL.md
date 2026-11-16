@@ -1,6 +1,6 @@
 ---
 name: "write-tests"
-description: "After /speckit-tasks, write the deterministic tests and AI test scenarios, record them in tasks.md, and report them (no human approval)"
+description: "After /speckit-tasks, write the deterministic tests and AI test scenarios, record them in tasks.md, reread the plan, and report them"
 argument-hint: "`record` to only re-record the tests in tasks.md"
 user-invocable: true
 disable-model-invocation: true
@@ -34,11 +34,10 @@ caller's next step). Otherwise run the whole skill.
    gitignored, so a fresh VM usually doesn't have it. Otherwise use `specs/<current git branch>`
    if that folder exists, otherwise the only folder under `specs/`. If none of these works, end
    with `waiting` and ask which feature. Below, `<feature>` is that folder.
-3. **No human step.** This skill writes, checks and records the tests, then ends with `done`.
-   It never asks the human and never waits. Where you would ask, decide yourself and say so in
-   the report.
+3. **No human step.** This skill writes, checks and records the tests, then ends with `done`. Where you
+   would ask, decide yourself and say so in the report (step 5, item 6: a choice "to confirm").
 4. **Commit:** at the end of the run, if files changed: `git add` the changed files
-   under `specs/`, `tests/` and any other test folders this skill wrote, commit with a short
+   under `specs/`, `tests/`, `.factory/test-env.md` and any other test folders this skill wrote, commit with a short
    message (`gate(write-tests): tests`). Do not push: the factory checks your commits and pushes them after the run.
 5. **Outcome:** the run's LAST message ends with exactly one fenced json block, and nothing after it:
    `{"status": "done", "readback": "<the report, step 6>", "next": "/plan-review"}`. The
@@ -52,6 +51,64 @@ caller's next step). Otherwise run the whole skill.
     instructions with `$ARGUMENTS` = A. Other skills run this skill's record step the same way:
     they follow "Record tests in tasks.md" below.
 7. **Dates** are today's date (YYYY-MM-DD).
+
+## 0. Outside services: the test recipe
+
+`.factory/test-env.md` (input `test_recipe`) is the repo's test recipe: how each outside service the
+code talks to is tested. An *outside service* is anything the code reaches over the network that is
+not part of this repo (an API, a hosted product, a database someone else runs). Step VMs cannot
+reach outside sites, so a test never calls the real service: it calls a fake.
+
+A service is *covered* only when the recipe's `## Services` section has a line for it. No recipe:
+nothing is covered. A mock already in the repo's tests does not count: no person chose it, and a mock
+that accepts any request cannot catch a wrong field name.
+
+Before you write any test:
+
+1. List the outside services that the feature's new or changed code talks to (a new request, a new
+   field, a new endpoint is enough). None: skip this section.
+2. Each service with a line in the recipe: follow it. Never ask again about a choice the recipe or
+   `history` already holds.
+3. A service with no line, and no answer about it in `history`:
+   - **How to test it is clear to you:** do not ask. The usual clear case: the code only sends
+     requests, so a fake checked against the service's public schema catches what can break. Choose, say
+     it in one line of the report, and go to 4.
+   - **You have a doubt** (for example the feature depends on how the service behaves: its rules,
+     limits, side effects): choose the option you suggest, go on, and add it to `spec.md` under
+     `## Clarifications`, so that the Plan Review asks the person:
+     `- Q: How to test Linear? A: a fake Linear checked against Linear's public schema, or B: a real Linear
+     test account (the factory cannot use one yet) → A: A, because <why, in a few words> (decided by the
+     factory, to confirm)`. Plain words only, never code.
+4. Get the schema. This VM cannot reach outside sites, but you can search the web (WebSearch). Search
+   for the service's public API schema (GraphQL SDL, OpenAPI, ...), then download one result through the
+   factory: `mkdir -p .factory/schemas && python3 ~/factory-fetch "<the URL, exactly as the search
+   returned it>" > .factory/schemas/<file name>`. The factory downloads only a URL a web search of this
+   task returned: never change it or write one yourself. Git never sees `.factory/schemas/`. Then write
+   or change `.factory/test-env.md`:
+
+   ```markdown
+   # Test environment
+
+   ## Services
+   - Linear: fake (tests/fakes/linear.py), checked against the schema `linear.graphql`. Real test account wanted: no.
+
+   ## Schemas
+   - linear.graphql: <the URL>
+
+   ## Smoke checks
+   1. test -s .factory/schemas/linear.graphql && <a short command that proves the fake refuses an unknown field>
+
+   ## Docker images
+   - postgres:16-alpine
+   ```
+
+   (`## Docker images` only when a test needs a service in Docker.)
+
+   Write the fake as a test file, and use it in the tests of this feature, so that a request the
+   schema refuses fails a test. Outside the factory nobody downloads the schemas: a test that needs
+   one skips, with a clear message, when the file is missing. A smoke check must never pass on a
+   skip: start it with `test -s .factory/schemas/<file name> &&`. The factory cannot use real test
+   accounts yet: if the person wants one, write "Real test account wanted: yes" and still use the fake.
 
 ## 1. Inputs
 
@@ -80,6 +137,42 @@ Read from `<feature>`:
   test to make it fail.
 
 ## 3. AI tests
+
+AI review runs each scenario after Build. A scenario checks what the deterministic tests cannot: the
+real program, run for real, as a user or an operator would (the app started, its command run, the
+files or output it really produces). Never repeat a deterministic test (the same fakes, the same
+checks): it proves nothing new. A story with nothing more to check than its deterministic tests gets
+no scenario file: say why in one line of the report.
+
+More VMs: `sbx` in this VM starts real VMs next to it, at most 2 at a time (`sbx create --name <name>
+claude`, `sbx exec <name> <command>`, `sbx ls`, `sbx rm -f <name>`). The factory runs the real sbx for it;
+these VMs have the same network rules as this one and are deleted when the step ends. Use them when a real
+run needs more machines, or when the code under test drives sbx.
+
+Never write a fake of a program's or a service's output from what you think it prints. Get the real
+output first: run the real program here (or through `sbx`), or download the service's schema. A fake
+built from a guess passes the tests and still breaks for real.
+
+What can be tested here is tested here: with Docker in this VM, with more VMs through `sbx`, with a copy of a
+service that runs in this VM. Never ask about a real run you can do yourself. This VM cannot reach Docker Hub: a test that needs a
+service in Docker (a database, a cache, a queue) lists its official image, with a version tag, in the recipe's
+`## Docker images` section (`- postgres:16-alpine`). From the next step on, the factory has it already loaded in
+the Docker of the VMs (in a VM you start with `sbx`: `docker load -i /opt/images/all.tar` first).
+
+Sometimes a real run needs something this VM does not have: a real service account, a device, a program
+you cannot run here. Then do not skip the real test by yourself, and never move it to a "check before
+merge" task. Look in the recipe's `## Real runs` section and in `history`:
+
+- **An answer is there:** follow it. Never ask again.
+- **No answer:** choose A or B, go on, and add the choice to `spec.md` under `## Clarifications`, so that
+  the Plan Review asks the person: `- Q: To test US1 for real, the factory needs <what, in plain words>. A: unit
+  tests only, or B: <the real run>, so AI review runs it for real (the factory cannot do this yet) → A: A,
+  because <why, in a few words> (decided by the factory, to confirm)`. With A, the story gets no scenario for
+  that real run.
+
+Write the choice as one line in `## Real runs` of `.factory/test-env.md` (the Plan Review changes it if the
+person chooses another), for example
+`- Factory in a VM with a test Linear: no, unit tests only.`
 
 One scenario file per user story in `tests/ai/`: `tests/ai/us<N>-<slug>.md`, from the story's
 acceptance scenarios and `quickstart.md`. Format:
@@ -163,6 +256,11 @@ Then write the report, one section per user story:
 - each deterministic test: task ID, what it checks, FR / scenario, result (*failing as expected* /
   *unexpectedly passing*, with why);
 - each AI scenario: task ID, steps and expected results in short.
+
+When this run changed the test recipe, start the report with one line per service, for example:
+`Test environment: Linear → fake checked against linear.graphql.`
+
+Keep the report short: one line per test, no repeat of the spec.
 
 End with what you decided yourself, if anything (for example a scenario you chose not to test, and
 why). Commit (rule 4), then outcome `done`, next `/plan-review`.

@@ -33,7 +33,7 @@ No argument is needed: the inputs come from the run's `feedback` and `history`.
    **Plan**.
 5. **Running other skills:** they have `disable-model-invocation: true`. To run `/speckit-X` with argument
    A, read `.claude/skills/speckit-X/SKILL.md` and follow it with `$ARGUMENTS` = A.
-6. **What you may change:** the test files and the files under `<feature>`. Never the app's code: Build
+6. **What you may change:** the test files, `.factory/test-env.md` and the files under `<feature>`. Never the app's code: Build
    writes it. Keep every test that passes now; only add a test, or change one so that it catches the
    problem.
 7. **Commit** what you changed, message `gate(plan-fix): <one line>`. Do not push: the factory checks your
@@ -60,7 +60,12 @@ No argument is needed: the inputs come from the run's `feedback` and `history`.
    - in the spec, a change only when the fix changes what the user gets;
    - in `<feature>/dependencies.json`, the dependency the fix adds or upgrades, if any (the file
      lists the whole change: keep the earlier rows).
-5. Write the test that fails now and passes when the fix is built. Run it and see it fail.
+5. Write the test that fails now and passes when the fix is built. Run it and see it fail. Test it as
+   `.claude/skills/write-tests/SKILL.md` says in section 0 (an outside service: the test recipe
+   `.factory/test-env.md`, its schemas, the fetch door) and section 3 (what can be tested here is tested here,
+   more VMs through `sbx`, Docker images, never a fake from a guess). A choice only the person can make about
+   how to test goes in the comment as one more question. When the failure is the test environment (the
+   recipe's smoke checks failed), fix the recipe, its fake or its smoke checks, not the feature.
 6. Commit (rule 7). Write the comment (below). Outcome `waiting`.
 
 ## Reply
