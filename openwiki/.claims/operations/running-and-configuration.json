@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:9f03fe5bfa5421d71a244513953c7780222c2ddbe0c4dcf97366b1f6372cc280",
+  "claims": [
+    {
+      "id": "claim_9dbeadd7f0dd4669ba80d7076f1d9d6c",
+      "statement": "npm start serves the repository root with python3 -m http.server on port 8000 and npm test runs node --test on test/; package.json declares no dependencies.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    },
+    {
+      "id": "claim_f92ce238be5d4db984ca5dccf1e289dd",
+      "statement": "Runtime behaviour is configured only by constants in src/app.js and src/geo.js (default view, tile URL, debounce, pleasure limits, travel modes, stop limits); there are no environment variables or config files.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L106-L108",
+          "version": "repo-lines-v1:sha256:60515d131846ffcffc81a67767e704a5bc3c4f673ee9888f1832be0fe365d7f4:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU0MzY3MTI2YWE3ZjZlODUxZDliYzU0NWIzOGU3ODVmNDhhZGY1ZjFiOTBlYTRmODY3MmZlZDhlNjNkZmFlNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2E2NmUzNGNkMTRmMTQ2NDdjMjU1N2NhMzE4NzIzZGY3NGQyYzg4MTc0YjE3NWZkOTM1MzNjOWU1YjBhYzU1NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTEyNGVmZTQ0MmUzMmQ1MDg3MGZjNGUyYjMxYTZmZGNkZmUwNWUyOGZiNWFiMGM5MzFiZmYxY2MwOGRiMjA4MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmI4ZDIxZTE2MzcwMTg5MmFiYzJmODBhYjgyNjZlYWVjNGE1MmQyMDc4ZWIyZWQ3NWIwMWVlYjc1ODkyYmMwOSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L24-L49",
+          "version": "repo-lines-v1:sha256:bd6b5f4669b74b7bf02996f58bb700f05bbb0698d4ed360c8f5320c0c35b4304:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5NzE2NGI0ZTFkNWY4MjhkNDA5NDk3NTdiMWM3ODliYTk2MGNmMDM0MmRmOTVkNGYyOTU4M2M5NjAzZWEzNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2ZTIyNjgxNTU0ZWEwN2MxOTE0ZmZmNmEyOTRmMDBjN2FmNDYxNzc0YWNjNDNlZTQxNWU1NTM0NDEyNzNiNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2NGZiNjA4NDI0MDJmNTM4YjZkZTRkMWZkMWY3MzkxNWFlODVhYjRhODQ0MTEzNzEwMDI4ZGFkMDU4OWY4OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ1OTYyYTRhN2JjZDg5OTAzMjc4OTY2NGU2YjIyYWIxYWU2MDQ1YzhiOTE5M2QwN2JjY2FhZmY5ODUxMzU0ZGQifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L31-L66",
+          "version": "repo-lines-v1:sha256:5aa78e5098cc571bb0b6692bae6b6e0e683d97899cd714357633a68d610f6df4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5NTRlNjVmOGZmOGQ5MzJlNjEyYjBkNGU4ZThlNjk2OTVmYjJlN2RiOGNiMzQ3NzBkNTAwNzE3ODVjYzYxYWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxYjE4YzM5ZDc4NTljMWMyNmEyYzZjMzMyMDUzOTQ5Y2UwOTUzODgxYzIzZDYxY2Y5MDEzZDlmYTY3ZThhODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzOGUzN2M4NTYyMjdhMjZlNTc1YTAxNDEwOGNhNjRiYTc0YTdhYzFjYTg1NDQ3NWNjZjY0NDMwMWQzMWM4ZWQifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L87-L89",
+          "version": "repo-lines-v1:sha256:9d592ae32af1cfdc51157019eff089ffb1d4f6337fe4ef57a79ea9ffc03337ed:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmIxMjM5MDlmMjFhM2I4OTRjNTFjNWY2ZjFmZDM3Zjg3ODI5MDllOWM1YzYyZjdmM2M2MDg1NzZiYTZjZTViNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDBlYmU5NjI3MmQwZjZiYTU1NmYxZmU4ZGQzOTdiOTlkOGVjMTRhNjVmOTE4MmQxOWYxMmUyMWZiYzAxYTY2MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTE3Yjc5ODI1ZDRmZmY0ODllOTBiNjk5M2MzMmViNjIwMTYxYjY1ZjMyZmQ5NjEwN2U1MmI2NTg0NmM4Y2M5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWYzOTUwNmUzNmJmZWFjZTg0ZWM3Yjk2OTc0NzA5ZGJkNzM3YTMxYzQ5ZmE1YmYwNmYwMGVlNGVkODRhMjY5MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_578d418da7df4555a75ac6b121cf3be9",
+      "statement": "The destination marker popup and stop marker tooltips pass Nominatim place names to Leaflet as strings, which Leaflet renders as HTML, while the panel lists use textContent.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L117-L124",
+          "version": "repo-lines-v1:sha256:9d447ff6edb9f3a24bf8bcd01da7ab4bec578989272210714370d3bf9a5c2e26:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzdmMDlmMzA1N2E0ZTdhMGE1MDNkZTlkZWJhMjlkNmE1MzZmZGJkMjU0Nzc2YTRhZjdmMzNmNDVhMWRmNmQ1NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGNhYWEwNDJkMTQ3MzYxZWEyZmU0ZDY3MmE2MWFiZjExOWRiZTQ4N2NkMjNkMzFlZTgxZGRmZmU2NjVkYzJkOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWIyYWJlN2JmNGQ0N2QzZTdkZDA3OTliOGQwMmRmZTI3MTZhNGM0ZjAwMTAxZjBhNjVkMGQ0YWM3N2Q0MjM0OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzk5NDZiNDc1MDQ5ZTFkOTgzOTIxZDViMmE3OWNkMDdiYTE1N2JjZDVkOGY0YWYyNDk1YWFhYzg5Y2QxMjExYSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L302-L302",
+          "version": "repo-lines-v1:sha256:78b7d38521f2ffd771f79224917fddbf162f8079fe454cf320df231a292f5a9e:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzhiN2QzODUyMWYyZmZkNzcxZjc5MjI0OTE3ZmRkYmYxNjJmODA3OWZlNDU0Y2YzMjBkZjIzMWEyOTJmNWE5ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzhiN2QzODUyMWYyZmZkNzcxZjc5MjI0OTE3ZmRkYmYxNjJmODA3OWZlNDU0Y2YzMjBkZjIzMWEyOTJmNWE5ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjI4ZmVmYzk5ODA5ZGVmOTAxNmMyZjFjNjI2YzE0ZDk4YjM4NWMxYWI5OTFkNzg2YjVhNGUyZmYxNjU4YWZjZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjYzMTgwOTdkNjRlNmE3NjE5ZmI0OWMxMWE5MjZjY2ZkY2YyMzRmZDRmNWQ4MTU4YjQxZDQ3MjI5YTJkYjg0NiJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L360-L369",
+          "version": "repo-lines-v1:sha256:fa5de0c56b4842a1be9b77f4c1e3fe8b67f253631341d9a470d86ab8ac1f1acd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4NGYyODQ1N2Y2MTk4NDRlMWY0MzM2MTAxMTE2YWMwZjg4Yzk1YjE1OTFiMmJlNDQ1ZGZlYzEwZDA0ZDYwMmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZWYwMWJjMDhkYmMzYjYzZTRlNzVlYTNkMjZhNWI5NDE4OTE4NzdlMjdhZDg5MTMyOWM4NDExZDdkOGRjNGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjczN2RjNmZkYjA0NjBlODQ5MGZlNjQyYTJjMmYwYjMzNjNkNTg1ODMxY2UzNTk5NjJiOTg5MWYwM2RhOGY3MTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU5MzM0NTExMzE2ZGZlNDdhZWM0NjhjZDU4ZmVhYjE0NTVkMjVlOGY2YTBhYWViZGIxMzVhYTk5ZTU1NGExZjUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c96848c6ef7c472b8c0daea00f7bc2f4",
+      "statement": "Leaflet is loaded from unpkg without a Subresource Integrity attribute.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L30-L30",
+          "version": "repo-lines-v1:sha256:7da39d6f5b55be48010702050eefc62e7126902d9d940b75292e1ee3d94d193e:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2RhMzlkNmY1YjU1YmU0ODAxMDcwMjA1MGVlZmM2MmU3MTI2OTAyZDlkOTQwYjc1MjkyZTFlZTNkOTRkMTkzZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2RhMzlkNmY1YjU1YmU0ODAxMDcwMjA1MGVlZmM2MmU3MTI2OTAyZDlkOTQwYjc1MjkyZTFlZTNkOTRkMTkzZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjQ4MThmNWM5OTNhMjAzMzA2NDUwNTEzMTFjODA3OThkOTdhNTg0OWY0NGM0OTgyZGI2OGI1ZGNjNzNlZGJkNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjRkN2VlNzU2OTQzM2EzYzUyYTczZGViMzVjODE0ODFiM2U0ZWFkZTg4ZThjYmRmMTc3YzFmMzNiOWQwY2ZiMSJ9"
+        },
+        {
+          "resource": "repo://index.html#L7-L7",
+          "version": "repo-lines-v1:sha256:d5d27cb142449192b28275f6a014c829b67f2b270619a2ab0b4df062a33aeacf:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDVkMjdjYjE0MjQ0OTE5MmIyODI3NWY2YTAxNGM4MjliNjdmMmIyNzA2MTlhMmFiMGI0ZGYwNjJhMzNhZWFjZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDVkMjdjYjE0MjQ0OTE5MmIyODI3NWY2YTAxNGM4MjliNjdmMmIyNzA2MTlhMmFiMGI0ZGYwNjJhMzNhZWFjZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmUwN2VlM2JmOTQyZGYyNGVkMWQyMWMzZGZhOTZkODE4NDgyMWRkMDJjY2MxOGZjZjMxMGQ1Nzk3MTcyMTg0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDFjZThlOWI0MDJiZDdhYTVjODI4ODE1NTZhYzUzM2M0OWJiZjI3OWM4MmVjZjIyNjNlMDBhZjdiNTAyZGIxZCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T15:57:49.174Z"
+  }
+}
