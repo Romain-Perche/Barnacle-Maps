@@ -26,13 +26,12 @@
     <ul id="routes" aria-label="Route options"></ul>
     <p id="status" role="status"></p>
     <div id="phone" hidden>
-      <img id="phone-qr" width="120" height="120" alt="QR code to open this route on your phone">
-      <div class="phone-text">
-        <strong>Continue on your phone</strong>
-        <span>Scan with your phone camera.</span>
-        <a id="phone-link" target="_blank" rel="noopener">Open on your phone ↗</a>
-        <span id="phone-stops" hidden>Stops are not included in the phone link.</span>
-      </div>
+      <strong>Continue on your phone</strong>
+      <span>Scan with your phone camera.</span>
+      <img id="phone-qr" width="245" height="245" alt="QR code to open this route on your phone">
+      <code id="phone-url"></code>
+      <a id="phone-link" target="_blank" rel="noopener">Open on your phone ↗</a>
+      <span id="phone-stops" hidden>Stops are not included in the phone link.</span>
     </div>
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

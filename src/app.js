@@ -42,6 +42,7 @@ const stopsBox = document.getElementById("stops-box");
 const stopsList = document.getElementById("stops");
 const phoneCard = document.getElementById("phone");
 const phoneQr = document.getElementById("phone-qr");
+const phoneUrl = document.getElementById("phone-url");
 const phoneLink = document.getElementById("phone-link");
 const phoneStops = document.getElementById("phone-stops");
 const clearStopsBtn = document.getElementById("clear-stops");
@@ -182,6 +183,7 @@ function showPhone(from, place, m, st) {
   const src = url && qrImageSrc(window.qrcode, url);
   if (!src) return;
   phoneQr.src = src;
+  phoneUrl.textContent = url;
   phoneLink.href = url;
   phoneStops.hidden = !st.length;
   phoneCard.hidden = false;
