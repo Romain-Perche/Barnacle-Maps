@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bike travel mode: design options</title><style>
+:root{color-scheme:light dark;--bg:#f4f5f7;--fg:#202124;--muted:#5f6368;--card:#fff;--line:#dadce0}
+@media (prefers-color-scheme:dark){:root{--bg:#16181c;--fg:#e8eaed;--muted:#9aa0a6;--card:#202327;--line:#3c4043}}
+body{margin:0;padding:24px;background:var(--bg);color:var(--fg);font-family:system-ui,sans-serif}
+h1{font-size:20px;margin:0 0 4px} .lead{color:var(--muted);margin:0 0 20px;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.card h2{font-size:16px;margin:0 0 10px} .good{font-size:14px;color:var(--muted);margin:10px 0 0}
+.map{position:relative;height:420px;border-radius:6px;overflow:hidden;background:#f2efe9}
+.road{position:absolute;background:#fff;border:1px solid #e0dcd2} .r1{left:0;right:0;top:300px;height:10px} .r2{top:0;bottom:0;left:250px;width:10px}
+.park{position:absolute;left:190px;top:330px;width:120px;height:70px;background:#c8facc;border-radius:6px}
+.route{position:absolute;border-radius:3px}
+.route.alt{left:60px;top:390px;width:250px;height:5px;background:#888;opacity:.7}
+.route.sel{left:60px;top:303px;width:195px;height:6px;background:#1a73e8}
+.route.sel::after{content:"";position:absolute;left:192px;top:-90px;width:6px;height:96px;background:#1a73e8}
+.me{position:absolute;left:52px;top:298px;width:14px;height:14px;border-radius:50%;background:#1a73e8;border:3px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.dest{position:absolute;left:246px;top:192px;width:16px;height:22px;background:#2a81cb;border-radius:50% 50% 50% 0;transform:rotate(-45deg)}
+.panel{position:absolute;top:12px;left:12px;right:12px;max-width:360px;background:#fff;color:#202124;border-radius:8px;padding:8px;box-shadow:0 2px 8px rgba(0,0,0,.3);font-size:14px}
+.sf{display:flex;gap:6px} .in{flex:1;padding:7px 8px;font-size:16px;border:1px solid #767676;border-radius:2px}
+.go{padding:6px 10px;border:1px solid #767676;border-radius:3px;background:#efefef;font-size:13px;align-self:center}
+.mode-a{display:flex;gap:12px;margin:6px 0 0} .mode-a label{display:flex;align-items:center;gap:4px}
+.rb{width:12px;height:12px;border:1px solid #767676;border-radius:50%;display:inline-block;box-sizing:border-box}
+.rb.on{border:4px solid #1a73e8}
+.mode-b{display:flex;margin:6px 0 0;border:1px solid #dadce0;border-radius:6px;overflow:hidden}
+.mode-b span{flex:1;text-align:center;padding:6px 0;border-left:1px solid #dadce0} .mode-b span:first-child{border-left:0}
+.mode-b span.on{background:#e8f0fe;color:#1a73e8;font-weight:600}
+.routes{list-style:none;margin:6px 0 0;padding:0} .routes li{padding:6px 8px;border-left:3px solid transparent}
+.routes li.on{border-left-color:#1a73e8;background:#e8f0fe} .status{margin:6px 0 0}
+</style></head><body>
+<h1>Bike travel mode: which design?</h1>
+<p class="lead">Each design shows the panel with Bike selected and cycling routes to a destination. The map and route list are unchanged.</p>
+<div class="grid"><section class="card"><h2>A. Third radio button in the same row</h2><div class="map"><div class="road r1"></div><div class="road r2"></div><div class="park"></div>
+<div class="route alt"></div><div class="route sel"></div><div class="me"></div><div class="dest"></div>
+<div class="panel">
+<div class="sf"><span class="in">Alexanderplatz, Berlin</span><span class="go">Go</span></div>
+<div class="mode-a"><label><span class="rb"></span> Walk</label><label><span class="rb"></span> Car</label><label><span class="rb on"></span> Bike</label></div>
+<ul class="routes">
+<li class="on">Route 1 · 3.42 km · 14 min</li>
+<li>Route 2 · 3.71 km · 16 min</li>
+<li>Route 3 · 4.05 km · 17 min</li>
+</ul>
+<p class="status">3 cycling routes · fastest 3.42 km · 14 min</p>
+</div></div><p class="good">Smallest change: the selector keeps its current look, Bike is added at the end.</p></section><section class="card"><h2>B. Segmented buttons, text only</h2><div class="map"><div class="road r1"></div><div class="road r2"></div><div class="park"></div>
+<div class="route alt"></div><div class="route sel"></div><div class="me"></div><div class="dest"></div>
+<div class="panel">
+<div class="sf"><span class="in">Alexanderplatz, Berlin</span><span class="go">Go</span></div>
+<div class="mode-b"><span>Walk</span><span>Car</span><span class="on">Bike</span></div>
+<ul class="routes">
+<li class="on">Route 1 · 3.42 km · 14 min</li>
+<li>Route 2 · 3.71 km · 16 min</li>
+<li>Route 3 · 4.05 km · 17 min</li>
+</ul>
+<p class="status">3 cycling routes · fastest 3.42 km · 14 min</p>
+</div></div><p class="good">Clearer selected mode at a glance; the three modes look like one control.</p></section><section class="card"><h2>C. Segmented buttons with icons</h2><div class="map"><div class="road r1"></div><div class="road r2"></div><div class="park"></div>
+<div class="route alt"></div><div class="route sel"></div><div class="me"></div><div class="dest"></div>
+<div class="panel">
+<div class="sf"><span class="in">Alexanderplatz, Berlin</span><span class="go">Go</span></div>
+<div class="mode-b mode-c"><span>🚶 Walk</span><span>🚗 Car</span><span class="on">🚲 Bike</span></div>
+<ul class="routes">
+<li class="on">Route 1 · 3.42 km · 14 min</li>
+<li>Route 2 · 3.71 km · 16 min</li>
+<li>Route 3 · 4.05 km · 17 min</li>
+</ul>
+<p class="status">3 cycling routes · fastest 3.42 km · 14 min</p>
+</div></div><p class="good">Fastest to scan and to tap on a phone; icons are emoji, nothing extra to load.</p></section></div></body></html>
