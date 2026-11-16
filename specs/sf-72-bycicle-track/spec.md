@@ -15,6 +15,9 @@
 - Q: Which design do you want for the Bike option in the travel mode selector? → A: Design: C, segmented buttons with icons (🚶 Walk | 🚗 Car | 🚲 Bike), see `design-options.html`.
 - Q: Do bike routes show the pleasure indicator (green pixels, "most pleasant")? → A: Yes, bike routes show it with the same rules as walking routes.
 - Q: What does "bicycle track" mean for the routes? → A: Normal cycling routes from the routing service (which already prefers bike paths); no bike-path share is shown.
+- Q: How to test the bicycle routing service? A: a fake routing service checked against the routing service's public documentation, or B: real access to the routing service from the factory (its network blocks it today) → A: A, because the app only sends requests and reads distance, duration and the route line, which the documentation fixes (decided by the factory, to confirm)
+- Q: To check for real that cycling durations are shorter than walking (SC-002), the factory needs access to the real routing service. A: checks with the fake only (each mode shows its own durations), or B: a real run against the routing service, so AI review checks real cycling times (the factory cannot do this yet) → A: A, because the factory network blocks the routing service (decided by the factory, to confirm)
+- Q: When the routing service finds no route, it answers with an error ("NoRoute", or "NoSegment" when a point is not near a usable road). What does the user see? → A: "No cycling route found." (and "No walking route found." / "No driving route found." in the other modes) instead of "Routing failed: Request failed (400)", which the app shows today (decided by the factory, to confirm)
 
 ## User Scenarios & Testing *(mandatory)*
 
