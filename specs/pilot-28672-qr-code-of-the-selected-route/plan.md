@@ -143,3 +143,19 @@ README.md         # + one bullet: "Phone: QR code to continue on your phone (OSM
 ## Complexity Tracking
 
 No violations. Nothing to justify.
+
+## Fix round 1
+
+**Problem** (AI review): the QR code is too small to scan from a phone held at arm's length in front of a laptop screen (about 96 px). The reviewer asks for a code at least 200 px wide, and the link shown as text under it.
+
+**Cause**: the code follows FR-001 as it was written: a `120 × 120` image. The SVG includes the 4-module quiet zone on each side. Every phone link is 108–121 characters long, so qrcode-generator (level L, byte mode: version 5 holds 106 bytes, version 6 holds 134 bytes) always picks version 6, which has 41 modules. The image is 41 + 8 = 49 modules wide, so the code itself is only 120 × 41 / 49 ≈ 100 CSS px (≈ 2.45 px per module). The link is only available behind "Open on your phone ↗", and the user cannot read it.
+
+**Fix** (option A, recommended):
+- The QR image becomes `245 × 245` CSS px: 49 modules × 5 px. The code itself is 41 × 5 = 205 CSS px (≥ 200), with whole pixels per module.
+- A 245 px code does not fit beside the text in the 360 px panel, so the card becomes a column: title, help line, QR image, the full link as selectable text (`<code id="phone-url">`), "Open on your phone ↗", stops note. The `.phone-text` wrapper is removed.
+- `showPhone` also sets `phoneUrl.textContent = url`.
+- The quiet zone (4 modules), level L, the library and the hide rules do not change. The panel already scrolls on small screens. The card is taller, which is fine.
+
+**Rejected**: (B) a small code plus an "Enlarge" button that opens a big code in an overlay: one more click, and more code. (C) keep 120 px (the code matched the old spec): it does not fix the scan problem.
+
+**Files to change**: `index.html` (card markup), `styles.css` (`#phone` column, `#phone-url`), `src/app.js` (`phoneUrl`). The tests are already updated: `test/phone-card.test.js` and `tests/ai/us1-continue-on-phone.md`.

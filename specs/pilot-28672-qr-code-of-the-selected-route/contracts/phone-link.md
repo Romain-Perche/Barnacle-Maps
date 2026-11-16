@@ -48,19 +48,18 @@ The card is placed in `#panel`, right after `#status`:
 
 ```html
 <div id="phone" hidden>
-  <img id="phone-qr" width="120" height="120" alt="QR code to open this route on your phone">
-  <div class="phone-text">
-    <strong>Continue on your phone</strong>
-    <span>Scan with your phone camera.</span>
-    <a id="phone-link" target="_blank" rel="noopener">Open on your phone ↗</a>
-    <span id="phone-stops" hidden>Stops are not included in the phone link.</span>
-  </div>
+  <strong>Continue on your phone</strong>
+  <span>Scan with your phone camera.</span>
+  <img id="phone-qr" width="245" height="245" alt="QR code to open this route on your phone">
+  <code id="phone-url"></code>
+  <a id="phone-link" target="_blank" rel="noopener">Open on your phone ↗</a>
+  <span id="phone-stops" hidden>Stops are not included in the phone link.</span>
 </div>
 ```
 
 Invariants:
 
-- When the card is visible, `#phone-qr.src` encodes exactly `#phone-link.href`. Both come from one `phoneRouteUrl(...)` call.
+- When the card is visible, `#phone-qr.src` encodes exactly `#phone-link.href`, and `#phone-url` shows the same link as text (fix round 1). Both come from one `phoneRouteUrl(...)` call.
 - `#phone` is hidden whenever `#routes` is empty.
 - `#phone-stops` is visible only if the displayed routes were computed with at least one stop.
 - The library script tag is placed before `src/app.js`, pinned to `qrcode-generator@2.0.4` with SRI (see [research.md](../research.md) R2).

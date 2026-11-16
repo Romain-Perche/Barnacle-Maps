@@ -26,7 +26,7 @@ The AI scenarios in `tests/ai/us1-continue-on-phone.md` and `tests/ai/us2-qr-fol
 
 | # | Steps | Expected |
 |---|-------|----------|
-| V1 | Allow location, search a place, pick it (walking) | The card appears under the route summary: a QR code of about 120 px on the left, with "Continue on your phone", "Scan with your phone camera." and "Open on your phone ↗" on the right, above a thin line (FR-001) |
+| V1 | Allow location, search a place, pick it (walking) | The card appears under the route summary: a column under a thin line: "Continue on your phone", "Scan with your phone camera.", a QR code of 245 px (the code itself about 205 px), the full link as text, and "Open on your phone ↗" (FR-001, FR-006, FR-007) |
 | V2 | Hover or copy "Open on your phone" | The URL is `https://www.openstreetmap.org/directions?engine=fossgis_osrm_foot&route=<your lat,lng>;<dest lat,lng>` with 5 decimals (FR-002/003/004) |
 | V3 | Scan the QR code with the phone camera from 30–60 cm | The phone opens OSM directions from your position to the destination on foot. It scans on the first try (SC-002/003/004). **This also confirms the OSM URL format chosen in research R1.** |
 | V4 | Pick Route 2 in the panel, then Route 3 on the map | The card stays visible with the same link (US1 scenario 3) |

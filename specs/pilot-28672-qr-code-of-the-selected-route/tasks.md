@@ -147,6 +147,38 @@ Implementation must make the tests pass **without changing them**. The existing 
 
 ---
 
+## Fix round 1: bigger QR code and the link as text
+
+**Goal**: the code itself is at least 200 CSS px wide (it was about 100 px), and the full link shows as text under it (FR-001, FR-006, FR-007; plan.md "Fix round 1").
+
+**Tests (written, failing until built)**: `test/phone-card.test.js` ("the QR image is 245 x 245…", "the QR code itself is at least 200 CSS px wide", "the full link shows as selectable text under the QR code", "styles.css lays out the card as Design A" (column), "app.js writes the link text") and `tests/ai/us1-continue-on-phone.md` Scenario 1.
+
+- [ ] T021 In `index.html`, replace the `#phone` card with exactly this markup (no `.phone-text` wrapper):
+
+  ```html
+  <div id="phone" hidden>
+    <strong>Continue on your phone</strong>
+    <span>Scan with your phone camera.</span>
+    <img id="phone-qr" width="245" height="245" alt="QR code to open this route on your phone">
+    <code id="phone-url"></code>
+    <a id="phone-link" target="_blank" rel="noopener">Open on your phone ↗</a>
+    <span id="phone-stops" hidden>Stops are not included in the phone link.</span>
+  </div>
+  ```
+
+- [ ] T022 In `styles.css`, replace the `#phone`, `#phone-qr` and `.phone-text` rules with these, and keep `#phone[hidden]`, `#phone-link` and `#phone-stops`:
+
+  ```css
+  #phone { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin: 8px 0 0; padding-top: 8px; border-top: 1px solid #e0e0e0; font-size: 14px; }
+  #phone-qr { flex: none; border: 1px solid #ddd; background: #fff; }
+  #phone-url { max-width: 100%; font-size: 12px; color: #444; word-break: break-all; user-select: all; }
+  ```
+
+- [ ] T023 In `src/app.js`, add `const phoneUrl = document.getElementById("phone-url");` next to `phoneLink`. In `showPhone`, add `phoneUrl.textContent = url;` next to `phoneLink.href = url;`. Do not use `innerHTML`.
+- [ ] T024 Run `npm test` (all tests must pass). Then run `tests/ai/us1-continue-on-phone.md` Scenarios 1 and 6, and scan the code with a real phone at arm's length from a laptop screen (quickstart V1, V3).
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies

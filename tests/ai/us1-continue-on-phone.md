@@ -16,12 +16,15 @@ Common setup. Walk mode (the default).
 1. Open http://localhost:8000.
 2. Search and pick "Louvre".
 3. Wait up to 20 s for `#routes li` to exist and `#status` to contain "walking" or "on foot".
-4. Read `#phone`, `#phone-qr`, `#phone-link` and the page HTML order.
+4. Read `#phone`, `#phone-qr`, `#phone-url`, `#phone-link` and the page HTML order.
 5. Decode the QR code (common setup).
 ### Expected
 - [ ] `#phone` is visible (no `hidden` attribute, bounding box height > 0).
 - [ ] In the DOM, `#phone` comes right after `#status`.
-- [ ] `#phone-qr` is rendered 120 × 120 CSS px (±2 px).
+- [ ] `#phone-qr` is rendered 245 × 245 CSS px (±2 px) (fix round 1).
+- [ ] In the device-scale-3 screenshot of `#phone-qr`, the dark code area (bounding box of the dark pixels) is at least 600 device px wide, so the code itself is at least 200 CSS px (FR-006).
+- [ ] `#phone-url` is visible, below `#phone-qr` (its top ≥ the QR bottom), and its text is exactly equal to the `href` of `#phone-link` (FR-007).
+- [ ] The `#phone` box is inside the `#panel` box horizontally (no horizontal overflow: `#panel.scrollWidth <= #panel.clientWidth`).
 - [ ] `#phone-qr` has alt "QR code to open this route on your phone".
 - [ ] `#phone-qr` `naturalWidth` > 0 (not a broken image).
 - [ ] `#phone` contains the texts "Continue on your phone", "Scan with your phone camera." and "Open on your phone".

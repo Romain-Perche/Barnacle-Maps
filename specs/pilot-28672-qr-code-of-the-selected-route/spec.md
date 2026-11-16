@@ -63,13 +63,13 @@ When I change the travel mode or the destination, the QR code is updated so it n
 
 ### Functional Requirements
 
-- **FR-001**: When routes are displayed and a route is selected, the system MUST show a QR card in the panel, directly under the route summary (Design A in `design-options.html`): a QR code of about 120 × 120 CSS pixels on the left, and on its right the title "Continue on your phone", the line "Scan with your phone camera." and the link "Open on your phone", separated from the summary by a thin line.
+- **FR-001**: When routes are displayed and a route is selected, the system MUST show a QR card in the panel, directly under the route summary (Design A in `design-options.html`): stacked from top to bottom: the title "Continue on your phone", the line "Scan with your phone camera.", a QR code of 245 × 245 CSS pixels, the full phone link as plain selectable text, and the link "Open on your phone", separated from the summary by a thin line. (Fix round 1: the code was enlarged from about 120 px, and the link text was added, after review.)
 - **FR-002**: The QR code MUST encode a link to the public OpenStreetMap website's directions page that opens directions from the start position to the destination with the current travel mode (walking or car, using the same routing service as the app), on any phone browser, without any account or installation.
 - **FR-003**: The start in the link MUST be the user's position used to compute the displayed routes; the destination MUST be the chosen place's position; the travel mode MUST be the mode of the displayed routes.
 - **FR-004**: Coordinates in the link MUST be precise enough to identify the place (at least 5 decimal places, about 1 m).
 - **FR-005**: The QR code MUST be updated whenever the displayed routes change (new destination, mode change, stops change) and MUST be hidden while no route is displayed (no destination, no position, computing, failure, no route found).
-- **FR-006**: The QR code MUST be scannable by a standard phone camera from a computer screen (dark modules on a light background, with a quiet zone, at least about 120 × 120 CSS pixels).
-- **FR-007**: The QR code MUST have an accessible text alternative describing it (e.g. "QR code to open this route on your phone"), and the link itself MUST also be available as a clickable/copyable link next to the code.
+- **FR-006**: The QR code MUST be scannable by a standard phone camera from a computer screen (dark modules on a light background, with a quiet zone; the code itself, without the quiet zone, at least 200 CSS pixels wide, so a phone at arm's length in front of a laptop screen can read it).
+- **FR-007**: The QR code MUST have an accessible text alternative describing it (e.g. "QR code to open this route on your phone"), and the link itself MUST also be available as a clickable link, and as plain text shown under the code so the user can read or copy it when the camera fails.
 - **FR-008**: When the journey contains stops, the system MUST show a short note that the phone link does not include the stops.
 - **FR-009**: The QR code MUST be generated with a well-known, widely used QR code library; the QR encoding MUST NOT be hand-written.
 - **FR-010**: If the QR code cannot be generated (library unavailable), the rest of the app MUST keep working and no broken image is shown.

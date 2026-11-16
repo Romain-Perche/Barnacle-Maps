@@ -34,6 +34,7 @@ All Technical Context unknowns are resolved below. No question was asked: this r
   - SVG is vector, so the modules stay sharp at 120 CSS px on any pixel density.
   - The library draws a white background rect, dark modules and a 4-module quiet zone (FR-006).
   - Level L gives the biggest modules for a given size. A typical link gives 41 modules plus 8 quiet-zone modules, about 2.45 CSS px per module at 120 px, which is enough for a phone camera at 30–60 cm. A clean screen needs no damage tolerance.
+  - **Fix round 1**: the review found that 120 px (≈ 100 px of code) is too small at arm's length from a laptop screen. The image is now 245 × 245 CSS px: 5 px per module, so the code itself is 205 px. Every link is 108–121 bytes, so the version is always 6 (41 modules). See plan.md "Fix round 1".
   - An `<img>` with `alt` gives the text alternative (FR-007) without `innerHTML`.
   - When the library is missing or throws, no `src` is set and the card stays hidden, so no broken image is shown (FR-010).
 - **Alternatives considered**:

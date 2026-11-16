@@ -7,6 +7,7 @@ import { readFileSync } from "node:fs";
 
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
 const css = readFileSync(new URL("../styles.css", import.meta.url), "utf8");
+const app = readFileSync(new URL("../src/app.js", import.meta.url), "utf8");
 
 function tag(re) {
   const m = html.match(re);
@@ -35,12 +36,45 @@ test("the phone card follows #status and starts hidden", () => {
   assert.ok(html.indexOf(card) < panelEnd, "#phone inside the panel, before the scripts");
 });
 
-// covers FR-001, FR-006, FR-007, US1 scenario 1: 120 x 120 QR image with a text alternative.
-test("the QR image is 120 x 120 with an accessible alt text", () => {
+// covers FR-001, FR-006, FR-007, US1 scenario 1: 245 x 245 QR image with a text alternative (fix round 1).
+test("the QR image is 245 x 245 with an accessible alt text", () => {
   const img = tag(/<img[^>]*id="phone-qr"[^>]*>/);
-  assert.match(img, /width="120"/);
-  assert.match(img, /height="120"/);
+  assert.match(img, /width="245"/);
+  assert.match(img, /height="245"/);
   assert.match(img, /alt="QR code to open this route on your phone"/);
+});
+
+// covers FR-006, SC-003 (fix round 1): the review measured the code itself at about 96 px.
+// Every phone link is 108-121 bytes, so qrcode-generator (level L) always picks version 6: 41 modules,
+// plus the 4-module quiet zone on each side = 49 modules in the SVG. The code without the quiet zone
+// must be at least 200 CSS px, and each module a whole number of CSS px.
+test("the QR code itself is at least 200 CSS px wide", () => {
+  const img = tag(/<img[^>]*id="phone-qr"[^>]*>/);
+  const width = Number(img.match(/width="(\d+)"/)?.[1]);
+  const modules = 41, quiet = 2 * 4;
+  const code = (width * modules) / (modules + quiet);
+  assert.ok(code >= 200, `code is ${code.toFixed(1)} CSS px, needs >= 200`);
+  assert.ok(Number.isInteger(width / (modules + quiet)), "whole CSS px per module");
+});
+
+// covers FR-001, FR-007 (fix round 1): the full link is shown as text under the QR code.
+test("the full link shows as selectable text under the QR code", () => {
+  const url = tag(/<code id="phone-url"><\/code>/);
+  const card = html.slice(html.indexOf('<div id="phone"'), html.indexOf("<script"));
+  assert.ok(card.includes(url), "#phone-url inside #phone");
+  assert.ok(card.indexOf(url) > card.indexOf('id="phone-qr"'), "#phone-url after the QR image");
+  assert.ok(card.indexOf(url) < card.indexOf('id="phone-link"'), "#phone-url before the link");
+  const rule = css.match(/#phone-url\s*\{[^}]*\}/)?.[0] ?? "";
+  assert.match(rule, /word-break:\s*break-all/);
+  assert.match(rule, /user-select:\s*all/);
+});
+
+// covers FR-007 (fix round 1): app.js writes the same link as text, never as HTML.
+test("app.js writes the link text from the same url as the link", () => {
+  assert.match(app, /getElementById\("phone-url"\)/);
+  assert.match(app, /phoneUrl\.textContent\s*=\s*url/);
+  assert.match(app, /phoneLink\.href\s*=\s*url/);
+  assert.ok(!/phoneUrl\.innerHTML/.test(app), "no innerHTML");
 });
 
 // covers FR-001, FR-007: title, help line and a clickable link that opens in a new tab.
@@ -60,10 +94,11 @@ test("the card has a hidden stops note", () => {
   assert.match(note, />Stops are not included in the phone link\.<\/span>/);
 });
 
-// covers FR-001 (thin line under the summary, QR on the left), FR-005 (hidden really hides).
+// covers FR-001 (thin line under the summary, items stacked in a column), FR-005 (hidden really hides).
 test("styles.css lays out the card as Design A", () => {
   const rule = css.match(/#phone\s*\{[^}]*\}/)?.[0] ?? "";
   assert.match(rule, /display:\s*flex/);
+  assert.match(rule, /flex-direction:\s*column/); // fix round 1: a 245 px code does not fit beside the text
   assert.match(rule, /border-top:\s*1px solid/);
   assert.match(css, /#phone\[hidden\][^{]*\{[^}]*display:\s*none/);
 });

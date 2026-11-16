@@ -33,7 +33,7 @@ The image of the phone link.
 | error correction | `L` |
 | version | automatic (`typeNumber` 0) |
 | quiet zone | 4 modules |
-| rendering | SVG data URL in an `<img>`, 120 × 120 CSS px, alt "QR code to open this route on your phone" |
+| rendering | SVG data URL in an `<img>`, 245 × 245 CSS px (code itself 205 px), alt "QR code to open this route on your phone" |
 
 ## Phone card state (UI)
 
