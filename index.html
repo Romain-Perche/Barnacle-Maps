@@ -15,8 +15,9 @@
       <button type="submit">Go</button>
     </form>
     <div id="mode" role="radiogroup" aria-label="Travel mode">
-      <label><input type="radio" name="mode" value="foot" checked> Walk</label>
-      <label><input type="radio" name="mode" value="car"> Car</label>
+      <label><input type="radio" name="mode" value="foot" checked> <span aria-hidden="true">🚶</span> Walk</label>
+      <label><input type="radio" name="mode" value="car"> <span aria-hidden="true">🚗</span> Car</label>
+      <label><input type="radio" name="mode" value="bike"> <span aria-hidden="true">🚲</span> Bike</label>
     </div>
     <ul id="results"></ul>
     <div id="stops-box" hidden>
