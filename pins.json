@@ -1,0 +1,10 @@
+{
+  "scripts": [
+    {
+      "name": "qrcode-generator",
+      "version": "2.0.4",
+      "url": "https://unpkg.com/qrcode-generator@2.0.4/dist/qrcode.js",
+      "integrity": "sha384-e9EFD6BGC90bkW9aDV5xbbBfzwN7G8YImHao2lfLVKV/hPB0E0go+H3I64h7oHtA"
+    }
+  ]
+}
