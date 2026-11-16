@@ -8,11 +8,18 @@
 
 **Input**: User description: "bicycle track — in addition to by foot and by car, I want to be able to select bicycles as a travel possibility"
 
+## Clarifications
+
+### Session 2026-11-16
+
+- Q: Which design do you want for the Bike option in the travel mode selector? → A: Design: C, segmented buttons with icons (🚶 Walk | 🚗 Car | 🚲 Bike), see `design-options.html`.
+- Q: Do bike routes also show the pleasure indicator (green pixels, "most pleasant")? → A: Yes, bike routes show the pleasure indicator the same way as walking routes.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Get cycling routes to a destination (Priority: P1)
 
-A user who plans to ride a bicycle selects "Bike" as the travel mode, next to the existing "Walk" and "Car" options, searches for a place, and sees up to 3 routes suited to cycling, each with its distance and estimated cycling duration. They pick a route in the panel or by clicking it on the map, exactly as for the other modes.
+A user who plans to ride a bicycle selects "🚲 Bike" in the travel mode selector, next to the existing Walk and Car options, searches for a place, and sees up to 3 routes suited to cycling, each with its distance, estimated cycling duration and the pleasure indicator. They pick a route in the panel or by clicking it on the map, exactly as for the other modes.
 
 **Why this priority**: This is the whole feature: without bicycle routes, there is no value delivered.
 
@@ -20,11 +27,12 @@ A user who plans to ride a bicycle selects "Bike" as the travel mode, next to th
 
 **Acceptance Scenarios**:
 
-1. **Given** the app shows the travel mode selector, **When** the user looks at it, **Then** three options are offered: Walk, Car and Bike, with Walk selected by default.
+1. **Given** the app shows the travel mode selector, **When** the user looks at it, **Then** it is one row of three segmented buttons, "🚶 Walk", "🚗 Car" and "🚲 Bike", with Walk selected by default and the selected button highlighted (design C).
 2. **Given** the user has selected Bike and a known position, **When** they choose a destination, **Then** up to 3 cycling routes are displayed on the map and in the panel, each with distance and duration, and the fastest is pre-selected.
 3. **Given** cycling routes are displayed, **When** the user clicks a route on the map or in the panel, **Then** that route becomes the selected one, as in the other modes.
 4. **Given** cycling routes are being computed, **When** the user waits, **Then** the status message refers to cycling (e.g., "Computing cycling routes…"), and the summary refers to bike (e.g., "by bike", "cycling routes").
 5. **Given** no cycling route can be found, **When** the computation ends, **Then** the user sees "No cycling route found."
+6. **Given** cycling routes are displayed, **When** pleasure scoring finishes, **Then** each route shows its pleasure (green pixels) and the route with the most green pixels is marked "most pleasant", as for walking.
 
 ---
 
@@ -34,12 +42,12 @@ A user who already has walking or car routes displayed switches to Bike (or from
 
 **Why this priority**: Comparing modes for the same trip is the main reason to have several modes, but it builds on Story 1.
 
-**Independent Test**: Display walking routes to a destination, switch to Bike, verify cycling routes replace them for the same destination; switch back to Walk and verify walking routes (with pleasure indicator) return.
+**Independent Test**: Display walking routes to a destination, switch to Bike, verify cycling routes replace them for the same destination; switch back to Walk and verify walking routes return.
 
 **Acceptance Scenarios**:
 
 1. **Given** walking or car routes are displayed, **When** the user selects Bike, **Then** the previous routes are replaced by cycling routes to the same destination.
-2. **Given** cycling routes are displayed, **When** the user selects Walk, **Then** walking routes with the pleasure indicator are displayed again.
+2. **Given** cycling routes are displayed, **When** the user selects Walk, **Then** walking routes are displayed again.
 3. **Given** the user switches modes quickly, **When** a slower earlier computation finishes, **Then** only the routes of the currently selected mode are shown.
 
 ---
@@ -64,28 +72,28 @@ A user who has added stops gets cycling routes that go from their position throu
 - The cycling routing service is unreachable or returns an error: the user sees an error message and no stale routes from another mode remain displayed as if they were cycling routes.
 - The routing service returns a single cycling route: only that route is shown; no artificial detour routes are generated (detours are forced only for walking).
 - Destination on a road where cycling is forbidden (e.g., a motorway-only area): the service's best cycling route is shown, or "No cycling route found." if none exists.
-- Very long trips: routes are shown with their distance and duration as for other modes; no pleasure indicator is computed.
+- Very long bike trips (beyond the existing pleasure distance or tile limit) or map tiles that cannot be loaded: routes are shown normally and each shows "Pleasure unavailable", as for walking.
 - Duplicate routes returned by the service are de-duplicated as in the other modes.
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: The travel mode selector MUST offer a third option, "Bike", alongside "Walk" and "Car"; Walk MUST remain the default.
+- **FR-001**: The travel mode selector MUST offer three options as one row of segmented buttons with icons, "🚶 Walk", "🚗 Car" and "🚲 Bike" (design C in `design-options.html`); the selected option MUST be visibly highlighted and announced as selected to assistive technology; Walk MUST remain the default.
 - **FR-002**: When Bike is selected, the system MUST compute routes using a bicycle-specific routing profile (routes allowed and timed for bicycles), not the walking or car profile.
 - **FR-003**: The system MUST display up to 3 cycling routes, each with distance and estimated duration, and pre-select the fastest one.
 - **FR-004**: Cycling routes MUST be selectable from the panel and from the map, as for the other modes.
-- **FR-005**: Cycling routes MUST NOT show the pleasure indicator (it remains walking-only).
+- **FR-005**: Cycling routes MUST show the pleasure indicator with the same rules as walking routes (green pixels along the route, "most pleasant" on the best one, "Pleasure unavailable" beyond the same limits or on tile failure); its explanation text MUST refer to the route, not only to a walk. Car routes still MUST NOT show it.
 - **FR-006**: The system MUST NOT force detour routes through side waypoints for cycling (it remains walking-only).
 - **FR-007**: Status and summary texts MUST name the cycling mode ("Computing cycling routes…", "No cycling route found.", "by bike", "cycling routes").
 - **FR-008**: Switching to or from Bike MUST recompute routes for the current destination and keep the current stops.
 - **FR-009**: Cycling routes MUST honour the stops list (through every stop, in list order) like the other modes.
 - **FR-010**: Results from a computation for a previously selected mode MUST NOT replace the routes of the currently selected mode.
-- **FR-011**: The project documentation (README) MUST mention the Bike mode and its routing source.
+- **FR-011**: The project documentation (README) MUST mention the Bike mode, its routing source, and that the pleasure indicator applies to walking and bike routes.
 
 ### Key Entities
 
-- **Travel mode**: one of Walk, Car, Bike; has a user-facing label, a routing profile, and mode-specific behaviours (pleasure indicator and forced detours only for Walk).
+- **Travel mode**: one of Walk, Car, Bike; has a user-facing label, a routing profile, and mode-specific behaviours (pleasure indicator for Walk and Bike; forced detours only for Walk).
 - **Route**: path from position through stops to destination, with distance and duration, computed for one travel mode.
 
 ## Success Criteria *(mandatory)*
@@ -95,12 +103,13 @@ A user who has added stops gets cycling routes that go from their position throu
 - **SC-001**: A user can switch to Bike and see cycling routes for a chosen destination in 2 interactions (select Bike, choose destination) or 1 interaction if a destination is already chosen.
 - **SC-002**: For a typical urban trip of 2–10 km, cycling route durations displayed are shorter than the walking durations for the same trip in 100% of tested cases.
 - **SC-003**: Cycling routes appear within the same time as walking or car routes for the same trip (no noticeable additional wait).
-- **SC-004**: Walk and Car behaviour (routes, pleasure indicator, detours, stops) is unchanged: all existing automated tests continue to pass.
+- **SC-004**: Walk and Car behaviour (routes, pleasure indicator, detours, stops) is unchanged apart from the new selector look: all existing automated tests continue to pass.
 
 ## Assumptions
 
 - The same public OpenStreetMap-based routing provider already used for walking and car offers a bicycle profile, which will be used for cycling routes.
 - Cycling durations are those estimated by the routing service; no user-configurable cycling speed is provided.
-- The pleasure indicator is not extended to cycling in this feature (it is defined around walking).
+- The pleasure indicator for bike routes reuses the walking limits (distance, number of tiles, timeout) unchanged.
+- The selector icons are emoji characters, so nothing extra is loaded.
 - No distinction is made between bicycle types (e-bike, road bike, etc.) or between dedicated bike tracks and other bike-allowed roads; "bicycle track" in the request is understood as "bicycle travel mode".
 - The selected mode is not persisted across page reloads (consistent with current behaviour).
