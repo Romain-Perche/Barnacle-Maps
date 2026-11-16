@@ -145,6 +145,21 @@ test("styles.css: #mode is a segmented control with checked and focus styles", (
   assert.doesNotMatch(c, /#mode input\s*\{[^}]*display:\s*none/);
 });
 
+// covers FR-001 (Fix round 1): "🚶 Walk" stays on one line. The block/padding rule for the button
+// must target only the outer span; a descendant `#mode span` rule also hits the nested icon span.
+test("styles.css: #mode button padding does not apply to the nested icon span", () => {
+  const c = read("styles.css").replace(/\/\*[\s\S]*?\*\//g, "");
+  for (const [, sel, body] of c.matchAll(/([^{}]+)\{([^}]*)\}/g)) {
+    for (const one of sel.split(",").map((x) => x.trim())) {
+      if (!/^#mode\b/.test(one) || !/\bspan$/.test(one)) continue;
+      const outerOnly = /(\+|>)\s*span$/.test(one);
+      assert.ok(outerOnly || !/(display|padding)\s*:/.test(body),
+        `"${one}" sets display/padding on every span inside #mode, including the icon; use "#mode input + span"`);
+    }
+  }
+  assert.match(c, /#mode input \+ span\s*\{[^}]*padding/);
+});
+
 // --- App wiring (src/app.js has no DOM test harness: source checks) ---------------------------
 
 // covers FR-005, FR-006, FR-007, US1 scenario 4: behaviour comes from TRAVEL_MODES, not from hard-coded mode names

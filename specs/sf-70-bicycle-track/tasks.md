@@ -160,6 +160,13 @@ Flat static app at the repository root: `index.html`, `styles.css`, `src/geo.js`
 
 ---
 
+## Fix round 1: icon on its own line in the mode selector
+
+- [ ] T052 In `styles.css`, change the selector `#mode span` to `#mode input + span` (keep its declarations), so `display:block` and the padding apply only to the outer button span and not to the nested `<span aria-hidden="true">` icon. Do not edit `index.html` or the tests (FR-001, plan "Fix round 1")
+- [ ] T053 Run `npm test`: all tests pass, including "styles.css: #mode button padding does not apply to the nested icon span" in `test/bike.test.js`. Check with `npm start` that each button shows "🚶 Walk", "🚗 Car", "🚲 Bike" on one line
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies

@@ -94,3 +94,11 @@ README.md            # Bike mode, routed-bike source, pleasure for walking and b
 ## Complexity Tracking
 
 No constitution violations; nothing to justify.
+
+## Fix round 1
+
+- **Problem (AI review):** each mode button shows the emoji on its own line above the label ("🚶" over "Walk"), so each segment is about 60px tall. Design C / FR-001 asks for "🚶 Walk" on one line.
+- **Cause:** `styles.css` uses `#mode span { display:block; padding:6px 8px; … }`. That descendant selector also matches the nested `<span aria-hidden="true">ICON</span>`, so the icon becomes a padded block. T011 asked for `#mode input + span`.
+- **Fix:** scope the rule to the outer span: change the selector `#mode span` to `#mode input + span` (same declarations). The nested icon span keeps its default inline display. No markup or spec change.
+- **Files:** `styles.css` only.
+- **Test:** `test/bike.test.js` "styles.css: #mode button padding does not apply to the nested icon span" fails while any `#mode … span` rule without `+`/`>` before `span` sets `display` or `padding`, and requires `#mode input + span` to set the padding.
