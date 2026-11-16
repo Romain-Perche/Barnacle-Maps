@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bike mode: design options</title>
+<style>
+  :root { color-scheme: light dark;
+    --page:#f1f3f4; --text:#202124; --muted:#666; --panel:#fff; --border:#ccc;
+    --map:#e8eae6; --park:#c8e6c9; --road:#fff; --water:#aad3df;
+    --sel-bg:#e8f0fe; --blue:#1a73e8; --green:#188038; --input:#fff; }
+  @media (prefers-color-scheme: dark) { :root {
+    --page:#121212; --text:#e8eaed; --muted:#a0a0a0; --panel:#202124; --border:#5f6368;
+    --map:#2b2d2a; --park:#2f4a31; --road:#3c3f41; --water:#284a57;
+    --sel-bg:#1f3352; --blue:#8ab4f8; --green:#81c995; --input:#303134; } }
+  body { margin:0; padding:24px; background:var(--page); color:var(--text); font-family:system-ui, sans-serif; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  .lead { margin:0 0 20px; color:var(--muted); font-size:14px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(380px, 1fr)); gap:24px; }
+  figure { margin:0; }
+  figcaption { margin-top:10px; font-size:14px; }
+  figcaption b { font-size:16px; }
+  .screen { position:relative; height:440px; border-radius:8px; overflow:hidden; border:1px solid var(--border);
+    background:
+      linear-gradient(90deg, transparent 58%, var(--road) 58%, var(--road) 61%, transparent 61%),
+      linear-gradient(0deg, transparent 30%, var(--road) 30%, var(--road) 33%, transparent 33%),
+      radial-gradient(circle at 78% 72%, var(--park) 0 18%, transparent 18.5%),
+      radial-gradient(ellipse at 15% 90%, var(--water) 0 22%, transparent 22.5%),
+      var(--map); }
+  .route { position:absolute; height:5px; border-radius:3px; background:#9aa0a6; opacity:.8; transform-origin:left center; }
+  .route.sel { background:var(--blue); opacity:1; height:6px; }
+  .dot { position:absolute; width:14px; height:14px; border-radius:50%; background:var(--blue); border:3px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,.3); }
+  .pin { position:absolute; width:16px; height:16px; background:#d93025; border-radius:50% 50% 50% 0; transform:rotate(-45deg); border:2px solid #fff; }
+  .panel { position:absolute; top:12px; left:12px; width:330px; background:var(--panel); border-radius:8px; padding:8px; box-shadow:0 2px 8px rgba(0,0,0,.3); font-size:16px; }
+  .search { display:flex; gap:6px; }
+  .search span.input { flex:1; padding:7px 8px; border:1px solid var(--border); background:var(--input); font-size:16px; border-radius:2px; }
+  .search span.btn { padding:6px 10px; border:1px solid var(--border); border-radius:3px; background:var(--page); font-size:14px; }
+  .mode { display:flex; gap:12px; margin:6px 0 0; font-size:14px; align-items:center; }
+  .radio { display:inline-block; width:12px; height:12px; border:1.5px solid var(--muted); border-radius:50%; vertical-align:-2px; margin-right:4px; box-sizing:border-box; }
+  .radio.on { border:4px solid var(--blue); }
+  .seg { display:flex; margin:6px 0 0; border:1px solid var(--border); border-radius:6px; overflow:hidden; font-size:14px; }
+  .seg span { flex:1; text-align:center; padding:6px 0; border-left:1px solid var(--border); }
+  .seg span:first-child { border-left:0; }
+  .seg span.on { background:var(--sel-bg); color:var(--blue); font-weight:600; }
+  .routes { list-style:none; margin:6px 0 0; padding:0; }
+  .routes li { padding:6px 8px; border-left:3px solid transparent; font-size:16px; }
+  .routes li.on { border-left-color:var(--blue); background:var(--sel-bg); }
+  .status { margin:6px 0 0; font-size:14px; }
+  .new { outline:2px dashed #f29900; outline-offset:3px; border-radius:4px; }
+</style>
+</head>
+<body>
+<h1>Which design for the Bike travel mode?</h1>
+<p class="lead">Each mock shows the panel with "Bike" selected and cycling routes to Jardin du Luxembourg. The orange dashed line marks the changed control.</p>
+<div class="grid">
+
+<figure>
+  <div class="screen">
+    <div class="route" style="left:120px;top:330px;width:250px;transform:rotate(-38deg)"></div>
+    <div class="route sel" style="left:120px;top:330px;width:240px;transform:rotate(-30deg)"></div>
+    <span class="dot" style="left:112px;top:322px"></span><span class="pin" style="left:322px;top:200px"></span>
+    <div class="panel">
+      <div class="search"><span class="input">Jardin du Luxembourg</span><span class="btn">Go</span></div>
+      <div class="mode new"><span><i class="radio"></i>Walk</span><span><i class="radio on"></i>Bike</span><span><i class="radio"></i>Car</span></div>
+      <ul class="routes">
+        <li class="on">Route 1 · 3.42 km · 13 min</li>
+        <li>Route 2 · 3.87 km · 15 min</li>
+      </ul>
+      <p class="status">2 cycling routes · fastest 3.42 km · 13 min</p>
+    </div>
+  </div>
+  <figcaption><b>A: Third radio button</b><br>Smallest change: same look as today, Bike sits between Walk and Car.</figcaption>
+</figure>
+
+<figure>
+  <div class="screen">
+    <div class="route" style="left:120px;top:330px;width:250px;transform:rotate(-38deg)"></div>
+    <div class="route sel" style="left:120px;top:330px;width:240px;transform:rotate(-30deg)"></div>
+    <span class="dot" style="left:112px;top:322px"></span><span class="pin" style="left:322px;top:200px"></span>
+    <div class="panel">
+      <div class="search"><span class="input">Jardin du Luxembourg</span><span class="btn">Go</span></div>
+      <div class="seg new"><span>Walk</span><span class="on">Bike</span><span>Car</span></div>
+      <ul class="routes">
+        <li class="on">Route 1 · 3.42 km · 13 min</li>
+        <li>Route 2 · 3.87 km · 15 min</li>
+      </ul>
+      <p class="status">2 cycling routes · fastest 3.42 km · 13 min</p>
+    </div>
+  </div>
+  <figcaption><b>B: Segmented buttons</b><br>Bigger tap targets and a clear selected state; restyles the existing Walk/Car control.</figcaption>
+</figure>
+
+<figure>
+  <div class="screen">
+    <div class="route" style="left:120px;top:330px;width:250px;transform:rotate(-38deg)"></div>
+    <div class="route sel" style="left:120px;top:330px;width:240px;transform:rotate(-30deg)"></div>
+    <span class="dot" style="left:112px;top:322px"></span><span class="pin" style="left:322px;top:200px"></span>
+    <div class="panel">
+      <div class="search"><span class="input">Jardin du Luxembourg</span><span class="btn">Go</span></div>
+      <div class="mode new"><span><i class="radio"></i>🚶 Walk</span><span><i class="radio on"></i>🚲 Bike</span><span><i class="radio"></i>🚗 Car</span></div>
+      <ul class="routes">
+        <li class="on">Route 1 · 3.42 km · 13 min</li>
+        <li>Route 2 · 3.87 km · 15 min</li>
+      </ul>
+      <p class="status">2 cycling routes · fastest 3.42 km · 13 min</p>
+    </div>
+  </div>
+  <figcaption><b>C: Radio buttons with icons</b><br>Modes are recognized at a glance; keeps today's radio layout.</figcaption>
+</figure>
+
+</div>
+</body>
+</html>
