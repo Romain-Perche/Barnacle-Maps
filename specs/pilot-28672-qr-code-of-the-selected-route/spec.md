@@ -8,6 +8,13 @@
 
 **Input**: User description: "When I pick a route, show a QR code next to the route summary that opens the same route on my phone (a link with the start, the destination and the travel mode), so I can continue on my phone. Use a well-known QR code library; do not write the QR encoding by hand."
 
+## Clarifications
+
+### Session 2026-11-16
+
+- Q: Which page should the QR code open on the phone? → A: OpenStreetMap directions page (same routing service as the app; stops are not carried).
+- Q: Which design? → A: Design: A, QR card under the route summary, always visible while routes are shown.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Continue the selected route on my phone (Priority: P1)
@@ -56,8 +63,8 @@ When I change the travel mode or the destination, the QR code is updated so it n
 
 ### Functional Requirements
 
-- **FR-001**: When routes are displayed and a route is selected, the system MUST show a QR code next to the route summary in the panel.
-- **FR-002**: The QR code MUST encode a web link that opens directions from the start position to the destination with the current travel mode (walking or car) on a phone, without any account or installation.
+- **FR-001**: When routes are displayed and a route is selected, the system MUST show a QR card in the panel, directly under the route summary (Design A in `design-options.html`): a QR code of about 120 × 120 CSS pixels on the left, and on its right the title "Continue on your phone", the line "Scan with your phone camera." and the link "Open on your phone", separated from the summary by a thin line.
+- **FR-002**: The QR code MUST encode a link to the public OpenStreetMap website's directions page that opens directions from the start position to the destination with the current travel mode (walking or car, using the same routing service as the app), on any phone browser, without any account or installation.
 - **FR-003**: The start in the link MUST be the user's position used to compute the displayed routes; the destination MUST be the chosen place's position; the travel mode MUST be the mode of the displayed routes.
 - **FR-004**: Coordinates in the link MUST be precise enough to identify the place (at least 5 decimal places, about 1 m).
 - **FR-005**: The QR code MUST be updated whenever the displayed routes change (new destination, mode change, stops change) and MUST be hidden while no route is displayed (no destination, no position, computing, failure, no route found).
@@ -85,8 +92,8 @@ When I change the travel mode or the destination, the QR code is updated so it n
 
 ## Assumptions
 
-- The app runs on the user's computer (often at a local address), so a link to the app itself would not open on the phone. The phone link therefore points to the public OpenStreetMap website's directions page, which works in any phone browser and uses the same routing service as the app (OSRM foot and car profiles of routing.openstreetmap.de), so the phone shows the same trip.
+- The app runs on the user's computer (often at a local address), so a link to the app itself would not open on the phone. The phone link therefore points to the public OpenStreetMap website's directions page (confirmed in Clarifications), which uses the same routing service as the app (OSRM foot and car profiles of routing.openstreetmap.de), so the phone shows the same trip.
 - The link carries only the start, the destination and the travel mode, as requested; the exact alternative picked and any stops are not carried over.
-- "Next to the route summary" means in the side panel, near the route list / status summary of the displayed routes.
+- "Next to the route summary" means the QR card placed directly under the status summary of the displayed routes (Design A).
 - In keeping with the app's "no build step" approach, the QR code library is loaded the same way as the map library (from a public content delivery network), with no build tooling added.
 - Existing behaviours (search, routes, alternatives, pleasure indicator, stops, travel mode switch) are unchanged.
