@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bike travel mode: design options</title>
+<style>
+:root { color-scheme: light dark; --bg:#f6f7f9; --fg:#202124; --muted:#666; --panel:#fff; --line:#dadce0; --sel:#e8f0fe; --blue:#1a73e8; --green:#188038; --map:#e9efe4; --park:#c8e6c0; --road:#fff; --water:#aad3df; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#16181c; --fg:#e8eaed; --muted:#a0a4a8; --panel:#24272c; --line:#3c4043; --sel:#1f3a5f; --blue:#8ab4f8; --green:#81c995; --map:#2b3029; --park:#36502f; --road:#4a4f55; --water:#2d4a57; }
+}
+body { margin:0; padding:24px; background:var(--bg); color:var(--fg); font-family:system-ui, sans-serif; }
+h1 { font-size:20px; margin:0 0 4px; }
+p.lead { margin:0 0 20px; color:var(--muted); font-size:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:20px; }
+.opt h2 { font-size:16px; margin:0 0 8px; }
+.opt p { font-size:14px; margin:8px 0 0; }
+.screen { position:relative; height:400px; border-radius:8px; overflow:hidden; border:1px solid var(--line);
+  background:
+    radial-gradient(circle at 80% 75%, var(--park) 0 60px, transparent 61px),
+    radial-gradient(circle at 15% 90%, var(--water) 0 50px, transparent 51px),
+    linear-gradient(90deg, transparent 58%, var(--road) 58% 61%, transparent 61%),
+    linear-gradient(0deg, transparent 30%, var(--road) 30% 33%, transparent 33%),
+    var(--map); }
+.route { position:absolute; left:60%; top:66%; width:110px; height:0; border-top:5px solid var(--blue); transform:rotate(-30deg); transform-origin:left; border-radius:3px; }
+.panel { position:absolute; top:12px; left:12px; width:calc(100% - 24px); max-width:300px; box-sizing:border-box; background:var(--panel); border-radius:8px; padding:8px; box-shadow:0 2px 8px rgba(0,0,0,.3); font-size:14px; }
+.search { display:flex; gap:6px; }
+.search .in { flex:1; padding:8px; font-size:16px; border:1px solid var(--line); color:var(--fg); }
+.search .go { padding:6px 10px; border:1px solid var(--line); border-radius:3px; }
+.radios { display:flex; gap:12px; margin-top:6px; }
+.radio { display:inline-block; width:12px; height:12px; border:1.5px solid var(--muted); border-radius:50%; vertical-align:-2px; margin-right:3px; box-sizing:border-box; }
+.radio.on { border:4px solid var(--blue); }
+.seg { display:flex; margin-top:6px; border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+.seg span { flex:1; text-align:center; padding:6px 8px; }
+.seg span + span { border-left:1px solid var(--line); }
+.seg .on { background:var(--sel); color:var(--blue); font-weight:600; }
+.routes { list-style:none; margin:6px 0 0; padding:0; }
+.routes li { padding:6px 8px; border-left:3px solid transparent; }
+.routes li.on { border-left-color:var(--blue); background:var(--sel); }
+.status { margin:6px 0 0; }
+</style>
+</head>
+<body>
+<h1>Which design for the Bike option?</h1>
+<p class="lead">Each mock shows the panel with Bike selected and cycling routes to "Jardin des Plantes".</p>
+<div class="grid">
+
+<div class="opt">
+  <h2>A: one more radio button</h2>
+  <div class="screen"><div class="route"></div>
+    <div class="panel">
+      <div class="search"><span class="in">Jardin des Plantes</span><span class="go">Go</span></div>
+      <div class="radios"><span><span class="radio"></span>Walk</span><span><span class="radio"></span>Car</span><span><span class="radio on"></span>Bike</span></div>
+      <ul class="routes"><li class="on">3.2 km · 12 min</li><li>3.6 km · 14 min</li></ul>
+      <p class="status">2 cycling routes · fastest 3.2 km · 12 min</p>
+    </div>
+  </div>
+  <p>Good for the smallest change: same look as today, Bike added after Car.</p>
+</div>
+
+<div class="opt">
+  <h2>B: segmented buttons, text</h2>
+  <div class="screen"><div class="route"></div>
+    <div class="panel">
+      <div class="search"><span class="in">Jardin des Plantes</span><span class="go">Go</span></div>
+      <div class="seg"><span>Walk</span><span>Car</span><span class="on">Bike</span></div>
+      <ul class="routes"><li class="on">3.2 km · 12 min</li><li>3.6 km · 14 min</li></ul>
+      <p class="status">2 cycling routes · fastest 3.2 km · 12 min</p>
+    </div>
+  </div>
+  <p>Good for big tap targets and a clear selected mode, without icons.</p>
+</div>
+
+<div class="opt">
+  <h2>C: segmented buttons with icons</h2>
+  <div class="screen"><div class="route"></div>
+    <div class="panel">
+      <div class="search"><span class="in">Jardin des Plantes</span><span class="go">Go</span></div>
+      <div class="seg"><span>🚶 Walk</span><span>🚗 Car</span><span class="on">🚲 Bike</span></div>
+      <ul class="routes"><li class="on">3.2 km · 12 min</li><li>3.6 km · 14 min</li></ul>
+      <p class="status">2 cycling routes · fastest 3.2 km · 12 min</p>
+    </div>
+  </div>
+  <p>Good for recognising each mode at a glance, as in common map apps.</p>
+</div>
+
+</div>
+</body>
+</html>
