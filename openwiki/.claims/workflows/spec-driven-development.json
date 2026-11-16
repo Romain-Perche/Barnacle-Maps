@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f60c6f6fa7f3473180fbbbce28aa7f2e088ecdc0b850eb59baacc539ebea61bf",
+  "claims": [
+    {
+      "id": "claim_90292bad8b674b15bf13d9b212206768",
+      "statement": "The Spec Kit workflow runs specify, plan, tasks and implement with human review gates.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/workflows/speckit/workflow.yml",
+          "version": "repo-file-v1:sha256:177761c5e7df28126beea043b5cb45aeaf7958090c022dc11ac71399422fcfbc"
+        }
+      ]
+    },
+    {
+      "id": "claim_51cf3c33cf0d461abc28d68c8a409ac6",
+      "statement": "The installed git extension creates a feature branch before specification and offers commits between steps.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/extensions.yml#L1-L30",
+          "version": "repo-lines-v1:sha256:8b779c1fa517a9a56d090b1d4dfee151ac7629b1e1597b7a08b7189a876df160:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2NzgzOTAzNTY4MTE5NThmMTM1M2M5NGNmMDQ1YzMzMGIzNDYwYzM0NWE0N2QzNDI4YzczYjg2YTE4N2U0ZjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzNTg0MjI3ZTE0NjhjYTgwYmJkOGM1NTI0OGFjOWJkMDRjNzVhYWY4YzRjOWFhNmI1YWI5MWM5MGI5YWMxZWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY0MGE0N2YwZTNmYTQxZjE3YzQyNzRmZDRmOTlmZDUwODkwNzYwYTg0MTZhYTM0MDc3MmYwM2VkZGQyNGY5MGMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d00bdc613186417b8ef8850b5b0e302e",
+      "statement": "Each feature folder records new third-party dependencies with version, manager and reason in dependencies.json.",
+      "evidence": [
+        {
+          "resource": "repo://specs/pilot-28672-qr-code-of-the-selected-route/dependencies.json",
+          "version": "repo-file-v1:sha256:035d47c6c4f2fef38673e63d4836f3091d10e8ea3c9fc9d9a590435afed73b1b"
+        }
+      ]
+    },
+    {
+      "id": "claim_b6257a259bb140f8a6bfada33e921d15",
+      "statement": "The write-tests skill runs after /speckit-tasks and writes deterministic tests and AI test scenarios without human approval.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/write-tests/SKILL.md#L1-L6",
+          "version": "repo-lines-v1:sha256:5a825c55939f400430dd1940f4865861142d340b6289d8203fd92eae368a3840:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjUyZDcxMTEwM2Q1MGE0Mzc4MzBjNmZiY2QwNGZiNGJhYjQ5YTBmODJmNmQyNmQxYzc5MWM2ZTg0ODhkZDA5MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGI1MmRmYTU3YmEwYTAwMTA3ZTk2YWM0ODZhNjYxMmQ0OGVjMDNjYTJjMWU5ZTU3MWUzMDZiZTk1MGYyNjliNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2ZmM2FlYmI3NTZlZTFjM2Q0ODg2YTgwODliOWU5NTFkMzYwYTQ4ODA4YTkyN2M4Zjg5NGM1MGFmMGVjNWJmMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ff0b904b01094482840b90579933da23",
+      "statement": "The plan-review skill presents the plan as one HTML page and applies a person's answers until they approve.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/plan-review/SKILL.md#L1-L6",
+          "version": "repo-lines-v1:sha256:b7a332f48af3e356faf9b781d5c2851263c02f3b527c753b887f9a071c0d1b6a:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjUyZDcxMTEwM2Q1MGE0Mzc4MzBjNmZiY2QwNGZiNGJhYjQ5YTBmODJmNmQyNmQxYzc5MWM2ZTg0ODhkZDA5MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGI1MmRmYTU3YmEwYTAwMTA3ZTk2YWM0ODZhNjYxMmQ0OGVjMDNjYTJjMWU5ZTU3MWUzMDZiZTk1MGYyNjliNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODU1NDFiMjJjZjQxYjgwNDM5ZjU0YWFjOTAxY2Y4NjVkMjE0MjkxNWRlNGQwOTIxMTNiNzNjZjI1ZTljNGZjZiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T11:56:00.654Z"
+  }
+}

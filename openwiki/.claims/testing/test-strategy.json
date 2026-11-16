@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e2d513f7dd16a287a0bca24eb045e590a2b289973931d5ffee2d52e6392dea73",
+  "claims": [
+    {
+      "id": "claim_1ec5d797e186453aa207119c7b75a4e6",
+      "statement": "npm test runs Node's built-in test runner over the test/ directory with no test dependencies.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L6-L9",
+          "version": "repo-lines-v1:sha256:342cd5ca9bdca5576ac659d83ee7033571e5368c4d921faf92064f0ccd62b184:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWI0ZjZhNDYyZDEyZTExMzc1MGI2NTQzYzQzYzQzMDQ4NjIyOTExNWIyNWE1ZTdhM2E1YzFkNTcyYTU1ZjkxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_082b6a9efc1e4a1c8d46c8501fbfc12d",
+      "statement": "Some tests are text contracts that read index.html, styles.css and src/app.js as strings and assert on markup and wiring.",
+      "evidence": [
+        {
+          "resource": "repo://test/phone-card.test.js#L1-L27",
+          "version": "repo-lines-v1:sha256:dd8e3c1c660fec267773a14e4b524a67fe031cd4c1966148767da0d3721f15c4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUyNTZlMTdlMDgwMTkyOWVjZjkzOWQ3NmZlODY3NjA3MGUyYTZhY2E5NDA0NjMxYjdmZWUyYTk1OTNjMGQyYjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI2NWFhZmY1N2RkNDM0MjUwOWJjNGFkNDY3NTZlMDU4NDVjNWZiNjU5YTU0YTczY2Q0ZjRmOWJlNWQ5MDIyNWEifQ"
+        },
+        {
+          "resource": "repo://test/routes.test.js#L282-L290",
+          "version": "repo-lines-v1:sha256:54be7a13f865cd136cb850f791245f99ecc9f3cfd8c2a2f3b0e6447aa3c6c58e:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDM5MTg5MjkyODRlMTY1Mjc1NGFhMTY3ZTFlMzVhMTZlNTgwYmY0OTVjODg2ZDk0NGQ5ZDg3MTk4ODFhODY2MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzFlM2I1ZDRmMzkxMGRmODdhZWYzZDc0ZTJhZTAwMDEyYjk0YzY0NzE2MjRhNmYxYzI0MzI2OTFiNTRiZjY5MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDIwYmQxYTUwNzkxNmVjZjgxOWJkZDY0ZTMyYzcxMmE0ZTc5MDU5ZjNmNTgyNTlmNDA3MWU1ODJkZjVlMThhYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjFhMzA0ZDE2MjE3Y2U2N2I5MzZkZGEzMWJkZjdkY2Q3Y2M1MWE4MDk2OGQyYzg5MTk2MmQ4ODg4YTc2OWM0OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f6181a762f014923b481754f380341d9",
+      "statement": "QR tests inject fake qrcode factories instead of the real CDN library, one of which echoes the encoded text so tests can read what the code holds.",
+      "evidence": [
+        {
+          "resource": "repo://test/phone-updates.test.js#L8-L15",
+          "version": "repo-lines-v1:sha256:ae8c955b3081bc53c7bc0a40c2d74b7959d3c3d62a4886e3130859f9c961a08d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGZhYjBmOWMwOTEyNjYzMDcxYjQ1NTc4ZDZjMmMwOWM0YTE3YTIzMmU4ZDBkZDlkNmMwNzhkZjM1N2IwNTU3OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTEyZDg0ZmM5ZDcwZTIyMTMyMzVjY2Q3NzcwZWRkZjU2NTI1MmU3M2UwZGY5MTBmYzdkNDk1MTZmMzkzMzliNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2I0MWNkM2ZiYjM5ZDQ1ZGQxZDExMmZkODU0YWE0OWEzNWFmYTk3Y2JhNmQ4NGU4ZWZhZTY5OTNkNWExNGI1NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmRhZTQ5ZmVhMDcyZWIxOGVhNjY5ZWU4NjM3ODRlN2E4YjY4NjA3NDA4MWRhZjY5NzMyYjUyY2M3YjM1OWU1NSJ9"
+        },
+        {
+          "resource": "repo://test/qr-image.test.js#L1-L3",
+          "version": "repo-lines-v1:sha256:062fa4ebc1a9d749a2e70dc3d58dc7c41a200c1d209312754a1958684105c2bc:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGRmMGU4ZmRlYTY1YzI4NDFhYWYwOGU0ZGE5Mjk1NTdkNTY0NDhiYzBkNmJmN2ZlMjgzMDllYTk4ZjFhYTZhZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTY5YjBmYmViOGM0MTY4YzE2OWNmM2E2Y2NhOGIyZmEzYmIzZmQ2MTdiN2UxZmRhZTk2ZmE0ZDc0Mzg1ZTkwMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjQ2OGZkZTQ0ZDRlMGQ4YjA2ZjE0MTFiOTdhNjQwODUyMGE4MWE0YzQ3YTliZDkxNTUxMTdkMDkxY2JhNTJhNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b5cf68620c194455be0695699918ab2b",
+      "statement": "Browser scenarios under tests/ai run headless Playwright against npm start with a faked Paris geolocation and decode the QR code with zbarimg.",
+      "evidence": [
+        {
+          "resource": "repo://tests/ai/us1-continue-on-phone.md#L4-L10",
+          "version": "repo-lines-v1:sha256:4eaee7fa4d4d62bc5972a77683d5924f047ca892d83f85859cd673d5a4328d2f:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTNlOGZlNGY4MTMzYjExYjA1MDQ0ZDY3ODI5MDYzYjRmNzExMmUwODk3YmI1OGIyZTc0MzM4ZjRjOGQ2MGY4OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzY2ZmRmMzhhZjAyMDZiMWE4MTAzNTQxYTNhMDA0Y2EzNjFmZmExNWY2MmNjNzAzYmIzYTg3YjRmZDNlNzI5OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2JkNGE1MTY3NjE2NzdmNGRjY2YyMjA0MmM3MzY3ZWEwYWRjZWUzMGJkMWJhMmRiMzBmOGY3Y2UxM2NhYjJlMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTVjNmJjMWVlY2ExOGQ2ZDFhOWEwNDM2MjgxZWVhMTg5ZjQ1N2Y1N2NhZDIyODI4Yjc5YThhZThkNjc5ZGNjMiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T11:56:00.654Z"
+  }
+}

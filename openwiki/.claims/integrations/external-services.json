@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:911e2d0a3a21bef1d44b6ee5da80841ae7ccf2912f8f5dc6dc9bcc75b0c9955c",
+  "claims": [
+    {
+      "id": "claim_0026bae4bfcb4d888e387c0c410ea6c9",
+      "statement": "Map tiles and pleasure-score tiles are fetched from tile.openstreetmap.org directly by the browser.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L264-L266",
+          "version": "repo-lines-v1:sha256:20483cafb76e4ff98e9e4b45e9f01ea807a8fe7ffbbdfc7b9288c79213f0e5ab:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWRmZTI0YmFiOTNmMjkxY2M3ODkyODMwYjViZjdkZjQ0ZDNiODNlOTA3NGZmY2M1Y2VmMGNiYjA5N2JmM2JmZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzRmOTE5NGYzYmQxZWJmMjc2NjNjYjdkZWE3ZDMzYjJjZjhmN2Q3ZDg3ZWNiMGJmNWY0MWUzNGU0MjQ4ZDkyNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDdmMjQ4M2JjYzYzYzE2ZWJiZmQ4MjhlNjMwMDM3MjZhNGJlZmQ3ZjUxNDQ4NjdjMzU1ZTkwYjRkYjY4YWI1OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTMwOTdlODRhMDNhZDk2Mzg3OGJjY2E3NzZkNjBmMTRhOTZhNzU4YzJlMTk3MTBhZWYzZDc1ODc0MGM0ZjIxZSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L27-L34",
+          "version": "repo-lines-v1:sha256:b645c0460b9f6149ef78211da902fd6ebc2f3b0eebfa6c007a1c8d3b9713b2b3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmNhZTZhZDM1YjViNzgzMDc2NWQ3MmUwMjA4ODQ0MWNkZTg3NjJkNjIxY2QxNTgyMzQ3ODY5YmRhYTE0MjI5ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODhiMzg0YzQyZjdjODMzZjc0NmU4NWJmMGE2ZTM1M2Y0NGQ4MTVjZTE2MTIxODNjODUxZGRkMjFhNjBiMWU1OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmE3MmNhNmY5OTZjZWU0YTYxMDJmNjY4MmI0MWRkZjAxOTRkYzdkOGI2MjBlNWM1NDVjNmU1N2QxMmExMWUyOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDNlMmM0MWMyMTBjNDJiMTA3Zjk5ZjYyMGUyYjA1NGQ3ZTg5OTVhM2FhZGJjZGI1NmQ1MDc4NzY4ZmY5OGFjMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c8e3943a84e0466b91592a062589527f",
+      "statement": "The app calls Nominatim for search and the FOSSGIS OSRM servers at routing.openstreetmap.de for routing, and builds phone links to www.openstreetmap.org/directions.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L34-L62",
+          "version": "repo-lines-v1:sha256:cbf7600d98038e253b3af77b2bbd01f24c963a25b450d1c68ac542400ff76716:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NjFhZTI5YTMwZGIwNmFmOTI2Mzg1NTkxYTllOTdkMTM0OTVhYTIxMTg2ZWJiNzBjMTk2NDRlZjc2MjY4ZDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZhYmVmODcyODJiMWQyNjhlMTM1NzI5YmUxZmFlMTkyMDcxOTI3ODE0OTc3MWJmNjU5N2IyNDhmNmM1ZWRlNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmOGJjZjk2YjU5MGJlZmQ0Y2Q5MzdmMjE3ODVjMmQ2OGM4ZTdkN2I4OGY4OGNhNTg4M2E4ZGQ1NTRkYThlYWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3743119ce0bc4aa1af61e031a9c1c6d6",
+      "statement": "Leaflet and qrcode-generator are loaded from unpkg at fixed versions; only qrcode-generator carries an SRI integrity hash.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L37-L38",
+          "version": "repo-lines-v1:sha256:d0456876ae2d2bdf654ad510e8b1e303a2a5ca2b0b73334777f7da7b4c52b2ce:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2RhMzlkNmY1YjU1YmU0ODAxMDcwMjA1MGVlZmM2MmU3MTI2OTAyZDlkOTQwYjc1MjkyZTFlZTNkOTRkMTkzZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTcxNzk1N2YxMjgxOGM2MjRkYTU2MGNiNGQxNmNmMjYzZjUwMTUzYTU0Nzk3YTU1OTljNjIxMjQyMzlhYjYzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTEwM2RmODhlNTdjNGM3NTFmZTcxODU5MTY1NDkxNDQ3NGZiYmM1MTQyYTc3YTNiOTE1MjI4ZDNiNDc5MTJkZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjRkN2VlNzU2OTQzM2EzYzUyYTczZGViMzVjODE0ODFiM2U0ZWFkZTg4ZThjYmRmMTc3YzFmMzNiOWQwY2ZiMSJ9"
+        },
+        {
+          "resource": "repo://index.html#L7-L7",
+          "version": "repo-lines-v1:sha256:d5d27cb142449192b28275f6a014c829b67f2b270619a2ab0b4df062a33aeacf:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDVkMjdjYjE0MjQ0OTE5MmIyODI3NWY2YTAxNGM4MjliNjdmMmIyNzA2MTlhMmFiMGI0ZGYwNjJhMzNhZWFjZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDVkMjdjYjE0MjQ0OTE5MmIyODI3NWY2YTAxNGM4MjliNjdmMmIyNzA2MTlhMmFiMGI0ZGYwNjJhMzNhZWFjZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmUwN2VlM2JmOTQyZGYyNGVkMWQyMWMzZGZhOTZkODE4NDgyMWRkMDJjY2MxOGZjZjMxMGQ1Nzk3MTcyMTg0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDFjZThlOWI0MDJiZDdhYTVjODI4ODE1NTZhYzUzM2M0OWJiZjI3OWM4MmVjZjIyNjNlMDBhZjdiNTAyZGIxZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e179a0839cb74694becd252537d7422f",
+      "statement": "pins.json records the qrcode-generator CDN URL and its sha384 integrity hash outside any lockfile.",
+      "evidence": [
+        {
+          "resource": "repo://pins.json",
+          "version": "repo-file-v1:sha256:de546fd7bf74d10d34c87930780fed46e96b67334e77c2977853c6225cab9b82"
+        }
+      ]
+    },
+    {
+      "id": "claim_2a390378de994d8db5f5edfd1097c712",
+      "statement": "package.json declares no dependencies, only start and test scripts.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T11:56:00.654Z"
+  }
+}

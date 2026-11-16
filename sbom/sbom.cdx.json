@@ -1,0 +1,68 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "lockfile:pins.json",
+      "name": "pins.json",
+      "type": "application"
+    },
+    {
+      "bom-ref": "pin:scripts:qrcode-generator@2.0.4",
+      "name": "qrcode-generator",
+      "properties": [
+        {
+          "name": "factory:pins:kind",
+          "value": "scripts"
+        },
+        {
+          "name": "factory:pins:url",
+          "value": "https://unpkg.com/qrcode-generator@2.0.4/dist/qrcode.js"
+        },
+        {
+          "name": "factory:pins:integrity",
+          "value": "sha384-e9EFD6BGC90bkW9aDV5xbbBfzwN7G8YImHao2lfLVKV/hPB0E0go+H3I64h7oHtA"
+        }
+      ],
+      "purl": "pkg:generic/qrcode-generator@2.0.4",
+      "type": "library",
+      "version": "2.0.4"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pin:scripts:qrcode-generator@2.0.4"
+      ],
+      "ref": "lockfile:pins.json"
+    },
+    {
+      "dependsOn": [
+        "lockfile:pins.json"
+      ],
+      "ref": "repo"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "repo",
+      "name": "Romain-Perche/Barnacle-Maps",
+      "type": "application"
+    },
+    "tools": {
+      "components": [
+        {
+          "group": "aquasecurity",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
+          "name": "trivy",
+          "type": "application",
+          "version": "0.76.1"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.7",
+  "version": 1
+}

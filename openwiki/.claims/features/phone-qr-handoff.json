@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:0ecfbe954b90c718270ed32a5c57eeea6373b4f5217e6776cabb92cb3b45d581",
+  "claims": [
+    {
+      "id": "claim_b6378a32b5df4eeeaabf8f8c436c78a2",
+      "statement": "phoneRouteUrl builds an openstreetmap.org/directions link with the OSRM engine of the travel mode and start;destination coordinates to 5 decimals, and returns null for missing or non-finite points.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L50-L62",
+          "version": "repo-lines-v1:sha256:04fb36f55a34ffcd6f3cb08c02744b30229363512022e53412c4a349e9a34fc0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA3N2VmZTZjOTlmZTA1OTUwMjM2ZjVkODAyZmQ5N2ZkNzFmMGYxN2Y4MThkYmI0YTUxZWJjMGVmMzU2MjdlNmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4YmJkNTgxMGI3Mzc0MmE4YjUwZDg3ODkwOGU1OWFjMjYwOTNkNTUyZjE2MjMwNTNmMTViMmFkYjZmYjVkYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmOGJjZjk2YjU5MGJlZmQ0Y2Q5MzdmMjE3ODVjMmQ2OGM4ZTdkN2I4OGY4OGNhNTg4M2E4ZGQ1NTRkYThlYWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_be47243ef8c84d11b4e384fa9110397b",
+      "statement": "qrImageSrc encodes text with the injected qrcode-generator factory at error correction L and returns an SVG data URI with a 4-module margin, or null when the library is missing or throws.",
+      "evidence": [
+        {
+          "resource": "repo://src/qr.js#L1-L13",
+          "version": "repo-lines-v1:sha256:48deffab3e7b63e8549583ec0db53dacf916dd1c8a2aa18aafc6349da60da65a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4NTMyNTBhNDA5NjY1NGMzM2M3YTRhNmM0NTZhYzU5MjJlYzBkNThlNjY3NzY5ODEyZGNjOWE1MjM0OThjMGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_81084c872f024590a220e9a1a85ae762",
+      "statement": "The phone card is hidden whenever routes are cleared and is shown only when both the link and the QR image could be built, using the same start position as the routing request.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L172-L190",
+          "version": "repo-lines-v1:sha256:57ebc803d65e5232b471564a402ad66ae9987dd4a2cc8196cdb0b39891a41665:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlhYTk1OTY2NDkwODA2YjVlZjIzM2FhNzIzYzc0NTQwMDVhMmJlMGM4MWI3MmI2Njk0NTFkNGNiNjBmMzI5YjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIyNWExZmVhMDFiNTYwNDMyNGRmNjMwOGNkZTAxZmZmMWY3NGE5NmJkMWIwMTk0MDZmMzNmZTc2Yjc1MDVmYTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0ODEyZjZmZGI5NzM1OTgwOWRkNjJlOGMxNWYwNWNhYjRmMWRkMjYzMTEwZWZhMTJlOGZmOGJkNTQ3MTBiYjIifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L344-L362",
+          "version": "repo-lines-v1:sha256:d8e5826f362c39670110c8b4a3dc767a9faa3231b628cfb5bb7a2f6f658baf48:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFiMDFjN2QwNDQxNmU2YTljOWZlOWU2YzFmNjcxMGI0OTE5M2U0MzQ1ZmRjMjc1YzllMTNhYmFiNTkwNTA0M2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyYTgzN2EwMzdjNDljYmI0MTY0ODQ1YTRiZDc2NmJmODJhYjY2MWIwMmU4NzdlMGUxY2NjMzVjM2E2ZjI2MTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRkMGE0MDUzNjU2MGFlNzQ2ZjNjOTc4ODg2NDA1N2UwMzFiNDEyMThiMzY3MDE0ZjZkMWY0YjNlYWMyMGRiMTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmOWI1ZjVhMzZmNmNlZDllNzVmOTg5MzU0NjQ0Y2RjMDllNzUzYTE2YTU4NmM5YTU4YTUxNjRhZDdmYTVkZDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bf891e8e38f0482bac97689b908bdd2c",
+      "statement": "The stops note in the phone card is shown only when the journey has stops, because the phone link does not carry them.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L28-L35",
+          "version": "repo-lines-v1:sha256:2394db300a771a577833dcf151e50dbb96d8fabc0cba8bbabd897daf16b78600:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzVmYWVjM2I3NTI4OGI4OTI2OTk4ZGUzOWIwZmRhYmIyZGMxOTkzYWZhMGE0ZDJkNDNhYmI5OTI4MzQ2MDUxYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTA1NjMwNGIwZWVhYmQ4OGFkNGNiZGQ2MGJkZjQ2NjUxYWQ4NTdhZDFlMDEwNGU0MmFiZmY2YjA0M2FlOGVhMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjM2MDUwYWExNjIyZDJmZGQxYWQ4OWRjMmY2MTVlZjgxNjZlMzlhOTgyM2Y0Y2ViYzA3MTRlZjhmYmQyOThjMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmQ5NTkxYWY4NTFmMDM0ZDRiNmFkMTY1OTNiZDk0NjNmOWI3OTFmMmUyZmIyZTdkN2U1MDU5NTFmNWNjMWE4YiJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L188-L188",
+          "version": "repo-lines-v1:sha256:4f79c439704bab7fe70610580652c0f4ac042b6c611dd250221608f4f6ace5c9:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGY3OWM0Mzk3MDRiYWI3ZmU3MDYxMDU4MDY1MmMwZjRhYzA0MmI2YzYxMWRkMjUwMjIxNjA4ZjRmNmFjZTVjOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGY3OWM0Mzk3MDRiYWI3ZmU3MDYxMDU4MDY1MmMwZjRhYzA0MmI2YzYxMWRkMjUwMjIxNjA4ZjRmNmFjZTVjOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmJiNzMwNzVkNzgyYzQwZWYzOGE0MzE2ZjljNTIxOTIyMWYyZTE3OWQxYjA0Mzc5ZmEyZjVhNjViYzIyMGE2OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWYyYjVhMjM0OWM0YjljOGU0NTAwMjg3NDUxNDlhNGE2ZjZjNDU1NzVkZmU0NjAyZGQ4OGIyYTQ0MzZjYjllMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e1567b442aa948b5b1dca5294b4886f4",
+      "statement": "The QR image is a 245x245 img with an accessible alt text, and the qrcode-generator script is loaded from unpkg with SRI.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L31-L31",
+          "version": "repo-lines-v1:sha256:cb4081b181e1910a34b694beb4ee8671a2f09ad7bba38c1233856cd4f36f3bae:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiY2I0MDgxYjE4MWUxOTEwYTM0YjY5NGJlYjRlZTg2NzFhMmYwOWFkN2JiYTM4YzEyMzM4NTZjZDRmMzZmM2JhZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2I0MDgxYjE4MWUxOTEwYTM0YjY5NGJlYjRlZTg2NzFhMmYwOWFkN2JiYTM4YzEyMzM4NTZjZDRmMzZmM2JhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzBlMTdmMGU3ZTZhNzUyYmNjNzlhMjJiMzRlNTcyNDU3YWViNzJkYjM2ZjQwMzdlYWQ1MTZiZjEwNTFhZDZjOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWE3ZjU0OTUyZTVhM2Q4MmEzOTk1MDE4OTg3Nzg3MTNkOGQ4YzMzYzQ2YThiZjBjYjBkZDA2ZWUyZWYxYzI0NyJ9"
+        },
+        {
+          "resource": "repo://index.html#L38-L38",
+          "version": "repo-lines-v1:sha256:a717957f12818c624da560cb4d16cf263f50153a54797a5599c62124239ab63d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTcxNzk1N2YxMjgxOGM2MjRkYTU2MGNiNGQxNmNmMjYzZjUwMTUzYTU0Nzk3YTU1OTljNjIxMjQyMzlhYjYzZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTcxNzk1N2YxMjgxOGM2MjRkYTU2MGNiNGQxNmNmMjYzZjUwMTUzYTU0Nzk3YTU1OTljNjIxMjQyMzlhYjYzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzEyZmFmMzFhZTIxMjdhZDgxODQ2Y2I3NjExM2IzNGI1OWIzZWQ5OGVmMzk0ZmVmZGJhZjQ2M2VlYTFkODk3OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjRkN2VlNzU2OTQzM2EzYzUyYTczZGViMzVjODE0ODFiM2U0ZWFkZTg4ZThjYmRmMTc3YzFmMzNiOWQwY2ZiMSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T11:56:00.654Z"
+  }
+}

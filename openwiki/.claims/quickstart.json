@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:df999ba0edf7a8e185ad645dad39073599df89d9fe9fb0fa35e11813b572cc6a",
+  "claims": [
+    {
+      "id": "claim_f65e9c48118e44abb67c229dd64e4f04",
+      "statement": "Barnacle Maps shows up to 3 walking or car routes to a searched place with distance and duration, supports up to 5 stops, and scores walking routes for pleasure.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L1-L11",
+          "version": "repo-lines-v1:sha256:294d28f8110d6bc0f6cb9297110f95df24a78ec8fba46aa7d576e1dc07e5ae51:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhMThhYzg1MTA5MGZjNWIzMzdjNGMyZWYxOTU5NjZjMzQyMTAxMzI1MzBmNjk1OTFmYjgwOTYxNmU2Y2VhMDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlZGJmYjU2YzljZTRjYjY1MjliMmFlZmQxMzNmOGQ3ZjE4MDg0ZmYxODIwZWJmMjk2NzEzNDE2YTM2ODg1ZWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ5ODRkZDYwY2Y5MjEwZGNkZTQ1NWRjNzAzZWU0ZTVhZjU4NGY5ZTQ1NzZmNjRmYmNkODRiNDExNzQ1ZGM0YzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ccda470b9e7241009f2335b488ded70e",
+      "statement": "The app is run with npm start (python3 http.server on port 8000) and tested with npm test (node --test test/).",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L6-L9",
+          "version": "repo-lines-v1:sha256:342cd5ca9bdca5576ac659d83ee7033571e5368c4d921faf92064f0ccd62b184:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWI0ZjZhNDYyZDEyZTExMzc1MGI2NTQzYzQzYzQzMDQ4NjIyOTExNWIyNWE1ZTdhM2E1YzFkNTcyYTU1ZjkxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T11:56:00.654Z"
+  }
+}

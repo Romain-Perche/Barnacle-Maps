@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e4ba52a753432ab7ff6b34a5c1dc5f887d1cbe1a68d37b7e29ad2d71c0596d76",
+  "claims": [
+    {
+      "id": "claim_5a6b20e85aaf42c9aabb5180dbd730af",
+      "statement": "npm start serves the app with python3 -m http.server on port 8000, and geolocation requires localhost or HTTPS.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L13-L13",
+          "version": "repo-lines-v1:sha256:6718b3ef03c27aa9813bb6dd14b7f65f51faddbd13935da881762379b67d0157:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjcxOGIzZWYwM2MyN2FhOTgxM2JiNmRkMTRiN2Y2NWY1MWZhZGRiZDEzOTM1ZGE4ODE3NjIzNzliNjdkMDE1NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjcxOGIzZWYwM2MyN2FhOTgxM2JiNmRkMTRiN2Y2NWY1MWZhZGRiZDEzOTM1ZGE4ODE3NjIzNzliNjdkMDE1NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDMzZDlhOTRjZGE0MmI5NTM5YzYzMmU1NWU2Nzk5NmYzYmExOTAxZmIwNzEzZTE1Y2EzZjE2OWFlOWQ1MmQ5OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://package.json#L6-L9",
+          "version": "repo-lines-v1:sha256:342cd5ca9bdca5576ac659d83ee7033571e5368c4d921faf92064f0ccd62b184:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWI0ZjZhNDYyZDEyZTExMzc1MGI2NTQzYzQzYzQzMDQ4NjIyOTExNWIyNWE1ZTdhM2E1YzFkNTcyYTU1ZjkxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0bc67ac42c584b408b02a672871df388",
+      "statement": "When geolocation is unsupported or denied, the app reports it in the status line.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L97-L105",
+          "version": "repo-lines-v1:sha256:251f09f98f5b0f9454dcf2aad0220ca41af153f03486de48c82c57dbba86e548:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVlN2NkOTRmODRmNGE1NGVhNDBhZjVkNGQyZDVlMzYzMTA3NGFmMjc5ZjM2NDYxMzc1NzcwZTYwMzU3MzEwOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDk0ZWZmNmNkZjBjZjI0MWQ5MjA3MDRkYTQyMmUxZmY0ZDk2ODU1ZjI1M2NiZDBjYTNjYTBjZWZlNmNiMTM4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTQxNjIyZTE1YzRkMDVlM2Q0ZmU3NTFiYjlmMmYwMmU3ODNkOThkMmU5YjMxYmJiMjkwNzgxZGFhZjU0Yjk5MiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_7574ecb2cf58471e8577ef3e99aebf27",
+      "statement": "Service-provided names are written to the DOM with textContent rather than as HTML.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L126-L130",
+          "version": "repo-lines-v1:sha256:d22128287c116a02bcff3667f935fe66715638a2fc0cff2e4ecd3778634e4a9e:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTRiYTM2NWZmYjBjOTk2YTU4MTBjNjJmMTg0NjM4ZDNmYzg2Nzg0ZjhmNzhmODJkM2FhOGNmNmVlZWVjZjM4NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGQ5YTQ5NzJhZGU2YTk4OTM5NWZjYWJiOTgwYTE1ZGE0NTY1ZDBiYmQwNThhMjAyZWJkM2ViMTVlODg1NmJiYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTVmZjc1NGNjZDk3ZjNmNjk4MDljMmJjNmZjZDhiNGM4NWIwNDIyMjFmMjE1ZjZkY2M3MmU4OTk2MGI4Zjk5NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDA1OTI0YTRmNTYxYmI4MTI4ZWNjZTJiM2ZjYzc1YzEzMWM1ZmVkODQ4Y2RlODJlYWJhM2EwODU3MWFmYjVkYSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L395-L398",
+          "version": "repo-lines-v1:sha256:49fddfb43941217714bd5ef4a200ca7368bf5fdcfc78a9750c0881d75b6fbbcc:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTFmMDFhY2I4MGI5N2I1OGU5YWFiN2JjOTljYjE4NDFhZjBlNGFiY2NlMDI5ZTU4NzcxMTUyNjc4MWFmOTA0NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGZjM2Q3ZjIyZTAwMGVjZjg3Yjc0NjgwMjA4YWNiOTMzYjBkN2Y5YmQ5ZGE5ZWExOWYwNTMwNjQ3YmFmYzgyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTkzMzQ1MTEzMTZkZmU0N2FlYzQ2OGNkNThmZWFiMTQ1NWQyNWU4ZjZhMGFhZWJkYjEzNWFhOTllNTU0YTFmNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjBlYWNjYmY2M2VkMDdlOWNjZjAzYmY4NjU5MjhmYzQ5YjUyZDUzNDZmNTBjNTFkZjZlYjY2ZDdhZThjNWE3YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d09d365808b644b2b13be720c53eb2a2",
+      "statement": "The user's position is sent to the OSRM routing server as the start of every route request.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L209-L212",
+          "version": "repo-lines-v1:sha256:d83c68d6c8d8e6c8fefc167687770cbc6f8f6dc8e326bb2d444dc48f86bc30a6:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWM3YWM4OWNiODM2NmJmNDJhMjE4YTRlOWY2YWE0YTRlMDdlNGVjZTY4NDE3ZTJkMjRhYjc1NzFiMzJhNjE2YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTVlZjAxYmMwOGRiYzNiNjNlNGU3NWVhM2QyNmE1Yjk0MTg5MTg3N2UyN2FkODkxMzI5Yzg0MTFkN2Q4ZGM0ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNjMDYzNDYzYWIzZTJkN2FkYjM0MTMyMDdmYjQxZTliMzI3OTZhYTBhMTQxMGE0YzMwNTRjMzg2MjY0NGQ3YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzRlMTk3ZDI2MzZjYjI0ZjkzYmQ0NzZiZjIyYzgwNGVmYThhMTc4Mjk0ODllMjU1ZTNiMDVmNDAwMjUyNjM0MCJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L66-L77",
+          "version": "repo-lines-v1:sha256:840581fa60cdca122ec5241a95d337d5d533d9fdfc0fab9b67f9f90fc745c3e7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiOWNmMTQyMDdhOGM4N2Y0NjA1ZjIzOTEzZDQ2MzM0MDBjY2Q3YTY5OWEzZjQ1YjBhOTVjNWIzYjlkODkwODQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZmOGJjZjk2YjU5MGJlZmQ0Y2Q5MzdmMjE3ODVjMmQ2OGM4ZTdkN2I4OGY4OGNhNTg4M2E4ZGQ1NTRkYThlYWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY4MTVkYjI1MjBhMzI3YWY4OTU5NGVlNWYzYzRiODE5MjUyY2JmNzEyOTY3NWY3MGNmZjA5ZDJmZGNkYmE3MWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b77d9aef96bc42babbc5ab6d84772e09",
+      "statement": "The phone link opens in a new tab with rel=noopener.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L33-L33",
+          "version": "repo-lines-v1:sha256:9da533727fed88206821b0cca7911467c21b12a42ecf671f816e9b89f509047a:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWRhNTMzNzI3ZmVkODgyMDY4MjFiMGNjYTc5MTE0NjdjMjFiMTJhNDJlY2Y2NzFmODE2ZTliODlmNTA5MDQ3YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWRhNTMzNzI3ZmVkODgyMDY4MjFiMGNjYTc5MTE0NjdjMjFiMTJhNDJlY2Y2NzFmODE2ZTliODlmNTA5MDQ3YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTkyOGVjNTdiZjZmNWFkYTlhNzhiMGQ5Yzg3NDBiNDNhNjE4NzIyZTI3MDQ1MDNjZWVhNDQzNzYzOTllMTk4OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTEwM2RmODhlNTdjNGM3NTFmZTcxODU5MTY1NDkxNDQ3NGZiYmM1MTQyYTc3YTNiOTE1MjI4ZDNiNDc5MTJkZSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T11:56:00.654Z"
+  }
+}

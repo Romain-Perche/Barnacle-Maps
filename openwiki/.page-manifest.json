@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/overview.md": {
+      "pageVersion": "sha256:2e4fa31b6c75aad314c8e6e05f732a59d59f44937f4f92f9129caaaa02d4fcc4",
+      "completedBy": "claude-code",
+      "completedRunId": "da630b04-53ec-40ae-8dec-c4b2f67d9363",
+      "gitHead": "4db071845f18850b1dc0b4497bf3553ced884b1a",
+      "sourceFingerprint": "sha256:15022b3e42913e89cc48ce2a148a4ae026344637617245901c558ba9d666d911"
+    },
+    "/openwiki/features/phone-qr-handoff.md": {
+      "pageVersion": "sha256:0ecfbe954b90c718270ed32a5c57eeea6373b4f5217e6776cabb92cb3b45d581",
+      "completedBy": "claude-code",
+      "completedRunId": "da630b04-53ec-40ae-8dec-c4b2f67d9363",
+      "gitHead": "4db071845f18850b1dc0b4497bf3553ced884b1a",
+      "sourceFingerprint": "sha256:15022b3e42913e89cc48ce2a148a4ae026344637617245901c558ba9d666d911"
+    },
+    "/openwiki/features/pleasure-score.md": {
+      "pageVersion": "sha256:1e7ab4ece58482317d565047358dae574f2390ac11eff4f1c2dcd98f57ca1516",
+      "completedBy": "claude-code",
+      "completedRunId": "da630b04-53ec-40ae-8dec-c4b2f67d9363",
+      "gitHead": "4db071845f18850b1dc0b4497bf3553ced884b1a",
+      "sourceFingerprint": "sha256:15022b3e42913e89cc48ce2a148a4ae026344637617245901c558ba9d666d911"
+    },
+    "/openwiki/features/routing-and-alternatives.md": {
+      "pageVersion": "sha256:f698a4b8c887c1886b35623374e655ed13b937c4259dee122537c87f0504472b",
+      "completedBy": "claude-code",
+      "completedRunId": "da630b04-53ec-40ae-8dec-c4b2f67d9363",
+      "gitHead": "4db071845f18850b1dc0b4497bf3553ced884b1a",
+      "sourceFingerprint": "sha256:15022b3e42913e89cc48ce2a148a4ae026344637617245901c558ba9d666d911"
+    },
+    "/openwiki/features/search-and-suggestions.md": {
+      "pageVersion": "sha256:2314663bb569ce951f8b912403aaa34f9d4ce6c2636651736ce43c0f6a3f0331",
+      "completedBy": "claude-code",
+      "completedRunId": "da630b04-53ec-40ae-8dec-c4b2f67d9363",
+      "gitHead": "4db071845f18850b1dc0b4497bf3553ced884b1a",
+      "sourceFingerprint": "sha256:15022b3e42913e89cc48ce2a148a4ae026344637617245901c558ba9d666d911"
+    },
+    "/openwiki/features/stops.md": {
+      "pageVersion": "sha256:97265f701622000bdfcd186286c3d0cccc17008fc42ef8df86ab176b23876a44",
+      "completedBy": "claude-code",
+      "completedRunId": "da630b04-53ec-40ae-8dec-c4b2f67d9363",
+      "gitHead": "4db071845f18850b1dc0b4497bf3553ced884b1a",
+      "sourceFingerprint": "sha256:15022b3e42913e89cc48ce2a148a4ae026344637617245901c558ba9d666d911"
+    },
+    "/openwiki/integrations/external-services.md": {
+      "pageVersion": "sha256:911e2d0a3a21bef1d44b6ee5da80841ae7ccf2912f8f5dc6dc9bcc75b0c9955c",
+      "completedBy": "claude-code",
+      "completedRunId": "da630b04-53ec-40ae-8dec-c4b2f67d9363",
+      "gitHead": "4db071845f18850b1dc0b4497bf3553ced884b1a",
+      "sourceFingerprint": "sha256:15022b3e42913e89cc48ce2a148a4ae026344637617245901c558ba9d666d911"
+    },
+    "/openwiki/operations/running-and-security.md": {
+      "pageVersion": "sha256:e4ba52a753432ab7ff6b34a5c1dc5f887d1cbe1a68d37b7e29ad2d71c0596d76",
+      "completedBy": "claude-code",
+      "completedRunId": "da630b04-53ec-40ae-8dec-c4b2f67d9363",
+      "gitHead": "4db071845f18850b1dc0b4497bf3553ced884b1a",
+      "sourceFingerprint": "sha256:15022b3e42913e89cc48ce2a148a4ae026344637617245901c558ba9d666d911"
+    },
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:df999ba0edf7a8e185ad645dad39073599df89d9fe9fb0fa35e11813b572cc6a",
+      "completedBy": "claude-code",
+      "completedRunId": "da630b04-53ec-40ae-8dec-c4b2f67d9363",
+      "gitHead": "4db071845f18850b1dc0b4497bf3553ced884b1a",
+      "sourceFingerprint": "sha256:15022b3e42913e89cc48ce2a148a4ae026344637617245901c558ba9d666d911"
+    },
+    "/openwiki/testing/test-strategy.md": {
+      "pageVersion": "sha256:e2d513f7dd16a287a0bca24eb045e590a2b289973931d5ffee2d52e6392dea73",
+      "completedBy": "claude-code",
+      "completedRunId": "da630b04-53ec-40ae-8dec-c4b2f67d9363",
+      "gitHead": "4db071845f18850b1dc0b4497bf3553ced884b1a",
+      "sourceFingerprint": "sha256:15022b3e42913e89cc48ce2a148a4ae026344637617245901c558ba9d666d911"
+    },
+    "/openwiki/workflows/spec-driven-development.md": {
+      "pageVersion": "sha256:f60c6f6fa7f3473180fbbbce28aa7f2e088ecdc0b850eb59baacc539ebea61bf",
+      "completedBy": "claude-code",
+      "completedRunId": "da630b04-53ec-40ae-8dec-c4b2f67d9363",
+      "gitHead": "4db071845f18850b1dc0b4497bf3553ced884b1a",
+      "sourceFingerprint": "sha256:15022b3e42913e89cc48ce2a148a4ae026344637617245901c558ba9d666d911"
+    }
+  }
+}

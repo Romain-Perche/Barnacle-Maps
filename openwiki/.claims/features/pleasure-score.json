@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:1e7ab4ece58482317d565047358dae574f2390ac11eff4f1c2dcd98f57ca1516",
+  "claims": [
+    {
+      "id": "claim_a416a1d5da1042c1aea997bdc884d7e6",
+      "statement": "The pleasure score counts pixels judged green (alpha >= 128 and green at least 12 above red and blue) on zoom-16 OSM tiles along a 4 px-radius band around each walking route.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L50-L51",
+          "version": "repo-lines-v1:sha256:1c12c916d23bd21cd4bef376089e8379d197aafdf5b5980fcba834cb28d45d7d:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGZkYTFhMWZjYWZmNTVmOGZhOGI3ZDFiYTAzNzBkZjBhNWQwNzEwMmM0N2I5ZmRlNTQ5NzI2ODg0NTc5ZmJkMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjk4YWUyNzVhMTg2ODI3NmQ0ZjE1MWIwNTBmYjA0YTQ3YzMwYTU4ZTcxY2FkZjBlMzNlZTljZWQzY2NkNDUyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDBlNTFkY2QwNjBmOTI4Y2U5ZmRiNWVjOGQ4ZmM2YzA1ZWMyZTNjMTE2NmFmYzdlYjIxODM2YzM5ZmM0ZmU5ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWNjZGEzZjU2OTQzYzA4MzcyMjJhMDk1MjIwMGJmOTU0YmQxYzNmZGYzNDMwMzdmYWFmYzQ0ZDNiNGM0YzA0MyJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L284-L338",
+          "version": "repo-lines-v1:sha256:32f69dcd8ccb08450bc428cf849a6df32c2da10ece0fd632b11c77e254deec8c:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4MjUxZGNjMjlkNGY2MDg1NDMwZWEwOWE4NzZkMzQxNGZmN2FkOGNlMTVlZWRmOGM5MDE0OWQ2NTZmZGU0NDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQxN2IyNWRlNzU1ZjJmYmQyOTZiNmJkOWY3MzAxNDNhNmZiOWZhMzU0Zjc4ODIyN2NhMjgyNDQ0NmM1MWNjYjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY1ZGZjZGZkNmI2MjRmYTMwNDdlYWU1NWNlNDlkYzRmODVhZjJhMDg2Y2Y2YzYyMTNiYzIxZmUxN2E3NTc5NGIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_648b946c890e4ec190d7774c20fe9c94",
+      "statement": "bestPleasure picks the highest count with the first route winning ties and returns -1 when no route has any green pixel.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L341-L346",
+          "version": "repo-lines-v1:sha256:c6e2e5ccca0d7cdbb0f0485be67160454735b4054cf9bd261f4d0702c4126b11:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzJmMzViOTcwNGU0MzY0ZWEyNGNmNzZmY2YzZjRlN2M5OWJjM2UyMzBkZThmMjgxYjgxZDFjODdjOTFjZmM1MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDQ3ZGFiMDAwMjFjMGRmY2E5YjYwMWRlOWFmNzU5NDBhMDJmOWU0YzliMmMwOTRmYWIzMGU5N2U4YTc1OTgxMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d76fcaad33184fb587949db5571f262f",
+      "statement": "Scoring is skipped as unavailable when the straight-line journey exceeds 15 km or more than 150 tiles are needed, and tile downloads abort after 20 seconds.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L278-L290",
+          "version": "repo-lines-v1:sha256:8826bb07e67b9f41cd3b98d1f91e802cd87426f15294c9f8cfb62e2131655b06:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlYTBjNzk0NjQ4NWQzOGZjNzhmZjFkZGQ4N2YzOTdjYzgzMmExZjQwNGQ4YTE1YTk5ZTEwYWNkZTI1OWRjYTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ4YzU1ODkzY2FiYTgwNThkZmJiNDQ2YzM1YWY5MjNhMzFjYTU4M2RmZGY0OTI0YTY0NjM0ZGIxNmE2ZDI5NTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgxMjVjY2U3YmM3MjQ2MjcwMWJmNmE2NTdkYmFkZWQ2NGE1NTEwYjA0MjRmOTA3Yzg1MjA1ZmNjOWQ5ODQ3MGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlYzVjMmVkMDA1NTMzMzY3Y2IyMGY0ZThkMDdjMjQwYTRmNDMzZjFkMGRlNGRlYzNkZDhlYjhjODYwMDZkNGIifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L52-L54",
+          "version": "repo-lines-v1:sha256:accda3f56943c0837222a0952200bf954bd1c3fdf343037faafc44d3b4c4c043:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODE3NDhiMzk4ZTBhODQ4ODdmZmU4MjdhODkxYzVlYzljYTg3Njg4ZGQwZWQ3MjgyOThmZjJmNGMyNmRiZDZkZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmUxMmE1YTU5ZjJmZjRkMjExYTM5MTdhY2Q2NDBmNGU4MTFiNTg1MTQ1NzlmYzk5Y2QyYzVlODFlZDc1YmY4YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWYyMmRlZTg1ODI3NjhjMDJiZjM0NDM4Njk0NWYxZTIzMWMzZDBiMjY4YWUyNDcxNWYyMDVhNTQwZjY1MDFkNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWMxODIyYjNlMmMyNjc4NWJhY2FlN2JkOWYwYTQzZGMxNjc0MWI4MTczNmNjZjhmYmU5N2ZiZDM5NWVmY2ZjZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b79950bc95c546989ee20047dee8e7f3",
+      "statement": "Any tile failure marks all routes 'Pleasure unavailable', and results for superseded route requests are discarded.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L291-L312",
+          "version": "repo-lines-v1:sha256:b074a98f32b7671555329e9552b8be2b11b7317e2aef99cfb8d465c963f14a6b:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2NTk1ZjRlZTVmZjYzZDUwOTUwNDE5ZGMzNDQxNDUxMzg1MWRjOTczNmZkMTdhNGY3YmZhOTMwYjI2MWI2ZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE3NzdmY2NkNDM1NGViZDhlM2RjM2ZjNTIzNjBmMjVhYjlkOWQ0YjlhYmU2ZmZjNDUxY2E4OGIyY2EzNzY1YWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJhNGVkZWVkYjcwODQ1NTIxMDczMjBjZmEzODg0NWUyNjU0ZjQ2YjUxMjg4ODUxZDkzM2JiY2M3YzhlOWJkOWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8ec39cca478749bfa7d367c4b24a01c5",
+      "statement": "Pleasure is only scored for walking routes; car routes get no pleasure label.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L241-L245",
+          "version": "repo-lines-v1:sha256:387c9cd4c827385e16efc3184ce813d9ff61d65c8183b1cc651c740c03faf079:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWFjODMxMzBiYzU2ZmYyMjgyZjYzZDVjNzc4ZDQwNDg3YWVhNjAxYzUxMDA1YmRhZmM4OTE3NGNmZjM1ZTQ4NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGUxNjMxODRjNjAyYzMwYjEyNzllZWYxNWY4MjgxNWYzMzk3NTUzZDBmNzQzOGVkZTliZmY5NTRjMmYwMmE1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzU1MmNhODM5OTg5ZTY0ZWYwMDJkNDVjN2M4YjhmYWI4YjBlMThkNWRkMmIwMzQ3ZDllOWExZmUzNDMxNDlmZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2Q1MWZmYWU1NDY0M2VhOGJhMjcwM2FiMzJhNjljNDAyNDc2NWEyMDg1MWRmZjY3ZTU2NDkwMDAxZjBlOThhMCJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L369-L369",
+          "version": "repo-lines-v1:sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzIxYWFjMTllYmQxNzQ4MjMyMTY2NmY0NmY1MjU0MDM3YjgyMzYyNWY0ZDEwYzEyMTQ1OTA1Y2ZlMTJlMDMxYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTdhMzZiNGJjNWJjN2JmYTdkZTcyMmIyOTQxYjM4M2RiNDdmMzY3MjY2M2Q4MTgwZTM2MTY0NTZiM2M5MGM2MyJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T11:56:00.654Z"
+  }
+}
