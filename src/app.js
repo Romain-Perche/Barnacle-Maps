@@ -13,6 +13,7 @@ import {
   moveStop,
   parseRoutes,
   parseSearchResults,
+  phoneRouteUrl,
   pickRoutes,
   removeStop,
   routeUrl,
@@ -20,6 +21,7 @@ import {
   straightLineLength,
   TRAVEL_MODES,
 } from "./geo.js";
+import { qrImageSrc } from "./qr.js";
 
 const L = window.L;
 const TILE_URL = "https://tile.openstreetmap.org";
@@ -38,6 +40,10 @@ const status = document.getElementById("status");
 const routesList = document.getElementById("routes");
 const stopsBox = document.getElementById("stops-box");
 const stopsList = document.getElementById("stops");
+const phoneCard = document.getElementById("phone");
+const phoneQr = document.getElementById("phone-qr");
+const phoneLink = document.getElementById("phone-link");
+const phoneStops = document.getElementById("phone-stops");
 const clearStopsBtn = document.getElementById("clear-stops");
 
 const PLEASURE_ZOOM = 16;
@@ -167,6 +173,18 @@ function clearRoutes() {
   routeLayers = [];
   selectedRoute = 0;
   routesList.replaceChildren();
+  phoneCard.hidden = true;
+}
+
+// Shows the QR card for the phone link; stays hidden if the QR code cannot be built.
+function showPhone(from, place, m, st) {
+  const url = phoneRouteUrl(from, place, m);
+  const src = url && qrImageSrc(window.qrcode, url);
+  if (!src) return;
+  phoneQr.src = src;
+  phoneLink.href = url;
+  phoneStops.hidden = !st.length;
+  phoneCard.hidden = false;
 }
 
 function selectRoute(i) {
@@ -186,9 +204,9 @@ function setPleasure(entry, text, { title = "", label = text } = {}) {
   entry.pleasure.setAttribute("aria-label", label);
 }
 
-async function fetchRoutes(place, seq, m, st = []) {
+async function fetchRoutes(place, seq, m, st = [], from = position) {
   const main = parseRoutes(
-    await fetchJson(routeUrl(position, place, undefined, { alternatives: 3, mode: m, stops: st })),
+    await fetchJson(routeUrl(from, place, undefined, { alternatives: 3, mode: m, stops: st })),
   );
   if (seq !== routeSeq || !main.length) return main;
   // With user stops, no artificial detours: OSRM's own routes through the stops only.
@@ -197,8 +215,8 @@ async function fetchRoutes(place, seq, m, st = []) {
   if (main.length >= 2 || m !== "foot") return pickRoutes(main);
   // OSRM often has no alternative for short walks: force detours through side waypoints.
   const detours = await Promise.allSettled(
-    detourWaypoints(position, place).map((via) =>
-      fetchJson(routeUrl(position, place, undefined, { via, mode: m, stops: st })),
+    detourWaypoints(from, place).map((via) =>
+      fetchJson(routeUrl(from, place, undefined, { via, mode: m, stops: st })),
     ),
   );
   const extra = detours
@@ -321,11 +339,12 @@ async function updateRoutes() {
     map.setView([place.lat, place.lng], 15);
     return setStatus("Waiting for your location to compute a route…");
   }
+  const from = position;
   setStatus(m === "car" ? "Computing driving routes…" : "Computing walking routes…");
   const noRoute = m === "car" ? "No driving route found." : "No walking route found.";
   let routes;
   try {
-    routes = await fetchRoutes(place, seq, m, st);
+    routes = await fetchRoutes(place, seq, m, st, from);
   } catch (err) {
     if (seq === routeSeq) setStatus(st.length ? `${noRoute} (${err.message})` : `Routing failed: ${err.message}`);
     return;
@@ -333,6 +352,7 @@ async function updateRoutes() {
   if (seq !== routeSeq) return; // a newer request superseded this one
   if (!routes.length) return setStatus(st.length ? `${noRoute} Try removing a stop.` : noRoute);
   drawRoutes(routes, m);
+  showPhone(from, place, m, st);
   const fastest = routes[0];
   const summary = `${formatDistance(fastest.distance)} · ${formatDuration(fastest.duration)}`;
   const car = m === "car";

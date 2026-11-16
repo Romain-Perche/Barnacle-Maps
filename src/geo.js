@@ -48,9 +48,17 @@ export function parseSearchResults(json) {
 }
 
 export const TRAVEL_MODES = {
-  foot: { label: "Walk", base: "https://routing.openstreetmap.de/routed-foot", profile: "foot" },
-  car: { label: "Car", base: "https://routing.openstreetmap.de/routed-car", profile: "driving" },
+  foot: { label: "Walk", base: "https://routing.openstreetmap.de/routed-foot", profile: "foot", osmEngine: "fossgis_osrm_foot" },
+  car: { label: "Car", base: "https://routing.openstreetmap.de/routed-car", profile: "driving", osmEngine: "fossgis_osrm_car" },
 };
+
+// Link that opens the OSM directions page (same OSRM engines as the app); it does not carry stops.
+export function phoneRouteUrl(from, to, mode = "foot", base = "https://www.openstreetmap.org") {
+  if (!from || !to || ![from.lat, from.lng, to.lat, to.lng].every(Number.isFinite)) return null;
+  const m = TRAVEL_MODES[mode] || TRAVEL_MODES.foot;
+  const route = `${from.lat.toFixed(5)},${from.lng.toFixed(5)};${to.lat.toFixed(5)},${to.lng.toFixed(5)}`;
+  return `${base}/directions?` + new URLSearchParams({ engine: m.osmEngine, route });
+}
 
 // OSRM expects lng,lat order. The "foot" profile gives walking routes, "driving" (mode "car") car routes.
 // `stops` are visited in order, `via` forces the route through a waypoint (after the stops);

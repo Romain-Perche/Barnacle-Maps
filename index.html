@@ -25,8 +25,18 @@
     </div>
     <ul id="routes" aria-label="Route options"></ul>
     <p id="status" role="status"></p>
+    <div id="phone" hidden>
+      <img id="phone-qr" width="120" height="120" alt="QR code to open this route on your phone">
+      <div class="phone-text">
+        <strong>Continue on your phone</strong>
+        <span>Scan with your phone camera.</span>
+        <a id="phone-link" target="_blank" rel="noopener">Open on your phone ↗</a>
+        <span id="phone-stops" hidden>Stops are not included in the phone link.</span>
+      </div>
+    </div>
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/qrcode-generator@2.0.4/dist/qrcode.js" integrity="sha384-e9EFD6BGC90bkW9aDV5xbbBfzwN7G8YImHao2lfLVKV/hPB0E0go+H3I64h7oHtA" crossorigin="anonymous"></script>
   <script type="module" src="src/app.js"></script>
 </body>
 </html>
