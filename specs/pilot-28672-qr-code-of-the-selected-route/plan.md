@@ -41,7 +41,7 @@ When routes are displayed, show a QR card under the route summary (Design A). Th
 - about 30 lines in `app.js`;
 - markup in `index.html`;
 - about 10 lines of CSS;
-- one test file;
+- four test files (already written);
 - a README line.
 
 No NEEDS CLARIFICATION remains. Every open choice was resolved in [research.md](research.md).
