@@ -1,0 +1,8 @@
+[
+  {
+    "name": "qrcode-generator",
+    "version": "2.0.4",
+    "manager": "cdn (unpkg <script> tag with SRI in index.html, no package.json entry)",
+    "why": "Draws the QR code of the phone link. The spec (FR-009) requires a well-known QR library and forbids hand-written QR encoding."
+  }
+]
