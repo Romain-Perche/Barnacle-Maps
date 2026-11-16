@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "zones": [
+    {"id": "host", "label": "Developer machine"},
+    {"id": "browser", "label": "User's browser"},
+    {"id": "osm", "label": "OpenStreetMap services"},
+    {"id": "cdn", "label": "unpkg CDN"}
+  ],
+  "groups": [
+    {"id": "navigation", "label": "Navigation app", "description": "Runs in the browser: searches places, plans walk, car and bike routes with stops, and scores how green they are."},
+    {"id": "serving", "label": "Serving the app", "description": "Serves the static HTML, CSS and JavaScript of the app to the browser on localhost."}
+  ],
+  "actors": [
+    {"id": "user", "label": "Browser user"},
+    {"id": "geolocation", "label": "Browser geolocation", "zone": "browser"},
+    {"id": "nominatim", "label": "Nominatim geocoding", "zone": "osm"},
+    {"id": "osrm", "label": "OSRM routing (routing.openstreetmap.de)", "zone": "osm"},
+    {"id": "osm_tiles", "label": "OSM tile server", "zone": "osm"},
+    {"id": "unpkg", "label": "unpkg (Leaflet)", "zone": "cdn"}
+  ],
+  "processes": [
+    {"id": "static_server", "label": "Static file server (python http.server)", "zone": "host", "group": "serving", "sources": ["package.json"]},
+    {"id": "ui", "label": "Map, search and stops panel", "zone": "browser", "group": "navigation", "sources": ["src/app.js", "index.html"]},
+    {"id": "routing", "label": "Route planner", "zone": "browser", "group": "navigation", "sources": ["src/app.js", "src/geo.js"]},
+    {"id": "pleasure", "label": "Pleasure scorer", "zone": "browser", "group": "navigation", "sources": ["src/app.js", "src/geo.js"]}
+  ],
+  "stores": [],
+  "flows": [
+    {"from": "static_server", "to": "ui", "data": "app HTML, CSS and JavaScript", "sources": ["package.json", "index.html"]},
+    {"from": "unpkg", "to": "ui", "data": "Leaflet library and stylesheet", "sources": ["index.html"]},
+    {"from": "user", "to": "ui", "data": "search text, travel mode, stop edits, route picks", "sources": ["src/app.js", "index.html"]},
+    {"from": "geolocation", "to": "ui", "data": "live position", "sources": ["src/app.js"]},
+    {"from": "ui", "to": "nominatim", "data": "place search query", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "nominatim", "to": "ui", "data": "matching places with coordinates", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "osm_tiles", "to": "ui", "data": "map tiles", "sources": ["src/app.js"]},
+    {"from": "ui", "to": "routing", "data": "position, stops, destination, travel mode", "sources": ["src/app.js"]},
+    {"from": "routing", "to": "osrm", "data": "waypoint coordinates and profile", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "osrm", "to": "routing", "data": "route geometries, distances, durations", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "routing", "to": "ui", "data": "up to 3 routes to draw", "sources": ["src/app.js"]},
+    {"from": "routing", "to": "pleasure", "data": "walk and bike route paths", "sources": ["src/app.js"]},
+    {"from": "pleasure", "to": "osm_tiles", "data": "zoom-16 tile coordinates", "sources": ["src/app.js"]},
+    {"from": "osm_tiles", "to": "pleasure", "data": "zoom-16 tile images", "sources": ["src/app.js"]},
+    {"from": "pleasure", "to": "ui", "data": "green-pixel counts per route", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "ui", "to": "user", "data": "map, routes, stops and status", "sources": ["src/app.js"]}
+  ]
+}
