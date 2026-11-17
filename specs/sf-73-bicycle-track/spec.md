@@ -14,6 +14,8 @@
 
 - Q: Which design do you want for the Bike option in the travel mode selector? → A: Design: C, one row of segmented buttons with icons (🚶 Walk | 🚗 Car | 🚲 Bike), see `design-options.html`.
 - Q: Do bike routes also show the pleasure indicator (green pixels, "most pleasant")? → A: Yes, bike routes show the pleasure indicator the same way as walking routes.
+- Q: When the routing service finds no route, it answers with an error code ("NoRoute") instead of an empty list. Today the app then shows "Routing failed: Request failed (400)". Should this show the "No … route found." message for every mode (walk, car and bike)? → A: Yes, for every mode, because the spec asks for "No cycling route found." and the walk and car messages already exist for this case (decided by the factory, to confirm)
+- Q: To test US1 for real, the factory needs access to the live OpenStreetMap bike routing server. A: unit tests and AI tests with a fake routing server, or B: the real server, so AI review runs it for real (the factory cannot do this yet) → A: A, because the test machines cannot reach the routing server. SC-002 (real cycling durations and roads open to bikes) is then not checked automatically (decided by the factory, to confirm)
 
 ## User Scenarios & Testing *(mandatory)*
 

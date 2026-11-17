@@ -285,8 +285,9 @@ test("L4 app_js_imports_and_state", () => {
     assert.ok(a.includes(s), s);
   assert.ok(!a.includes("routeLine"));
 });
+// Edited for SF-73 (research R7, edit 2): mode texts now live in TRAVEL_MODES in src/geo.js.
 test("L5 app_js_strings", () => {
-  const a = read("src/app.js");
+  const a = read("src/app.js") + read("src/geo.js");
   for (const s of ["Pleasure unavailable", "No walking route found.", "aria-pressed"])
     assert.ok(a.includes(s), s);
 });
