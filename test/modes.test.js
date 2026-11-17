@@ -8,9 +8,10 @@ const COORDS = "2.35,48.85;2.36,48.86";
 const FOOT = `https://routing.openstreetmap.de/routed-foot/route/v1/foot/${COORDS}?overview=full&geometries=geojson`;
 const CAR = `https://routing.openstreetmap.de/routed-car/route/v1/driving/${COORDS}?overview=full&geometries=geojson`;
 
-test("TRAVEL_MODES offers walking and car", () => {
-  assert.deepEqual(Object.keys(TRAVEL_MODES).sort(), ["car", "foot"]);
-  for (const key of ["foot", "car"]) {
+// covers FR-001, US1 scenario 1 (SF-70: Bike is the third mode)
+test("TRAVEL_MODES offers walking, car and bike", () => {
+  assert.deepEqual(Object.keys(TRAVEL_MODES).sort(), ["bike", "car", "foot"]);
+  for (const key of ["foot", "car", "bike"]) {
     const m = TRAVEL_MODES[key];
     assert.equal(typeof m.label, "string");
     assert.ok(m.label.length > 0);

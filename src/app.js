@@ -193,8 +193,8 @@ async function fetchRoutes(place, seq, m, st = []) {
   if (seq !== routeSeq || !main.length) return main;
   // With user stops, no artificial detours: OSRM's own routes through the stops only.
   if (st.length > 0) return pickRoutes(main);
-  // Car detours through arbitrary side points give silly routes: only walking forces them.
-  if (main.length >= 2 || m !== "foot") return pickRoutes(main);
+  // Detours through arbitrary side points give silly routes for car and bike: only walking forces them.
+  if (main.length >= 2 || !(TRAVEL_MODES[m] || TRAVEL_MODES.foot).detours) return pickRoutes(main);
   // OSRM often has no alternative for short walks: force detours through side waypoints.
   const detours = await Promise.allSettled(
     detourWaypoints(position, place).map((via) =>
@@ -219,7 +219,7 @@ function drawRoutes(routes, m) {
     title.textContent = `Route ${i + 1} · ${formatDistance(route.distance)} · ${formatDuration(route.duration)}`;
     button.append(title);
     let pleasure = null;
-    if (m === "foot") {
+    if ((TRAVEL_MODES[m] || TRAVEL_MODES.foot).pleasure) {
       pleasure = document.createElement("span");
       pleasure.className = "pleasure";
       button.append(pleasure);
@@ -279,7 +279,7 @@ async function scorePleasure(place, seq, st = []) {
     entries.forEach((e, i) => {
       const isBest = i === best;
       setPleasure(e, `Pleasure: ${counts[i]} green px${isBest ? " · most pleasant" : ""}`, {
-        title: "Green pixels (parks, grass, woods) on the map along this walk; more is more pleasant",
+        title: "Green pixels (parks, grass, woods) on the map along this route; more is more pleasant",
         label: `Pleasure ${counts[i]} green pixels${isBest ? ", most pleasant" : ""}`,
       });
       e.pleasure.classList.toggle("best", isBest);
@@ -321,8 +321,9 @@ async function updateRoutes() {
     map.setView([place.lat, place.lng], 15);
     return setStatus("Waiting for your location to compute a route…");
   }
-  setStatus(m === "car" ? "Computing driving routes…" : "Computing walking routes…");
-  const noRoute = m === "car" ? "No driving route found." : "No walking route found.";
+  const cfg = TRAVEL_MODES[m] || TRAVEL_MODES.foot;
+  setStatus(cfg.computing);
+  const noRoute = cfg.noRoute;
   let routes;
   try {
     routes = await fetchRoutes(place, seq, m, st);
@@ -335,14 +336,13 @@ async function updateRoutes() {
   drawRoutes(routes, m);
   const fastest = routes[0];
   const summary = `${formatDistance(fastest.distance)} · ${formatDuration(fastest.duration)}`;
-  const car = m === "car";
   const via = st.length ? ` via ${st.length} stop${st.length > 1 ? "s" : ""}` : "";
   setStatus(
     routes.length === 1
-      ? `${summary} ${car ? "by car" : "on foot"}${via}`
-      : `${routes.length} ${car ? "driving" : "walking"} routes${via} · fastest ${summary}`,
+      ? `${summary} ${cfg.single}${via}`
+      : `${routes.length} ${cfg.plural} routes${via} · fastest ${summary}`,
   );
-  if (!car) scorePleasure(place, seq, st);
+  if (cfg.pleasure) scorePleasure(place, seq, st);
 }
 
 // --- Stops ----------------------------------------------------------------------------------
