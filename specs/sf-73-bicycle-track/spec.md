@@ -8,11 +8,18 @@
 
 **Input**: User description: "bicycle track — in addition to by foot and by car, I want to be able to select bicycles as a travel possibility"
 
+## Clarifications
+
+### Session 2026-11-17
+
+- Q: Which design do you want for the Bike option in the travel mode selector? → A: Design: C, one row of segmented buttons with icons (🚶 Walk | 🚗 Car | 🚲 Bike), see `design-options.html`.
+- Q: Do bike routes also show the pleasure indicator (green pixels, "most pleasant")? → A: Yes, bike routes show the pleasure indicator the same way as walking routes.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Get cycling routes to a destination (Priority: P1)
 
-A user who plans to ride a bicycle selects "Bike" in the travel mode selector, searches for a place, and sees up to 3 cycling routes from their current position to the destination, each with its distance and estimated riding duration. They can pick a route in the panel or click it on the map, exactly as with walking and car routes.
+A user who plans to ride a bicycle selects "🚲 Bike" in the travel mode selector, searches for a place, and sees up to 3 cycling routes from their current position to the destination, each with its distance, estimated riding duration and pleasure indicator. They can pick a route in the panel or click it on the map, exactly as with walking and car routes.
 
 **Why this priority**: This is the whole point of the request: cycling as a third travel possibility. Without it, cyclists must use walking routes (wrong duration, may use footpaths where bikes are not allowed) or car routes (may use roads closed to bikes).
 
@@ -20,10 +27,12 @@ A user who plans to ride a bicycle selects "Bike" in the travel mode selector, s
 
 **Acceptance Scenarios**:
 
-1. **Given** the app is open with a known position, **When** the user selects the bicycle mode and searches for a destination, **Then** up to 3 cycling routes are shown on the map and in the panel, each with distance and duration.
-2. **Given** cycling routes are shown, **When** the user clicks a route on the map or in the panel, **Then** that route is highlighted as the selected one.
-3. **Given** the bicycle mode is selected, **When** routes are being computed, **Then** the status text says cycling routes are being computed, and the result summary refers to cycling (e.g., "by bike" / "cycling routes").
-4. **Given** the bicycle mode is selected, **When** no cycling route exists to the destination, **Then** the user sees a "No cycling route found." message.
+1. **Given** the app is open, **When** the user looks at the travel mode selector, **Then** it is one row of three segmented buttons, "🚶 Walk", "🚗 Car" and "🚲 Bike", with Walk selected by default and the selected button highlighted (design C).
+2. **Given** the app is open with a known position, **When** the user selects the bicycle mode and searches for a destination, **Then** up to 3 cycling routes are shown on the map and in the panel, each with distance and duration.
+3. **Given** cycling routes are shown, **When** the user clicks a route on the map or in the panel, **Then** that route is highlighted as the selected one.
+4. **Given** the bicycle mode is selected, **When** routes are being computed, **Then** the status text says cycling routes are being computed, and the result summary refers to cycling (e.g., "by bike" / "cycling routes").
+5. **Given** the bicycle mode is selected, **When** no cycling route exists to the destination, **Then** the user sees a "No cycling route found." message.
+6. **Given** cycling routes are shown, **When** pleasure scoring finishes, **Then** each route shows its pleasure (green pixels) and the route with the most green pixels is marked "most pleasant", as for walking routes; a ride too long to score shows "Pleasure unavailable".
 
 ---
 
@@ -63,26 +72,27 @@ A user who added stops gets cycling routes that go from their position through e
 - The cycling routing service is unreachable or returns an error: the user sees an error message for cycling; switching to another mode still works.
 - The routing service returns only one cycling route (common for short trips or with stops): a single route is shown; no artificial detours are added for cycling.
 - The destination is only reachable via segments where cycling is not allowed: the route may include pushing the bike or the service may find no route; the "No cycling route found." message covers the latter.
+- A cycling route is too long for pleasure scoring, or the map tiles cannot be loaded: the route shows "Pleasure unavailable", as for walking.
 - The user has no position yet: same behaviour as the other modes (routes are computed once the position is known).
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: The travel mode selector MUST offer three options: Walk, Bike and Car, with exactly one selected at a time.
+- **FR-001**: The travel mode selector MUST be one row of three segmented buttons, "🚶 Walk", "🚗 Car" and "🚲 Bike" (in that order), with exactly one selected at a time and the selected button highlighted (design C in `design-options.html`). It MUST stay keyboard-operable as a single travel-mode choice.
 - **FR-002**: Walk MUST remain the default selected mode when the app opens.
 - **FR-003**: When the bicycle mode is selected, the system MUST compute routes using cycling-specific routing (paths and roads open to bicycles, cycling speeds), not walking or car routing.
 - **FR-004**: In bicycle mode the system MUST show up to 3 alternative routes, each with distance and estimated duration, selectable from the panel or the map.
 - **FR-005**: Status and result texts MUST refer to cycling when the bicycle mode is selected (computing message, summary, "no route found" message).
 - **FR-006**: Changing the travel mode while a destination is set MUST recompute routes for the new mode without a new search, and MUST discard results from a previously selected mode that arrive late.
 - **FR-007**: Cycling routes MUST honour the user's stops (all stops, in list order), and stops MUST be kept when switching to or from the bicycle mode.
-- **FR-008**: The pleasure indicator MUST NOT be shown for cycling routes (it remains walking-only).
+- **FR-008**: Cycling routes MUST show the pleasure indicator the same way as walking routes (green pixels along the route, "most pleasant" on the best one, "Pleasure unavailable" when it cannot be computed). Car routes keep no pleasure indicator.
 - **FR-009**: Detour routes through side waypoints MUST NOT be generated for cycling (remains walking-only).
 - **FR-010**: The project documentation (README) MUST mention the bicycle mode alongside walking and car.
 
 ### Key Entities
 
-- **Travel mode**: The way the user travels (walk, bike, car). Determines which routing is used, which texts are shown, and whether walking-only extras (pleasure indicator, detours) apply.
+- **Travel mode**: The way the user travels (walk, bike, car). Determines which routing is used, which texts are shown, and whether the pleasure indicator (walk and bike) and detour routes (walk only) apply.
 - **Route**: A path from the user's position through any stops to the destination, with distance and duration, computed for one travel mode.
 
 ## Success Criteria *(mandatory)*
@@ -92,12 +102,12 @@ A user who added stops gets cycling routes that go from their position through e
 - **SC-001**: A user can get cycling routes to a searched destination in at most one additional click compared to walking routes (selecting the Bike option).
 - **SC-002**: For the same trip, the displayed cycling duration is shorter than the walking duration and the route uses ways open to bicycles in 100% of tested sample trips.
 - **SC-003**: Switching travel mode with a destination set shows the new mode's routes without any re-search, in 100% of attempts.
-- **SC-004**: Existing walking and car behaviour (routes, pleasure indicator, stops) is unchanged: all existing automated tests continue to pass.
+- **SC-004**: Existing walking and car behaviour (routes, pleasure indicator, stops) is unchanged apart from the new selector look: all existing automated tests continue to pass.
 
 ## Assumptions
 
 - Cycling routes come from the same family of free public OpenStreetMap-based routing used for walking and car, which offers a bicycle profile; no account or key is needed.
 - "Bicycle" means a standard bicycle; e-bikes, cargo bikes, bike-sharing availability, elevation profiles and bike-lane preference settings are out of scope.
-- The pleasure indicator is not extended to cycling in this feature (it was designed and labelled for walks).
+- The pleasure indicator uses the same method and limits for cycling as for walking; its wording may refer to rides instead of walks where it names the mode.
 - The selected travel mode is not persisted between visits (same as today).
 - A previous bicycle-mode attempt (SF-70) was reverted; this spec restarts from the current walk/car behaviour.
