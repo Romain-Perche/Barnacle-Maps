@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "zones": [
+    {"id": "host", "label": "Local host (static server)"},
+    {"id": "browser", "label": "User's browser"},
+    {"id": "osm", "label": "OpenStreetMap public services"},
+    {"id": "cdn", "label": "unpkg CDN"}
+  ],
+  "groups": [
+    {"id": "delivery", "label": "App delivery", "description": "Serves the page, styles and app code to the browser; Leaflet comes from a CDN."},
+    {"id": "map", "label": "Map and position", "description": "Draws the OpenStreetMap map, tracks the user's live position and takes map clicks for stops."},
+    {"id": "search", "label": "Place search", "description": "Geocodes the typed query with Nominatim, near the user when known, and lists results nearest first."},
+    {"id": "routing", "label": "Routing and stops", "description": "Asks OSRM for walking or car routes through the user's stops and shows them on the map and panel."},
+    {"id": "pleasure", "label": "Pleasure score", "description": "Counts green pixels on OSM tiles along each walking route to mark the most pleasant one."}
+  ],
+  "actors": [
+    {"id": "user", "label": "Browser user"},
+    {"id": "geolocation", "label": "Browser geolocation API"},
+    {"id": "nominatim", "label": "Nominatim geocoding (nominatim.openstreetmap.org)"},
+    {"id": "osrm", "label": "OSRM routing (routing.openstreetmap.de)"},
+    {"id": "osm_tiles", "label": "OSM tile server (tile.openstreetmap.org)"},
+    {"id": "unpkg", "label": "unpkg CDN (Leaflet 1.9.4)"}
+  ],
+  "processes": [
+    {"id": "static_server", "label": "Static file server (python http.server)", "zone": "host", "group": "delivery", "sources": ["package.json", "index.html"]},
+    {"id": "map_view", "label": "Leaflet map view and position tracker", "zone": "browser", "group": "map", "sources": ["src/app.js"]},
+    {"id": "search_panel", "label": "Search and suggestions panel", "zone": "browser", "group": "search", "sources": ["src/app.js", "src/geo.js"]},
+    {"id": "route_planner", "label": "Route planner with stops", "zone": "browser", "group": "routing", "sources": ["src/app.js", "src/geo.js"]},
+    {"id": "pleasure_scorer", "label": "Pleasure scorer (tile green pixels)", "zone": "browser", "group": "pleasure", "sources": ["src/app.js", "src/geo.js"]}
+  ],
+  "stores": [],
+  "flows": [
+    {"from": "static_server", "to": "map_view", "data": "index.html, styles.css, src/*.js", "sources": ["package.json", "index.html"]},
+    {"from": "unpkg", "to": "map_view", "data": "Leaflet script and stylesheet", "sources": ["index.html"]},
+    {"from": "osm_tiles", "to": "map_view", "data": "map tile images", "sources": ["src/app.js"]},
+    {"from": "geolocation", "to": "map_view", "data": "live latitude and longitude", "sources": ["src/app.js"]},
+    {"from": "user", "to": "search_panel", "data": "search query text", "sources": ["src/app.js"]},
+    {"from": "map_view", "to": "search_panel", "data": "user position for nearby bias and distances", "sources": ["src/app.js"]},
+    {"from": "search_panel", "to": "nominatim", "data": "query, viewbox around the user's position", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "nominatim", "to": "search_panel", "data": "matching places (name, lat, lon)", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "search_panel", "to": "route_planner", "data": "chosen destination or new stop", "sources": ["src/app.js"]},
+    {"from": "user", "to": "route_planner", "data": "travel mode, stop order, route choice", "sources": ["src/app.js", "index.html"]},
+    {"from": "map_view", "to": "route_planner", "data": "user position and map-click stops", "sources": ["src/app.js"]},
+    {"from": "route_planner", "to": "osrm", "data": "start, stops, detour waypoint, destination", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "osrm", "to": "route_planner", "data": "route geometry, distance, duration", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "route_planner", "to": "map_view", "data": "route polylines and stop markers", "sources": ["src/app.js"]},
+    {"from": "route_planner", "to": "pleasure_scorer", "data": "walking route paths", "sources": ["src/app.js"]},
+    {"from": "osm_tiles", "to": "pleasure_scorer", "data": "zoom-16 tile images along routes", "sources": ["src/app.js"]},
+    {"from": "pleasure_scorer", "to": "user", "data": "green pixel counts, most pleasant route", "sources": ["src/app.js", "src/geo.js"]},
+    {"from": "route_planner", "to": "user", "data": "route list with distance and duration", "sources": ["src/app.js"]},
+    {"from": "search_panel", "to": "user", "data": "results nearest first with distances", "sources": ["src/app.js"]}
+  ]
+}

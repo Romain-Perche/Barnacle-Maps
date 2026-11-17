@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:ad628abd3b89b186abc217184931a1c011676d6c3a3cfdd1d8a6e7b63b89f739",
+  "claims": [
+    {
+      "id": "claim_f792d148949b4aa7b0dee8d92a6f18e8",
+      "statement": "Barnacle Maps is a static web app with no build step or dependencies, started with npm start (python http.server on port 8000) and tested with npm test.",
+      "evidence": [
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:c8ed52489f51854a6682698657b7ede3c32b76766dd07561bba758e1775e73d1"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    },
+    {
+      "id": "claim_9a2c55d0b7954db7a64b95e5648bad57",
+      "statement": "The page consists of a Leaflet map and a panel with search form, Walk/Car mode radios, results, stops, route options and a status line.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L10-L29",
+          "version": "repo-lines-v1:sha256:f3879729924417365da522178432cb2a9e150d2f81cd222495b7f1c5ebba9e18:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUzMTMzYWZiNzhjNjU1ZTE0YzAyZGFiNDA3MTZkOGFiMjk5YmY5ZGRmZGY4NGI0MmVjMmFlMjU5NmUwZDNiMzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkYTM5ZDZmNWI1NWJlNDgwMTA3MDIwNTBlZWZjNjJlNzEyNjkwMmQ5ZDk0MGI3NTI5MmUxZWUzZDk0ZDE5M2UiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEwMzI2ZWE0MDNjZGI2YjkzZmM2N2M4ZTVmOWZkOGUzNzk0MmI1MWI5Y2I4OGRhMTljZDFhY2NlMTVkNDZmNGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0ZDdlZTc1Njk0MzNhM2M1MmE3M2RlYjM1YzgxNDgxYjNlNGVhZGU4OGU4Y2JkZjE3N2MxZjMzYjlkMGNmYjEifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T11:34:31.384Z"
+  }
+}

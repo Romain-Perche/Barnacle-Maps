@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:51fe9f665754cceb0b2f5064c1b8727898930e4df04fbc2229398af93a32939b",
+  "claims": [
+    {
+      "id": "claim_4cefb177dfe242209bc4359216d1d78b",
+      "statement": "The write-tests skill writes deterministic tests and one AI scenario file per user story under tests/ai/us<N>-<slug>.md before any code is written, and records them as tasks in tasks.md.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/write-tests/SKILL.md#L10-L17",
+          "version": "repo-lines-v1:sha256:de11a20ce7f27ce2a20764b3079b623314906d3acc6df2993ab57f345a31aa46:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzdkZWMxZTU5NzYwZWZmYWEyYTRkZjI1OTFmNWE4MTY2YTU3YTQ1MzQ1MjNiNGVkZWJkZDlhYTg0YjRkODdkNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2ZmM2FlYmI3NTZlZTFjM2Q0ODg2YTgwODliOWU5NTFkMzYwYTQ4ODA4YTkyN2M4Zjg5NGM1MGFmMGVjNWJmMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2UwODYxZmI0MDkxOGFmMTk3NGI3OGU2YTFhYTE4MWQ4NGNmMzg0ODZkMzcxNTQ4ZWYzNWI0ZmU2YzJiMDc1NyJ9"
+        },
+        {
+          "resource": "repo://.claude/skills/write-tests/SKILL.md#L177-L178",
+          "version": "repo-lines-v1:sha256:a52e8dbd4d7b2bfa3c5edec5f57442b412bfff0c7a0009e637196f6d312433ad:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjlhZTg1MWY0YjVlOTA2MTBkNWY5MGM5NWIyYTMwOTk3MmIxNDc1YTZjMzEwNWFmMDQ2OWM5OTczOWZmZjAwYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDM4MzQ5YjgzYjJlNzAwYzJmOGM0ODY4Zjg5MmUzYzMwMTRjNjg2NTgwZDVjNjZmOWMyNjEyMGUwNDA5NDE2ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDlkZGZhZGIxN2Q4YWMwMzRkMTAxODgwMjMyMWY0NTYzMTBhZDc5ZWFiNDcyMTkzM2VmMzcyNDhmYzFlZDljZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGYyMzEwYmYwNjkwODJjZjQ2MmMyMTkzNmMxOThlNWQ1MTc4YTY1OWQ2YWJlOTkzNjE0ZDE0YmI5Njc5ZjFhYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0f85cc9641b84834bf7ffd6267909047",
+      "statement": "The Spec Kit git extension is hooked in so that a feature branch is created before specify and changes may be committed before later steps.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/extensions.yml#L1-L30",
+          "version": "repo-lines-v1:sha256:8b779c1fa517a9a56d090b1d4dfee151ac7629b1e1597b7a08b7189a876df160:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2NzgzOTAzNTY4MTE5NThmMTM1M2M5NGNmMDQ1YzMzMGIzNDYwYzM0NWE0N2QzNDI4YzczYjg2YTE4N2U0ZjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzNTg0MjI3ZTE0NjhjYTgwYmJkOGM1NTI0OGFjOWJkMDRjNzVhYWY4YzRjOWFhNmI1YWI5MWM5MGI5YWMxZWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY0MGE0N2YwZTNmYTQxZjE3YzQyNzRmZDRmOTlmZDUwODkwNzYwYTg0MTZhYTM0MDc3MmYwM2VkZGQyNGY5MGMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a848ed1033ba4923b9eb4a333bd042ac",
+      "statement": "plan-review is the last gate before Build: a person sees the whole plan as one HTML page and approves or answers open decisions.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/plan-review/SKILL.md#L1-L15",
+          "version": "repo-lines-v1:sha256:dd42bac23fa078830e7b26a9027a18d9870b749a2786d9d3a311857fda419631:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1MmQ3MTExMDNkNTBhNDM3ODMwYzZmYmNkMDRmYjRiYWI0OWEwZjgyZjZkMjZkMWM3OTFjNmU4NDg4ZGQwOTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNkYTlkZmNjNzQwZmZiZjRmZDAyOGNiZThhYWNiMjk0OTg4MGIwYzRhYjNkYjRiYTVkOTdhZmYwZDZjZTRlZGEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_19dde936697c4b56a5b224dc13204577",
+      "statement": "The project constitution in .specify/memory/constitution.md is still the unfilled Spec Kit template.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/memory/constitution.md",
+          "version": "repo-file-v1:sha256:ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3"
+        }
+      ]
+    },
+    {
+      "id": "claim_790f1fc7857042a2af148d843367576b",
+      "statement": "The sf-74 feature folder contains spec, plan, research, data model, contracts, tasks, checklist, design options, dependencies and quickstart artefacts, and its dependencies.json lists no new dependencies.",
+      "evidence": [
+        {
+          "resource": "repo://specs/sf-74-sort-search-results/dependencies.json",
+          "version": "repo-file-v1:sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        {
+          "resource": "repo://specs/sf-74-sort-search-results/spec.md#L1-L20",
+          "version": "repo-lines-v1:sha256:a6c5132bcc2bb1501122a52e343cc7accfe2fe1f234e63d7dfc6f1d0ffb01fe4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM5NDEwZmFmYjYzYTVlMjhlMWU0OGYxZjk5Yjk0OWY0N2FiYmViNWQ2NTRmOTcwMGE3OWU4MGE3ZmFjZTY3YjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxMDczOWQ4ZWZjNDNlMzgzNTIxM2MyYWY1YmM2NmE0YjFmOTUzMTE3NWQxMGNjZWY2OGNjYTg3NjAyZDA2YzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ4NWUzNjkxMDIxZTQwOGQ4NzMyYjAwYjA2YWEyZDRmN2IwNzE4ZGFjNWUyOGM5ZTNhOGE3YjE4YTdkMGUwZGQifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T11:34:31.384Z"
+  }
+}
