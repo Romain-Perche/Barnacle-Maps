@@ -19,6 +19,7 @@ import {
   searchUrl,
   straightLineLength,
   TRAVEL_MODES,
+  isNoRouteResponse,
 } from "./geo.js";
 
 const L = window.L;
@@ -102,6 +103,23 @@ async function fetchJson(url) {
   if (!res.ok) throw new Error(`Request failed (${res.status})`);
   return res.json();
 }
+
+// Like fetchJson, but an OSRM "no route" answer (HTTP 400 NoRoute/NoSegment) gives no routes.
+async function fetchRouteJson(url) {
+  const res = await fetch(url);
+  if (!res.ok) {
+    const body = await res.json().catch(() => null);
+    if (isNoRouteResponse(body)) return null;
+    throw new Error(`Request failed (${res.status})`);
+  }
+  return res.json();
+}
+
+const MODE_TEXT = {
+  foot: { computing: "Computing walking routes…", noRoute: "No walking route found.", single: "on foot", plural: "walking" },
+  car: { computing: "Computing driving routes…", noRoute: "No driving route found.", single: "by car", plural: "driving" },
+  bike: { computing: "Computing cycling routes…", noRoute: "No cycling route found.", single: "by bike", plural: "cycling" },
+};
 
 let searchSeq = 0;
 let suggestTimer = null;
@@ -188,17 +206,17 @@ function setPleasure(entry, text, { title = "", label = text } = {}) {
 
 async function fetchRoutes(place, seq, m, st = []) {
   const main = parseRoutes(
-    await fetchJson(routeUrl(position, place, undefined, { alternatives: 3, mode: m, stops: st })),
+    await fetchRouteJson(routeUrl(position, place, undefined, { alternatives: 3, mode: m, stops: st })),
   );
   if (seq !== routeSeq || !main.length) return main;
   // With user stops, no artificial detours: OSRM's own routes through the stops only.
   if (st.length > 0) return pickRoutes(main);
-  // Car detours through arbitrary side points give silly routes: only walking forces them.
-  if (main.length >= 2 || m !== "foot") return pickRoutes(main);
+  // Car detours through arbitrary side points give silly routes: only modes with detours force them.
+  if (main.length >= 2 || !TRAVEL_MODES[m].detours) return pickRoutes(main);
   // OSRM often has no alternative for short walks: force detours through side waypoints.
   const detours = await Promise.allSettled(
     detourWaypoints(position, place).map((via) =>
-      fetchJson(routeUrl(position, place, undefined, { via, mode: m, stops: st })),
+      fetchRouteJson(routeUrl(position, place, undefined, { via, mode: m, stops: st })),
     ),
   );
   const extra = detours
@@ -219,7 +237,7 @@ function drawRoutes(routes, m) {
     title.textContent = `Route ${i + 1} · ${formatDistance(route.distance)} · ${formatDuration(route.duration)}`;
     button.append(title);
     let pleasure = null;
-    if (m === "foot") {
+    if (TRAVEL_MODES[m].pleasure) {
       pleasure = document.createElement("span");
       pleasure.className = "pleasure";
       button.append(pleasure);
@@ -279,7 +297,7 @@ async function scorePleasure(place, seq, st = []) {
     entries.forEach((e, i) => {
       const isBest = i === best;
       setPleasure(e, `Pleasure: ${counts[i]} green px${isBest ? " · most pleasant" : ""}`, {
-        title: "Green pixels (parks, grass, woods) on the map along this walk; more is more pleasant",
+        title: "Green pixels (parks, grass, woods) on the map along this route; more is more pleasant",
         label: `Pleasure ${counts[i]} green pixels${isBest ? ", most pleasant" : ""}`,
       });
       e.pleasure.classList.toggle("best", isBest);
@@ -321,8 +339,9 @@ async function updateRoutes() {
     map.setView([place.lat, place.lng], 15);
     return setStatus("Waiting for your location to compute a route…");
   }
-  setStatus(m === "car" ? "Computing driving routes…" : "Computing walking routes…");
-  const noRoute = m === "car" ? "No driving route found." : "No walking route found.";
+  const text = MODE_TEXT[m];
+  setStatus(text.computing);
+  const noRoute = text.noRoute;
   let routes;
   try {
     routes = await fetchRoutes(place, seq, m, st);
@@ -335,14 +354,13 @@ async function updateRoutes() {
   drawRoutes(routes, m);
   const fastest = routes[0];
   const summary = `${formatDistance(fastest.distance)} · ${formatDuration(fastest.duration)}`;
-  const car = m === "car";
   const via = st.length ? ` via ${st.length} stop${st.length > 1 ? "s" : ""}` : "";
   setStatus(
     routes.length === 1
-      ? `${summary} ${car ? "by car" : "on foot"}${via}`
-      : `${routes.length} ${car ? "driving" : "walking"} routes${via} · fastest ${summary}`,
+      ? `${summary} ${text.single}${via}`
+      : `${routes.length} ${text.plural} routes${via} · fastest ${summary}`,
   );
-  if (!car) scorePleasure(place, seq, st);
+  if (TRAVEL_MODES[m].pleasure) scorePleasure(place, seq, st);
 }
 
 // --- Stops ----------------------------------------------------------------------------------
