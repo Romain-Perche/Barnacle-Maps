@@ -13,6 +13,7 @@
 ### Session 2026-11-17
 
 - Q: Which design? → A: Design: A, distance shown on the right of each result, in one column before "Add as stop" (see design-options.html).
+- Q: Should the search also prefer places near you, or only sort the 5 results it returns today? → A: B, ask the search to prefer places near the user's position (places farther away can still be returned), then sort the results by distance.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -20,7 +21,7 @@
 
 A user whose position is known searches for a place (for example "bakery" or a street name that exists in several towns). The results list shows the place closest to them first, then the next closest, and so on, so the one they most likely want is at the top.
 
-**Why this priority**: This is the whole feature. Today results come back in the search service's own order, so a far-away match can appear above the one around the corner.
+**Why this priority**: This is the whole feature. Today results come back in the search service's own order, so a far-away match can appear above the one around the corner, and near places can be missing from the list entirely.
 
 **Independent Test**: With a known position, search for a term that matches places at different distances. Check that the list is in increasing distance from the user.
 
@@ -29,7 +30,9 @@ A user whose position is known searches for a place (for example "bakery" or a s
 1. **Given** the user's position is known, **When** they submit a search that returns several places, **Then** the results are listed from nearest to farthest (straight-line distance from the user's position).
 2. **Given** the user's position is known, **When** suggestions appear while they type, **Then** the suggestions are also listed from nearest to farthest.
 3. **Given** two results are at the same distance, **When** the list is shown, **Then** they keep the order the search service returned them in.
-4. **Given** results are sorted, **When** the user clicks a result or "Add as stop", **Then** the action applies to the place they clicked (the route or stop matches that place).
+4. **Given** the user's position is known and a place matching the search exists near them, **When** they search for a common name (for example "bakery"), **Then** the search prefers places near the user, so near matches are in the list instead of only far-away ones.
+5. **Given** the user's position is known and no matching place is near them, **When** they search, **Then** farther matches are still listed, nearest first.
+6. **Given** results are sorted, **When** the user clicks a result or "Add as stop", **Then** the action applies to the place they clicked (the route or stop matches that place).
 
 ---
 
@@ -50,7 +53,7 @@ On the right of each result, before "Add as stop", the user sees its straight-li
 
 ### Edge Cases
 
-- **Position not yet known** (permission denied, still locating, or unavailable): results are shown in the search service's original order, with no distance. Search still works.
+- **Position not yet known** (permission denied, still locating, or unavailable): the search does not prefer any area (same as today), and results are shown in the search service's original order, with no distance. Search still works.
 - **Position changes while results are on screen**: the list already shown is not reordered (to avoid results moving under the user's pointer); the next search or suggestion uses the latest position.
 - **Single result or no results**: behaves as today ("No results." when empty).
 - **A newer search replaces an older one**: only the latest search's results are shown, sorted (existing behavior kept).
@@ -65,12 +68,14 @@ On the right of each result, before "Add as stop", the user sees its straight-li
 - **FR-004**: When the user's position is not known, the system MUST list results in the search service's original order.
 - **FR-005**: Each result's actions ("show route" and "Add as stop") MUST still apply to that result after sorting.
 - **FR-006**: When the user's position is known, each result MUST show its straight-line distance from the user, in the app's existing distance format, in a column on the right of the result name, before "Add as stop" (Design A).
-- **FR-007**: The number of results shown MUST stay the same as today (up to 5); sorting only changes their order.
+- **FR-007**: The number of results shown MUST stay the same as today (up to 5).
+- **FR-008**: When the user's position is known, the search MUST prefer places near that position, while still returning farther places when there are no near matches.
+- **FR-009**: When the user's position is not known, the search MUST NOT prefer any area (same results as today).
 
 ### Key Entities
 
 - **Search result**: a place returned by the search, with a name and a location; gains a distance from the user when the user's position is known.
-- **User position**: the user's latest known location, used as the reference point for sorting.
+- **User position**: the user's latest known location, used as the reference point for sorting and for the search's preference for near places.
 
 ## Success Criteria *(mandatory)*
 
@@ -79,12 +84,14 @@ On the right of each result, before "Add as stop", the user sees its straight-li
 - **SC-001**: In 100% of searches made with a known position, the first result shown is the closest of the returned places.
 - **SC-002**: In 100% of searches made with a known position, the distances of the listed results never decrease from one row to the next.
 - **SC-003**: Searches made without a known position still show results, in the same order as before this feature.
+- **SC-005**: For a common name that has matches both near the user and far away (for example "bakery" in a city), at least the first result is a near match (within a few kilometres) rather than a far-away one.
 - **SC-004**: Results appear with no noticeable extra delay compared to before (sorting at most 5 results).
 
 ## Assumptions
 
 - "Closeness" means straight-line (as-the-crow-flies) distance, not travel distance or time along a route; computing routes for every result would be too slow and too costly for the routing service.
-- Only the results the search service already returns (up to 5) are sorted. Asking the search service to favor or limit results to the user's area is out of scope.
+- The search prefers the user's area but does not restrict to it: a unique place far away (for example a named landmark in another country) must still be found. Restricting results to the user's area only is out of scope.
+- "Near" for the search preference is a reasonable area around the user (on the order of a city); the exact size is a planning detail.
 - Stops already added do not affect the ordering; distance is always measured from the user's position.
 - The sort is the same for walking and car modes.
 - The user's live position, already tracked by the app, is the reference point.
