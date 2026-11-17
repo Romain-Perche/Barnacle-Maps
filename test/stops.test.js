@@ -18,6 +18,7 @@ const s2 = { name: "Pharmacy", lat: 48.857, lng: 2.34 };
 const s3 = { name: "Market", lat: 48.859, lng: 2.355 };
 const FOOT = "https://routing.openstreetmap.de/routed-foot/route/v1/foot";
 const CAR = "https://routing.openstreetmap.de/routed-car/route/v1/driving";
+const BIKE = "https://routing.openstreetmap.de/routed-bike/route/v1/bike";
 const Q = "?overview=full&geometries=geojson";
 
 // FR-003, US1 scenario 1, US2 scenario 1: the route goes start -> stops in list order -> destination.
@@ -116,4 +117,16 @@ test("straightLineLength sums the legs of the journey", () => {
   assert.ok(Math.abs(straightLineLength([a, b, c]) - expected) < 1e-6);
   assert.equal(straightLineLength([a]), 0);
   assert.equal(straightLineLength([]), 0);
+});
+
+// covers FR-005, US2 scenario 1: bike routes go through the stops in list order.
+test("routeUrl bike mode passes through the stops in list order", () => {
+  assert.equal(
+    routeUrl(from, to, undefined, { stops: [s1, s2], mode: "bike", alternatives: 3 }),
+    `${BIKE}/2.35,48.85;2.37,48.852;2.34,48.857;2.36,48.86${Q}&alternatives=3`,
+  );
+  assert.equal(
+    routeUrl(from, to, undefined, { stops: [], mode: "bike" }),
+    routeUrl(from, to, undefined, { mode: "bike" }),
+  );
 });

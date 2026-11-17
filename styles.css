@@ -8,7 +8,23 @@ html, body { height: 100%; margin: 0; font-family: system-ui, sans-serif; }
 }
 #search-form { display: flex; gap: 6px; }
 #search-input { flex: 1; padding: 8px; font-size: 16px; }
-#mode { display: flex; gap: 12px; margin: 6px 0 0; font-size: 14px; }
+/* Travel mode: segmented control over native radios (inputs hidden visually but still focusable). */
+#mode {
+  display: flex; gap: 0; margin: 6px 0 0; font-size: 14px;
+  border: 1px solid #1a73e8; border-radius: 6px;
+}
+#mode label {
+  flex: 1; position: relative; text-align: center; padding: 6px 4px; cursor: pointer; user-select: none;
+}
+#mode label + label { border-left: 1px solid #1a73e8; }
+#mode label:first-child { border-radius: 5px 0 0 5px; }
+#mode label:last-child { border-radius: 0 5px 5px 0; }
+#mode label:hover { background: #eef3fd; }
+#mode input {
+  position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; overflow: hidden; clip: rect(0 0 0 0);
+}
+#mode label:has(input:checked) { background: #1a73e8; color: #fff; }
+#mode label:has(input:focus-visible) { outline: 2px solid #1a73e8; outline-offset: 2px; z-index: 1; }
 #results { list-style: none; margin: 6px 0 0; padding: 0; }
 #results li { display: flex; gap: 4px; }
 #results button {

@@ -1,5 +1,5 @@
 // Pure helpers for Barnacle Maps (no DOM access and no fetch, so they can be unit tested in Node):
-// formatting, Nominatim search, OSRM walking and car routes (alternatives, detours, de-duplication)
+// formatting, Nominatim search, OSRM walking, car and cycling routes (alternatives, detours, de-duplication)
 // the green-pixel "pleasure" score of a route on map tiles, and the list of stops of a journey
 // (add, remove, reorder; routes go from the start through every stop in order to the destination).
 
@@ -48,11 +48,23 @@ export function parseSearchResults(json) {
 }
 
 export const TRAVEL_MODES = {
-  foot: { label: "Walk", base: "https://routing.openstreetmap.de/routed-foot", profile: "foot" },
-  car: { label: "Car", base: "https://routing.openstreetmap.de/routed-car", profile: "driving" },
+  // noun/adverb: status wording; pleasure: green-pixel score shown; detours: forced side-waypoint routes.
+  foot: {
+    label: "Walk", icon: "\u{1F6B6}", base: "https://routing.openstreetmap.de/routed-foot", profile: "foot",
+    noun: "walking", adverb: "on foot", pleasure: true, detours: true,
+  },
+  car: {
+    label: "Car", icon: "\u{1F697}", base: "https://routing.openstreetmap.de/routed-car", profile: "driving",
+    noun: "driving", adverb: "by car", pleasure: false, detours: false,
+  },
+  bike: {
+    label: "Bike", icon: "\u{1F6B2}", base: "https://routing.openstreetmap.de/routed-bike", profile: "bike",
+    noun: "cycling", adverb: "by bike", pleasure: true, detours: false,
+  },
 };
 
-// OSRM expects lng,lat order. The "foot" profile gives walking routes, "driving" (mode "car") car routes.
+// OSRM expects lng,lat order. The "foot" profile gives walking routes, "driving" (mode "car") car routes,
+// "bike" cycling routes.
 // `stops` are visited in order, `via` forces the route through a waypoint (after the stops);
 // `alternatives` asks OSRM for alternative routes.
 export function routeUrl(
