@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:844406f2aa12f2c472f531c127f21955cebb0f1b09ac054385e7aaf2e4e9d881",
+  "claims": [
+    {
+      "id": "claim_4303f720453e4a7dae96d4f65c0030a2",
+      "statement": "Barnacle Maps offers Walk, Car and Bike travel modes in a radio group in the panel, with Walk selected by default.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L17-L21",
+          "version": "repo-lines-v1:sha256:2f851580608df5871e57e869fbc34d7a8e78c00041abd7f48e697a9ac07c8949:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDMzMDQ2MGNhMjc3MWIxY2Y5ZDhiMTNhM2M2MmQ2Y2ZiZTg0ZTg0N2Y5YzA2MjI1MzU1YzA2YmNlMDE1YzJjYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTA1NjMwNGIwZWVhYmQ4OGFkNGNiZGQ2MGJkZjQ2NjUxYWQ4NTdhZDFlMDEwNGU0MmFiZmY2YjA0M2FlOGVhMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTliOTZiMjA5MzA1ZWY5NDQ0YjhlNTE1YTY4OGE3NDg3MDliMmU1ODAyMTk5ZDBiNmZmYzM2ZGRlN2E1ODJiMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjEwODNkODYwYzE5YTRhY2Q5YjY2ZjA2OTk5OWM0NzliYmRmYTdmNDA0M2JkYjRmYjkzZmZiZmVhOThjMWQ3OCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_220c466f57b2422993ab9b6aac99719e",
+      "statement": "The app is run with npm start, which serves the repository on port 8000, and tested with npm test using node --test.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T14:30:06.574Z"
+  }
+}

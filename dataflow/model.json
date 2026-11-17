@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "zones": [
+    {"id": "browser", "label": "User's browser"},
+    {"id": "local-host", "label": "Developer host"},
+    {"id": "osm-services", "label": "OpenStreetMap public services"},
+    {"id": "cdn", "label": "unpkg CDN"}
+  ],
+  "groups": [
+    {"id": "app-shell", "label": "App shell", "description": "Serves the static page and runs the map, panel, position, stops and travel-mode state in the browser."},
+    {"id": "search-routing", "label": "Search and routing", "description": "Turns a typed query into places with Nominatim and asks OSRM for walk, bike or car routes through the stops."},
+    {"id": "pleasure", "label": "Pleasure scoring", "description": "Loads OSM tiles along walking and bike routes and counts green pixels to mark the most pleasant route."}
+  ],
+  "actors": [
+    {"id": "user", "label": "Map user"},
+    {"id": "geolocation", "label": "Browser Geolocation API"},
+    {"id": "nominatim", "label": "Nominatim geocoder"},
+    {"id": "osrm", "label": "OSRM routing (routing.openstreetmap.de)"},
+    {"id": "osm-tiles", "label": "OSM tile server"},
+    {"id": "unpkg", "label": "unpkg (Leaflet 1.9.4)"}
+  ],
+  "processes": [
+    {"id": "dev-server", "label": "Static file server (npm start)", "zone": "local-host", "group": "app-shell", "sources": ["package.json"]},
+    {"id": "map-ui", "label": "Map and panel UI", "zone": "browser", "group": "app-shell", "sources": ["src/app.js", "index.html"]},
+    {"id": "search-client", "label": "Place search client", "zone": "browser", "group": "search-routing", "sources": ["src/app.js", "src/geo.js"]},
+    {"id": "routing-client", "label": "Route client (modes, stops, detours)", "zone": "browser", "group": "search-routing", "sources": ["src/app.js", "src/geo.js"]},
+    {"id": "pleasure-scorer", "label": "Green-pixel pleasure scorer", "zone": "browser", "group": "pleasure", "sources": ["src/app.js", "src/geo.js"]}
+  ],
+  "stores": [
+    {"id": "static-files", "label": "Static app files", "zone": "local-host", "group": "app-shell", "sources": ["index.html", "src", "styles.css"]}
+  ],
+  "flows": [
+    {"from": "static-files", "to": "dev-server", "data": "HTML, JS and CSS files", "sources": ["package.json", "index.html"]},
+    {"from": "dev-server", "to": "map-ui", "data": "page and ES modules over HTTP :8000", "sources": ["package.json", "index.html"]},
+    {"from": "unpkg", "to": "map-ui", "data": "Leaflet script and stylesheet", "sources": ["index.html"]},
+    {"from": "osm-tiles", "to": "map-ui", "data": "base map tiles", "sources": ["src/app.js"]},
+    {"from": "geolocation", "to": "map-ui", "data": "live position", "sources": ["src/app.js"]},
+    {"from": "user", "to": "map-ui", "data": "query, destination, stops, travel mode, route pick", "sources": ["src/app.js", "index.html"]},
+    {"from": "map-ui", "to": "user", "data": "map, routes, distances, durations, status", "sources": ["src/app.js"]},
+    {"from": "map-ui", "to": "search-client", "data": "search query", "sources": ["src/app.js"]},
+    {"from": "search-client", "to": "nominatim", "data": "search text (q, jsonv2, limit 5)", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "nominatim", "to": "search-client", "data": "place names and coordinates", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "search-client", "to": "map-ui", "data": "up to 5 places", "sources": ["src/app.js"]},
+    {"from": "map-ui", "to": "routing-client", "data": "position, stops, destination, mode", "sources": ["src/app.js"]},
+    {"from": "routing-client", "to": "osrm", "data": "coordinates incl. user position, profile", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "osrm", "to": "routing-client", "data": "route geometries, distance, duration", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "routing-client", "to": "map-ui", "data": "up to 3 picked routes", "sources": ["src/app.js"]},
+    {"from": "map-ui", "to": "pleasure-scorer", "data": "drawn walk or bike route paths", "sources": ["src/app.js"]},
+    {"from": "osm-tiles", "to": "pleasure-scorer", "data": "zoom-16 PNG tiles along routes", "sources": ["src/app.js"]},
+    {"from": "pleasure-scorer", "to": "map-ui", "data": "green-pixel counts, most pleasant route", "sources": ["src/app.js", "src/geo.js"]}
+  ]
+}

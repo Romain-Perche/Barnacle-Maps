@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:431d9dbd6ed9feac2cae5f2ac7ed2aa6473e36f9e761f90cbe319896306f933c",
+  "claims": [
+    {
+      "id": "claim_21a78ca9fcd14970836dfb7e924e5cbc",
+      "statement": "npm start serves the repository with python3 -m http.server on port 8000 and npm test runs node --test on test/.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    },
+    {
+      "id": "claim_9072f4ed852b46d6918f69a07f30ed30",
+      "statement": "The OSRM fake parses the official OSRM HTTP docs from .factory/schemas/osrm-http.md and rejects route requests with undocumented options or disallowed values; tests needing the docs are skipped when the file is missing.",
+      "evidence": [
+        {
+          "resource": "repo://test/bike.test.js#L114-L130",
+          "version": "repo-lines-v1:sha256:c3ce6dbe668a0be49f48a4fda4535c0ac45589be19522b877cfc129ae8da6479:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjZmJmNzU3OTBiMGIwM2YzMmFlNzgyMGQ1YTFmMGQ1YzU2ZjhkYWM4MDZjMWFlNmFkMzk0NzI4ZWVkZTcwNjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM2NDE5MzcyOTZmMjQxMmU1ZjJhOWQ0MzViMDdkNDE0ZGM5OGM0MDNlYmY5MDU4MjljNzlkNDVkMjZkZjdmZTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYzMmQwNDhhNzZkM2Y3NWU2OTg4NzY1ZWI4ZDM5MmExNjQxODQ5NmZiNTA1NjlhZmM0MzM2MDU0MWExYjZiMTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk1MTZjNTE5MDI4ZmU1N2U2MjFkMzU3YzNlNWViNjZiMzgzYTEyNWFhMDhjODE1Y2Q0MzE4MzBjMmM1YjY4MTEifQ"
+        },
+        {
+          "resource": "repo://test/bike.test.js#L22-L23",
+          "version": "repo-lines-v1:sha256:d920f30791e24b90c0a04bca371918db39a9d7d65c6c34ffa5c3e609b3cfe572:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDIyNTBjYTdhOWI5OTA1YTEzYjg0ZmIyODJlNjRmMjYwNWUzNzAzNGI0YmI3NWQyZGU5MzI1MzIwZmJiYmM3NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmZhN2IwYmU2ZDI1MzFiNjQ1MjcxNGJmMWYxZjExNTkxYzM5OTIwZGI2M2FiYTI2Y2NlZTA4NDFkMzhjZjM3NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjc4ODlmZmI1MWQ3ZTlmMTMzZDM0NmM2ZGJiZDQ1Yjk4YTU2Y2UwZDNjZDlmNDZhYzI2YmZhNjgwMzgwMDk4NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjU5NGY5MmFiYTgyNTg3OGNjMjVjMjExOTI3ODlkOWI0MTQwYjRiMjc4NjVkNDI3ZjEyYmQ1MjM5NzJjYzg2OSJ9"
+        },
+        {
+          "resource": "repo://test/fakes/osrm.js#L1-L48",
+          "version": "repo-lines-v1:sha256:90371f8623fcc976ed82eb8b5a37bb0413dd145a9d338aa56199093d4848f15a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFiZjdlNzRkMGMxYWE4NGIwYWYwNDg1MTgwYmRhZjFlMWE4NDViNDU4YTI4MWEwMTM2N2M2MmRiZDIzYTlkNzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlZjhlMzc2ZDZjZmRmYjAwMzU5YTQ4ZGYwYmY5YjU3NjQ4YTBlNGYwMTk2OWE1NmJmZTUxN2VlM2Y2ZjQzNzMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZjYmRiY2U4MTAwZWVlZmU1YjFmZGY3YWUxNjIxZWM1MzJkY2I0YTRiMjRiZjgxZGJjNzk0ZGZhODYzYjBlOTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_27725b26be0243e4a5eae279c7524c2a",
+      "statement": "The AI scenario helper answers OSRM, Nominatim, tile and unpkg requests inside the page, and logs OSRM requests refused by the docs check in log.refused with an HTTP 400 InvalidQuery answer.",
+      "evidence": [
+        {
+          "resource": "repo://tests/ai/README.md",
+          "version": "repo-file-v1:sha256:8034a9792807bf2c38480afca78f4b4a5024067be524fe5eeb60e42cc7289a9f"
+        },
+        {
+          "resource": "repo://tests/ai/support/fake-services.mjs#L1-L17",
+          "version": "repo-lines-v1:sha256:ccf40e4a102418ab83f30980df6119fb722dc6a639a104dc47799ea3f6e75fb6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0MzM4ZjMxN2ViNTdiMzY4OGFhODc1NjQxMTAyZTU4M2NlZGI3NzhhNGFhZGVjYTAzNTFiNzliODNhZTgyOWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjNDgxOTJhYmEzZWVmZDhmZjZmZTdiMjQ1ZmY0YjBiMDBjYjZlMzhhMmUzYWZlZTgxNWY5YjU5YzYyOWZlNjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4ZTU5MjQzYjEwZDFhZGJiY2YwMjFiMTRlNzk1ZTE0MWQ2NWQ3ZGMxZjYyNDA1NDRjNmVjY2UzMGNlYTE0NTgifQ"
+        },
+        {
+          "resource": "repo://tests/ai/support/fake-services.mjs#L101-L112",
+          "version": "repo-lines-v1:sha256:40dbe1ce052d7c04009d15aed99afba7fa4f8137a5c3ae6ff9aaba4c3ab4eae1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmYmFhN2VjNzRjZWNmMTc0MmYxZjNjZjM5NTEwZTM1MTMyOTQ3MDAyYWY3ZTViOTI4YmY0NGQ5NzM2ZTQ2MWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBlZmY4YjMyMDlmMWQ3Mzk0NmM0ZDhmM2U3ZDE0NjMzMTg0OWFhNzY3ZTAzOGE1MGE4YzZjMThiNDE0ZDViM2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFjYTg0MzQzNzdiZGY5NDZiNjg1ZDA2ZDU4NmVkY2NkYjI4Nzg0YmI2YjkyZjk2MjlkOTVmZDlkN2NkZDAyMmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE0NTRlNTI2NDE0ODg2YTNlM2Y3NTA0N2ExMGM1NDEyMTBjODU5MTAyMTA4ZmU0Mjc4NDhlMWNlNDE1YjVkOWYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T14:30:06.574Z"
+  }
+}

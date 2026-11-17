@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:c341308daaaf42163ac0f3ca0f083c576b2c17b45d744ce9cb1c111235b16d6b",
+  "claims": [
+    {
+      "id": "claim_3787a09404294d558ba012c01b4536b2",
+      "statement": "TRAVEL_MODES maps foot, car and bike to the routing.openstreetmap.de routed-foot, routed-car and routed-bike servers with OSRM profiles foot, driving and bike; pleasure is on for foot and bike, detours only for foot.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L50-L54",
+          "version": "repo-lines-v1:sha256:d758c6c8604a8098a085969541a596edf440c3deb365c215f1e346bc59d68ef2:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDc3ZWZlNmM5OWZlMDU5NTAyMzZmNWQ4MDJmZDk3ZmQ3MWYwZjE3ZjgxOGRiYjRhNTFlYmMwZWYzNTYyN2U2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWExZDFhNjMzOTAyMjljNzk4MzQ3ZTgzYTA0MDU0NDFjOTQwMDAzNTI4NGFkMTY4YzFiZjZjZGYxZDcwYTM3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzhiYmQ1ODEwYjczNzQyYThiNTBkODc4OTA4ZTU5YWMyNjA5M2Q1NTJmMTYyMzA1M2YxNWIyYWRiNmZiNWRjMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTY1NzA4NmMwYTZlMzhmMjBmMmI1MzE2ZDBhOTIwYTQ3YWFmOGI3Y2JhM2FjOTA1ZmNhNjAxZjE2MDY0NmFhYiJ9"
+        },
+        {
+          "resource": "repo://test/bike.test.js#L28-L68",
+          "version": "repo-lines-v1:sha256:d29d060d4e4f39e88e23986b262a17da46f13a6aee06dec47df22c4c90822436:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3YzhkNGFkNTdkMDIyZDVmNTRlZGEyMWNlNGNiYTNkMWZiMWFhMjMyZjg3NGYyZmFiYWUyYjU2YWI4YmUwNTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJkMzMwODI1ZjU2NGU2MDkwZmJmYWY4ZjdkYzFmM2M5YjlkM2Y3OWVjZTg2ZDllMTViYjQxOWU0MDlhYjJlZjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQwYWU5MTEzMjg3NGRlODllNWMyMjgzYWUzNDc4ZmJhYjY3MzQ3MTJlZmZmZDQ2YWZmNjg4YmNkYWI2NmZiODEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA4ZjYwZWM3MTEzMjM5MWFhNWZkYzIyYzZlZWQxYjA0M2ZmMTE4ZTA5NjQzZDIxMDMwN2JkMzVkOWQ4ODA2OTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1a6a09ccd288499e941c8384953d127c",
+      "statement": "routeUrl orders coordinates as start, stops, optional via waypoint, destination in lng,lat form, requests full GeoJSON geometry and adds alternatives=3 when alternatives are asked for; unknown modes fall back to foot.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L61-L76",
+          "version": "repo-lines-v1:sha256:8ccac2d3553b5462ea0d12e2d638664092a8c4d095a9347ff497ee14b00a54b6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5MTdlY2I0M2M2OTg0MTVkYTQ1NmI3ZjU1MDE1MzdjODk0ZWI2YTdkZGUzY2RhYTZhOWI1ZWIwMDgyZGNiYTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlmNDMwOGQyYjY4MjdhMDhhZDE0ODRjMmJiNDkyNzQ1YzUyN2U3ZTRhZTdkYjVjYWYxOGQ1NThiOGYyZDU0MzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkxN2I3OTgyNWQ0ZmZmNDg5ZTkwYjY5OTNjMzJlYjYyMDE2MWI2NWYzMmZkOTYxMDdlNTJiNjU4NDZjOGNjOWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a6ecd13d06c44e6dac29a6f16f9ac4d6",
+      "statement": "Forced detour routes are only requested when there are no stops, OSRM returned fewer than two routes and the mode has detours enabled.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L207-L227",
+          "version": "repo-lines-v1:sha256:d448fd4514bcb50780cf07db2056b66b749f6f48660252594e3448050afdfceb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxNTJhZjA1NDcwNzQxNTU4OGY0NTUzYTYzNDdmYTdhNWVhNTk3YmNiMWNkMTJjMTRkNzVkMDEwOTAwMTY4YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljYzA2MzQ2M2FiM2UyZDdhZGIzNDEzMjA3ZmI0MWU5YjMyNzk2YWEwYTE0MTBhNGMzMDU0YzM4NjI2NDRkN2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3NzMxNTliZjk4NTQ2ZmQyZmU3M2E5OWRjYmZlNjQ2ZjI2MWUzYWExMjZjZTE5MTI2YzA5NGUwMWRlN2VkNTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0f35b2458f274826acf2f15980b711a3",
+      "statement": "pickRoutes keeps the fastest route plus up to two alternatives at most 1.6 times the shortest distance that overlap each kept route by less than 80 percent.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L227-L249",
+          "version": "repo-lines-v1:sha256:67cf923f45404bb51e9f8945c2575597574db1a05b44d4f5678e3e190b0819b4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkyMWY4M2FjNTMwYjA2M2ZhMTYzZjhiYjE3M2I1MzM5NDI1YzM1ZTI4OWIyNTJlMWExOGNkZGMwNTE3ODk1ODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFkYThjNjNhMDk5ZGI2ZTQ3MzYwYjExYTViYjEzOTE2YTUwYTgyYzZhYWU1OTkyNjZlMzkxMTNkMWYyNDEwNmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQyNGFhMDAxNWVmNTcwODc5NTNjYzZkZmM0M2EyMTRmY2E2ZTcyMTk4MjJkMDFmNWY4MGZmOWY1NDk5MDA0YTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_58aae600a8c549f0acd5ffead4964abe",
+      "statement": "An OSRM HTTP 400 answer with code NoRoute or NoSegment is treated as no routes and shows the mode's 'No ... route found.' message rather than a routing error.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L107-L122",
+          "version": "repo-lines-v1:sha256:0454b6142d85e1ea9bafebb1a3b6ae7f4f572a7ceac9e43cafc7436448d362a0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjZmI2ZDkxYjBmMDE5OGUwNjRiZjI4OTI3NTk3Njc3N2Q2YzNhZTE1OWI3ZGM1OGNiMjJiOTc5OWU5NjJkMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExMjRlZmU0NDJlMzJkNTA4NzBmYzRlMmIzMWE2ZmRjZGZlMDVlMjhmYjVhYjBjOTMxYmZmMWNjMDhkYjIwODMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk2NzhkM2JmYTBhMGI1Y2Q1ODEwMTcwMzY3MzE4MGEyM2M5NzkwMGY3MDM2MWUxNGNhZWUyYmI3MTJiOTkwMWUifQ"
+        },
+        {
+          "resource": "repo://src/app.js#L345-L354",
+          "version": "repo-lines-v1:sha256:bde7d3eb34b82eb886f150579a29fa05b985080e7ea8025762b18d6bfb73ee6d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlZjlkMDQxN2I3YjkzY2M3MmNiYWNlYjFlMDQ5ZTJiNTg2MWJkYjg0NWEyYmFlM2IyOTQ0ZDk2NmUyYTJiYzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFiMWY4YWQ0NmEwYmMwNjk5YzExNWFlZGUwYjI4MjMwODcyMjZiOGRjMGU2MWMxZTNmY2Y1MzFjZTIzMDRkNzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYzZjEzMzhjMzQ4ZGM0YThjNzhhNDNmZDZmMGNhNDcyNmM5YmUxOTkwYWYwNDllNDFiNjI2MGNkYzNmNmExY2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhNWYwMmE2M2FmZDdjNjkxNTljNThkMzMxNGM0ZmZmY2I0ZTg0N2QxOGQ0YjEwYjk5N2EyMjBmZTA1NzEzZGIifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L56-L59",
+          "version": "repo-lines-v1:sha256:6abc653d07643c712c77886e1084d11e65709495c6fcc62a1c03dfb9dfc91768:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjFjZTE4OWYyYTE1OTZlYzRhY2U5OWVmOGQxN2UxN2U0NGQ3YWNkZjRlOTk0YTRjNDZjMDA0YWUxY2IwODU2MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzYxNzlhYjhlYTFjOTU0M2FmYzg5YjM1ZjdmMzI1MjAwMDZkMzQ1YjMwZmIzZmQ2NmVkYTA1NmY2MzA4NmFmZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTBhN2YwN2NmYzMwMWY3YjU0YmJkYWQ0NmMwZWNhOGIyMDM2YTE3NDU1ODZmNTgzZmJiOWU3ZWE3MWUwZTZmMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e3133c65f7e14f078dd9ea53f242c877",
+      "statement": "Changing the travel-mode radio recomputes routes for the current destination and keeps the stops.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L436-L442",
+          "version": "repo-lines-v1:sha256:6d84a7a7b006eacfd10c66b3983cc2020b5679e0e7b43aa5d47a2e557d3b59b3:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDA1ZDRlZWJlMTQwNzQ1YTAxYTE5MmMzY2M3MmFkNDJkMGUxNWQ4NTFjYmM4NDYyOWM4NTA5ZmVhNjg1MTQ1YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjc3OWQxMThkNmUzY2JmNDUwNTM5NzQ4ZGVlN2E0MzA3YWNiZTY0NDZjYmEyOTdmMjc2MGZhNWQwYmJhMWJjMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T14:30:06.574Z"
+  }
+}

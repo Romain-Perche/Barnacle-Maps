@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:12a807714b5cdffb527031a2cb8a1c4b35396e0e552944c00559a84e86a61577",
+  "claims": [
+    {
+      "id": "claim_22b559ffdb2744cc821d8186a37daf57",
+      "statement": "addStop refuses a sixth stop with error 'limit' and a place within 20 m of an existing stop with error 'duplicate', without mutating the input list.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L78-L91",
+          "version": "repo-lines-v1:sha256:e9942cfc05f3aee72ced23bc29104be5c629a80bb6e8b13583dac12e0bd4404d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU0N2JmOWI4NTY3ZjUzMTk5MjE1ODgwNmU3MzM2MzdiMTYzNTIwMjRmOTg1ZTM0M2FjNjg5MDNkZGEyMDRlOTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg0MWZmYjdjMDU2NmFjZjAyNTY3ZjBiYjVmNTVjMGVhMzhjMjEwNjgyZWRiMjgwNjg2NzMzMzI0ZjU2OGYxZDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxODE5Yzk4NGM3ZjZiM2JlZGNhODMyYThmOTNkOWE2OTQxOWQ5NGY2ZGQ2MjE1NDZiNGIwMDhhY2Y2OTM3MjYifQ"
+        },
+        {
+          "resource": "repo://test/stops.test.js#L45-L82",
+          "version": "repo-lines-v1:sha256:b1c74231855283ec3ff73d4a561718374a67b79459b856e99a5f9ca7db050583:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkNjM5ZTVlNzkyY2Q5ZjhkYjU0ZmRlYWFmNzNiYjk5YTMyNTc1NWMyM2MyMDQxZWMxNDliNjUzOTUyMTMyZDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllMjlmZjdiNjQyZWY1ODAxNDk2MDAwYTkyMjJlZjFhYmMzYjUwNDc3NWY4YTk1ZTA1ZTVjYjM0MzY2ZmU4NTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZkMWQxOGQ2ODMzYTZiZWI4MGYyOTg1YTY0YTkzY2Q0OTczZmY0NDE1M2E0Y2FiNDk1MTE2MzE1YTUzMzM2ZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFhYzU0M2JjYWZmODZkZDk2ZTEyOWJkYWY5MmJiN2ZlMTIyYWUxYTk1ZDEwOTNlOWRjMzIzNjY5MTJhNjc4OTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_72a8b155608342b3ba23d34287c754ed",
+      "statement": "Clicking the map opens an 'Add stop here' popup that adds a stop named after its coordinates; clicks on route lines do not bubble to the map.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L229-L233",
+          "version": "repo-lines-v1:sha256:48610442dc1b0809d167ab5c7b3df12a69f7821bac06a82f5f7d4953d4a0835e:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzdiMmQxZmQzNGM3ZDczZjg3NzYzYzUxOTE1YzAwYzI2NTZhN2RlOGU4MTM4MzcxMmQ3ZDEwZjgyZGI3NDYyMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjQ2MjI3NjkxMDAwYTQzY2ExN2UyOGFjYmQ1MzYxYzhlYjk4Nzk5OWRjM2RhNGRjYzc2YzAxMTVkMzkxMGQ3ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzdhOWY1ZjFiNmRjYWM5MzM3MmI2ZWJmYmQ4MDdlMDhmZTZkNzJlZjAyMmRkZjNiNTJkYzUyYzUxYzI1MWI3MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWZkMzM3YTlmODM1ZTZjZjFkZjJlNTkyYTZjZTYzMGQ2MDliNTljOTg2YjA4OGVlOWJhMzg4MmYwMTVhZjcyOCJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L423-L434",
+          "version": "repo-lines-v1:sha256:0c864b7fbe5a6bab275f51f743908d0651d2fc6c20802e482a9b561ed7fd0442:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA5NTBmNGU1NzJkNmE5NzlhYmI5YmExMmRmOWIxZjhlNjQ3N2Q4OGE3M2RjZTE3M2Q3NDcyNzYzODY0Zjg5MzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg5ODI0ZTg4ZjBiOWFiNGZlZjgzNTI5NDc1Y2QxNTVlY2I0NjM1NjgxMjY0YmI3ZTVlNGQ5YTBlN2Q1MTFhODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdjN2ZiNDBlMmUyYjVmMWM0ODY0OGE3ODM5YWFhYTJhYjhkMTg0NjNkY2Y1NzI4ODA0NDlhYTE2MWY1MjFjYTEifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L108-L110",
+          "version": "repo-lines-v1:sha256:9d4d272a71778642515993a59fb5a41d0b379dd808021eb6f3a426e14927a648:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTEwZTcwMDExMDU0NDA3OGIxMWUyOGJiZjFmZDdlYjYyOGM4ZTVmMjI2OTYwZWFmZjJmNDQwYjBlNjdhZTY3NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDI3OWI2ODA1MjBlZDUyNmRjYzRjOGFhMzczNTI3NTkwZTI4MTk1ZTQwZmJlNjEwN2UxZTViNDk1YTQ1NzczNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjljOTM0OWJkNDM0ZmU5ZTk5NzU2MTViZTg1OGM5ZTQ3MTMxMjc5YjA1OTNlZWVkZTYxM2M4ZjliNDU4NGMyMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_884f2d14e99d4f988009d1d0d6832ee9",
+      "statement": "Every stop-list change goes through setStops, which re-renders the list and markers and recomputes routes.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L408-L421",
+          "version": "repo-lines-v1:sha256:dc7f898899c5fd290ea9c845806415831ece3f47f5faeb7553669e31d6c6fa82:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFhYzc2ZWEzZDQ4MTIyZWUwNTg0MTQ5MzI0MmIwNzc0ZDgzZjQxNGU5NzUxOWUyMjY4ZDVhYTk4YTUzMWViYWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1NzNmZTVlODBhOWRjYzA1YTVhY2FlMzJhZmU2MWI1NWI1NDNkNWEwZjA0NjhkYjJjMDE1MTE5ZDczNDczZWYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI0ZGNjNjJhZWMxNTJiZDYwYzE4ODQ2NWFmZWY1MWI0OTk3NzI0NDBmYWEyMzVmOTNhMGI2ZDliN2E1OTk3M2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY2NWFkYjQ1NGIxODNmMzMzYzRlZTU2MzY1NjMwZDJmNWZlZGRlYTkzNjZiOGFhMjI3ZjBiN2JjNjQxZTY5ZjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4b32bc9caa0a4818a0ccb14832d23662",
+      "statement": "When there are stops, fetchRoutes returns only OSRM's own routes through them and adds no forced detours.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L207-L215",
+          "version": "repo-lines-v1:sha256:216ccc7918962f6b7104f6833710c23200af281c9b337354ed8cb94e327303b9:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzE1MmFmMDU0NzA3NDE1NTg4ZjQ1NTNhNjM0N2ZhN2E1ZWE1OTdiY2IxY2QxMmMxNGQ3NWQwMTA5MDAxNjhhNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTU4M2Y3ZmJhMjYyM2UzODZlOTkyYmRkZWE0MjdhZDUxZjBjOWNiMThmYTM4ZDBhYjNkMWQ3MjY1ZGFkZWI3YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNjMDYzNDYzYWIzZTJkN2FkYjM0MTMyMDdmYjQxZTliMzI3OTZhYTBhMTQxMGE0YzMwNTRjMzg2MjY0NGQ3YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDUwYmEyNjI2NjExMTBjNTBmYzU3NTA4YTg0NzQ2NzA0OWEzNThhYzlhZGE3ZGNiZWIzMGM5NTU2Mjk2M2U1YiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T14:30:06.574Z"
+  }
+}
