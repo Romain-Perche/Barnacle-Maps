@@ -8,6 +8,12 @@
 
 **Input**: User description: "Sort search results — The searched results need to be sorted by closeness to your position"
 
+## Clarifications
+
+### Session 2026-11-17
+
+- Q: Which design? → A: Design: A, distance shown on the right of each result, in one column before "Add as stop" (see design-options.html).
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Nearest place listed first (Priority: P1)
@@ -29,7 +35,7 @@ A user whose position is known searches for a place (for example "bakery" or a s
 
 ### User Story 2 - See how far each result is (Priority: P2)
 
-Next to each result, the user sees its straight-line distance from their position (for example "350 m" or "4.2 km"), so they understand why the list is in that order and can pick between similar names.
+On the right of each result, before "Add as stop", the user sees its straight-line distance from their position (for example "350 m" or "4.20 km"), lined up in one column, so they understand why the list is in that order and can pick between similar names.
 
 **Why this priority**: Makes the ordering clear and helps pick a result, but the sorting alone already delivers the main value.
 
@@ -37,7 +43,7 @@ Next to each result, the user sees its straight-line distance from their positio
 
 **Acceptance Scenarios**:
 
-1. **Given** the user's position is known, **When** results are shown, **Then** each result shows its distance from the user in the app's existing distance format.
+1. **Given** the user's position is known, **When** results are shown, **Then** each result shows its distance from the user in the app's existing distance format, on the right of the result name and before "Add as stop" (Design A).
 2. **Given** the user's position is not known, **When** results are shown, **Then** no distance is shown.
 
 ---
@@ -58,7 +64,7 @@ Next to each result, the user sees its straight-line distance from their positio
 - **FR-003**: Results at equal distance MUST keep the order the search service returned them in.
 - **FR-004**: When the user's position is not known, the system MUST list results in the search service's original order.
 - **FR-005**: Each result's actions ("show route" and "Add as stop") MUST still apply to that result after sorting.
-- **FR-006**: When the user's position is known, each result SHOULD show its straight-line distance from the user, in the app's existing distance format.
+- **FR-006**: When the user's position is known, each result MUST show its straight-line distance from the user, in the app's existing distance format, in a column on the right of the result name, before "Add as stop" (Design A).
 - **FR-007**: The number of results shown MUST stay the same as today (up to 5); sorting only changes their order.
 
 ### Key Entities
