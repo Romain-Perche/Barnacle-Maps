@@ -15,6 +15,11 @@
 - Q: Which design do you want for the Bike option in the travel mode selector? → A: Design: C, segmented buttons with icons in the order 🚶 Walk | 🚗 Car | 🚲 Bike (the icons of mock C on the segmented control of mock B; selected segment highlighted).
 - Q: Should bike routes show the pleasure indicator ("most pleasant" green score)? → A: Yes, bike routes show the pleasure indicator the same way as walking routes.
 
+### Session 2026-11-17
+
+- Q: Should screen readers read the mode icons (🚶 🚗 🚲) or only the labels? → A: Only the labels ("Walk", "Car", "Bike"); the icons are decorative and hidden from assistive technologies (decided by the factory, to confirm)
+- Q: In Bike mode, may the user's position, stops and destination be sent to the FOSSGIS cycling routing server (routing.openstreetmap.de/routed-bike), the same third party that already computes walking and car routes? → A: Yes, but only that operator: no new third party receives location data, and nothing is stored by the app (decided by the factory, to confirm)
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Get cycling routes to a destination (Priority: P1)
