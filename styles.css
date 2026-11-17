@@ -16,6 +16,7 @@ html, body { height: 100%; margin: 0; font-family: system-ui, sans-serif; }
 }
 #results button:hover { background: #eef3fd; }
 #results .add-stop { flex: none; white-space: nowrap; color: #1a73e8; }
+#results .distance { flex: none; align-self: center; padding: 6px 0; font-size: 12px; color: #666; white-space: nowrap; min-width: 4.5em; text-align: right; }
 #stops-box { margin: 6px 0 0; }
 #stops { margin: 6px 0 0; padding-left: 0; list-style: none; }
 #stops li { display: flex; align-items: center; gap: 4px; font-size: 14px; }

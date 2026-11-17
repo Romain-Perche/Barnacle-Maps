@@ -41,9 +41,9 @@ None: both stories build on the existing `haversine` and `formatDistance` in `sr
 
 ### Implementation for User Story 1
 
-- [ ] T003 [US1] In `src/geo.js`, export `NEAR_BOX_DEG = 0.25` and extend `searchUrl(query, base = "https://nominatim.openstreetmap.org", near = null)` to append `viewbox=<left>,<top>,<right>,<bottom>` when `near` is given (see T001 for the maths); keep `limit: "5"` and do not set `bounded`.
-- [ ] T004 [US1] In `src/geo.js`, export `sortByDistance(results, from)` using the existing `haversine`: if `from` is null/undefined return `[...results]`; otherwise return a new array of `{ ...r, distance }` sorted ascending with the stable `Array.prototype.sort`.
-- [ ] T005 [US1] In `src/app.js` `runSearch`, import `sortByDistance`; read `position` at call time, call `searchUrl(q, undefined, position)`, and after the `seq` check replace `found` with `sortByDistance(found, position)` before rendering. Leave the existing handlers so each row's `showRoute(place)` / `tryAddStop(place)` use that row's own place (FR-005). Do not re-sort already shown results when `position` changes.
+- [X] T003 [US1] In `src/geo.js`, export `NEAR_BOX_DEG = 0.25` and extend `searchUrl(query, base = "https://nominatim.openstreetmap.org", near = null)` to append `viewbox=<left>,<top>,<right>,<bottom>` when `near` is given (see T001 for the maths); keep `limit: "5"` and do not set `bounded`.
+- [X] T004 [US1] In `src/geo.js`, export `sortByDistance(results, from)` using the existing `haversine`: if `from` is null/undefined return `[...results]`; otherwise return a new array of `{ ...r, distance }` sorted ascending with the stable `Array.prototype.sort`.
+- [X] T005 [US1] In `src/app.js` `runSearch`, import `sortByDistance`; read `position` at call time, call `searchUrl(q, undefined, position)`, and after the `seq` check replace `found` with `sortByDistance(found, position)` before rendering. Leave the existing handlers so each row's `showRoute(place)` / `tryAddStop(place)` use that row's own place (FR-005). Do not re-sort already shown results when `position` changes.
 
 **Checkpoint**: US1 works on its own; `npm test` passes.
 
@@ -55,12 +55,12 @@ None: both stories build on the existing `haversine` and `formatDistance` in `sr
 
 - [X] T018 [US2] AI test: distance column and no distance without position in tests/ai/us2-distance-column.md (covers FR-006, US2 scenario 1, 2)
 
-- [ ] T006 [US2] In `src/app.js` `runSearch`, when `place.distance` is a number, create `<span class="distance">` with `formatDistance(place.distance)` and append the row as `li.append(btn, distanceSpan, add)`; when no distance, append `li.append(btn, add)` as today (FR-006, US2 scenario 2).
-- [ ] T007 [P] [US2] In `styles.css`, add `#results .distance { flex: none; align-self: center; padding: 6px 0; font-size: 12px; color: #666; white-space: nowrap; min-width: 4.5em; text-align: right; }` (matches `.distA` in `design-options.html`).
+- [X] T006 [US2] In `src/app.js` `runSearch`, when `place.distance` is a number, create `<span class="distance">` with `formatDistance(place.distance)` and append the row as `li.append(btn, distanceSpan, add)`; when no distance, append `li.append(btn, add)` as today (FR-006, US2 scenario 2).
+- [X] T007 [P] [US2] In `styles.css`, add `#results .distance { flex: none; align-self: center; padding: 6px 0; font-size: 12px; color: #666; white-space: nowrap; min-width: 4.5em; text-align: right; }` (matches `.distA` in `design-options.html`).
 
 ## Phase 5: Polish
 
-- [ ] T008 Run `npm test`, then walk through every step in `specs/sf-74-sort-search-results/quickstart.md` in the browser (`npm start`) and fix any mismatch.
+- [X] T008 Run `npm test`, then walk through every step in `specs/sf-74-sort-search-results/quickstart.md` in the browser (`npm start`) and fix any mismatch.
 
 ## Dependencies & Execution Order
 
