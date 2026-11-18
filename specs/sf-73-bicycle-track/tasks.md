@@ -29,7 +29,7 @@ description: "Task list for the Bicycle Travel Mode (SF-73)"
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-- [ ] T001 Run `npm test` from the repository root and record the baseline. The SF-73 tests in `test/bike.test.js`, `test/selector.test.js`, `test/bike-app.test.js`, `test/modes.test.js` ("TRAVEL_MODES offers walking, car and bike") fail. All others pass.
+- [X] T001 Run `npm test` from the repository root and record the baseline. The SF-73 tests in `test/bike.test.js`, `test/selector.test.js`, `test/bike-app.test.js`, `test/modes.test.js` ("TRAVEL_MODES offers walking, car and bike") fail. All others pass.
 
 ---
 
@@ -39,7 +39,7 @@ description: "Task list for the Bicycle Travel Mode (SF-73)"
 
 **⚠️ CRITICAL**: No user story work can start until this phase is done.
 
-- [ ] T002 Extend `TRAVEL_MODES` in `src/geo.js` so it has exactly three keys in this insertion order: `foot`, `car`, `bike`. Every entry has all of these fields (from data-model.md):
+- [X] T002 Extend `TRAVEL_MODES` in `src/geo.js` so it has exactly three keys in this insertion order: `foot`, `car`, `bike`. Every entry has all of these fields (from data-model.md):
   - `label`: `Walk` / `Car` / `Bike`
   - `icon`: `🚶` / `🚗` / `🚲`
   - `base`: `https://routing.openstreetmap.de/routed-foot` / `https://routing.openstreetmap.de/routed-car` / `https://routing.openstreetmap.de/routed-bike`
@@ -52,7 +52,7 @@ description: "Task list for the Bicycle Travel Mode (SF-73)"
   - `plural`: `walking` / `driving` / `cycling`
 
   Validation rules to respect: "Every entry has every field. Strings are non-empty."; "`pleasure` is false only for car (FR-008). `detours` is true only for foot (FR-009)."; "Foot/car texts must equal today's literals in `src/app.js`". Do not change the signature of `routeUrl`. Done when `test/bike.test.js` and `test/modes.test.js` pass.
-- [ ] T003 Update the comments in `src/geo.js`: the file header ("OSRM walking, car and bike routes") and the comment above `routeUrl` (add `"bike" cycling routes; the OSRM server ignores the profile segment`). Do not write `fetch(`, `document` or `window` in the comments.
+- [X] T003 Update the comments in `src/geo.js`: the file header ("OSRM walking, car and bike routes") and the comment above `routeUrl` (add `"bike" cycling routes; the OSRM server ignores the profile segment`). Do not write `fetch(`, `document` or `window` in the comments.
 
 **Checkpoint**: `test/bike.test.js` and `test/modes.test.js` pass. Bike exists in data but not yet in the UI.
 
@@ -76,8 +76,8 @@ description: "Task list for the Bicycle Travel Mode (SF-73)"
 
 ### Implementation for User Story 1
 
-- [ ] T004 [P] [US1] Replace the `#mode` block in `index.html` with the design C markup from `contracts/travel-modes.md`. Keep `<div id="mode" role="radiogroup" aria-label="Travel mode">` with three `<label><input type="radio" name="mode" value="…"><span><span aria-hidden="true">ICON</span> Label</span></label>`, in order foot (`🚶` Walk, `checked`), car (`🚗` Car), bike (`🚲` Bike). Walk stays the default (FR-002).
-- [ ] T005 [P] [US1] Replace the `#mode` rule in `styles.css` with a segmented row (design C, values from `design-options.html`):
+- [X] T004 [P] [US1] Replace the `#mode` block in `index.html` with the design C markup from `contracts/travel-modes.md`. Keep `<div id="mode" role="radiogroup" aria-label="Travel mode">` with three `<label><input type="radio" name="mode" value="…"><span><span aria-hidden="true">ICON</span> Label</span></label>`, in order foot (`🚶` Walk, `checked`), car (`🚗` Car), bike (`🚲` Bike). Walk stays the default (FR-002).
+- [X] T005 [P] [US1] Replace the `#mode` rule in `styles.css` with a segmented row (design C, values from `design-options.html`):
   - `#mode { display: flex; margin: 6px 0 0; font-size: 14px; border: 1px solid #dadce0; border-radius: 8px; overflow: hidden; }` (no `gap`)
   - `#mode label { flex: 1; position: relative; }`
   - `#mode label + label { border-left: 1px solid #dadce0; }`
@@ -87,23 +87,23 @@ description: "Task list for the Bicycle Travel Mode (SF-73)"
   - `#mode input:focus-visible + span { outline: 2px solid #1a73e8; outline-offset: -2px; }`
 
   Keep the existing `#routes` rules (test L2). Done when `test/selector.test.js` passes.
-- [ ] T006 [US1] In `src/app.js` `updateRoutes()`: set `const cfg = TRAVEL_MODES[m];` and replace the car/foot ternaries:
+- [X] T006 [US1] In `src/app.js` `updateRoutes()`: set `const cfg = TRAVEL_MODES[m];` and replace the car/foot ternaries:
   - status → `setStatus(cfg.computing)`
   - `const noRoute = cfg.noRoute;`
   - summary → `` `${summary} ${cfg.single}${via}` `` for one route, `` `${routes.length} ${cfg.plural} routes${via} · fastest ${summary}` `` for several
   - replace `if (!car) scorePleasure(place, seq, st);` with `if (cfg.pleasure) scorePleasure(place, seq, st);`
 
   Remove the now-unused `car` variable (FR-005). Depends on T002.
-- [ ] T007 [US1] In `src/app.js` `drawRoutes(routes, m)`: create the pleasure span when `TRAVEL_MODES[m].pleasure` instead of `m === "foot"` (FR-008). Depends on T002.
-- [ ] T008 [US1] In `src/app.js` `fetchRoutes()`: replace `m !== "foot"` with `!TRAVEL_MODES[m].detours` so bike gets no side-waypoint detours (FR-009). Keep the `Promise.allSettled` and `detourWaypoints` code for foot. Depends on T002.
-- [ ] T009 [US1] In `src/app.js` `scorePleasure()`: change the tooltip `title` from "…along this walk; more is more pleasant" to `Green pixels (parks, grass, woods) on the map along this route; more is more pleasant` (contract, research R4). Keep `Pleasure unavailable` and the limits unchanged.
-- [ ] T010 [US1] In `src/app.js`, make the main route request in `fetchRoutes()` treat an OSRM "no route" answer as an empty result (research R8, contract "OSRM response consumed"):
+- [X] T007 [US1] In `src/app.js` `drawRoutes(routes, m)`: create the pleasure span when `TRAVEL_MODES[m].pleasure` instead of `m === "foot"` (FR-008). Depends on T002.
+- [X] T008 [US1] In `src/app.js` `fetchRoutes()`: replace `m !== "foot"` with `!TRAVEL_MODES[m].detours` so bike gets no side-waypoint detours (FR-009). Keep the `Promise.allSettled` and `detourWaypoints` code for foot. Depends on T002.
+- [X] T009 [US1] In `src/app.js` `scorePleasure()`: change the tooltip `title` from "…along this walk; more is more pleasant" to `Green pixels (parks, grass, woods) on the map along this route; more is more pleasant` (contract, research R4). Keep `Pleasure unavailable` and the limits unchanged.
+- [X] T010 [US1] In `src/app.js`, make the main route request in `fetchRoutes()` treat an OSRM "no route" answer as an empty result (research R8, contract "OSRM response consumed"):
   - Add a helper next to `fetchJson`, for example `fetchRouteJson(url)`. If the response status is 400 and its JSON body has `code === "NoRoute"`, return that body (`parseRoutes` then gives `[]`).
   - Any other non-OK status throws `Request failed (N)` as today.
   - Keep `fetchJson` for search and detours.
 
   Result: `updateRoutes()` shows `No cycling route found.`, or `No cycling route found. Try removing a stop.` with stops (US1 scenario 5).
-- [ ] T011 [US1] Run `npm test`. Confirm that `test/bike.test.js`, `test/selector.test.js`, `test/routes.test.js` and the US1/FR/edge tests in `test/bike-app.test.js` pass.
+- [X] T011 [US1] Run `npm test`. Confirm that `test/bike.test.js`, `test/selector.test.js`, `test/routes.test.js` and the US1/FR/edge tests in `test/bike-app.test.js` pass.
 
 **Checkpoint**: US1 is fully usable. Bike routes work end to end with design C.
 
@@ -117,7 +117,7 @@ description: "Task list for the Bicycle Travel Mode (SF-73)"
 
 - [X] T024 [US2] Integration test for switching Walk/Bike/Car and late results in test/bike-app.test.js (covers FR-006, US2 scenario 1, 2, 3)
 - [X] T025 [US2] AI test: switch modes on the real map, quick clicks in tests/ai/us2-switch-modes.md (covers FR-006, US2 scenario 1, 2, 3)
-- [ ] T012 [US2] Check the mode `change` listener at the bottom of `src/app.js`. It must still work with the new markup: it selects `input[name=mode]`, guards with `radio.value in TRAVEL_MODES`, sets `mode`, and calls `updateRoutes()` when `currentPlace` is set. Also check that `updateRoutes()` still increments `routeSeq`, aborts `pleasureAbort`, and drops stale results (FR-006, research R6). Expected: no code change. Done when the `US2 …` tests in `test/bike-app.test.js` pass.
+- [X] T012 [US2] Check the mode `change` listener at the bottom of `src/app.js`. It must still work with the new markup: it selects `input[name=mode]`, guards with `radio.value in TRAVEL_MODES`, sets `mode`, and calls `updateRoutes()` when `currentPlace` is set. Also check that `updateRoutes()` still increments `routeSeq`, aborts `pleasureAbort`, and drops stale results (FR-006, research R6). Expected: no code change. Done when the `US2 …` tests in `test/bike-app.test.js` pass.
 
 **Checkpoint**: Mode switching works between all three modes.
 
@@ -131,7 +131,7 @@ description: "Task list for the Bicycle Travel Mode (SF-73)"
 
 - [X] T026 [US3] Integration test for cycling routes through stops and stops kept across modes in test/bike-app.test.js (covers FR-007, US3 scenario 1, 2)
 - [X] T027 [US3] AI test: bike route through two map stops in tests/ai/us3-stops.md (covers FR-007, US3 scenario 1, 2)
-- [ ] T013 [US3] Confirm in `src/app.js` that `fetchRoutes` passes `stops: st` to `routeUrl` for every mode, and that the stops early return (`if (st.length > 0) return pickRoutes(main);`) stays before the detours check. Confirm that the mode `change` listener does not touch `stops`. Expected: no code change. Done when the `US3 …` tests in `test/bike-app.test.js` pass.
+- [X] T013 [US3] Confirm in `src/app.js` that `fetchRoutes` passes `stops: st` to `routeUrl` for every mode, and that the stops early return (`if (st.length > 0) return pickRoutes(main);`) stays before the detours check. Confirm that the mode `change` listener does not touch `stops`. Expected: no code change. Done when the `US3 …` tests in `test/bike-app.test.js` pass.
 
 **Checkpoint**: All three stories work independently.
 
@@ -139,14 +139,14 @@ description: "Task list for the Bicycle Travel Mode (SF-73)"
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T014 [P] Update `README.md` (FR-010):
+- [X] T014 [P] Update `README.md` (FR-010):
   - the intro sentence becomes "Switch between walking, bike and car in the panel; walking and bike routes also get a pleasure indicator"
   - add a bullet "Bike routes: OSRM bike profile (`routing.openstreetmap.de/routed-bike`), up to 3 alternatives, with the pleasure indicator and without detour routes"
   - the Pleasure bullet says "along each walking or cycling route"
 
   Keep the words "up to 3" and "pleasure" (test L3).
-- [ ] T015 Run `npm test` and confirm everything is green, with no new dependencies in `package.json` (L8).
-- [ ] T016 Run the live `curl` check in quickstart.md against `routed-bike`. It needs network approval for `routing.openstreetmap.de`. If the server rejects the `bike` segment, set `TRAVEL_MODES.bike.profile` to `driving` and update the expected URLs in `test/bike.test.js`, `test/modes.test.js` and `test/bike-app.test.js`. If the network is not available, record that the live check was not run.
+- [X] T015 Run `npm test` and confirm everything is green, with no new dependencies in `package.json` (L8).
+- [X] T016 (not run: routing.openstreetmap.de needs network approval in this VM) Run the live `curl` check in quickstart.md against `routed-bike`. It needs network approval for `routing.openstreetmap.de`. If the server rejects the `bike` segment, set `TRAVEL_MODES.bike.profile` to `driving` and update the expected URLs in `test/bike.test.js`, `test/modes.test.js` and `test/bike-app.test.js`. If the network is not available, record that the live check was not run.
 
 ---
 
