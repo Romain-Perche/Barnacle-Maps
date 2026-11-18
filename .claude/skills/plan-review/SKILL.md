@@ -1,6 +1,6 @@
 ---
 name: "plan-review"
-description: "After write-tests, show a person the whole plan as one HTML page and one short Linear comment (the open decisions), then apply their answers until they approve."
+description: "After /speckit-plan and /speckit-tasks, show a person the whole plan as one HTML page and one short Linear comment (the open decisions), then apply their answers until they approve."
 argument-hint: ""
 user-invocable: true
 disable-model-invocation: true
@@ -8,8 +8,9 @@ disable-model-invocation: true
 
 # Plan review
 
-The last gate before Build, for a normal task. The plan, the tasks and the tests are written and
-reread (write-tests). A person now sees all of it at once: one HTML page, and one short Linear
+The last gate before Build, for a normal task. The plan and the tasks are written. Build writes the code,
+its deterministic tests and the test recipe; after Build, the AI review performs the spec's acceptance
+scenarios and edge cases in the running app. A person now sees all of it at once: one HTML page, and one short Linear
 comment with the decisions only they can make. They reply "approve" (the factory then starts Build
 without this skill) or answer; this skill applies the answers and shows the plan again.
 
@@ -31,9 +32,9 @@ No argument is needed: the inputs come from the run's `history`.
 4. **Phase:** **Apply** first when the latest `plan-review` comment in the history has a reply after it.
    Then always **Show**.
 5. **Running other skills:** they have `disable-model-invocation: true`. To run `/speckit-X` with argument
-   A, read `.claude/skills/speckit-X/SKILL.md` and follow it with `$ARGUMENTS` = A. The same for the
-   write-tests steps: read `.claude/skills/write-tests/SKILL.md` and follow the step named.
-6. **Commit** what you changed (`git add` under `specs/`, the test folders and `.factory/test-env.md`), message
+   A, read `.claude/skills/speckit-X/SKILL.md` and follow it with `$ARGUMENTS` = A.
+6. **Commit** what you changed (`git add` under `specs/` only; never the app's code, its tests or the test
+   recipe), message
    `gate(plan-review): apply`. Do not push: the factory checks your commits and pushes them.
 7. **Outcome:** the run's LAST message ends with exactly one fenced json block, and nothing after it:
    - `{"status": "waiting", "ask": "<the Linear comment>"}` after Show (the usual end);
@@ -48,15 +49,15 @@ question in the latest comment by meaning; a number helps but is optional. For e
 
 1. Write it in `spec.md` under `## Clarifications` / `### Session <reply date>`:
    `- Q: <question> → A: <answer> (<author>)`. Replace a `(decided by the factory, to confirm)` line on
-   the same question. Change the spec section it touches (requirement, edge case, success criterion).
+   the same question. Change the spec section it touches (requirement, acceptance scenario, edge case,
+   success criterion). Each acceptance scenario and edge case keeps a result a tester can check yes or no.
 2. If the answer changes the design or the tasks, re-run `/speckit-plan` and `/speckit-tasks` with the
    answers as their argument (once each, all answers together, rule 5).
-3. Change the tests the answer touches, then run write-tests step 4 ("Record tests in tasks.md") and
-   step 5 ("Reread the plan").
-4. If the answer adds, removes or changes a dependency, update `<feature>/dependencies.json`
-   (write-tests, "New dependencies").
-5. If the answer is about how to test an outside service or a real run, change `.factory/test-env.md` and the
-   tests to it (write-tests, section 0 and section 3).
+3. If the answer adds, removes or changes a dependency, update `<feature>/dependencies.json` (a JSON list of
+   `{"name", "version", "manager", "why"}`, every direct dependency the whole change adds or upgrades).
+4. If the answer adds or changes an outside service, update `## Outside services` in `plan.md` as
+   `prompts/plan.md` says (its schema on GitHub, or `no public schema found on GitHub`). Never ask a
+   question about how to test: Build and the AI review decide it (`.claude/skills/test-recipe/SKILL.md`).
 
 An answer you cannot understand: keep the question open and ask it again in the next comment, said
 another way.
@@ -87,14 +88,17 @@ Sections, in this order:
 4. **How it will work.** One diagram as inline SVG in plain pseudo-code: each box says what happens
    ("Routes come back", "Time of arrival = departure + trip time"), never a function name. Mark the
    new boxes.
-5. **How it will be checked.** A table of the examples the tests check (input, expected result, the
-   case in plain words), from the real test files. Then the AI review scenarios in plain words. Then
-   the test count: run the tests and say how many fail now, as they must before any code exists.
+5. **How it will be checked.** Every acceptance scenario and edge case of `spec.md`, one row each, with a
+   readable title ("Testing if switching to Bike keeps the stops", "What happens if no route is found") and
+   what the user must see. Under the table: Build writes deterministic tests for them with the code, and the AI
+   review then tries each one in the running app.
 6. **Scope.** What is in, what is out.
 7. **Dependencies.** Exactly the rows of `<feature>/dependencies.json` (the list the factory checks the
    pull request against): one table row per item, name, version, what it is for in plain words. `[]`:
    "No new dependency." The Linear comment never lists them.
-8. **Risks and unknowns.** Lines labelled **Risk** or **Unknown**, as the skill says.
+8. **Risks and unknowns.** Lines labelled **Risk** or **Unknown**, as the skill says. First, one
+   **Warning** line per outside service that `plan.md` marks `no public schema found on GitHub`: its fake
+   follows the service's docs only, so the tests cannot catch a wrong field name.
 9. **The plan in detail.** In `<details>`, closed: `plan.md` only (not the task list), rendered from
    Markdown to HTML as a Markdown viewer shows it (headings, lists, tables, bold, links, code blocks in
    `<pre>`, task checkboxes as ☐ / ☑), never as raw Markdown text. Escape the text. The one place for
