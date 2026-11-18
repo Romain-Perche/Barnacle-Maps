@@ -1,0 +1,33 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
+  "bomFormat": "CycloneDX",
+  "components": [],
+  "dependencies": [
+    {
+      "dependsOn": [],
+      "ref": "repo"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "repo",
+      "name": "Romain-Perche/Barnacle-Maps",
+      "type": "application"
+    },
+    "tools": {
+      "components": [
+        {
+          "group": "aquasecurity",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
+          "name": "trivy",
+          "type": "application",
+          "version": "0.76.1"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.7",
+  "version": 1
+}
