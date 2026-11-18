@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barnacle Maps · Bike mode · design options</title>
+<style>
+  :root { color-scheme: light dark; --bg: #f4f5f7; --fg: #202124; --muted: #5f6368; --card: #fff; --line: #dadce0;
+    --map: #e8e4d8; --park: #c8e6b0; --water: #aad3df; --road: #fff; --road2: #f7d58b; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17181a; --fg: #e8eaed; --muted: #9aa0a6; --card: #202124; --line: #3c4043;
+      --map: #2b2d2a; --park: #2f4a2a; --water: #1f3b47; --road: #4a4c4f; --road2: #6b5a2e; }
+    .panel { background: #2a2b2e !important; color: #e8eaed; box-shadow: 0 2px 8px rgba(0,0,0,.6) !important; }
+    .panel .input { background: #202124 !important; color: #e8eaed; border-color: #5f6368 !important; }
+    .panel .btn { background: #3c4043 !important; color: #e8eaed !important; border-color: #5f6368 !important; }
+    .panel .routes .sel { background: #263750 !important; }
+    .panel .seg { border-color: #5f6368 !important; }
+    .panel .seg span { color: #e8eaed; }
+    .panel .seg span + span { border-left-color: #5f6368 !important; }
+    .panel .seg .on { background: #1a73e8 !important; color: #fff !important; }
+  }
+  body { margin: 0; padding: 24px; background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .lead { color: var(--muted); margin: 0 0 20px; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 20px; }
+  .opt { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .opt h2 { font-size: 16px; margin: 0 0 10px; }
+  .good { font-size: 14px; margin: 10px 0 0; }
+  /* mock screen */
+  .screen { position: relative; height: 430px; border-radius: 6px; overflow: hidden; background: var(--map); }
+  .park { position: absolute; background: var(--park); border-radius: 30px; }
+  .water { position: absolute; background: var(--water); }
+  .road { position: absolute; background: var(--road); }
+  .road.y { background: var(--road2); }
+  .route { position: absolute; border: 5px solid #1a73e8; border-radius: 14px; opacity: .55; }
+  .route.sel { opacity: 1; z-index: 2; }
+  .pin { position: absolute; width: 14px; height: 14px; border-radius: 50%; z-index: 3; }
+  .me { background: #1a73e8; border: 3px solid #fff; box-shadow: 0 0 0 6px rgba(26,115,232,.25); }
+  .dest { background: #2a81cb; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); width: 18px; height: 18px; border: 2px solid #fff; }
+  /* panel, values from styles.css */
+  .panel { position: absolute; top: 12px; left: 12px; z-index: 5; width: 270px; background: #fff; color: #000;
+    border-radius: 8px; padding: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.3); font-size: 14px; }
+  .form { display: flex; gap: 6px; }
+  .input { flex: 1; padding: 6px 8px; font-size: 15px; border: 1px solid #767676; border-radius: 3px; background: #fff; }
+  .btn { padding: 4px 10px; border: 1px solid #767676; border-radius: 3px; background: #efefef; font-size: 13px; }
+  .mode { display: flex; gap: 12px; margin-top: 6px; font-size: 14px; align-items: center; }
+  .radio { display: inline-block; width: 11px; height: 11px; border: 1px solid #767676; border-radius: 50%; vertical-align: -1px; margin-right: 3px; background: #fff; }
+  .radio.on { border: 4px solid #1a73e8; width: 5px; height: 5px; }
+  .ico { font-size: 15px; margin-right: 2px; }
+  .seg { display: inline-flex; border: 1px solid #dadce0; border-radius: 16px; overflow: hidden; margin-top: 6px; }
+  .seg span { padding: 4px 14px; font-size: 14px; }
+  .seg span + span { border-left: 1px solid #dadce0; }
+  .seg .on { background: #e8f0fe; color: #1a73e8; font-weight: 600; }
+  .routes { list-style: none; margin: 6px 0 0; padding: 0; }
+  .routes li { padding: 6px 8px; border-left: 3px solid transparent; }
+  .routes .sel { border-left-color: #1a73e8; background: #e8f0fe; }
+  .status { margin: 6px 0 0; font-size: 14px; }
+</style>
+</head>
+<body>
+<h1>Bike mode: which design?</h1>
+<p class="lead">Same trip in every mock: you to "Parc de la Tête d'Or", 4.20 km, 3 cycling routes. Only the travel mode selector changes.</p>
+<div class="grid">
+
+  <section class="opt">
+    <h2>A · Third radio button</h2>
+    <div class="screen">
+      <div class="park" style="left:190px;top:40px;width:130px;height:110px"></div>
+      <div class="water" style="left:0;top:300px;width:100%;height:28px"></div>
+      <div class="road" style="left:0;top:200px;width:100%;height:8px"></div>
+      <div class="road y" style="left:150px;top:0;width:9px;height:100%"></div>
+      <div class="route" style="left:120px;top:110px;width:170px;height:240px;border-right-color:transparent;border-bottom-color:transparent"></div>
+      <div class="route sel" style="left:120px;top:110px;width:170px;height:240px;border-left-color:transparent;border-top-color:transparent"></div>
+      <div class="pin me" style="left:112px;top:343px"></div>
+      <div class="pin dest" style="left:282px;top:100px"></div>
+      <div class="panel">
+        <div class="form"><span class="input">Parc de la Tête d'Or</span><span class="btn">Go</span></div>
+        <div class="mode">
+          <span><i class="radio"></i>Walk</span><span><i class="radio"></i>Car</span><span><i class="radio on"></i>Bike</span>
+        </div>
+        <ul class="routes">
+          <li class="sel">Route 1 · 4.20 km · 15 min</li>
+          <li>Route 2 · 4.55 km · 17 min</li>
+          <li>Route 3 · 4.80 km · 18 min</li>
+        </ul>
+        <p class="status">3 cycling routes · fastest 4.20 km · 15 min</p>
+      </div>
+    </div>
+    <p class="good">Good for: smallest change; looks exactly like today with one more choice.</p>
+  </section>
+
+  <section class="opt">
+    <h2>B · Radio buttons with pictograms</h2>
+    <div class="screen">
+      <div class="park" style="left:190px;top:40px;width:130px;height:110px"></div>
+      <div class="water" style="left:0;top:300px;width:100%;height:28px"></div>
+      <div class="road" style="left:0;top:200px;width:100%;height:8px"></div>
+      <div class="road y" style="left:150px;top:0;width:9px;height:100%"></div>
+      <div class="route" style="left:120px;top:110px;width:170px;height:240px;border-right-color:transparent;border-bottom-color:transparent"></div>
+      <div class="route sel" style="left:120px;top:110px;width:170px;height:240px;border-left-color:transparent;border-top-color:transparent"></div>
+      <div class="pin me" style="left:112px;top:343px"></div>
+      <div class="pin dest" style="left:282px;top:100px"></div>
+      <div class="panel">
+        <div class="form"><span class="input">Parc de la Tête d'Or</span><span class="btn">Go</span></div>
+        <div class="mode">
+          <span><i class="radio"></i><span class="ico">🚶</span>Walk</span><span><i class="radio"></i><span class="ico">🚗</span>Car</span><span><i class="radio on"></i><span class="ico">🚲</span>Bike</span>
+        </div>
+        <ul class="routes">
+          <li class="sel">Route 1 · 4.20 km · 15 min</li>
+          <li>Route 2 · 4.55 km · 17 min</li>
+          <li>Route 3 · 4.80 km · 18 min</li>
+        </ul>
+        <p class="status">3 cycling routes · fastest 4.20 km · 15 min</p>
+      </div>
+    </div>
+    <p class="good">Good for: modes recognised at a glance, still the familiar radio row.</p>
+  </section>
+
+  <section class="opt">
+    <h2>C · Segmented buttons</h2>
+    <div class="screen">
+      <div class="park" style="left:190px;top:40px;width:130px;height:110px"></div>
+      <div class="water" style="left:0;top:300px;width:100%;height:28px"></div>
+      <div class="road" style="left:0;top:200px;width:100%;height:8px"></div>
+      <div class="road y" style="left:150px;top:0;width:9px;height:100%"></div>
+      <div class="route" style="left:120px;top:110px;width:170px;height:240px;border-right-color:transparent;border-bottom-color:transparent"></div>
+      <div class="route sel" style="left:120px;top:110px;width:170px;height:240px;border-left-color:transparent;border-top-color:transparent"></div>
+      <div class="pin me" style="left:112px;top:343px"></div>
+      <div class="pin dest" style="left:282px;top:100px"></div>
+      <div class="panel">
+        <div class="form"><span class="input">Parc de la Tête d'Or</span><span class="btn">Go</span></div>
+        <div class="seg"><span>Walk</span><span>Car</span><span class="on">Bike</span></div>
+        <ul class="routes">
+          <li class="sel">Route 1 · 4.20 km · 15 min</li>
+          <li>Route 2 · 4.55 km · 17 min</li>
+          <li>Route 3 · 4.80 km · 18 min</li>
+        </ul>
+        <p class="status">3 cycling routes · fastest 4.20 km · 15 min</p>
+      </div>
+    </div>
+    <p class="good">Good for: bigger touch targets on phones; the chosen mode stands out in blue.</p>
+  </section>
+
+</div>
+</body>
+</html>
