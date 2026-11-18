@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d61a44deca723b20f7b5ad523883db0b0d2bae7cb79150591cbf6210869296eb",
+  "claims": [
+    {
+      "id": "claim_699d35695e8943ce86ac6aaef8ea8765",
+      "statement": "Each feature has a specs/<feature>/ folder with Spec Kit artifacts; spec.md records user stories and a Clarifications log of decisions such as design C for the selector and the pleasure indicator on bike routes.",
+      "evidence": [
+        {
+          "resource": "repo://specs/sf-73-bicycle-track/spec.md#L1-L20",
+          "version": "repo-lines-v1:sha256:9586a2a1224fa29545e780a5d9a91e64ee8826bac6473b17caa139014a182d61:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3OWUyMTk1OWFhNWQyNTQxZjg5NTg5MzIyN2RhZjNkNDliMDk1ZmRlNDM2MzI4ZTk3M2VlZDA4MmE1MTNkZjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzNWM4ZTAzM2RmMjBkODNlMzE0M2UyNjY3YWQ5OWMyYTM4Yzc3MTVmM2ZkZGI1OWY5OTE1YWU0NmNiNjBiNDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVjZmQ3OTY4YTMzMDY5OTVjMjliYjQxZTQ0ZDc4NjY1MmFjNDY2MjZjNmZhMGY0ZTllYzY5YWIzZTc3YjE2YjUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f815d85362a549c2886b41f7e670e204",
+      "statement": "The test-recipe skill defines .factory/test-env.md and .factory/run/ as how tests run (faked services checked against schemas, how to run the app, smoke checks), not which tests.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/test-recipe/SKILL.md#L1-L5",
+          "version": "repo-lines-v1:sha256:d7e4789993bf7218fa74d8fc4b1b6a7e9f2a222d0b2d22bcaf47247678df9680:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjUyZDcxMTEwM2Q1MGE0Mzc4MzBjNmZiY2QwNGZiNGJhYjQ5YTBmODJmNmQyNmQxYzc5MWM2ZTg0ODhkZDA5MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFiNzE2ZGI4ZGVmYmNkM2JmZDU1ZmIwNWZlNWRlOWY3NTBkODUwMGU0YWU2NTIxYzQ2YTYzYjFhMDAxYTA2ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTk2Yzg1Zjg1MDNjYTMxZjdlZTUyZTY3YWQ1MTVjNDJjMzJkM2E4MzRhMWRlZTNiYzFlM2U3MmFhZTI1OGY5ZCJ9"
+        },
+        {
+          "resource": "repo://.factory/test-env.md",
+          "version": "repo-file-v1:sha256:6dea78603ff20b7230f9b1b527494d4567a98fbd57be61792d1c855070a83daf"
+        }
+      ]
+    },
+    {
+      "id": "claim_23ebc07586064216bb840b5f9de29ac8",
+      "statement": "The write-tests skill writes the deterministic tests and AI test scenarios after /speckit-tasks and records them in tasks.md.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/write-tests/SKILL.md#L1-L5",
+          "version": "repo-lines-v1:sha256:d3c6e4f84dcd4a4d0bd41102018f8f5c3bf32eb9aa5e72acf4d5c8e7cb9aaef0:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjUyZDcxMTEwM2Q1MGE0Mzc4MzBjNmZiY2QwNGZiNGJhYjQ5YTBmODJmNmQyNmQxYzc5MWM2ZTg0ODhkZDA5MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFiNzE2ZGI4ZGVmYmNkM2JmZDU1ZmIwNWZlNWRlOWY3NTBkODUwMGU0YWU2NTIxYzQ2YTYzYjFhMDAxYTA2ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTk2Yzg1Zjg1MDNjYTMxZjdlZTUyZTY3YWQ1MTVjNDJjMzJkM2E4MzRhMWRlZTNiYzFlM2U3MmFhZTI1OGY5ZCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-18T18:14:22.657Z"
+  }
+}

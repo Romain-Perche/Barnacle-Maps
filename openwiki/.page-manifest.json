@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/overview.md": {
+      "pageVersion": "sha256:c363b3b2f6a97cb95924859e10c28674e405c55097209910b104f8cf9c34289c",
+      "completedBy": "claude-code",
+      "completedRunId": "9bfafb42-c94d-4f94-a33a-d0c03a265ac2",
+      "gitHead": "bb77ae75206147b6a9bf21afb3a794383e0b46b5",
+      "sourceFingerprint": "sha256:e4a06d1e15f2c0dd460acad7062a5a8820a5ec74ede936e26dfeecfa28dec578"
+    },
+    "/openwiki/development/specs-and-factory.md": {
+      "pageVersion": "sha256:d61a44deca723b20f7b5ad523883db0b0d2bae7cb79150591cbf6210869296eb",
+      "completedBy": "claude-code",
+      "completedRunId": "9bfafb42-c94d-4f94-a33a-d0c03a265ac2",
+      "gitHead": "bb77ae75206147b6a9bf21afb3a794383e0b46b5",
+      "sourceFingerprint": "sha256:e4a06d1e15f2c0dd460acad7062a5a8820a5ec74ede936e26dfeecfa28dec578"
+    },
+    "/openwiki/features/pleasure-score.md": {
+      "pageVersion": "sha256:b0adb2bb111df182297d4e6436bbbf1de223bf9ae1f4699709f641a09632c5b9",
+      "completedBy": "claude-code",
+      "completedRunId": "9bfafb42-c94d-4f94-a33a-d0c03a265ac2",
+      "gitHead": "bb77ae75206147b6a9bf21afb3a794383e0b46b5",
+      "sourceFingerprint": "sha256:e4a06d1e15f2c0dd460acad7062a5a8820a5ec74ede936e26dfeecfa28dec578"
+    },
+    "/openwiki/features/routing-and-travel-modes.md": {
+      "pageVersion": "sha256:dea6421b2b1121998900933b2d9948fa74b47d3ab52d865a9765d891b865e434",
+      "completedBy": "claude-code",
+      "completedRunId": "9bfafb42-c94d-4f94-a33a-d0c03a265ac2",
+      "gitHead": "bb77ae75206147b6a9bf21afb3a794383e0b46b5",
+      "sourceFingerprint": "sha256:e4a06d1e15f2c0dd460acad7062a5a8820a5ec74ede936e26dfeecfa28dec578"
+    },
+    "/openwiki/features/search.md": {
+      "pageVersion": "sha256:e7b349ba1fda107508cc8d3f3b8621d17f6bcf4fe337346ff866b32fb724eb9a",
+      "completedBy": "claude-code",
+      "completedRunId": "9bfafb42-c94d-4f94-a33a-d0c03a265ac2",
+      "gitHead": "bb77ae75206147b6a9bf21afb3a794383e0b46b5",
+      "sourceFingerprint": "sha256:e4a06d1e15f2c0dd460acad7062a5a8820a5ec74ede936e26dfeecfa28dec578"
+    },
+    "/openwiki/features/stops.md": {
+      "pageVersion": "sha256:9d0ffa0b650f4ad6d01356ca2346f890c3490ce9e60ce2a94373361ad539be28",
+      "completedBy": "claude-code",
+      "completedRunId": "9bfafb42-c94d-4f94-a33a-d0c03a265ac2",
+      "gitHead": "bb77ae75206147b6a9bf21afb3a794383e0b46b5",
+      "sourceFingerprint": "sha256:e4a06d1e15f2c0dd460acad7062a5a8820a5ec74ede936e26dfeecfa28dec578"
+    },
+    "/openwiki/operations/running-and-configuration.md": {
+      "pageVersion": "sha256:d6707b7b00230aae06bb835386210e3e904e1d169e77308c07a008b7c51771d0",
+      "completedBy": "claude-code",
+      "completedRunId": "9bfafb42-c94d-4f94-a33a-d0c03a265ac2",
+      "gitHead": "bb77ae75206147b6a9bf21afb3a794383e0b46b5",
+      "sourceFingerprint": "sha256:e4a06d1e15f2c0dd460acad7062a5a8820a5ec74ede936e26dfeecfa28dec578"
+    },
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:27431d88c884a167d00d1e5dedb5cbe8f5b63536925cf57b860abf54097dab87",
+      "completedBy": "claude-code",
+      "completedRunId": "9bfafb42-c94d-4f94-a33a-d0c03a265ac2",
+      "gitHead": "bb77ae75206147b6a9bf21afb3a794383e0b46b5",
+      "sourceFingerprint": "sha256:e4a06d1e15f2c0dd460acad7062a5a8820a5ec74ede936e26dfeecfa28dec578"
+    },
+    "/openwiki/testing/testing.md": {
+      "pageVersion": "sha256:83b621026f6d402a4614cde45aad7b61888e1df7e7d49cdd2646daa1af6b2390",
+      "completedBy": "claude-code",
+      "completedRunId": "9bfafb42-c94d-4f94-a33a-d0c03a265ac2",
+      "gitHead": "bb77ae75206147b6a9bf21afb3a794383e0b46b5",
+      "sourceFingerprint": "sha256:e4a06d1e15f2c0dd460acad7062a5a8820a5ec74ede936e26dfeecfa28dec578"
+    }
+  }
+}

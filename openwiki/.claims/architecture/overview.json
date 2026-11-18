@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:c363b3b2f6a97cb95924859e10c28674e405c55097209910b104f8cf9c34289c",
+  "claims": [
+    {
+      "id": "claim_6341b25246d84f88a68e871170690c27",
+      "statement": "src/geo.js holds pure helpers with no DOM access and no fetch so they can be unit tested in Node; src/app.js imports them and does all DOM, Leaflet and network work.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L1-L23",
+          "version": "repo-lines-v1:sha256:dc9233ddfcf5c4931eb804998d9056c504bfbc9f9c8c36dba7e265f213033c7f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4MjAwOTY0YTk3ODYzNTUyMmIyYWIwOTBjNjUwNjVkOGVmOGU4NWM0NzMwYmIyZWIwNDYwZDM0YzY3N2RkYmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2ODNlNmVjOGI3ZDg2N2Q0NTlkYzkxYzM2Y2FkMmZhMmM2ZWZlOTdiNGMwOWM3MjJiNWY1M2Q2MDI1N2Y2NTYifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L1-L4",
+          "version": "repo-lines-v1:sha256:b7a3c09ccfe1a5af21ebe2710547e6218cd0af2bd83cc1a648582c4a54d91e83:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDQ0MWQxYzM2ZDU4MTIwZGM0MjI5YWE3NjZhNTU4YWM5ZGJjY2U1Yjg2NTBiMzM5NGY2MTdmZTMxN2U1ZDUwNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGU3MWE0NjZjMDFjMWNjM2IzM2FiNGJiZmEyYWU1OTU2NWEwYmNmMTAwNmRkNDExOGUyMDZkZWVjMTJjMjg2ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGEwY2Y0YzBjMGM2YzRkZWIxN2E4NmUwNTcxZGIyODhkMjY3ZGUzZjcwNjljMmZjMGI2NDQ4NDYyYzNhNGZmZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6658a49993f64c32a35d8cf4b75c5ad3",
+      "statement": "index.html loads Leaflet 1.9.4 from unpkg with SRI integrity hashes and then src/app.js as an ES module.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L30-L31",
+          "version": "repo-lines-v1:sha256:528cac3232a5fec8ad0238b99dec906b64ca20eb2c0045a4e44884c055287a96:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTExZWM1NGNiNDMyM2U3NzFkOTEzYjhiODYyYWIyMGUyZjkxMjk2MTAwYWM1YmM0ZWVhZDUwNTkzZmI5YWUzZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWEwZmExNTBhMzQ1OGEzMWIzZjdiNDkwZDZkOGUzMGVmZWY0OTUyZDYxOTA4MzUxMTk2N2Y3NGJhMzdmMThkNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjQ4MThmNWM5OTNhMjAzMzA2NDUwNTEzMTFjODA3OThkOTdhNTg0OWY0NGM0OTgyZGI2OGI1ZGNjNzNlZGJkNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDJlZDU0ZWRjNDJmYmJiYzM2OTg4YjJhMTg0YjY3ZTQ5NTY4YmU0ODA3ODMyNTM4YmE5YjdlZGRhNTM3NDRkOCJ9"
+        },
+        {
+          "resource": "repo://index.html#L7-L7",
+          "version": "repo-lines-v1:sha256:19a571cf12ffb676290af3c42ffd0eee99dbb5e2ff2b38fdff45d04f53eabd8f:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTlhNTcxY2YxMmZmYjY3NjI5MGFmM2M0MmZmZDBlZWU5OWRiYjVlMmZmMmIzOGZkZmY0NWQwNGY1M2VhYmQ4ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTlhNTcxY2YxMmZmYjY3NjI5MGFmM2M0MmZmZDBlZWU5OWRiYjVlMmZmMmIzOGZkZmY0NWQwNGY1M2VhYmQ4ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmUwN2VlM2JmOTQyZGYyNGVkMWQyMWMzZGZhOTZkODE4NDgyMWRkMDJjY2MxOGZjZjMxMGQ1Nzk3MTcyMTg0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDFjZThlOWI0MDJiZDdhYTVjODI4ODE1NTZhYzUzM2M0OWJiZjI3OWM4MmVjZjIyNjNlMDBhZjdiNTAyZGIxZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bc5bb0392e454e8db427e8f502b51663",
+      "statement": "App state lives in module-level variables in src/app.js (position, currentPlace, mode defaulting to foot, stops, routeLayers) and is not persisted.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L51-L63",
+          "version": "repo-lines-v1:sha256:8f6a9d4619e3e02354c8b5a0938069d3b1a450aa0d6b167c83f8b139bc4897ca:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkNzNmMjU1NGJmM2ZhMTBiYjBmYWRmMTJiOWRhZjE2M2MxZWRkM2M3ZWJmZWU4MjYzZmRlNDczNzk0Mjc2NWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVmMmZmOWZlNDQ0YTM5Yjg0ZTA1NDBlZWRkZjBmODlkMDFlZTBiN2I3YzQ2ZmI4NDUxZWJiZDRiM2U3NjQ2NzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVjMTgyMmIzZTJjMjY3ODViYWNhZTdiZDlmMGE0M2RjMTY3NDFiODE3MzZjY2Y4ZmJlOTdmYmQzOTVlZmNmY2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZiM2NkOWU1N2ZhNWIwOGQ4NThjMTQ2NzYxZjk0OTFhNjE3Y2ExZDFmYWYzYmJiNjRlZGRjOTAwYjZiMWZhZjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c69ae23fbafa42fdb7f716b6069adb09",
+      "statement": "updateRoutes increments routeSeq, aborts running pleasure scoring, clears routes, waits for a position if none, fetches and draws routes, and starts pleasure scoring only for modes with pleasure enabled.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L318-L357",
+          "version": "repo-lines-v1:sha256:3ff52ee011fe1c71e1125d12d4efb49092b98c1812725ee304b60f6153b0c6dc:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxY2Q3YjBlNzA4YmQyNjhlNzMyOTVkMjhjZWM0ZTc1MmM4MjNlZTZkNzU1ZGZlMDg5MmZkMjdiNGYxZTZhMjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmMzg2MmM5MTg1NjEwOTRkMmQ0MjMwZGFhOTE3M2UyYmM4ZTE1MTRiYTYzNjUyNmRkNTUzN2QzOTUyNTVmMjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ4ODgyYWU3MjAzZmEwZTY0MTRlN2NiOTc0YWJkZTIzOTY0YTYzZjliZjZjZTU0NWFhYjZkMGJlN2E3NDRkMzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e4316c6d1cf24344927c604fbda88ecb",
+      "statement": "Searches are guarded by searchSeq so that answers to superseded searches are dropped.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L121-L127",
+          "version": "repo-lines-v1:sha256:14183dbd9e4d39c92d8ffc18db4fa4b2c98a8b82182efb8057e7211b9bc32daf:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTI1NWU2Y2RhODhlZTE0NDE0NmFmZGJkODRkN2IxNGYzMjJiNWU0ZTMwOTNmNjcyNDQ1Mjc4OTA3YzNkZjAwMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGMzMmQzMTUxZGQ0YWE1MmZhYmNjMzQwMWNkMWJhZDc0ZDkwZDg0NjQzYzNkZGQ1OTUxNWQ4Y2E2Y2I5OTI5NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTM4Nzg2MzEyZTIxN2RkMDhiNzNhOTg2ZDI5ZDNmZGM3NGJkMjA4YjljMjVkOTU5ODE3NWRjNGRmNDg0ZTE2NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWViZmZmZTBjOTFiYTQ0NDRhNTgwNzk2MjkzNWY0NzRjNGFhODc3ODIxNzdlMDVkNTBmNTdhNDlhM2FiYTJkOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_88748ae1d16945c78d8a94bd2c2f837c",
+      "statement": "The map starts centred on Paris at zoom 13 and recentres on the first geolocation fix at zoom 15; position comes from navigator.geolocation.watchPosition with high accuracy.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L26-L28",
+          "version": "repo-lines-v1:sha256:6c13da773536fac8c431f5068800929c3891986aad31e29d3763c77fc466f61a:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjU1ZDhkMzJlOGFmOWVmYjI3OGQ1MmVlYmM5NmVhZGYwYTY5Y2NhODY3NGY3NWIyOWNmNjMwM2JlOWRlMTY4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmI5YzhhM2YyNDc1Mzk0NWZkMjdhMDdjZDk3ZmU1ZDdkZmU4NmY2Y2RjMjE2NzcwZTAzNmE1YmNhMzU4MTVlNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTQ3NzUyMmZkMzYxZmQ0YTZkYTA4MmMyYjE1YTliNGY2MjMwZjM3ZmJlOTJkNTA1NTkxNTNjZDY0MWIzNGNmOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzM0ZWQwMjkzODMzYjRiNDEwZGFkMGIwYTJiZGM5MmY1YzZjNWJhZmY4ZWEzMTJlYWM2NzczYzgxZjhhNWE3YSJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L69-L98",
+          "version": "repo-lines-v1:sha256:053a1c449760b386b580761c598543da0aedd700cef044a14bfc2e05c7084d7d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlZDk4NmQ4M2ZjZTYzODAxNmIwYzcxOGZmOGE1ZjczMWIzMTUxZGY3MjliODI0ODhkNjAzZDAxM2FkNDMyMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkYmFjNzM2MjNlYWUyZDRhZWZkNjRiNDc4ZDAxYjNiYmRiYjRiYzY2YzQ2ZDY1NDhiOWM3NTIwMmEzZjUxMGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU0MTYyMmUxNWM0ZDA1ZTNkNGZlNzUxYmI5ZjJmMDJlNzgzZDk4ZDJlOWIzMWJiYjI5MDc4MWRhYWY1NGI5OTIifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-18T18:14:22.657Z"
+  }
+}

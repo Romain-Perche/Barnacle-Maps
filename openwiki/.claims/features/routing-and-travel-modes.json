@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:dea6421b2b1121998900933b2d9948fa74b47d3ab52d865a9765d891b865e434",
+  "claims": [
+    {
+      "id": "claim_c43b4e51d9aa4864a04ea3eff6df1cd0",
+      "statement": "TRAVEL_MODES maps foot, car and bike to the routed-foot, routed-car and routed-bike OSRM servers on routing.openstreetmap.de with profiles foot, driving and bike; only foot gets forced detours, and foot and bike get the pleasure indicator.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L50-L89",
+          "version": "repo-lines-v1:sha256:7f38e05d44dd9b764ec8c24ef1ad5f321fa6734bba2034ca97d666acff6027f6:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzNGIyOTU1Y2M0NjFhN2ViZGEyYWNhOTUzMDJiZmRmMzkzOTQ2MjdhNmM1ZmM4MTcxYjQxOGNlNjJjZDYzMmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4YmJkNTgxMGI3Mzc0MmE4YjUwZDg3ODkwOGU1OWFjMjYwOTNkNTUyZjE2MjMwNTNmMTViMmFkYjZmYjVkYzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA4ZTQzMGEyNDk0NDg1NGI2NGVkNWM4OTE0ZTA2OTU4MmNhZDAzOGQ5OGMzNTFmYzE0ZTIzODQ2N2FjMGIxZmUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b4d8eae4e6b94b90a02ec60656364cd9",
+      "statement": "routeUrl orders coordinates as lng,lat for start, stops in order, optional via point, then destination, requests overview=full&geometries=geojson, adds alternatives=3 when asked, and falls back to foot for unknown modes.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L91-L106",
+          "version": "repo-lines-v1:sha256:bfe7370f7fdf570c6595cb137fe750218cf4bce0e32e24d6f4a88ddcb23f3854:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1MjMxOTM5NzAzMDE4MzBkOWFiODdlODY5YjkzMjcwZDljOTJkMDUxNTQ5ZGIzMDg5MzU0ZjcwZDNjYzAzOWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJhMzhlZTljYzczYzlmMWYyYzhmOGM1NmQwMGJkMDBkZTViMDczNjlmMTJlMDgwYWJiZDc5YzhjNDM3NTZjMTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY4MTVkYjI1MjBhMzI3YWY4OTU5NGVlNWYzYzRiODE5MjUyY2JmNzEyOTY3NWY3MGNmZjA5ZDJmZGNkYmE3MWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_61bb746bd7e84173a94b7128c2a5160a",
+      "statement": "An OSRM HTTP 400 answer with code NoRoute is treated as an empty route list rather than an error.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L106-L115",
+          "version": "repo-lines-v1:sha256:82388751f142eeac93b17f966837125c558dc694244a2243a0c6db188809246f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhN2NiZDVkNGQwZGM5MjAzNjE2OGFlYjlhOGJkYzVlMWQxZDI4NzJkMmJmYjk4OWI1ZDU0YTllYmU0MWY3NGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExMjRlZmU0NDJlMzJkNTA4NzBmYzRlMmIzMWE2ZmRjZGZlMDVlMjhmYjVhYjBjOTMxYmZmMWNjMDhkYjIwODMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk2NzhkM2JmYTBhMGI1Y2Q1ODEwMTcwMzY3MzE4MGEyM2M5NzkwMGY3MDM2MWUxNGNhZWUyYmI3MTJiOTkwMWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5cfc7f6316eb4cd6ba3079c904cef9f1",
+      "statement": "Forced detours through two perpendicular side waypoints are requested only when walking without stops and OSRM returns fewer than 2 routes.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L200-L220",
+          "version": "repo-lines-v1:sha256:c2c1ad4576323cb0b8f589740b846010d48250bdfd16e6c2e5f91fdb9ad4ceaf:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxNTJhZjA1NDcwNzQxNTU4OGY0NTUzYTYzNDdmYTdhNWVhNTk3YmNiMWNkMTJjMTRkNzVkMDEwOTAwMTY4YTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjljYzA2MzQ2M2FiM2UyZDdhZGIzNDEzMjA3ZmI0MWU5YjMyNzk2YWEwYTE0MTBhNGMzMDU0YzM4NjI2NDRkN2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA3NzMxNTliZjk4NTQ2ZmQyZmU3M2E5OWRjYmZlNjQ2ZjI2MWUzYWExMjZjZTE5MTI2YzA5NGUwMWRlN2VkNTYifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L203-L224",
+          "version": "repo-lines-v1:sha256:c244a3aa6d1033fdfbffa45591e1acf4c1c89963c30a081d66656d1faca26bbf:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4MzAzNzlmOTAzYzRhMThiYmU0ZTYwMTFkZjQ4ZTZiMTFhYThhYTVjMDM0MDg2MWNiZjg4MzNiMTk4ZGVjOWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBmYmU5MjI5ZTBmMTZmNDYyNTE2MWQ5YTFkYTQ0YWIxYzg5NmMxYThmZjEzNTA1ZjI4Y2RhNDc2NDZjMDgxODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUwYmExNTczNzQ5MzU3ODQ3OTdiNDg5NDMwODNlNTI4ZjU5NGJmODFjYWU5MjJmM2E4ODkzOWNmY2M1NWM4MjgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2b0de6ecada144cd944dc4f103136657",
+      "statement": "pickRoutes keeps the fastest route plus up to 2 alternatives no longer than 1.6x the shortest distance and overlapping less than 80% with every kept route.",
+      "evidence": [
+        {
+          "resource": "repo://src/geo.js#L257-L281",
+          "version": "repo-lines-v1:sha256:02b4f03b51371a9d3ca29dcbd2deddea90d7dc1a92853f5569c7fe0aabbc686d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdjZDI0ZTk2MzBhYTlhMzA2NGQ4ODgzMjBlYWJiZWZkNmQ0YTgzZDQwNjg3YTcyZDVlY2QyNDZhOTQxY2ZlNDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJmZDJhNGE2YWY0YThhNTkyODU3MWZmYjM1MjZkNTE3NjJhNDU2ZjU0MGYyNzViMjM1MDI3NjNmODg0Njk1MTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_89e55fa5c78d403ab164ad04b91dd252",
+      "statement": "Changing the travel mode recomputes routes for the current destination and keeps the stops.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L429-L435",
+          "version": "repo-lines-v1:sha256:6d84a7a7b006eacfd10c66b3983cc2020b5679e0e7b43aa5d47a2e557d3b59b3:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDA1ZDRlZWJlMTQwNzQ1YTAxYTE5MmMzY2M3MmFkNDJkMGUxNWQ4NTFjYmM4NDYyOWM4NTA5ZmVhNjg1MTQ1YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjc3OWQxMThkNmUzY2JmNDUwNTM5NzQ4ZGVlN2E0MzA3YWNiZTY0NDZjYmEyOTdmMjc2MGZhNWQwYmJhMWJjMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-18T18:14:22.657Z"
+  }
+}

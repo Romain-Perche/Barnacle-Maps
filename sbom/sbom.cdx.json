@@ -1,0 +1,90 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.7.schema.json",
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "lockfile:pins.json",
+      "name": "pins.json",
+      "type": "application"
+    },
+    {
+      "bom-ref": "pin:scripts:leaflet-css@1.9.4",
+      "name": "leaflet-css",
+      "properties": [
+        {
+          "name": "factory:pins:kind",
+          "value": "scripts"
+        },
+        {
+          "name": "factory:pins:url",
+          "value": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        },
+        {
+          "name": "factory:pins:integrity",
+          "value": "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        }
+      ],
+      "purl": "pkg:generic/leaflet-css@1.9.4",
+      "type": "library",
+      "version": "1.9.4"
+    },
+    {
+      "bom-ref": "pin:scripts:leaflet@1.9.4",
+      "name": "leaflet",
+      "properties": [
+        {
+          "name": "factory:pins:kind",
+          "value": "scripts"
+        },
+        {
+          "name": "factory:pins:url",
+          "value": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        },
+        {
+          "name": "factory:pins:integrity",
+          "value": "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        }
+      ],
+      "purl": "pkg:generic/leaflet@1.9.4",
+      "type": "library",
+      "version": "1.9.4"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pin:scripts:leaflet-css@1.9.4",
+        "pin:scripts:leaflet@1.9.4"
+      ],
+      "ref": "lockfile:pins.json"
+    },
+    {
+      "dependsOn": [
+        "lockfile:pins.json"
+      ],
+      "ref": "repo"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "repo",
+      "name": "Romain-Perche/Barnacle-Maps",
+      "type": "application"
+    },
+    "tools": {
+      "components": [
+        {
+          "group": "aquasecurity",
+          "manufacturer": {
+            "name": "Aqua Security Software Ltd."
+          },
+          "name": "trivy",
+          "type": "application",
+          "version": "0.76.1"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.7",
+  "version": 1
+}

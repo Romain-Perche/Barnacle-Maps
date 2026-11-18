@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:83b621026f6d402a4614cde45aad7b61888e1df7e7d49cdd2646daa1af6b2390",
+  "claims": [
+    {
+      "id": "claim_3518be7e9cba4694965da2b54a2c9044",
+      "statement": "The fake OSRM validates route URLs against the OSRM HTTP docs stored in .factory/schemas/osrm-http.md and answers errors with HTTP 400 and a code such as NoRoute.",
+      "evidence": [
+        {
+          "resource": "repo://.factory/test-env.md",
+          "version": "repo-file-v1:sha256:6dea78603ff20b7230f9b1b527494d4567a98fbd57be61792d1c855070a83daf"
+        },
+        {
+          "resource": "repo://test/fakes/osrm.js#L1-L40",
+          "version": "repo-lines-v1:sha256:47ee83102d0435f4a1cb0f84cf4d03f129ed2c30d790633ab168dcadf962b511:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg0MmYwY2QwN2MzZTg4MzEzODYyMzY3ZmNkMjYwMTk4OTZmYTZhMDBkNTdiMDVkMjJjYzZlMTBmNjhkZTIzZWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxOGUyMTQyNjc0YWFmY2MxZTU0NGQ3NWY5ZDdiOTBjMDg4ZTRjOWI3MGY5NmRlOTcxNjI3Nzc2ZWE1YzkwNTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBiMDhlYzk0YTI3YmFjNmMwNmVjMzNkOTE2MGI3MDgxYWExOTZlM2E2NDE0NzNiMTFhZTA3N2YxNjMwNTNiZDAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_169af96b991c4258afba0650cdf72f56",
+      "statement": "loadApp in test/fakes/app-harness.js runs a fresh copy of the real src/app.js in Node with a fake DOM, fake Leaflet, fake geolocation and fake fetch, so tests do not share state.",
+      "evidence": [
+        {
+          "resource": "repo://test/fakes/app-harness.js#L1-L5",
+          "version": "repo-lines-v1:sha256:93219e861059e12603142a5d48a1b63a81c9a2bed943b5a7a7f69e7d1f1c10f6:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTA5ZDA3YjYyZWM5OGQ2MzljNjI1ODMxM2RhZjQwODc4ZTJlZmQ3MGZkNmY4M2I1YTVmYWIyZDE5MWQyYjNiMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDAxYjZlMDBjOTIyZjY4MTY4MTQ1ZmM1NTQ5OWYzZTU0MWU1MGQyZjA4ODFkYzZkOThkNTZkYTM2NjE1NjJhZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODE2N2IzMzZjYTRkYzZhZGJkMWRmZTE3MjA1ZmI1ZTI3ZmY3NzRkNmNlYzY0YjFiNTgxNjAwNTk4NmFlYWE0ZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_7e6e0698651b41acbf40eea3a2f05e04",
+      "statement": "The AI test harness opens the real app in headless Chromium with Playwright, grants geolocation at Paris, and intercepts unpkg, Nominatim, OSRM and tile requests with the real Leaflet package and fakes.",
+      "evidence": [
+        {
+          "resource": "repo://tests/ai/harness.mjs#L1-L25",
+          "version": "repo-lines-v1:sha256:047c0ef1c960a363099204fb81a3561f05211178d4fd87d65f3c40f840b30c50:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwOWE5NDI3MGNjMzJmZjI3MjkyM2JjODI3MmQ0Zjk5MzgyMWFmNjU5NDU3MmRjYmI4ZGE3N2M0ZTlhYWM3NDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg0YWZjZWE2MmYzMjJjZDhiODY4OTE0MmMwYmEyOWZiNGJkY2NkN2FiODRkNjE0ODc3M2QwMjA4YzEwYjNjZTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d7e1671776444b659cf3473fb8234ace",
+      "statement": ".factory/run/setup.sh unpacks Leaflet 1.9.4 and starts the app on port 8000, and .factory/run/scenarios.mjs runs the AI scenarios and records page requests because the harness does not log tile URLs.",
+      "evidence": [
+        {
+          "resource": "repo://.factory/run/scenarios.mjs#L1-L40",
+          "version": "repo-lines-v1:sha256:eb20da6f8f2c3365aa556b9ad0cad8022b8523c7b7e9b508899dc546b935da39:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjNDQ5NWQ1OGM0NTgyMTE0ZmMxZTk5YmYwNzMzY2QxNDAwMDQ3NDJhNTQ4YjVhMTMyZDY2OWUwYTdhMGRkNWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImMyNDdmNWM4MmNmY2YwODVjOTRmYTY0ZDk0MjUxNzY4NTliOGRiOTI5YThlMTBmNGM4NmMzMjU2MjY3MDA3MDcifQ"
+        },
+        {
+          "resource": "repo://.factory/run/setup.sh",
+          "version": "repo-file-v1:sha256:a5aaa3c20569754278fd9ecedc935c31ba0d6e9340c6a3a32aef952a9bd0bc1d"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-18T18:14:22.657Z"
+  }
+}

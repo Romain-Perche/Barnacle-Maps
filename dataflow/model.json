@@ -1,0 +1,49 @@
+{
+  "version": 2,
+  "zones": [
+    {"id": "host", "label": "Developer host (npm start)"},
+    {"id": "browser", "label": "User's browser"},
+    {"id": "osm", "label": "OpenStreetMap services"},
+    {"id": "cdn", "label": "unpkg CDN"}
+  ],
+  "groups": [
+    {"id": "map-app", "label": "Map and panel", "description": "Serves the page and runs the Leaflet map and side panel the user works with."},
+    {"id": "directions", "label": "Search and routing", "description": "Turns a typed place into coordinates and asks OSRM for walk, bike or car routes through the stops."},
+    {"id": "pleasure", "label": "Pleasure score", "description": "Counts green pixels on OSM tiles along each walking or cycling route to mark the most pleasant one."}
+  ],
+  "actors": [
+    {"id": "user", "label": "Browser user"},
+    {"id": "geolocation", "label": "Device geolocation", "zone": "browser"},
+    {"id": "nominatim", "label": "Nominatim geocoder", "zone": "osm"},
+    {"id": "osrm", "label": "OSRM routing (routing.openstreetmap.de)", "zone": "osm"},
+    {"id": "osm-tiles", "label": "OSM tile server", "zone": "osm"},
+    {"id": "unpkg", "label": "unpkg.com (Leaflet 1.9.4)", "zone": "cdn"}
+  ],
+  "processes": [
+    {"id": "static-server", "label": "Static file server (python http.server)", "zone": "host", "group": "map-app", "sources": ["package.json"]},
+    {"id": "map-ui", "label": "Map and panel UI", "zone": "browser", "group": "map-app", "sources": ["src/app.js", "index.html"]},
+    {"id": "search", "label": "Place search client", "zone": "browser", "group": "directions", "sources": ["src/app.js", "src/geo.js"]},
+    {"id": "routing", "label": "Route client", "zone": "browser", "group": "directions", "sources": ["src/app.js", "src/geo.js"]},
+    {"id": "pleasure-scorer", "label": "Pleasure scorer", "zone": "browser", "group": "pleasure", "sources": ["src/app.js", "src/geo.js"]}
+  ],
+  "stores": [],
+  "flows": [
+    {"from": "static-server", "to": "map-ui", "data": "index.html, app scripts and styles", "sources": ["package.json", "index.html"]},
+    {"from": "unpkg", "to": "map-ui", "data": "Leaflet script and CSS (SRI pinned)", "sources": ["index.html", "pins.json"]},
+    {"from": "user", "to": "map-ui", "data": "search text, picks, travel mode, stops, map clicks", "sources": ["src/app.js", "index.html"]},
+    {"from": "map-ui", "to": "user", "data": "map, routes, distances, durations, status", "sources": ["src/app.js"]},
+    {"from": "geolocation", "to": "map-ui", "data": "live position", "sources": ["src/app.js"]},
+    {"from": "osm-tiles", "to": "map-ui", "data": "map tiles", "sources": ["src/app.js"]},
+    {"from": "map-ui", "to": "search", "data": "search query", "sources": ["src/app.js"]},
+    {"from": "search", "to": "nominatim", "data": "search query", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "nominatim", "to": "search", "data": "places (name, lat, lon)", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "search", "to": "map-ui", "data": "place results", "sources": ["src/app.js"]},
+    {"from": "map-ui", "to": "routing", "data": "position, stops, destination, travel mode", "sources": ["src/app.js"]},
+    {"from": "routing", "to": "osrm", "data": "coordinates of position, stops, detours, destination", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "osrm", "to": "routing", "data": "route geometries, distances, durations", "sources": ["src/geo.js", "src/app.js"]},
+    {"from": "routing", "to": "map-ui", "data": "up to 3 routes to draw", "sources": ["src/app.js"]},
+    {"from": "map-ui", "to": "pleasure-scorer", "data": "drawn route paths", "sources": ["src/app.js"]},
+    {"from": "osm-tiles", "to": "pleasure-scorer", "data": "zoom 16 tile images", "sources": ["src/app.js"]},
+    {"from": "pleasure-scorer", "to": "map-ui", "data": "green pixel counts, most pleasant route", "sources": ["src/app.js", "src/geo.js"]}
+  ]
+}
