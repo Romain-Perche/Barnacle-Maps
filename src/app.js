@@ -17,6 +17,7 @@ import {
   removeStop,
   routeUrl,
   searchUrl,
+  sortByDistance,
   straightLineLength,
   TRAVEL_MODES,
 } from "./geo.js";
@@ -111,8 +112,10 @@ async function runSearch(q, { announce = true } = {}) {
   const seq = ++searchSeq;
   if (announce) setStatus("Searching…");
   try {
-    const found = parseSearchResults(await fetchJson(searchUrl(q)));
+    const near = position;
+    const parsed = parseSearchResults(await fetchJson(searchUrl(q, undefined, near)));
     if (seq !== searchSeq) return; // a newer search superseded this one
+    const found = sortByDistance(parsed, near);
     results.replaceChildren();
     if (!found.length) return setStatus("No results.");
     setStatus("");
@@ -134,7 +137,14 @@ async function runSearch(q, { announce = true } = {}) {
         input.value = "";
         tryAddStop(place);
       });
-      li.append(btn, add);
+      if (typeof place.distance === "number") {
+        const dist = document.createElement("span");
+        dist.className = "distance";
+        dist.textContent = formatDistance(place.distance);
+        li.append(btn, dist, add);
+      } else {
+        li.append(btn, add);
+      }
       results.append(li);
     }
   } catch (err) {

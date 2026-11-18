@@ -31,9 +31,26 @@ export function formatDuration(seconds) {
 // Minimum trimmed query length before suggestions are fetched while typing.
 export const MIN_SUGGEST_CHARS = 3;
 
-export function searchUrl(query, base = "https://nominatim.openstreetmap.org") {
+// Half-height (degrees) of the box Nominatim is asked to prefer around the user.
+export const NEAR_BOX_DEG = 0.25;
+
+export function searchUrl(query, base = "https://nominatim.openstreetmap.org", near = null) {
   const p = new URLSearchParams({ q: query, format: "jsonv2", limit: "5" });
+  if (near) {
+    const dLng = NEAR_BOX_DEG / Math.max(0.01, Math.cos((near.lat * Math.PI) / 180));
+    const left = Math.max(-180, near.lng - dLng);
+    const right = Math.min(180, near.lng + dLng);
+    const top = Math.min(90, near.lat + NEAR_BOX_DEG);
+    const bottom = Math.max(-90, near.lat - NEAR_BOX_DEG);
+    p.set("viewbox", `${left},${top},${right},${bottom}`);
+  }
   return `${base}/search?${p}`;
+}
+
+// Nearest first (stable), each place gets `distance` in metres. Without a position: same order, no distance.
+export function sortByDistance(results, from) {
+  if (!from) return [...results];
+  return results.map((r) => ({ ...r, distance: haversine(from, r) })).sort((a, b) => a.distance - b.distance);
 }
 
 export function parseSearchResults(json) {

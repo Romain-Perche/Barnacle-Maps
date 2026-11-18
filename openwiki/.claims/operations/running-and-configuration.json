@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:3631f42f632271daa0b286fc2dee6c3b5d13c0593d5b78d2385d432faa194668",
+  "claims": [
+    {
+      "id": "claim_559cb2ca504946658c03286ef670163a",
+      "statement": "npm start serves the repo root as static files with python3 -m http.server on port 8000, and npm test runs node --test over test/; there are no npm dependencies.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        }
+      ]
+    },
+    {
+      "id": "claim_6cf6781513fb413996d78c5b6481fdcb",
+      "statement": "The app has no environment variables or config files; service URLs and limits are source constants in src/app.js and src/geo.js.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L25-L50",
+          "version": "repo-lines-v1:sha256:bd6b5f4669b74b7bf02996f58bb700f05bbb0698d4ed360c8f5320c0c35b4304:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5NzE2NGI0ZTFkNWY4MjhkNDA5NDk3NTdiMWM3ODliYTk2MGNmMDM0MmRmOTVkNGYyOTU4M2M5NjAzZWEzNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2ZTIyNjgxNTU0ZWEwN2MxOTE0ZmZmNmEyOTRmMDBjN2FmNDYxNzc0YWNjNDNlZTQxNWU1NTM0NDEyNzNiNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2NGZiNjA4NDI0MDJmNTM4YjZkZTRkMWZkMWY3MzkxNWFlODVhYjRhODQ0MTEzNzEwMDI4ZGFkMDU4OWY4OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ1OTYyYTRhN2JjZDg5OTAzMjc4OTY2NGU2YjIyYWIxYWU2MDQ1YzhiOTE5M2QwN2JjY2FhZmY5ODUxMzU0ZGQifQ"
+        },
+        {
+          "resource": "repo://src/geo.js#L31-L37",
+          "version": "repo-lines-v1:sha256:e4a6dac9768117ec6ccc7c5a9fe62d5cca7a01896d6c0c62fc136aa4a4bea048:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjk1NGU2NWY4ZmY4ZDkzMmU2MTJiMGQ0ZThlOGU2OTY5NWZiMmU3ZGI4Y2IzNDc3MGQ1MDA3MTc4NWNjNjFhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODI3OWJkODAyYmU1ZWE2YTM2MWYxYmRiMjI4NDQ0ODdhNzRmN2RhM2IyMDU0N2I5MzU5NWNhZDlmOWIyOGRiYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjFiMThjMzlkNzg1OWMxYzI2YTJjNmMzMzIwNTM5NDljZTA5NTM4ODFjMjNkNjFjZjkwMTNkOWZhNjdlOGE4NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2YzMDZhM2MwMDM2ZDBkZGZlMmU2MWE5NjZhOTQwOWNlODI5OWYyYmVkZTdlNDQ4ZTdmOTAyNGY3MzA4YzA0MyJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L67-L70",
+          "version": "repo-lines-v1:sha256:4b193b5cc8bca0a6b8d124b22964f2dd4b2d99f426f37c9d6eeefb437691357c:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDc3ZWZlNmM5OWZlMDU5NTAyMzZmNWQ4MDJmZDk3ZmQ3MWYwZjE3ZjgxOGRiYjRhNTFlYmMwZWYzNTYyN2U2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWExZDFhNjMzOTAyMjljNzk4MzQ3ZTgzYTA0MDU0NDFjOTQwMDAzNTI4NGFkMTY4YzFiZjZjZGYxZDcwYTM3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzhiYmQ1ODEwYjczNzQyYThiNTBkODc4OTA4ZTU5YWMyNjA5M2Q1NTJmMTYyMzA1M2YxNWIyYWRiNmZiNWRjMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDFjMjEwYjk5YmY0N2NlYzg3MjQ2NDM5NWRjZTFkZTc1MzUzNGNiM2Y1NGFkM2YyYmY1YzIxYzc2NmY0NmViZiJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L91-L93",
+          "version": "repo-lines-v1:sha256:9d592ae32af1cfdc51157019eff089ffb1d4f6337fe4ef57a79ea9ffc03337ed:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmIxMjM5MDlmMjFhM2I4OTRjNTFjNWY2ZjFmZDM3Zjg3ODI5MDllOWM1YzYyZjdmM2M2MDg1NzZiYTZjZTViNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDBlYmU5NjI3MmQwZjZiYTU1NmYxZmU4ZGQzOTdiOTlkOGVjMTRhNjVmOTE4MmQxOWYxMmUyMWZiYzAxYTY2MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTE3Yjc5ODI1ZDRmZmY0ODllOTBiNjk5M2MzMmViNjIwMTYxYjY1ZjMyZmQ5NjEwN2U1MmI2NTg0NmM4Y2M5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWYzOTUwNmUzNmJmZWFjZTg0ZWM3Yjk2OTc0NzA5ZGJkNzM3YTMxYzQ5ZmE1YmYwNmYwMGVlNGVkODRhMjY5MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4bc39c0c2c2e49cf809a8ba5d09fef26",
+      "statement": "The SBOM lists no packages because the repo has no lockfile.",
+      "evidence": [
+        {
+          "resource": "repo://sbom/SBOM.md",
+          "version": "repo-file-v1:sha256:7578adc9cfb95b9d5ac9a60e5ee1fcf11f75f772126a2dff24d6597edb8e5ea1"
+        }
+      ]
+    },
+    {
+      "id": "claim_56d209e7f2d040828b9bd8022c3332e3",
+      "statement": "Place names from Nominatim are rendered with textContent rather than HTML.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L120-L126",
+          "version": "repo-lines-v1:sha256:f80a7851123ee82808ad0df4c982715fa9afffeca99416eb0e529d71930f3f57:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzdmMDlmMzA1N2E0ZTdhMGE1MDNkZTlkZWJhMjlkNmE1MzZmZGJkMjU0Nzc2YTRhZjdmMzNmNDVhMWRmNmQ1NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGQ5YTQ5NzJhZGU2YTk4OTM5NWZjYWJiOTgwYTE1ZGE0NTY1ZDBiYmQwNThhMjAyZWJkM2ViMTVlODg1NmJiYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDBlMjE4MmMwOWU0YTUwMGEzZTc1NTBkY2U5NWM1YWVlMWYwYzA5YTM0OTc2NTExZjljN2E5OWRlMmY3Mzk5MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDA1OTI0YTRmNTYxYmI4MTI4ZWNjZTJiM2ZjYzc1YzEzMWM1ZmVkODQ4Y2RlODJlYWJhM2EwODU3MWFmYjVkYSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T11:34:31.384Z"
+  }
+}
