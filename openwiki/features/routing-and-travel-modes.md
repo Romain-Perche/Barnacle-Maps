@@ -1,77 +1,77 @@
 ---
 type: feature
 title: Routing and travel modes
-description: How Barnacle Maps computes and shows up to three walk, car or bike routes with OSRM, covering the TRAVEL_MODES table, the segmented mode selector, URL building, alternatives, walking-only detours, route de-duplication, drawing and status messages.
-tags: [routing, osrm, travel-modes, bike, ui]
+description: How Barnacle Maps asks OSRM for walking, bike and car routes, what the per-mode flags in TRAVEL_MODES control, how detour routes and alternative de-duplication work, and how "no route" answers are shown.
+tags: [routing, osrm, travel-modes, bike, feature]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-16T15:57:49.174Z
+    at: 2026-11-17T14:30:06.574Z
 sources:
-  - id: openwiki-source-f8d10828394c4129061d5b0e
-    resource: repo://index.html
   - id: openwiki-source-e2cc3c3da96cc52ce6b6de67
     resource: repo://src/app.js
   - id: openwiki-source-c2b285527acec6fce8507885
     resource: repo://src/geo.js
-  - id: openwiki-source-9a6d805649b823477f244ab2
-    resource: repo://styles.css
-generated: { by: "claude-code", at: "2026-11-16T15:57:49.174Z" }
+  - id: openwiki-source-278e62085e4d44585a3e9b2d
+    resource: repo://test/bike.test.js
+generated: { by: "claude-code", at: "2026-11-17T14:30:06.574Z" }
 ---
 
 # Routing and travel modes
 
-Once a destination is chosen, the app asks OSRM for routes from the user's live position, through any [stops](stops.md), to the destination. It then shows up to 3 routes on the map and in the `#routes` list.
+Routes always go from the user's live position, through every [stop](stops.md) in order, to the chosen destination. They are computed by the public OSRM servers at `routing.openstreetmap.de`, one server per travel mode.
 
 ## Travel modes
 
-`TRAVEL_MODES` in `src/geo.js` is the single source of per-mode behaviour. Each entry has:
+The panel has a segmented radio group `#mode` in `index.html` with three values: `foot` (Walk, default), `car` and `bike`. Every mode is described by one entry of `TRAVEL_MODES` in `src/geo.js`:
 
-| Key | Label | OSRM server | Profile | `pleasure` | `detours` |
-| --- | --- | --- | --- | --- | --- |
-| `foot` | 🚶 Walk | `routing.openstreetmap.de/routed-foot` | `foot` | yes | yes |
-| `car` | 🚗 Car | `routing.openstreetmap.de/routed-car` | `driving` | no | no |
-| `bike` | 🚲 Bike | `routing.openstreetmap.de/routed-bike` | `bike` | yes | no |
+| Mode | OSRM server | OSRM profile | `pleasure` | `detours` |
+| --- | --- | --- | --- | --- |
+| `foot` | `https://routing.openstreetmap.de/routed-foot` | `foot` | yes | yes |
+| `car` | `https://routing.openstreetmap.de/routed-car` | `driving` | no | no |
+| `bike` | `https://routing.openstreetmap.de/routed-bike` | `bike` | yes | no |
 
-Each entry also carries the status texts: `computing` ("Computing cycling routes…"), `noRoute`, and `single` / `plural` ("by bike", "cycling"). `src/app.js` reads these flags and texts instead of comparing mode names, and an unknown mode falls back to `foot`.
+`app.js` reads the flags instead of comparing mode names: `pleasure` decides whether route buttons get a [pleasure score](pleasure-score.md), `detours` whether forced detour routes are tried. Adding a mode means adding an entry here, a radio button in `index.html` and its status texts in `MODE_TEXT` (`src/app.js`).
 
-### The selector
-
-`index.html` has `#mode`, a `role="radiogroup"` with three radio inputs (`foot` checked by default). Each input is followed by an outer `<span>` holding an `aria-hidden` emoji and the label text. `styles.css` turns this into a segmented control: inputs are visually hidden, `#mode input + span` is the button, the checked segment gets a `#e8f0fe` background and blue text, and `:focus-visible` draws an outline. The padding and `display: block` rules target only the outer span (`input + span`), so the nested emoji span stays inline. Changing the radio sets `mode` and, if a destination is set, calls `updateRoutes()`. Stops are kept.
+Changing the radio recomputes routes for the current destination (if any); stops are kept. Values not in `TRAVEL_MODES` are ignored.
 
 ## Building the request
 
 `routeUrl(from, to, base, { alternatives, via, mode, stops })` builds
-`{base}/route/v1/{profile}/{lng,lat;…}?overview=full&geometries=geojson[&alternatives=3]`.
-Points are in OSRM's `lng,lat` order: start, then stops in list order, then the optional `via` detour waypoint, then the destination. An explicit `base` replaces the mode's server but keeps its profile.
 
-## fetchRoutes: alternatives and detours
+```
+{base}/route/v1/{profile}/{lng,lat;...}?overview=full&geometries=geojson[&alternatives=3]
+```
 
-`fetchRoutes(place, seq, mode, stops)` in `src/app.js`:
+Coordinates are in OSRM's `lng,lat` order: start, then the stops, then an optional `via` detour point, then the destination. An unknown mode falls back to `foot`.
 
-1. Requests the main route with alternatives and parses every route with `parseRoutes`. This keeps only `code: "Ok"` responses with GeoJSON geometry, and flips coordinates to `[lat, lng]`.
-2. With stops, or with 2 or more routes, or for a mode whose `detours` is false (car, bike), it returns `pickRoutes(main)`.
-3. Otherwise (walking, fewer than 2 routes, no stops), it asks for two **detour routes** through `detourWaypoints(position, place)`. These are two points on either side of the midpoint of the straight line, offset by `max(150 m, 0.25 × distance)`. Failed detour requests are ignored (`Promise.allSettled`).
+## Fetching and picking routes
 
-`pickRoutes(candidates, 3)` sorts by duration and always keeps the fastest. It adds a candidate only if its distance is at most 1.6 × the shortest and fewer than 80% of its 25 m samples lie within 20 m of a route already kept (`routeOverlap`).
+`fetchRoutes()` in `src/app.js`:
 
-## Drawing and selection
+1. Requests the main route with `alternatives=3` and parses it with `parseRoutes` (each route becomes `{ distance, duration, path: [[lat, lng], ...] }`).
+2. With stops, returns OSRM's own routes only (no artificial detours).
+3. If OSRM gave two or more routes, or the mode has `detours: false` (car, bike), returns `pickRoutes(main)`.
+4. Otherwise (short walks often get no alternative) it asks for two more routes forced through `detourWaypoints` - points on each side of the start-destination line, offset from its midpoint by max(150 m, 25 % of the straight distance). Failed detour requests are ignored.
 
-`drawRoutes` adds one grey polyline and one list button per route ("Route n · distance · duration", formatted by `formatDistance` and `formatDuration`). For modes with pleasure it adds a pleasure line too. `selectRoute(i)` makes route i blue and on top, and sets `aria-pressed` on its button. You can select a route from the list or by clicking its line. The map then fits all routes and markers.
+`pickRoutes(candidates, 3)` sorts by duration, keeps the fastest, then adds alternatives that are at most 1.6× the shortest distance and overlap every kept route by less than 80 % (`routeOverlap`: share of points sampled every 25 m that lie within 20 m of the other route).
 
-## Status messages
+## No route and errors
 
-`updateRoutes` shows:
+OSRM answers "no route" with HTTP 400 and code `NoRoute` or `NoSegment`. `fetchRouteJson` recognises this with `isNoRouteResponse` and treats it as zero routes, so the status shows the mode's text ("No walking route found.", "No driving route found.", "No cycling route found."), plus "Try removing a stop." when there are stops. Other HTTP errors show "Routing failed: …" (or the no-route text with the error when there are stops).
 
-- `Waiting for your location to compute a route…` when no position is known yet (`pendingRoute` is set and the map centres on the destination);
-- the mode's `computing` text while fetching;
-- `Routing failed: …` on a network/HTTP error, or `No … route found.` with a stops-specific variant ("Try removing a stop.");
-- on success, either `"<distance> · <duration> by bike"` for one route or `"3 cycling routes · fastest …"`, with ` via N stops` added when there are stops.
+Without a position yet, the map centres on the destination, the status says "Waiting for your location to compute a route…" and routing starts on the first fix.
 
-Then, for modes with pleasure, it starts the [pleasure score](pleasure-score.md). The OSRM service is described in [External services](../integrations/openstreetmap-services.md).
+## Display and selection
+
+`drawRoutes()` draws each route as a grey Leaflet polyline and a button "Route N · distance · duration" in `#routes`, then selects route 1 (blue, on top) and fits the map to routes, stops and markers. Clicking a line or a button selects it; line clicks don't bubble to the map, so they don't open the "Add stop here" popup. The status line summarises the fastest route, e.g. "3 cycling routes via 1 stop · fastest 2.40 km · 9 min" or "… by bike" for a single route. Distances and durations are formatted by `formatDistance` / `formatDuration`.
 
 ## Tests
 
-- `test/routes.test.js`: `routeUrl`, `parseRoutes`, `detourWaypoints`, `samplePath`, `pointToSegmentDistance`, `routeOverlap`, `pickRoutes`, `routesBbox`, plus static checks on `index.html`, `app.js` and `README.md`.
-- `test/modes.test.js`: car mode URLs and the fallback to walking.
-- `test/bike.test.js`: the bike entry, mode order, detours only for walking, pleasure for foot and bike only, bike URLs with stops, the segmented selector markup and CSS, and that `app.js` reads `TRAVEL_MODES` flags.
-- `tests/ai/us1-cycling-routes.md`, `us2-switch-modes.md`: browser scenarios for the bike feature.
+`test/routes.test.js` (URLs, parsing, detours, picking), `test/modes.test.js` (car and mode table) and `test/bike.test.js` (bike mode, flags, NoRoute, request shape checked by the fake OSRM). See [Running and testing](../operations/running-and-testing.md).
+
+## Related pages
+
+- [Stops](stops.md)
+- [Pleasure score](pleasure-score.md)
+- [External services and privacy](../integrations/external-services.md)
+- [Architecture overview](../architecture/overview.md)

@@ -1,5 +1,5 @@
 // Pure helpers for Barnacle Maps (no DOM access and no fetch, so they can be unit tested in Node):
-// formatting, Nominatim search, OSRM walking and car routes (alternatives, detours, de-duplication)
+// formatting, Nominatim search, OSRM walking, bike and car routes (alternatives, detours, de-duplication)
 // the green-pixel "pleasure" score of a route on map tiles, and the list of stops of a journey
 // (add, remove, reorder; routes go from the start through every stop in order to the destination).
 
@@ -48,11 +48,17 @@ export function parseSearchResults(json) {
 }
 
 export const TRAVEL_MODES = {
-  foot: { label: "Walk", base: "https://routing.openstreetmap.de/routed-foot", profile: "foot" },
-  car: { label: "Car", base: "https://routing.openstreetmap.de/routed-car", profile: "driving" },
+  foot: { label: "Walk", icon: "🚶", base: "https://routing.openstreetmap.de/routed-foot", profile: "foot", pleasure: true, detours: true },
+  car: { label: "Car", icon: "🚗", base: "https://routing.openstreetmap.de/routed-car", profile: "driving", pleasure: false, detours: false },
+  bike: { label: "Bike", icon: "🚲", base: "https://routing.openstreetmap.de/routed-bike", profile: "bike", pleasure: true, detours: false },
 };
 
-// OSRM expects lng,lat order. The "foot" profile gives walking routes, "driving" (mode "car") car routes.
+// OSRM answers "no route" with HTTP 400 and code NoRoute or NoSegment.
+export function isNoRouteResponse(json) {
+  return json?.code === "NoRoute" || json?.code === "NoSegment";
+}
+
+// OSRM expects lng,lat order. The "foot" profile gives walking routes, "bike" (mode "bike") bike routes, "driving" (mode "car") car routes.
 // `stops` are visited in order, `via` forces the route through a waypoint (after the stops);
 // `alternatives` asks OSRM for alternative routes.
 export function routeUrl(

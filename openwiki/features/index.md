@@ -1,6 +1,6 @@
 # Files
 
-- [Place search and suggestions](place-search.md) - How the search box queries Nominatim, shows debounced suggestions while the user types, drops out-of-date replies, and turns a result into a destination or a stop.
-- [Pleasure score](pleasure-score.md) - How walking and bike routes get a "pleasure" indicator by counting green map pixels (parks, grass, woods) on OpenStreetMap tiles along each route, with its limits, cancellation and failure states.
-- [Routing and travel modes](routing-and-travel-modes.md) - How Barnacle Maps computes and shows up to three walk, car or bike routes with OSRM, covering the TRAVEL_MODES table, the segmented mode selector, URL building, alternatives, walking-only detours, route de-duplication, drawing and status messages.
-- [Stops (multi-point journeys)](stops.md) - How users add, reorder and remove up to five intermediate stops, how the stops list is kept, and how stops change route requests, detours and the pleasure limits.
+- [Pleasure score](pleasure-score.md) - How Barnacle Maps rates walking and bike routes by counting green (park, grass, wood) pixels on zoom-16 OpenStreetMap tiles along each route, and when it reports "Pleasure unavailable".
+- [Routing and travel modes](routing-and-travel-modes.md) - How Barnacle Maps asks OSRM for walking, bike and car routes, what the per-mode flags in TRAVEL_MODES control, how detour routes and alternative de-duplication work, and how "no route" answers are shown.
+- [Place search and suggestions](search.md) - How the search box queries Nominatim on submit and as-you-type, guards against stale answers, and turns each result into "route here" and "Add as stop" actions.
+- [Stops](stops.md) - How users add, reorder and remove up to five intermediate stops, how duplicates and the limit are enforced, and how stops change route computation.

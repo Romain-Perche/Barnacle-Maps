@@ -1,54 +1,57 @@
 ---
 type: feature
-title: Stops (multi-point journeys)
-description: How users add, reorder and remove up to five intermediate stops, how the stops list is kept, and how stops change route requests, detours and the pleasure limits.
-tags: [stops, waypoints, routing, ui]
+title: Stops
+description: How users add, reorder and remove up to five intermediate stops, how duplicates and the limit are enforced, and how stops change route computation.
+tags: [stops, waypoints, routing, feature]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-16T15:57:49.174Z
+    at: 2026-11-17T14:30:06.574Z
 sources:
   - id: openwiki-source-e2cc3c3da96cc52ce6b6de67
     resource: repo://src/app.js
   - id: openwiki-source-c2b285527acec6fce8507885
     resource: repo://src/geo.js
-generated: { by: "claude-code", at: "2026-11-16T15:57:49.174Z" }
+  - id: openwiki-source-f5cd3d802481729626fed340
+    resource: repo://test/stops.test.js
+generated: { by: "claude-code", at: "2026-11-17T14:30:06.574Z" }
 ---
 
-# Stops (multi-point journeys)
+# Stops
 
-A journey can pass through up to 5 stops between the user's position and the destination. Routes visit every stop in list order.
+A journey can pass through up to **5 stops** (`MAX_STOPS`) between the user's position and the destination. Routes visit them in list order. A stop is `{ name, lat, lng }`.
 
-## Data and helpers
+## Adding a stop
 
-A stop is `{ name, lat, lng }`. The list lives in the `stops` variable of `src/app.js`. The pure helpers in `src/geo.js` never change the list they receive:
+- From a search result: the **Add as stop** button next to a place (see [Place search](search.md)).
+- From the map: clicking the map (not a route line) opens a popup with **Add stop here**; the stop is named `Point on map (lat, lng)` with 5 decimals (`mapPointStop`).
 
-- `addStop(stops, place, max = MAX_STOPS)` returns `{ stops, error }`. `error` is `"limit"` when there are already `MAX_STOPS` (5) stops, `"duplicate"` when the place is within `STOP_DUPLICATE_M` (20 m, by `haversine`) of an existing stop, and `null` otherwise. In that case the place is appended.
-- `removeStop(stops, index)` and `moveStop(stops, index, delta)` return a new list. Invalid indexes return an unchanged copy.
-- `mapPointStop({lat, lng})` names a map point "Point on map (lat, lng)" with 5 decimals.
+Both go through `tryAddStop(place)`, which calls the pure `addStop(stops, place)` from `src/geo.js`:
 
-## Adding stops
+- at the limit it returns error `limit` → status "You can add at most 5 stops.";
+- a place within 20 m (`STOP_DUPLICATE_M`, haversine distance) of an existing stop returns `duplicate` → "This place is already a stop.";
+- otherwise the stop is appended.
 
-- From a search result: the "Add as stop" button. See [Place search](place-search.md).
-- From the map: clicking the map opens a popup with an "Add stop here" button. Clicks on route lines do not open it, because they do not bubble.
+## Editing the list
 
-Both call `tryAddStop`. A refusal shows "You can add at most 5 stops." or "This place is already a stop." in the status line.
+`#stops-box` (hidden when empty) lists numbered stops with ↑ / ↓ (`moveStop`, swap with a neighbour; disabled at the ends), ✕ (`removeStop`) and a **Clear stops** button. The list helpers never mutate their input and ignore out-of-range indexes. Numbered round markers (`stop-marker` div icons) are drawn on the map.
 
-## Editing and display
-
-`setStops(next)` replaces the list, re-renders it and calls `updateRoutes()`. `renderStops` draws:
-
-- numbered `stop-marker` div icons on the map, with tooltips;
-- the `#stops` ordered list, with ↑ / ↓ / ✕ buttons that have accessible labels ("Move stop 2 up", …). The first stop cannot move up and the last cannot move down;
-- the `#stops-box`, which is hidden when there are no stops. "Clear stops" empties the list.
-
-Stops stay when the destination or the travel mode changes. With stops but no destination, the status reads "Choose a destination to get a route through your stops.".
+Every change goes through `setStops(next)`, which redraws the list and markers and calls `updateRoutes()`. With stops but no destination, the status says "Choose a destination to get a route through your stops."
 
 ## Effect on routing
 
-`updateRoutes` copies `stops` at the start of each request and passes them to `routeUrl`, which puts them between the start and the destination. With at least one stop, `fetchRoutes` never adds detour routes. Only OSRM's own alternatives are used, and with stops OSRM often returns a single route. Status texts add " via N stop(s)". Failures say the mode's "No … route found." plus "Try removing a stop." or the error.
+- Stops are inserted between start and destination in the OSRM request (`routeUrl`).
+- With stops no forced detour routes are added; OSRM usually returns fewer alternatives (often one).
+- Stops are kept when the travel mode or destination changes.
+- Status texts mention them ("… via 2 stops"), and a no-route answer suggests "Try removing a stop."
+- The pleasure distance guard measures the straight line through all stops.
 
-For the [pleasure score](pleasure-score.md), the 15 km straight-line limit is measured through the stops (`straightLineLength([position, ...stops, place])`).
+See [Routing and travel modes](routing-and-travel-modes.md).
 
 ## Tests
 
-`test/stops.test.js` covers the stops order in `routeUrl`, `addStop` limit and duplicate, `moveStop`, `removeStop`, `mapPointStop` and `straightLineLength`. `test/bike.test.js` checks that stops keep their order in bike URLs, and `tests/ai/us3-bike-stops.md` is the browser scenario for bike routes with stops. See also [Routing and travel modes](routing-and-travel-modes.md).
+`test/stops.test.js` covers `addStop`, `removeStop`, `moveStop`, `mapPointStop` and stop-aware `routeUrl`; `tests/ai/us3-bike-stops.md` drives stops with bike mode in the browser.
+
+## Related pages
+
+- [Routing and travel modes](routing-and-travel-modes.md)
+- [Place search and suggestions](search.md)

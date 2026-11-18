@@ -1,56 +1,51 @@
 ---
 type: quickstart
 title: Quickstart
-description: What Barnacle Maps is, how to run and test it in a minute, and which wiki page to read for each task.
+description: What Barnacle Maps is, how to run and test it in a minute, and which wiki page to read for each common task.
 tags: [quickstart, overview, navigation]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-16T15:57:49.174Z
+    at: 2026-11-17T14:30:06.574Z
 sources:
   - id: openwiki-source-f8d10828394c4129061d5b0e
     resource: repo://index.html
   - id: openwiki-source-5b54a58d1b51cd490b0e7162
     resource: repo://package.json
-  - id: openwiki-source-23775c3de52f3ab95a13cb8b
-    resource: repo://README.md
-generated: { by: "claude-code", at: "2026-11-16T15:57:49.174Z" }
+generated: { by: "claude-code", at: "2026-11-17T14:30:06.574Z" }
 ---
 
-# Barnacle Maps quickstart
+# Quickstart
 
-Barnacle Maps is a small navigation web app that runs entirely in the browser. It shows an OpenStreetMap map with your live position. You can search a place, add up to 5 stops, and get up to 3 walking, car or bike routes with distance and duration. Walking and bike routes also get a "pleasure" indicator based on how much green (parks, woods) lies along them.
+Barnacle Maps is a small, build-free navigation web app. It shows an OpenStreetMap map with your live position, lets you search a place, and shows up to 3 routes to it by **walking, car or bike**, each with distance and duration. You can add up to 5 stops, and walking and bike routes get a "pleasure" score from the amount of green along them.
 
 ## Run it
 
-```bash
-npm start          # python3 -m http.server 8000
-# open http://localhost:8000 and allow location access
-npm test           # node --test test/
+```
+npm start   # serves the repo at http://localhost:8000 (python3 http.server)
+npm test    # node --test test/
 ```
 
-There is no build step and nothing to install: Leaflet comes from a CDN. Geolocation needs `localhost` or HTTPS. Dependencies are listed in [sbom/SBOM.md](../sbom/SBOM.md).
+Open http://localhost:8000 and allow location access (geolocation needs localhost or HTTPS). No `npm install` is needed; versions of the tools and the Leaflet library are listed in [sbom/SBOM.md](../sbom/SBOM.md).
 
-## Code map
+## Where the code is
 
-- `index.html`: page shell (map, search, mode selector, stops, routes, status).
-- `src/app.js`: DOM, Leaflet map, geolocation, network calls and UI state.
-- `src/geo.js`: pure, unit-tested helpers (URLs, parsing, route choice, stops, pleasure maths).
-- `styles.css`: panel and controls.
-- `test/`: Node unit tests. `tests/ai/`: browser scenarios for an AI tester.
-- `specs/`, `.specify/`, `.claude/skills/`: the spec-driven workflow.
+- `index.html` - page and panel markup, loads Leaflet from unpkg and `src/app.js`.
+- `src/app.js` - DOM, Leaflet, geolocation and network calls; app state.
+- `src/geo.js` - pure, unit-tested helpers (URLs, parsing, travel modes, stops, geometry, pleasure maths).
+- `test/` - Node unit tests and the OSRM fake; `tests/ai/` - Playwright scenarios with faked services.
+- `specs/` - Spec Kit feature specs.
 
-For how data moves between the browser and the services, see [dataflow/DATAFLOW.md](../dataflow/DATAFLOW.md).
+How data moves between the browser, the user and the outside services is drawn in [dataflow/DATAFLOW.md](../dataflow/DATAFLOW.md).
 
-## Where to go for…
+## Find your task
 
-| Task | Page |
+| I want to… | Read |
 | --- | --- |
-| Understand the overall structure, state and request ordering | [Architecture overview](architecture/overview.md) |
-| Change search or suggestions | [Place search and suggestions](features/place-search.md) |
-| Add or change a travel mode, or tune route alternatives and detours | [Routing and travel modes](features/routing-and-travel-modes.md) |
-| Work on intermediate stops | [Stops](features/stops.md) |
-| Change the green "pleasure" score | [Pleasure score](features/pleasure-score.md) |
-| Check what third-party services receive, their limits and privacy | [External services](integrations/openstreetmap-services.md) |
-| Run, deploy, configure, or review security | [Running, configuration and security](operations/running-and-configuration.md) |
-| Write or run tests | [Testing](testing/testing.md) |
-| Follow the spec → plan → tasks → implement process | [Spec-driven development workflow](development/spec-driven-workflow.md) |
+| Understand the overall design and state | [Architecture overview](architecture/overview.md) |
+| Change search or suggestions | [Place search and suggestions](features/search.md) |
+| Add a travel mode or change routing | [Routing and travel modes](features/routing-and-travel-modes.md) |
+| Change how stops work | [Stops](features/stops.md) |
+| Tune the green "pleasure" score | [Pleasure score](features/pleasure-score.md) |
+| Know what each outside service receives | [External services and privacy](integrations/external-services.md) |
+| Run tests or the browser scenarios offline | [Running and testing](operations/running-and-testing.md) |
+| Follow the spec → plan → tasks → build flow | [Spec-driven workflow](operations/spec-workflow.md) |

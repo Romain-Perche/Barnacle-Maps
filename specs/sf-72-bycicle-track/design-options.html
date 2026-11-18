@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barnacle Maps · Bike mode · design options</title>
+<style>
+  :root { color-scheme: light dark; --bg: #f3f4f6; --fg: #202124; --muted: #5f6368; --card: #ffffff; --line: #dadce0; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17181a; --fg: #e8eaed; --muted: #9aa0a6; --card: #202124; --line: #3c4043; }
+  }
+  body { margin: 0; padding: 24px; background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .intro { color: var(--muted); margin: 0 0 20px; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+  .option { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .option h2 { font-size: 16px; margin: 0 0 10px; }
+  .good { font-size: 14px; color: var(--muted); margin: 10px 0 0; }
+
+  /* Faithful mock of the app: map behind, white panel at top-left (values from styles.css). */
+  .screen { position: relative; height: 330px; border-radius: 6px; overflow: hidden;
+    background:
+      linear-gradient(115deg, transparent 47%, #fff 47%, #fff 49%, transparent 49%),
+      linear-gradient(20deg, transparent 60%, #fcd7a7 60%, #fcd7a7 62%, transparent 62%),
+      radial-gradient(circle at 75% 70%, #c8facc 0 60px, transparent 61px),
+      radial-gradient(circle at 85% 25%, #add19e 0 40px, transparent 41px),
+      #f2efe9; }
+  .route { position: absolute; height: 5px; border-radius: 3px; transform-origin: left center; }
+  .r-alt { background: #6c8ebf; opacity: .7; left: 40%; top: 78%; width: 55%; transform: rotate(-28deg); }
+  .r-sel { background: #1a73e8; left: 40%; top: 80%; width: 52%; transform: rotate(-38deg); height: 6px; }
+  .panel { position: absolute; top: 12px; left: 12px; width: 272px; background: #fff; color: #000;
+    border-radius: 8px; padding: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.3); font-family: system-ui, sans-serif; }
+  .search { display: flex; gap: 6px; }
+  .search .input { flex: 1; padding: 6px 8px; font-size: 15px; border: 1px solid #767676; border-radius: 2px; color: #000; }
+  .search .go { padding: 6px 10px; font-size: 13px; border: 1px solid #767676; border-radius: 3px; background: #efefef; }
+  .routes { list-style: none; margin: 6px 0 0; padding: 0; }
+  .routes li { padding: 6px 8px; border-left: 3px solid transparent; font-size: 14px; }
+  .routes li.selected { border-left-color: #1a73e8; background: #e8f0fe; }
+  .pleasure { display: block; font-size: 12px; color: #666; margin-top: 2px; }
+  .pleasure.best { color: #188038; font-weight: 600; }
+  .status { margin: 6px 0 0; font-size: 14px; }
+
+  /* A: current radio row + Bike */
+  .radios { display: flex; gap: 12px; margin: 6px 0 0; font-size: 14px; }
+  .radios span { display: inline-flex; align-items: center; gap: 4px; }
+  .dot { width: 12px; height: 12px; border: 1.5px solid #767676; border-radius: 50%; box-sizing: border-box; display: inline-block; }
+  .dot.on { border: 4px solid #1a73e8; }
+
+  /* B and C: segmented control */
+  .seg { display: flex; margin: 6px 0 0; border: 1px solid #1a73e8; border-radius: 6px; overflow: hidden; font-size: 14px; }
+  .seg span { flex: 1; text-align: center; padding: 5px 0; color: #1a73e8; }
+  .seg span + span { border-left: 1px solid #1a73e8; }
+  .seg span.on { background: #1a73e8; color: #fff; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>Bike travel mode: which design?</h1>
+<p class="intro">Each mock shows the panel with Bike selected and cycling routes to a destination. Only the travel mode selector changes.</p>
+<div class="grid">
+
+  <div class="option">
+    <h2>A · Third radio button</h2>
+    <div class="screen">
+      <div class="route r-alt"></div><div class="route r-sel"></div>
+      <div class="panel">
+        <div class="search"><span class="input">Jardin du Luxembourg</span><span class="go">Go</span></div>
+        <div class="radios">
+          <span><i class="dot"></i> Walk</span>
+          <span><i class="dot"></i> Car</span>
+          <span><i class="dot on"></i> Bike</span>
+        </div>
+        <ul class="routes">
+          <li class="selected">Route 1 · 3.42 km · 14 min<span class="pleasure best">Pleasure: 1830 green px · most pleasant</span></li>
+          <li>Route 2 · 3.71 km · 16 min<span class="pleasure">Pleasure: 1214 green px</span></li>
+        </ul>
+        <p class="status">2 cycling routes · fastest 3.42 km · 14 min</p>
+      </div>
+    </div>
+    <p class="good">Good for: smallest change, same look as today.</p>
+  </div>
+
+  <div class="option">
+    <h2>B · Segmented buttons, text</h2>
+    <div class="screen">
+      <div class="route r-alt"></div><div class="route r-sel"></div>
+      <div class="panel">
+        <div class="search"><span class="input">Jardin du Luxembourg</span><span class="go">Go</span></div>
+        <div class="seg"><span>Walk</span><span>Car</span><span class="on">Bike</span></div>
+        <ul class="routes">
+          <li class="selected">Route 1 · 3.42 km · 14 min<span class="pleasure best">Pleasure: 1830 green px · most pleasant</span></li>
+          <li>Route 2 · 3.71 km · 16 min<span class="pleasure">Pleasure: 1214 green px</span></li>
+        </ul>
+        <p class="status">2 cycling routes · fastest 3.42 km · 14 min</p>
+      </div>
+    </div>
+    <p class="good">Good for: bigger touch targets on phones, clear selected mode.</p>
+  </div>
+
+  <div class="option">
+    <h2>C · Segmented buttons, icons</h2>
+    <div class="screen">
+      <div class="route r-alt"></div><div class="route r-sel"></div>
+      <div class="panel">
+        <div class="search"><span class="input">Jardin du Luxembourg</span><span class="go">Go</span></div>
+        <div class="seg"><span>🚶 Walk</span><span>🚗 Car</span><span class="on">🚲 Bike</span></div>
+        <ul class="routes">
+          <li class="selected">Route 1 · 3.42 km · 14 min<span class="pleasure best">Pleasure: 1830 green px · most pleasant</span></li>
+          <li>Route 2 · 3.71 km · 16 min<span class="pleasure">Pleasure: 1214 green px</span></li>
+        </ul>
+        <p class="status">2 cycling routes · fastest 3.42 km · 14 min</p>
+      </div>
+    </div>
+    <p class="good">Good for: mode found at a glance, like common map apps.</p>
+  </div>
+
+</div>
+</body>
+</html>

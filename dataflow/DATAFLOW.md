@@ -14,45 +14,44 @@ config:
   layout: elk
 ---
 flowchart LR
-    n1[["Navigation app"]]
-    n2[["Serving the app"]]
-    n3["Browser geolocation"]
-    n4["Browser user"]
-    subgraph z1["UNPKG CDN"]
-        n5["unpkg (Leaflet)"]
-    end
-    subgraph z2["OPENSTREETMAP SERVICES"]
-        n6["Nominatim geocoding"]
-        n7["OSM tile server"]
-        n8["OSRM routing (routing.openstreetmap.de)"]
-    end
-    n3 -->|"live position"| n1
-    n6 -->|"matching places with coordinates"| n1
-    n7 -->|"map tiles / zoom-16 tile images"| n1
-    n8 -->|"route geometries, distances, durations"| n1
-    n1 -->|"zoom-16 tile coordinates"| n7
-    n1 -->|"waypoint coordinates and profile"| n8
-    n2 -->|"app HTML, CSS and JavaScript"| n1
-    n1 -->|"place search query"| n6
-    n1 -->|"map, routes, stops and status"| n4
-    n5 -->|"Leaflet library and stylesheet"| n1
-    n4 -->|"search text, travel mode, stop edits, route picks"| n1
+    n1[["App shell"]]
+    n2[["Pleasure scoring"]]
+    n3[["Search and routing"]]
+    n4["Browser Geolocation API"]
+    n5["Nominatim geocoder"]
+    n6["OSM tile server"]
+    n7["OSRM routing (routing.openstreetmap.de)"]
+    n8["unpkg (Leaflet 1.9.4)"]
+    n9["Map user"]
+    n4 -->|"live position"| n1
+    n1 -->|"drawn walk or bike route paths"| n2
+    n1 -->|"2 flows"| n3
+    n1 -->|"map, routes, distances, durations, status"| n9
+    n5 -->|"place names and coordinates"| n3
+    n6 -->|"base map tiles"| n1
+    n6 -->|"zoom-16 PNG tiles along routes"| n2
+    n7 -->|"route geometries, distance, duration"| n3
+    n2 -->|"green-pixel counts, most pleasant route"| n1
+    n3 -->|"up to 3 picked routes / up to 5 places"| n1
+    n3 -->|"coordinates incl. user position, profile"| n7
+    n3 -->|"search text (q, jsonv2, limit 5)"| n5
+    n8 -->|"Leaflet script and stylesheet"| n1
+    n9 -->|"query, destination, stops, travel mode, route pick"| n1
     classDef actor fill:#FFFFFF,stroke:#111827,stroke-width:1px,color:#111827
     classDef process fill:#EDEAFF,stroke:#2B00FF,stroke-width:1.5px,color:#111827
     classDef store fill:#FAF6F1,stroke:#111827,stroke-width:1.5px,color:#111827
     classDef zone fill:#1A1A1A,stroke:#1A1A1A,color:#FFFFFF
     classDef group fill:#2B00FF,stroke:#2B00FF,color:#FFFFFF
     classDef stub fill:#FFFFFF,stroke:#2B00FF,stroke-width:1.5px,stroke-dasharray:5 4,color:#2B00FF
-    class n3,n4,n5,n6,n7,n8 actor
-    class n1,n2 group
-    style z1 fill:#FFFFFF,stroke:#B9B2A8,stroke-dasharray:4 4,color:#5D6270
-    style z2 fill:#FFFFFF,stroke:#B9B2A8,stroke-dasharray:4 4,color:#5D6270
+    class n4,n5,n6,n7,n8,n9 actor
+    class n1,n2,n3 group
 ```
 
 | Subsystem | What it does | Parts |
 |---|---|---|
-| Navigation app | Runs in the browser: searches places, plans walk, car and bike routes with stops, and scores how green they are. | Pleasure scorer, Route planner, Map, search and stops panel |
-| Serving the app | Serves the static HTML, CSS and JavaScript of the app to the browser on localhost. | Static file server (python http.server) |
+| App shell | Serves the static page and runs the map, panel, position, stops and travel-mode state in the browser. | Static file server (npm start), Map and panel UI, Static app files |
+| Pleasure scoring | Loads OSM tiles along walking and bike routes and counts green pixels to mark the most pleasant route. | Green-pixel pleasure scorer |
+| Search and routing | Turns a typed query into places with Nominatim and asks OSRM for walk, bike or car routes through the stops. | Route client (modes, stops, detours), Place search client |
 
 ## Trust boundaries
 
@@ -65,43 +64,38 @@ config:
 ---
 flowchart LR
     n1[["User's browser"]]
-    n2[["Developer machine"]]
-    n3["Browser user"]
-    subgraph z1["UNPKG CDN"]
-        n4["unpkg (Leaflet)"]
-    end
-    subgraph z2["OPENSTREETMAP SERVICES"]
-        n5["Nominatim geocoding"]
-        n6["OSM tile server"]
-        n7["OSRM routing (routing.openstreetmap.de)"]
-    end
-    n5 -->|"matching places with coordinates"| n1
-    n6 -->|"map tiles / zoom-16 tile images"| n1
-    n7 -->|"route geometries, distances, durations"| n1
-    n1 -->|"zoom-16 tile coordinates"| n6
-    n1 -->|"waypoint coordinates and profile"| n7
-    n2 -->|"app HTML, CSS and JavaScript"| n1
-    n1 -->|"place search query"| n5
-    n1 -->|"map, routes, stops and status"| n3
-    n4 -->|"Leaflet library and stylesheet"| n1
-    n3 -->|"search text, travel mode, stop edits, route picks"| n1
+    n2[["Developer host"]]
+    n3["Browser Geolocation API"]
+    n4["Nominatim geocoder"]
+    n5["OSM tile server"]
+    n6["OSRM routing (routing.openstreetmap.de)"]
+    n7["unpkg (Leaflet 1.9.4)"]
+    n8["Map user"]
+    n2 -->|"page and ES modules over HTTP :8000"| n1
+    n3 -->|"live position"| n1
+    n1 -->|"map, routes, distances, durations, status"| n8
+    n4 -->|"place names and coordinates"| n1
+    n5 -->|"2 flows"| n1
+    n6 -->|"route geometries, distance, duration"| n1
+    n1 -->|"coordinates incl. user position, profile"| n6
+    n1 -->|"search text (q, jsonv2, limit 5)"| n4
+    n7 -->|"Leaflet script and stylesheet"| n1
+    n8 -->|"query, destination, stops, travel mode, route pick"| n1
     classDef actor fill:#FFFFFF,stroke:#111827,stroke-width:1px,color:#111827
     classDef process fill:#EDEAFF,stroke:#2B00FF,stroke-width:1.5px,color:#111827
     classDef store fill:#FAF6F1,stroke:#111827,stroke-width:1.5px,color:#111827
     classDef zone fill:#1A1A1A,stroke:#1A1A1A,color:#FFFFFF
     classDef group fill:#2B00FF,stroke:#2B00FF,color:#FFFFFF
     classDef stub fill:#FFFFFF,stroke:#2B00FF,stroke-width:1.5px,stroke-dasharray:5 4,color:#2B00FF
-    class n3,n4,n5,n6,n7 actor
+    class n3,n4,n5,n6,n7,n8 actor
     class n1,n2 zone
-    style z1 fill:#FFFFFF,stroke:#B9B2A8,stroke-dasharray:4 4,color:#5D6270
-    style z2 fill:#FFFFFF,stroke:#B9B2A8,stroke-dasharray:4 4,color:#5D6270
 ```
 
 ## Each subsystem
 
-### Navigation app
+### App shell
 
-Runs in the browser: searches places, plans walk, car and bike routes with stops, and scores how green they are.
+Serves the static page and runs the map, panel, position, stops and travel-mode state in the browser.
 
 ```mermaid
 ---
@@ -109,55 +103,47 @@ config:
   layout: elk
 ---
 flowchart LR
-    n1["Browser user"]
+    n1["Browser Geolocation API"]
+    n2["OSM tile server"]
+    n3["unpkg (Leaflet 1.9.4)"]
+    n4["Map user"]
     subgraph z1["USER'S BROWSER"]
-        n2["Browser geolocation"]
-        n3("Pleasure scorer")
-        n4("Route planner")
-        n5("Map, search and stops panel")
+        n5("Map and panel UI")
     end
-    subgraph z2["UNPKG CDN"]
-        n6["unpkg (Leaflet)"]
+    subgraph z2["DEVELOPER HOST"]
+        n6("Static file server (npm start)")
+        n7[("Static app files")]
     end
-    subgraph z3["OPENSTREETMAP SERVICES"]
-        n7["Nominatim geocoding"]
-        n8["OSM tile server"]
-        n9["OSRM routing (routing.openstreetmap.de)"]
-    end
-    n10[["Serving the app"]]
-    n2 -->|"live position"| n5
-    n7 -->|"matching places with coordinates"| n5
-    n8 -->|"zoom-16 tile images"| n3
-    n8 -->|"map tiles"| n5
-    n9 -->|"route geometries, distances, durations"| n4
-    n3 -->|"zoom-16 tile coordinates"| n8
-    n3 -->|"green-pixel counts per route"| n5
-    n4 -->|"waypoint coordinates and profile"| n9
-    n4 -->|"walk and bike route paths"| n3
-    n4 -->|"up to 3 routes to draw"| n5
-    n10 -->|"app HTML, CSS and JavaScript"| n5
-    n5 -->|"place search query"| n7
-    n5 -->|"position, stops, destination, travel mode"| n4
-    n5 -->|"map, routes, stops and status"| n1
-    n6 -->|"Leaflet library and stylesheet"| n5
-    n1 -->|"search text, travel mode, stop edits, route picks"| n5
+    n8[["Pleasure scoring"]]
+    n9[["Search and routing"]]
+    n6 -->|"page and ES modules over HTTP :8000"| n5
+    n1 -->|"live position"| n5
+    n5 -->|"drawn walk or bike route paths"| n8
+    n5 -->|"2 flows"| n9
+    n5 -->|"map, routes, distances, durations, status"| n4
+    n2 -->|"base map tiles"| n5
+    n8 -->|"green-pixel counts, most pleasant route"| n5
+    n9 -->|"up to 3 picked routes / up to 5 places"| n5
+    n7 -->|"HTML, JS and CSS files"| n6
+    n3 -->|"Leaflet script and stylesheet"| n5
+    n4 -->|"query, destination, stops, travel mode, route pick"| n5
     classDef actor fill:#FFFFFF,stroke:#111827,stroke-width:1px,color:#111827
     classDef process fill:#EDEAFF,stroke:#2B00FF,stroke-width:1.5px,color:#111827
     classDef store fill:#FAF6F1,stroke:#111827,stroke-width:1.5px,color:#111827
     classDef zone fill:#1A1A1A,stroke:#1A1A1A,color:#FFFFFF
     classDef group fill:#2B00FF,stroke:#2B00FF,color:#FFFFFF
     classDef stub fill:#FFFFFF,stroke:#2B00FF,stroke-width:1.5px,stroke-dasharray:5 4,color:#2B00FF
-    class n1,n2,n6,n7,n8,n9 actor
-    class n3,n4,n5 process
-    class n10 stub
+    class n1,n2,n3,n4 actor
+    class n5,n6 process
+    class n7 store
+    class n8,n9 stub
     style z1 fill:#F1EBE2,stroke:#CFC7BB,color:#5D6270
-    style z2 fill:#FFFFFF,stroke:#B9B2A8,stroke-dasharray:4 4,color:#5D6270
-    style z3 fill:#FFFFFF,stroke:#B9B2A8,stroke-dasharray:4 4,color:#5D6270
+    style z2 fill:#F1EBE2,stroke:#CFC7BB,color:#5D6270
 ```
 
-### Serving the app
+### Pleasure scoring
 
-Serves the static HTML, CSS and JavaScript of the app to the browser on localhost.
+Loads OSM tiles along walking and bike routes and counts green pixels to mark the most pleasant route.
 
 ```mermaid
 ---
@@ -165,19 +151,60 @@ config:
   layout: elk
 ---
 flowchart LR
-    subgraph z1["DEVELOPER MACHINE"]
-        n1("Static file server (python http.server)")
+    n1["OSM tile server"]
+    subgraph z1["USER'S BROWSER"]
+        n2("Green-pixel pleasure scorer")
     end
-    n2[["Navigation app"]]
-    n1 -->|"app HTML, CSS and JavaScript"| n2
+    n3[["App shell"]]
+    n3 -->|"drawn walk or bike route paths"| n2
+    n1 -->|"zoom-16 PNG tiles along routes"| n2
+    n2 -->|"green-pixel counts, most pleasant route"| n3
     classDef actor fill:#FFFFFF,stroke:#111827,stroke-width:1px,color:#111827
     classDef process fill:#EDEAFF,stroke:#2B00FF,stroke-width:1.5px,color:#111827
     classDef store fill:#FAF6F1,stroke:#111827,stroke-width:1.5px,color:#111827
     classDef zone fill:#1A1A1A,stroke:#1A1A1A,color:#FFFFFF
     classDef group fill:#2B00FF,stroke:#2B00FF,color:#FFFFFF
     classDef stub fill:#FFFFFF,stroke:#2B00FF,stroke-width:1.5px,stroke-dasharray:5 4,color:#2B00FF
-    class n1 process
-    class n2 stub
+    class n1 actor
+    class n2 process
+    class n3 stub
+    style z1 fill:#F1EBE2,stroke:#CFC7BB,color:#5D6270
+```
+
+### Search and routing
+
+Turns a typed query into places with Nominatim and asks OSRM for walk, bike or car routes through the stops.
+
+```mermaid
+---
+config:
+  layout: elk
+---
+flowchart LR
+    n1["Nominatim geocoder"]
+    n2["OSRM routing (routing.openstreetmap.de)"]
+    subgraph z1["USER'S BROWSER"]
+        n3("Route client (modes, stops, detours)")
+        n4("Place search client")
+    end
+    n5[["App shell"]]
+    n5 -->|"position, stops, destination, mode"| n3
+    n5 -->|"search query"| n4
+    n1 -->|"place names and coordinates"| n4
+    n2 -->|"route geometries, distance, duration"| n3
+    n3 -->|"up to 3 picked routes"| n5
+    n3 -->|"coordinates incl. user position, profile"| n2
+    n4 -->|"up to 5 places"| n5
+    n4 -->|"search text (q, jsonv2, limit 5)"| n1
+    classDef actor fill:#FFFFFF,stroke:#111827,stroke-width:1px,color:#111827
+    classDef process fill:#EDEAFF,stroke:#2B00FF,stroke-width:1.5px,color:#111827
+    classDef store fill:#FAF6F1,stroke:#111827,stroke-width:1.5px,color:#111827
+    classDef zone fill:#1A1A1A,stroke:#1A1A1A,color:#FFFFFF
+    classDef group fill:#2B00FF,stroke:#2B00FF,color:#FFFFFF
+    classDef stub fill:#FFFFFF,stroke:#2B00FF,stroke-width:1.5px,stroke-dasharray:5 4,color:#2B00FF
+    class n1,n2 actor
+    class n3,n4 process
+    class n5 stub
     style z1 fill:#F1EBE2,stroke:#CFC7BB,color:#5D6270
 ```
 
@@ -185,34 +212,38 @@ flowchart LR
 
 | Part | Kind | Subsystem | Zone | Sources |
 |---|---|---|---|---|
-| Browser geolocation | actor |  | User's browser |  |
-| Nominatim geocoding | actor |  | OpenStreetMap services |  |
-| OSM tile server | actor |  | OpenStreetMap services |  |
-| OSRM routing (routing.openstreetmap.de) | actor |  | OpenStreetMap services |  |
-| Pleasure scorer | process | Navigation app | User's browser | `src/app.js`, `src/geo.js` |
-| Route planner | process | Navigation app | User's browser | `src/app.js`, `src/geo.js` |
-| Static file server (python http.server) | process | Serving the app | Developer machine | `package.json` |
-| Map, search and stops panel | process | Navigation app | User's browser | `index.html`, `src/app.js` |
-| unpkg (Leaflet) | actor |  | unpkg CDN |  |
-| Browser user | actor |  |  |  |
+| Static file server (npm start) | process | App shell | Developer host | `package.json` |
+| Browser Geolocation API | actor |  |  |  |
+| Map and panel UI | process | App shell | User's browser | `index.html`, `src/app.js` |
+| Nominatim geocoder | actor |  |  |  |
+| OSM tile server | actor |  |  |  |
+| OSRM routing (routing.openstreetmap.de) | actor |  |  |  |
+| Green-pixel pleasure scorer | process | Pleasure scoring | User's browser | `src/app.js`, `src/geo.js` |
+| Route client (modes, stops, detours) | process | Search and routing | User's browser | `src/app.js`, `src/geo.js` |
+| Place search client | process | Search and routing | User's browser | `src/app.js`, `src/geo.js` |
+| Static app files | store | App shell | Developer host | `index.html`, `src`, `styles.css` |
+| unpkg (Leaflet 1.9.4) | actor |  |  |  |
+| Map user | actor |  |  |  |
 
 ## Flows
 
 | From | To | Data | Sources |
 |---|---|---|---|
-| Browser geolocation | Map, search and stops panel | live position | `src/app.js` |
-| Nominatim geocoding | Map, search and stops panel | matching places with coordinates | `src/app.js`, `src/geo.js` |
-| OSM tile server | Pleasure scorer | zoom-16 tile images | `src/app.js` |
-| OSM tile server | Map, search and stops panel | map tiles | `src/app.js` |
-| OSRM routing (routing.openstreetmap.de) | Route planner | route geometries, distances, durations | `src/app.js`, `src/geo.js` |
-| Pleasure scorer | OSM tile server | zoom-16 tile coordinates | `src/app.js` |
-| Pleasure scorer | Map, search and stops panel | green-pixel counts per route | `src/app.js`, `src/geo.js` |
-| Route planner | OSRM routing (routing.openstreetmap.de) | waypoint coordinates and profile | `src/app.js`, `src/geo.js` |
-| Route planner | Pleasure scorer | walk and bike route paths | `src/app.js` |
-| Route planner | Map, search and stops panel | up to 3 routes to draw | `src/app.js` |
-| Static file server (python http.server) | Map, search and stops panel | app HTML, CSS and JavaScript | `index.html`, `package.json` |
-| Map, search and stops panel | Nominatim geocoding | place search query | `src/app.js`, `src/geo.js` |
-| Map, search and stops panel | Route planner | position, stops, destination, travel mode | `src/app.js` |
-| Map, search and stops panel | Browser user | map, routes, stops and status | `src/app.js` |
-| unpkg (Leaflet) | Map, search and stops panel | Leaflet library and stylesheet | `index.html` |
-| Browser user | Map, search and stops panel | search text, travel mode, stop edits, route picks | `index.html`, `src/app.js` |
+| Static file server (npm start) | Map and panel UI | page and ES modules over HTTP :8000 | `index.html`, `package.json` |
+| Browser Geolocation API | Map and panel UI | live position | `src/app.js` |
+| Map and panel UI | Green-pixel pleasure scorer | drawn walk or bike route paths | `src/app.js` |
+| Map and panel UI | Route client (modes, stops, detours) | position, stops, destination, mode | `src/app.js` |
+| Map and panel UI | Place search client | search query | `src/app.js` |
+| Map and panel UI | Map user | map, routes, distances, durations, status | `src/app.js` |
+| Nominatim geocoder | Place search client | place names and coordinates | `src/app.js`, `src/geo.js` |
+| OSM tile server | Map and panel UI | base map tiles | `src/app.js` |
+| OSM tile server | Green-pixel pleasure scorer | zoom-16 PNG tiles along routes | `src/app.js` |
+| OSRM routing (routing.openstreetmap.de) | Route client (modes, stops, detours) | route geometries, distance, duration | `src/app.js`, `src/geo.js` |
+| Green-pixel pleasure scorer | Map and panel UI | green-pixel counts, most pleasant route | `src/app.js`, `src/geo.js` |
+| Route client (modes, stops, detours) | Map and panel UI | up to 3 picked routes | `src/app.js` |
+| Route client (modes, stops, detours) | OSRM routing (routing.openstreetmap.de) | coordinates incl. user position, profile | `src/app.js`, `src/geo.js` |
+| Place search client | Map and panel UI | up to 5 places | `src/app.js` |
+| Place search client | Nominatim geocoder | search text (q, jsonv2, limit 5) | `src/app.js`, `src/geo.js` |
+| Static app files | Static file server (npm start) | HTML, JS and CSS files | `index.html`, `package.json` |
+| unpkg (Leaflet 1.9.4) | Map and panel UI | Leaflet script and stylesheet | `index.html` |
+| Map user | Map and panel UI | query, destination, stops, travel mode, route pick | `index.html`, `src/app.js` |

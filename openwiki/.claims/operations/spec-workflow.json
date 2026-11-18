@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:c33f49b7e5a1cfd4dd49c3e1b61bf1f97ec1fd423b01ae4ed20f37955606e32c",
+  "claims": [
+    {
+      "id": "claim_6f6b33452122474887e86d63f9702b84",
+      "statement": "The Spec Kit workflow runs specify, plan, tasks and implement with review steps between them.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/workflows/speckit/workflow.yml",
+          "version": "repo-file-v1:sha256:177761c5e7df28126beea043b5cb45aeaf7958090c022dc11ac71399422fcfbc"
+        }
+      ]
+    },
+    {
+      "id": "claim_e5e71730450d423687e514c1a4672517",
+      "statement": "The git extension hooks run speckit.git.feature before specify to create the feature branch.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/extensions.yml",
+          "version": "repo-file-v1:sha256:2ccf681bbd7cd69091f3c7b651143637d83b70ef929274dca9bec43582a2dcc4"
+        }
+      ]
+    },
+    {
+      "id": "claim_f15a74f9f9de4cdcb48925e875383f6e",
+      "statement": "The project constitution is still the unfilled Spec Kit template.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/memory/constitution.md",
+          "version": "repo-file-v1:sha256:ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3"
+        }
+      ]
+    },
+    {
+      "id": "claim_1f2175a244c147e7983f82643c2c60c0",
+      "statement": "SF-72's spec records the clarifications: segmented selector design C, pleasure indicator for bike, testing against a fake OSRM checked by its docs, and mode-specific no-route messages.",
+      "evidence": [
+        {
+          "resource": "repo://specs/sf-72-bycicle-track/spec.md#L1-L20",
+          "version": "repo-lines-v1:sha256:9a0fee43c8e14acd847e4c42378e118645463a0295c45030e893b71ae9792ed8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3OWUyMTk1OWFhNWQyNTQxZjg5NTg5MzIyN2RhZjNkNDliMDk1ZmRlNDM2MzI4ZTk3M2VlZDA4MmE1MTNkZjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhNTA4NzVkZWNhZTI5ZWVkYTJlMjFkNjE0NjQ5MmVmZmM0Yjc5OTVmZjQ3YmM3ZDkwMWU5MmU1N2ZkYWU5Y2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFmZTM1YTlhMTM5NzQ2ZjBmNDc2YzBhNjRlMjMwYjA3OTI3ZjMwYjA3NDM4NTJkOTZhYjJiNWYxNjE4NTYxNzIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_270ae3eace1744dc9e9f9c633b7a6593",
+      "statement": "The write-tests skill writes tests before any code, between speckit-tasks and plan review.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/write-tests/SKILL.md#L1-L12",
+          "version": "repo-lines-v1:sha256:cf1232565790dba5fa64d2afcfc6587c2cf1e7f4bd3d9920bcfa299bab9c13bd:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1MmQ3MTExMDNkNTBhNDM3ODMwYzZmYmNkMDRmYjRiYWI0OWEwZjgyZjZkMjZkMWM3OTFjNmU4NDg4ZGQwOTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3ZjYwZTUxNTc0M2E1NGNiZmY3ZGIzYThmNGUzNjM3M2QzNDQ4ZDAzMjgyN2JjMzRjYmE4OThkZWI5OTQ0NzQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUwNjE3Mzg0ZjhiZDJkZDg3MGJhNDVlNTA2MGI4MTk1Mjg5Y2Y3ZDRjZTFmNzk2ZTc1Njg0NjRiZjcyM2Q2NjcifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-17T14:30:06.574Z"
+  }
+}
