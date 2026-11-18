@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:a0c711ce12c078cd196dd7ab8c9f126425ff2b005a14b3fa2a639aa80303ba27",
+  "claims": [
+    {
+      "id": "claim_d68a590cb9eb4992b4ce883d417b5407",
+      "statement": "Unit tests run with Node's built-in test runner (node --test test/) and import src/geo.js directly; app.js, index.html and styles.css are checked by reading their source text.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:8615aba3b06bb63df5fd2f5f501dbe25d2abc663e3301f1cac3db1c84a8e9d93"
+        },
+        {
+          "resource": "repo://test/bike.test.js#L1-L8",
+          "version": "repo-lines-v1:sha256:6ea4ec7167c12c36eb2f196744676acb937dadc2f49e98425ad37b0399ffd8ac:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjg5ZWMwM2U2ZjE4YzY1ZmZhMGQ3OGE4OGVlMDU1NTkyNzM3MGQ4ZjEzOWZjNGNlOGQyZjFmNjUxZDg5MzNmMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTg2MmJiZTQ0YTVhYmQ2YjljYjY3OTdjNDM2YmFlNTVhNzdhNmYyODdhNDYzZGIyYzcxYjgwMTNlODE2NjZhOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzU4ODc1MjJiZjU3NjgwZGQ4YzcxZmVkMjZhZjFmYjY4ZTJkY2E5YzlhZmI1MjczMmY3MWFmNGQ1YTQ0ZDE4MSJ9"
+        },
+        {
+          "resource": "repo://test/routes.test.js#L265-L305",
+          "version": "repo-lines-v1:sha256:be126b34d0fa0c97c6754315343876ffbb326a5abaab85de32c270ddb3303489:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhkYjQzYWM4ZDgzY2JhNGM4ZmYwNzllYjUzNTU1YWIyNDU3YTRkNTE4ZGMyZDAwNjEyMDA5YTE5ODdiOGZhNGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM0NmRlZGI5NWVhOWE3NzViZGM4NjlkZmM4YmRmNWU0NWExM2Y4ZjlhYjAzNzYxODJkZWI0NWIwZDdjNjc4YWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0NWU5NGQ4NjBkY2Q2M2RiMzJhZjgxNDEyZWJlMjc5OGM0ZmI2MTYxMDFkZTU1NWQ5ZWMxMWUxNTg4YzRmZGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY3Y2I2MDE4MDM2NDg0M2EwY2E4MjE1YjhiMWM3NzE5YWIyYzg0NGRjYzNiMjI2ZWZjYjYyNTYzN2Y2MzI5NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_757fbcfcdbc945f09b883f5fa9a31b5c",
+      "statement": "The AI scenarios in tests/ai run the app with npm start in headless Playwright Chromium at a fixed Berlin geolocation and require live access to routing.openstreetmap.de, nominatim.openstreetmap.org, tile.openstreetmap.org and unpkg.com.",
+      "evidence": [
+        {
+          "resource": "repo://tests/ai/us1-cycling-routes.md#L1-L10",
+          "version": "repo-lines-v1:sha256:e704525f2375515f3efbc27e3c31129cf1c55a75cc6b03093f347cdf5a667fb9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdjZjZhM2MwYWQyZDBjMzI2YjE0YmMxNjMwMjhiNjk0MzUxZTg3YTQ4ZDI1NDg3ODc3OTEwN2MxMGJlYThhYzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJlMWVkMWM0MGUwOGZkZWJlMTQ5MzEzOTgzN2QxMTgwYzc4MjcxOWZjMmI4N2VjYmI4ZjI1ZDQzYzRiMDQxZTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3YWRmZWRiZDhiZGU5Mjk4ODM2MWFlZTMxYjlmZjI2MDg2ZGM1MDQ3MWZjZTdjYjM3MGNiZDNmZDA3OWJmMDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_746d847409814f4e9e68a26b19b5615e",
+      "statement": "test/bike.test.js checks the TRAVEL_MODES bike contract, that only walking forces detours, that pleasure applies to foot and bike only, and the segmented selector markup and CSS.",
+      "evidence": [
+        {
+          "resource": "repo://test/bike.test.js#L21-L160",
+          "version": "repo-lines-v1:sha256:ffcb1b2f7b63688ce36f446db644e80630a3fbbced9a2ac25457d7a8bdffa8b0:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJkZmIxOWQ4NWVjYzZkOThiYTU4YzdkZjgwYWYxNWJlNTRhYTg0MzA3YjUyODk0NzQzNDY0NDJlNmZjMmFiMjhjIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIwODQ3YWI0NDNlMTlkNmE5NGY0NDA4MjkzMjVjYjM5YmE1NGM1NDBmMmMyYWE1ZjZmMTA0YTdjNDUzNTIxNWUzIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiIxMDNiNjYxMjg4MjFkODMyNTc3OGI4MzU4YzY1OTMwYzdiNWUwMzk1MGRiMzY5NDllZGNmZGJmMWEzNjE2NzhmIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiIwY2RlZDY3MWZiYjg0N2NhMzNkMmIyM2ViYWU4MGE0ZTY5ZmQ2NzA1MzI3ZWRhNDgzMWRlYjM2ZDg3YzlmOTFiIn0"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T15:57:49.174Z"
+  }
+}
