@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:63e681f827a52246b0559e8f8a146659b0a8b36cfaa861daebc1d575bc34a5b2",
+  "claims": [
+    {
+      "id": "claim_69a3a0d31ae540e1accec321cfa8f868",
+      "statement": "The Spec Kit workflow runs specify, plan, tasks and implement, with human approve/reject gates after specify and after plan that abort on rejection.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/workflows/speckit/workflow.yml",
+          "version": "repo-file-v1:sha256:177761c5e7df28126beea043b5cb45aeaf7958090c022dc11ac71399422fcfbc"
+        }
+      ]
+    },
+    {
+      "id": "claim_8ff9de8b2fc6436e963808b6be785c9e",
+      "statement": "The project constitution in .specify/memory/constitution.md is still the unfilled template.",
+      "evidence": [
+        {
+          "resource": "repo://.specify/memory/constitution.md",
+          "version": "repo-file-v1:sha256:ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3"
+        }
+      ]
+    },
+    {
+      "id": "claim_28d3b3e89e6d401e9be02d85a5907764",
+      "statement": "The write-tests skill runs after speckit-tasks and writes deterministic tests and AI test scenarios, recording them in tasks.md; plan-review follows it to get human approval of the plan.",
+      "evidence": [
+        {
+          "resource": "repo://.claude/skills/plan-review/SKILL.md",
+          "version": "repo-file-v1:sha256:40d5b03153eacee93dda70d7c857c9a2f4c9ba09b81bb86bfc9abd3d3b4fe885"
+        },
+        {
+          "resource": "repo://.claude/skills/write-tests/SKILL.md",
+          "version": "repo-file-v1:sha256:2ad910e5dafb3e0a7b82a6bd9123ab9f7c03f8ad1fee7a333ff1e095036d913d"
+        }
+      ]
+    },
+    {
+      "id": "claim_cca7dac1c495427d87f98d8822b3a55a",
+      "statement": "The bicycle feature spec records that design C (segmented buttons with icons) was chosen and that bike routes show the pleasure indicator.",
+      "evidence": [
+        {
+          "resource": "repo://specs/sf-70-bicycle-track/spec.md",
+          "version": "repo-file-v1:sha256:3fd8049b7f087ccee50d7fa523c36227283b307f3b8a2a1fecdb8cf2abe50537"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T15:57:49.174Z"
+  }
+}

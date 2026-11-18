@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:871a78e1553b3edc4d1ebf9e8c3349b7a50a9caf0f675dfd01ec2f9d14f094a6",
+  "claims": [
+    {
+      "id": "claim_f370d24779284ed6960d4d42be0bebfd",
+      "statement": "The app calls Nominatim for search, routing.openstreetmap.de OSRM servers (routed-foot, routed-car, routed-bike) for routes, tile.openstreetmap.org for map and pleasure tiles, and loads Leaflet 1.9.4 from unpkg, all directly from the browser without credentials.",
+      "evidence": [
+        {
+          "resource": "repo://index.html#L30-L30",
+          "version": "repo-lines-v1:sha256:7da39d6f5b55be48010702050eefc62e7126902d9d940b75292e1ee3d94d193e:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2RhMzlkNmY1YjU1YmU0ODAxMDcwMjA1MGVlZmM2MmU3MTI2OTAyZDlkOTQwYjc1MjkyZTFlZTNkOTRkMTkzZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2RhMzlkNmY1YjU1YmU0ODAxMDcwMjA1MGVlZmM2MmU3MTI2OTAyZDlkOTQwYjc1MjkyZTFlZTNkOTRkMTkzZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjQ4MThmNWM5OTNhMjAzMzA2NDUwNTEzMTFjODA3OThkOTdhNTg0OWY0NGM0OTgyZGI2OGI1ZGNjNzNlZGJkNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjRkN2VlNzU2OTQzM2EzYzUyYTczZGViMzVjODE0ODFiM2U0ZWFkZTg4ZThjYmRmMTc3YzFmMzNiOWQwY2ZiMSJ9"
+        },
+        {
+          "resource": "repo://index.html#L7-L7",
+          "version": "repo-lines-v1:sha256:d5d27cb142449192b28275f6a014c829b67f2b270619a2ab0b4df062a33aeacf:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDVkMjdjYjE0MjQ0OTE5MmIyODI3NWY2YTAxNGM4MjliNjdmMmIyNzA2MTlhMmFiMGI0ZGYwNjJhMzNhZWFjZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDVkMjdjYjE0MjQ0OTE5MmIyODI3NWY2YTAxNGM4MjliNjdmMmIyNzA2MTlhMmFiMGI0ZGYwNjJhMzNhZWFjZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmUwN2VlM2JmOTQyZGYyNGVkMWQyMWMzZGZhOTZkODE4NDgyMWRkMDJjY2MxOGZjZjMxMGQ1Nzk3MTcyMTg0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDFjZThlOWI0MDJiZDdhYTVjODI4ODE1NTZhYzUzM2M0OWJiZjI3OWM4MmVjZjIyNjNlMDBhZjdiNTAyZGIxZCJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L25-L32",
+          "version": "repo-lines-v1:sha256:b645c0460b9f6149ef78211da902fd6ebc2f3b0eebfa6c007a1c8d3b9713b2b3:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmNhZTZhZDM1YjViNzgzMDc2NWQ3MmUwMjA4ODQ0MWNkZTg3NjJkNjIxY2QxNTgyMzQ3ODY5YmRhYTE0MjI5ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODhiMzg0YzQyZjdjODMzZjc0NmU4NWJmMGE2ZTM1M2Y0NGQ4MTVjZTE2MTIxODNjODUxZGRkMjFhNjBiMWU1OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTJkZmEwYTAwYTI1M2E5YTVjYmIwM2ZkZjdlODU1NzMyNjBlNDM5NzU0MWMwZTk0NzNmOTFiOTlkZjY1OGIwYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDNlMmM0MWMyMTBjNDJiMTA3Zjk5ZjYyMGUyYjA1NGQ3ZTg5OTVhM2FhZGJjZGI1NmQ1MDc4NzY4ZmY5OGFjMiJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L34-L66",
+          "version": "repo-lines-v1:sha256:721cf507db61163d8e776f7a35bff1d6ae3cb419037417fbdd500aa921ba051e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NjFhZTI5YTMwZGIwNmFmOTI2Mzg1NTkxYTllOTdkMTM0OTVhYTIxMTg2ZWJiNzBjMTk2NDRlZjc2MjY4ZDUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhMWQxYTYzMzkwMjI5Yzc5ODM0N2U4M2EwNDA1NDQxYzk0MDAwMzUyODRhZDE2OGMxYmY2Y2RmMWQ3MGEzNzAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZhYmVmODcyODJiMWQyNjhlMTM1NzI5YmUxZmFlMTkyMDcxOTI3ODE0OTc3MWJmNjU5N2IyNDhmNmM1ZWRlNzIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzOGUzN2M4NTYyMjdhMjZlNTc1YTAxNDEwOGNhNjRiYTc0YTdhYzFjYTg1NDQ3NWNjZjY0NDMwMWQzMWM4ZWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_53ef05c6f3db4314a831a36b86f3c2f3",
+      "statement": "The user's high-accuracy live position is sent to the OSRM routing server as the first coordinate of every route request.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L189-L192",
+          "version": "repo-lines-v1:sha256:f82a7e730fc8726d9da86aa7d92cfe6310001c6c7dabd03849210167f58cbed4:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzE1MmFmMDU0NzA3NDE1NTg4ZjQ1NTNhNjM0N2ZhN2E1ZWE1OTdiY2IxY2QxMmMxNGQ3NWQwMTA5MDAxNjhhNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTVlZjAxYmMwOGRiYzNiNjNlNGU3NWVhM2QyNmE1Yjk0MTg5MTg3N2UyN2FkODkxMzI5Yzg0MTFkN2Q4ZGM0ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWNjMDYzNDYzYWIzZTJkN2FkYjM0MTMyMDdmYjQxZTliMzI3OTZhYTBhMTQxMGE0YzMwNTRjMzg2MjY0NGQ3YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzRlMTk3ZDI2MzZjYjI0ZjkzYmQ0NzZiZjIyYzgwNGVmYThhMTc4Mjk0ODllMjU1ZTNiMDVmNDAwMjUyNjM0MCJ9"
+        },
+        {
+          "resource": "repo://src/app.js#L90-L95",
+          "version": "repo-lines-v1:sha256:a83af83e63d07aa9db07985c46147f260caf1f6f42d6400ce610f02e6eb1a2a9:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVlN2NkOTRmODRmNGE1NGVhNDBhZjVkNGQyZDVlMzYzMTA3NGFmMjc5ZjM2NDYxMzc1NzcwZTYwMzU3MzEwOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTVlZjAxYmMwOGRiYzNiNjNlNGU3NWVhM2QyNmE1Yjk0MTg5MTg3N2UyN2FkODkxMzI5Yzg0MTFkN2Q4ZGM0ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDk0ZWZmNmNkZjBjZjI0MWQ5MjA3MDRkYTQyMmUxZmY0ZDk2ODU1ZjI1M2NiZDBjYTNjYTBjZWZlNmNiMTM4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjUwMjhjNGM5ZGI0Y2U3NmZkM2MyMGI1MGU1ZTg2ZDQ0NTc3NzdjMjk1OTkzYWUyMDBlMWVjN2FiNzJiMGViMSJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L71-L82",
+          "version": "repo-lines-v1:sha256:840581fa60cdca122ec5241a95d337d5d533d9fdfc0fab9b67f9f90fc745c3e7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiOWNmMTQyMDdhOGM4N2Y0NjA1ZjIzOTEzZDQ2MzM0MDBjY2Q3YTY5OWEzZjQ1YjBhOTVjNWIzYjlkODkwODQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE3MGZmMzEyMDk2ZjA4MWIwYTRlNzU5MzEwMDdlZTM0NjY5ODUyN2QyNDA3ODcwMmEzMTE5ODA0YTU5MjRlYWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY4MTVkYjI1MjBhMzI3YWY4OTU5NGVlNWYzYzRiODE5MjUyY2JmNzEyOTY3NWY3MGNmZjA5ZDJmZGNkYmE3MWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9edb3a79b61743c2a5a3436b44fbde1e",
+      "statement": "fetchJson throws for any non-OK HTTP response, and parseRoutes returns no routes unless the OSRM response code is Ok.",
+      "evidence": [
+        {
+          "resource": "repo://src/app.js#L100-L104",
+          "version": "repo-lines-v1:sha256:93ccee72630981c9c52338149251f8f120941076fc00f80cddbffd4856f78eaf:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjY2OTNhYWU5M2JkNWIzNjlmMjRkNTQ0ZjE3MGM5OTY1ZDE1OTNmMzRlOGI2NWM0ZTc3OTViNzEzNzRkYzNjMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTk0ODlmZjI4MDE2YzFlMGFjMDU0ZDhlMzhhYjMxZTY0M2M4NDlhODFiN2E1NWYxOGE0NjM0YzJjY2UxYTdhMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTY3OGQzYmZhMGEwYjVjZDU4MTAxNzAzNjczMTgwYTIzYzk3OTAwZjcwMzYxZTE0Y2FlZTJiYjcxMmI5OTAxZSJ9"
+        },
+        {
+          "resource": "repo://src/geo.js#L126-L136",
+          "version": "repo-lines-v1:sha256:4e2c0dea171335fc8e0477c33bc36cdf649780b70918a9036529b538dbabbec2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZmI0NGI1ZWVlMGRjYzhkZDliMWIzYmMzZWIwOGVjYWY4M2E5NDZjOTk1N2FjMWJmYmMyZTJkMjY5YTdjMDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIzNjZlMzk3Y2E2MjdjOTc3ZDM0ZmMyNTYwNDM0MzRhZWJjZmVhYWE4MTQ3ZjhiMzM3ZWZjMmQ2MzdmNWU2MTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQyYmRjMmZlZTM0OTFhMzRjMzA1N2YxMDQ2YTI1ZTlmNjc2MDBmMmEyMmJiMWJkNWQ1MDRlYmQxZjg4ZDI2MDYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-16T15:57:49.174Z"
+  }
+}
