@@ -74,3 +74,15 @@ No violations.
 3. Build adds the touch step to `quickstart.md`.
 
 **Files**: `test/map-cursor.test.js` (extend), `specs/sf-91-beautiful-mouse/quickstart.md` (step 7), `spec.md` (edge case wording). No dependency.
+
+## Fix round 2
+
+**Problem**: the AI code review marked the Fix round 1 guard test as must-fix. The test `map cursor block sets only cursor properties, no src/ change` in `test/map-cursor.test.js` runs `git diff origin/main...HEAD --name-only` and fails when the branch changes any file under `src/`. The test stays in the suite after merge, so any later branch that edits `src/` (for example `src/app.js`) fails `npm test`.
+
+**Cause**: Fix round 1 step 1 put a check for this branch only ("the branch changes no file under `src/`") into a permanent test. That check depends on the git state of the branch, not on the code. It is not deterministic across branches.
+
+**Fix** (no app code change, no spec change):
+1. Build removes the git-diff / `src/` part from that test (the `child_process` import, the `git diff` call and the `src/` assert) and renames the test to drop "no src/ change". The static part stays: every declaration in the map cursor block of `styles.css` is a `cursor` property, and the block has no `touch-action`, `pointer-events` or `user-select`. This still guards FR-008 touch behaviour.
+2. The "no `src/` change" fact for this branch is checked by the review only (plan.md step 4 above), not by a test. Fix round 1 step 1 is changed by this round.
+
+**Files**: `test/map-cursor.test.js` (edit one test). No dependency. `spec.md` unchanged: what the user gets does not change.
