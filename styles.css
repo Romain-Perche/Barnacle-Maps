@@ -40,3 +40,10 @@ html, body { height: 100%; margin: 0; font-family: system-ui, sans-serif; }
 #status:empty { display: none; }
 
 #routes .pleasure.best { color: #188038; font-weight: 600; }
+
+/* map cursor (ui/map-cursor@1) */
+.leaflet-container, .leaflet-grab { cursor: url("assets/map-cursor.svg") 12 12, crosshair; }
+.leaflet-dragging .leaflet-grab { cursor: grabbing; }
+.leaflet-interactive, .leaflet-bar a, .leaflet-popup-content button,
+.leaflet-control-attribution a, .leaflet-popup-close-button { cursor: pointer; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { cursor: auto; }
