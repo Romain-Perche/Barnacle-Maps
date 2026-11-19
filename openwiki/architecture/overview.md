@@ -5,15 +5,19 @@ description: How Barnacle Maps is built as a browser-only app, with a DOM and ne
 tags: [architecture, browser, leaflet, state]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-16T15:57:49.174Z
+    at: 2026-11-19T16:46:39.118Z
 sources:
+  - id: openwiki-source-fb20b35f1c795f16a5fefc1e
+    resource: repo://assets/map-cursor.svg
   - id: openwiki-source-f8d10828394c4129061d5b0e
     resource: repo://index.html
   - id: openwiki-source-e2cc3c3da96cc52ce6b6de67
     resource: repo://src/app.js
   - id: openwiki-source-c2b285527acec6fce8507885
     resource: repo://src/geo.js
-generated: { by: "claude-code", at: "2026-11-16T15:57:49.174Z" }
+  - id: openwiki-source-9a6d805649b823477f244ab2
+    resource: repo://styles.css
+generated: { by: "claude-code", at: "2026-11-19T16:46:39.118Z" }
 ---
 
 # Architecture overview
@@ -25,7 +29,7 @@ Barnacle Maps is a small static web app. Everything runs in the user's browser. 
 | `index.html` | Page shell: the `#map` container, and the `#panel` with search form, travel-mode selector, results list, stops box, routes list and `#status` line. It loads Leaflet 1.9.4 from unpkg as a classic script and `src/app.js` as an ES module. |
 | `src/app.js` | The controller. It owns every DOM element, the Leaflet map, browser geolocation, all `fetch` calls and all mutable UI state. |
 | `src/geo.js` | Pure helpers with no DOM access and no `fetch`: formatting, URL building, response parsing, route geometry and selection, stop-list operations and green-pixel maths. Because it is pure, the Node unit tests cover it directly. |
-| `styles.css` | Layout of the floating panel, the segmented mode selector, route buttons and stop markers. |
+| `styles.css` | Layout of the floating panel, the segmented mode selector, route buttons and stop markers. It also sets the map cursor: a local ring-and-dot SVG (`assets/map-cursor.svg`, hot spot 12 12, `crosshair` fallback) on the Leaflet map, `grabbing` while dragging, `pointer` on clickable items. |
 
 For how data moves between the browser, the OpenStreetMap services and the local file server, see the data flow model in [dataflow/DATAFLOW.md](../../dataflow/DATAFLOW.md). It is not repeated here.
 
