@@ -1,0 +1,42 @@
+# Tasks: Beautiful Mouse Pointer
+
+**Input**: `specs/sf-91-beautiful-mouse/` (plan.md, spec.md, research.md, data-model.md, quickstart.md)
+**Tests**: `npm test` (`node --test test/`), static checks on `styles.css` and the SVG. Blueprint `ui/map-cursor@1` rules are tested in the story that first uses them. No outside services and no blueprint exceptions, so no schema or `docs/DECISIONS.md` tasks.
+
+## Phase 1: Setup
+
+- [ ] T001 Create the directory `assets/` at the repo root (holds `assets/map-cursor.svg`)
+
+## Phase 2: Foundational
+
+None: the stories only touch `styles.css` and the new asset.
+
+## Phase 3: User Story 1 - Barnacle map cursor over the map (P1) 🎯 MVP
+
+**Goal**: the empty map shows the blue ring cursor, click point at the ring centre, crosshair fallback.
+**Independent test**: `npm test` passes the new tests; in a browser the empty map shows the ring and a click opens the popup under its centre.
+
+- [ ] T002 [US1] Write `test/map-cursor.test.js` (node:test) with checks that: `assets/map-cursor.svg` exists and equals exactly the blueprint SVG (24x24; circles r=7 white stroke-width 4, r=7 `#2B00FF` stroke-width 2, r=2 `#2B00FF` fill with white stroke-width 1); `styles.css` contains `.leaflet-container` and `.leaflet-grab` with cursor `url("assets/map-cursor.svg") 12 12, crosshair`; that cursor value contains no `http` URL (FR-003). Run it and see it fail.
+- [ ] T003 [US1] Create `assets/map-cursor.svg` with exactly the SVG given in plan.md step 1
+- [ ] T004 [US1] Append a "map cursor" block to `styles.css` with `.leaflet-container, .leaflet-grab { cursor: url("assets/map-cursor.svg") 12 12, crosshair; }`; run `npm test`, T002 now passes
+
+## Phase 4: User Story 2 - Standard pointers where a click does something else (P2)
+
+**Goal**: grabbing while dragging, pointing hand on clickable map items, arrow on popup body, panel unchanged.
+**Independent test**: `npm test` passes; manual checks of quickstart.md steps 4-5.
+
+- [ ] T005 [US2] Extend `test/map-cursor.test.js` with checks that `styles.css` has: `.leaflet-dragging .leaflet-grab` with `cursor: grabbing`; `cursor: pointer` for `.leaflet-interactive`, `.leaflet-bar a`, `.leaflet-popup-content button`, `.leaflet-control-attribution a` and `.leaflet-popup-close-button`; `cursor: auto` for `.leaflet-popup-content-wrapper` and `.leaflet-popup-tip`; no `map-cursor` in any `#panel`/`#results`/`#routes`/`#search-input` rule (FR-007). See them fail.
+- [ ] T006 [US2] Add the rules of plan.md step 2 (grabbing, pointer list, popup `auto`) to the map cursor block in `styles.css`; run `npm test`, all pass
+
+## Phase 5: Polish
+
+- [ ] T007 Follow `quickstart.md` manually (`npm start`): ring over street/park/water, click within 2 px, drag, hover items, panel pointers, blocked-SVG crosshair; fix `styles.css` if any step fails
+- [ ] T008 Run the full `npm test` and confirm the existing tests still pass (FR-008)
+
+## Dependencies
+
+T001 → T002/T003 → T004 → T005 → T006 → T007, T008. US2 builds on US1's block in `styles.css`. T002 and T003 touch different files and can run in parallel; nothing else is parallel (same files).
+
+## Strategy
+
+MVP = User Story 1 (T001-T004). Then US2, then polish.
