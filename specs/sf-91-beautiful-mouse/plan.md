@@ -61,3 +61,16 @@ test/map-cursor.test.js       (new)
 ## Complexity Tracking
 
 No violations.
+
+## Fix round 1
+
+**Problem**: the AI review marked edge case 2 (touch-only device) as failed. It did not run it: it used no touch device and no touch emulation. All other scenarios passed.
+
+**Cause**: the review is incomplete, not the code. The change adds only `cursor` rules in `styles.css`. It adds no `touch-action`, `pointer-events` or `user-select` rule and no JavaScript, so Leaflet's tap and one-finger drag are unchanged (FR-008). The spec's touch edge case had no result a headless tester could check, so the review skipped it.
+
+**Fix** (option A, no app code change):
+1. Build adds a static guard test: the map cursor block in `styles.css` sets only `cursor` properties (no `touch-action`, `pointer-events`, `user-select`), and the branch changes no file under `src/`. It passes now and keeps touch behaviour safe from later edits.
+2. The spec's touch edge case now states a check a tester can run with browser touch emulation (Playwright `hasTouch: true`, `isMobile: true`): a tap on the empty map opens the "Add stop here" popup at the tap point, and a one-finger drag moves the map centre. The next AI review performs it.
+3. Build adds the touch step to `quickstart.md`.
+
+**Files**: `test/map-cursor.test.js` (extend), `specs/sf-91-beautiful-mouse/quickstart.md` (step 7), `spec.md` (edge case wording). No dependency.

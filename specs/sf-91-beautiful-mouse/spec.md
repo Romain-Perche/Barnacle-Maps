@@ -51,7 +51,7 @@ While the user drags the map, or hovers something on the map that a click select
 ### Edge Cases
 
 - The cursor image cannot load (for example, it is blocked): over the map the pointer is a thin crosshair (+), not the open hand. Clicking the map still opens the "Add stop here" popup at the crosshair's centre.
-- Touch-only device (phone, tablet): no pointer is shown. Tapping the map still opens the "Add stop here" popup, and dragging with a finger still moves the map.
+- Touch-only device (phone, tablet), or a desktop browser in touch emulation (touch on, mobile mode on): no pointer is shown. A tap on an empty part of the map opens the "Add stop here" popup with its tip at the tap point (within 2 screen pixels horizontally), and a one-finger drag of 100 screen pixels moves the map centre (the map's centre coordinates change).
 - The pointer is over the white area of an open popup, away from its button: the pointer is a standard arrow, not the blue ring.
 - The pointer is over the map attribution link ("Leaflet" / "OpenStreetMap") in the bottom corner: the pointer is a pointing hand, not the blue ring.
 - Keyboard use: moving through the panel with Tab shows the same focus outlines as before, and Enter on a route option still selects that route.

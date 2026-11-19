@@ -40,3 +40,9 @@ T001 → T002/T003 → T004 → T005 → T006 → T007, T008. US2 builds on US1'
 ## Strategy
 
 MVP = User Story 1 (T001-T004). Then US2, then polish.
+
+## Fix round 1: touch edge case not verified
+
+- [ ] T009 Extend `test/map-cursor.test.js` with a guard test: parse the "map cursor (ui/map-cursor@1)" block of `styles.css` and assert every declaration in it is a `cursor` property (no `touch-action`, `pointer-events`, `user-select`); assert `git diff origin/main...HEAD --name-only` lists no file under `src/` (skip that assert when git or `origin/main` is missing). This guards FR-008 touch behaviour; it passes with the current code and fails if a later edit adds a touch-affecting rule.
+- [ ] T010 Add step 7 to `specs/sf-91-beautiful-mouse/quickstart.md`: open the app with touch emulation (dev tools device mode, or Playwright `hasTouch: true, isMobile: true`); tap the empty map: the "Add stop here" popup opens at the tap point; drag with one finger: the map centre moves. Run it once and record the result.
+- [ ] T011 Run the full `npm test`; all tests pass.
