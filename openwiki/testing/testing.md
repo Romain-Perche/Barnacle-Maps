@@ -5,17 +5,11 @@ description: How Barnacle Maps is tested, with Node's built-in test runner on th
 tags: [testing, node-test, playwright, ai-scenarios]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-16T15:57:49.174Z
+    at: 2026-11-19T16:46:39.118Z
 sources:
-  - id: openwiki-source-5b54a58d1b51cd490b0e7162
-    resource: repo://package.json
-  - id: openwiki-source-278e62085e4d44585a3e9b2d
-    resource: repo://test/bike.test.js
-  - id: openwiki-source-1c481527e1de0efbb36b0e88
-    resource: repo://test/routes.test.js
-  - id: openwiki-source-6cace7c7d249e62c818cb3f7
-    resource: repo://tests/ai/us1-cycling-routes.md
-generated: { by: "claude-code", at: "2026-11-16T15:57:49.174Z" }
+  - id: openwiki-source-083fb8eff0752279b618f9b8
+    resource: repo://test/map-cursor.test.js
+generated: { by: "claude-code", at: "2026-11-19T16:46:39.118Z" }
 ---
 
 # Testing
@@ -33,6 +27,7 @@ There are two layers of tests: deterministic unit tests that run with `npm test`
 | `test/modes.test.js` | `TRAVEL_MODES` keys, car-mode URLs, fallback of unknown modes to walking |
 | `test/bike.test.js` | The bike entry of `TRAVEL_MODES` and the contract in `specs/sf-70-bicycle-track/contracts/travel-modes.md`; detours only for walking; pleasure for foot and bike only; bike URLs with stops; the `#mode` radiogroup markup; the segmented-control CSS; that `app.js` reads mode flags instead of comparing names; README text |
 | `test/stops.test.js` | Stops in `routeUrl`, `addStop` limit and duplicate, `moveStop`, `removeStop`, `mapPointStop`, `straightLineLength` |
+| `test/map-cursor.test.js` | The map cursor: `assets/map-cursor.svg` shape and colours, and the `styles.css` rules for the cursor, hot spot and crosshair fallback, `grabbing` while dragging, and `pointer` on clickable items (read as text) |
 | `test/pleasure.test.js` | `lngLatToPixel`, `pathPixels`, `pathTiles`, `isGreenPixel`, `countGreenPixels`, `bestPleasure`, with synthetic tiles |
 
 Many test comments name the spec items they cover (for example `// covers FR-002, …`), which ties them to the feature spec.
