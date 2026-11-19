@@ -37,3 +37,22 @@ test('panel rules do not use the map cursor // covers FR-007', () => {
   for (const r of rules.filter(r => /#(panel|results|routes|search-input)/.test(r.sel)))
     assert.ok(!r.body.includes('map-cursor'), r.sel);
 });
+
+// covers FR-008, edge case 2 (touch): the cursor block must not change touch handling
+test('map cursor block sets only cursor properties, no src/ change // covers FR-008, Edge case 2', async () => {
+  const start = css.indexOf('/* map cursor (ui/map-cursor@1) */');
+  assert.ok(start >= 0, 'map cursor block marker missing');
+  const next = css.indexOf('/*', start + 2);
+  const block = css.slice(start, next < 0 ? undefined : next).replace(/\/\*.*?\*\//gs, '');
+  const decls = [...block.matchAll(/\{([^}]*)\}/g)].flatMap(m => m[1].split(';')).map(d => d.trim()).filter(Boolean);
+  assert.ok(decls.length > 0);
+  for (const d of decls) assert.match(d, /^cursor\s*:/, `non-cursor declaration in map cursor block: ${d}`);
+  assert.ok(!/touch-action|pointer-events|user-select/.test(block));
+
+  const { execFileSync } = await import('node:child_process');
+  let changed;
+  try {
+    changed = execFileSync('git', ['diff', 'origin/main...HEAD', '--name-only'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+  } catch { return; } // no git or no origin/main: skip the src/ check
+  assert.deepEqual(changed.split('\n').filter(f => f.startsWith('src/')), []);
+});

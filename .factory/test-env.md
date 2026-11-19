@@ -5,8 +5,14 @@
 ## How to run the app
 `npm run start` (python http.server on :8000). Then:
 `mkdir -p /tmp/lf && cd /tmp/lf && npm pack leaflet@1.9.4 && mkdir -p x && tar xzf leaflet-1.9.4.tgz -C x`
-`NODE_PATH=/opt/playwright/node_modules node .factory/run/cursor-check.cjs` and `cursor-extra.cjs`.
+`NODE_PATH=/opt/playwright/node_modules node .factory/run/cursor-check.cjs`, `cursor-extra.cjs` and `touch-check.cjs` (touch emulation: tap opens the popup, one-finger drag moves the centre).
 
 ## Smoke checks
 - `curl -s localhost:8000/assets/map-cursor.svg | head -1` shows an svg tag.
 - `node .factory/run/cursor-extra.cjs` prints the map cursor as `url(".../assets/map-cursor.svg") 12 12, crosshair`.
+
+## Schemas
+None: the faked services (OSM tiles, Nominatim, OSRM) are answered with fixed responses in the run scripts; no schema file is used.
+
+## Docker images
+None.
